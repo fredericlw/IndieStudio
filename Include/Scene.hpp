@@ -8,11 +8,14 @@
 #define SCENE_HPP
 
 #include <vector>
-#include "Entity.hpp"
+#include <ECS/Ecs.hpp>
+#include "ECS/Entity.hpp"
 
+//Abstract class
 class Scene {
 public:
-    std::vector<Entity> entities;
+    virtual ~Scene(){}
+    std::vector<std::unique_ptr<Entity>> entities;
 };
 
 #endif //SCENE_HPP

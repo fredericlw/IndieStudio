@@ -6,8 +6,9 @@
 */
 #ifndef MANAGER_HPP
 #define MANAGER_HPP
+
+#include <Scene.hpp>
 #include "Entity.hpp"
-#include "Scene.hpp"
 
 class Manager {
 public:
@@ -15,7 +16,7 @@ public:
     void draw();
     void refresh();
     Entity &addEntity(std::string name);
-    void loadScene(Scene sceneToLoad);
+    void loadScene(const Scene& sceneToLoad);
 private:
     std::vector<std::unique_ptr<Entity>> entities;
 };

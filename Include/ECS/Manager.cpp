@@ -38,16 +38,20 @@ Entity &Manager::addEntity(std::string name)
     return *e;
 }
 
-void Manager::loadScene(Scene sceneToLoad)
+void Manager::loadScene(const Scene &sceneToLoad)
 {
+    std::cout << "!!! LoadScene !!!" << std::endl;
     //set inactive all entities except dontDestroyOnLoad ones
     for (auto &item : entities)
         if (!item->GetDontDestroyOnLoad())
             item->destroy();
+    std::cout << "Refreshing..." << std::endl;
     refresh();
-    //Load entities from scenes
+    std::cout << "Loading Entities from scene..." << std::endl;
+    //Load entities from scene
     for (auto &item : sceneToLoad.entities) {
-        std::unique_ptr<Entity> uptr{&item};
-        entities.emplace_back(std::move(uptr));
+        std::cout << "loading " << item->getName() << std::endl;
+        entities.emplace_back(std::move(item.get()));
+        std::cout << "loaded entity " << item.get()->getName() << std::endl;
     }
 }

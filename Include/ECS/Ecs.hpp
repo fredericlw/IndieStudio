@@ -15,6 +15,7 @@
 #include <array>
 class Component;
 class Entity;
+class Manager;
 
 using ComponentID = std::size_t;
 
