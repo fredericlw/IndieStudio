@@ -16,19 +16,16 @@ void Sprite2D::init()
 {
     Component::init();
     pos = &entity->getComponent<PositionComponent>();
-    srcRect.x = 0;
-    srcRect.y = 0;
-    srcRect.height = 32;
-    srcRect.width = 32;
-    destRect.width = 64;
-    destRect.height = 64;
+    Rect.x = 0;
+    Rect.y = 0;
+    Rect.height = tex.height;
+    Rect.width = tex.width;
+    
 }
 
 void Sprite2D::update()
 {
     Component::update();
-    destRect.x = pos->x();
-    destRect.y = pos->y();
 }
 
 void Sprite2D::draw()
@@ -39,7 +36,7 @@ void Sprite2D::draw()
 
 const Rectangle &Sprite2D::getRect() const
 {
-    return destRect;
+    return Rect;
 }
 
 const Texture2D &Sprite2D::getTex() const

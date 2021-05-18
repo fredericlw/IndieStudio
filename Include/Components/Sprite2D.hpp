@@ -23,8 +23,7 @@ private:
 public:
     const Texture2D &getTex() const;
 private:
-    Rectangle srcRect;
-    Rectangle destRect;
+    Rectangle Rect;
 public:
     const Rectangle &getRect() const;
 };
