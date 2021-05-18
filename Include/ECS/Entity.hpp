@@ -34,7 +34,7 @@ public:
         T *comp(new T(std::forward<TArgs>(mArgs)...));
         comp->entity = this;
         std::unique_ptr<Component> uPtr
-            (comp); //todo: if doesn't work, replace parentheses with curly brackets
+            (comp);
         components.emplace_back(std::move(uPtr));
         componentArray[getComponentTypeID<T>()] = comp;
         componentBitSet[getComponentTypeID<T>()] = true;
