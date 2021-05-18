@@ -22,7 +22,12 @@ add_executable(bomberman
         Include/ECS/Entity.cpp
         Include/ECS/Entity.hpp
         Include/ECS/Component.cpp
-        Include/ECS/Component.hpp)
+        Include/ECS/Component.hpp
+        Include/ECS/Scene.hpp
+
+        Include/Components/Sprite2D.cpp
+        Include/Components/Sprite2D.hpp
+        )
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

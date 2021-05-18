@@ -9,19 +9,32 @@
 #include "Component.hpp"
 class Entity {
 private:
-    bool active = true;
+    bool _active = true;
+    bool _dontDesOnLoad = false;
     std::vector<std::unique_ptr<Component>> components;
-
+    std::string _name;
+public:
+    const std::string &getName() const;
+private:
     ComponentArray componentArray;
     ComponentBitSet componentBitSet;
 public:
+    Entity(std::string name);
     void update();
 
     void draw();
 
     bool isActive() const
     {
-        return active;
+        return _active;
+    }
+
+    bool GetDontDestroyOnLoad() {
+        return _dontDesOnLoad;
+    }
+
+    void SetDontDestroyOnLoad(bool state){
+        _dontDesOnLoad = state;
     }
 
     void destroy();

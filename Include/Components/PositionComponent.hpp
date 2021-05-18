@@ -16,11 +16,15 @@ public:
     int z();
     void setPos(int x, int y);
     void update() override;
-
+    explicit PositionComponent(int x = 0, int y = 0, int z = 0){
+        xpos = x;
+        ypos = y;
+        zpos = z;
+    }
 private:
-    int xpos = 0;
-    int ypos = 0;
-    int zpos = 0;
+    int xpos;
+    int ypos;
+    int zpos;
 };
 
 #endif //POSITIONCOMPONENT_HPP

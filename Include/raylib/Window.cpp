@@ -8,15 +8,16 @@
 
 Window::Window(bool fullscreen) :screenSize(std::make_tuple(GetScreenWidth(), GetScreenHeight()))
 {
+    SetTargetFPS(60);
     if (fullscreen) {
         InitWindow(get<0>(screenSize), get<1>(screenSize), "Bomberman");
         ToggleFullscreen();
     } else {
-        InitWindow(800, 600, "Bomberman");
+        InitWindow(1280, 720, "Bomberman");
     }
 }
 
 Window::~Window()
 {
-
+    CloseWindow();
 }

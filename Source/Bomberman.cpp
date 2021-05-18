@@ -7,6 +7,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <Components/PositionComponent.hpp>
+#include <Components/Sprite2D.hpp>
 #include "Bomberman.hpp"
 
 Bomberman::Bomberman(bool fullscreen)
@@ -14,16 +15,22 @@ Bomberman::Bomberman(bool fullscreen)
       alive(true),
       startTime(std::time(nullptr))
 {
-    auto &testEntity(mgr.addEntity());
-    testEntity.addComponent<PositionComponent>();
     GameLoop();
 }
 
 void Bomberman::GameLoop()
 {
+    auto& logoEnt = mgr.addEntity("MainMenuLogo");
+    logoEnt.addComponent<PositionComponent>(0,0);
+    logoEnt.addComponent<Sprite2D>("rsc/mainlogo.png");
+    logoEnt.getComponent<PositionComponent>()
+        .setPos(0,GetScreenHeight() - logoEnt.getComponent<Sprite2D>().getTex().height);
+
+
     while (alive) {
         if (std::difftime(std::time(nullptr), startTime) > 5) Quit();
         mgr.update();
+        mgr.draw();
     }
 }
 

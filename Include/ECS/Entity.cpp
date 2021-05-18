@@ -8,12 +8,13 @@
 
 void Entity::update()
 {
+    std::cout << getName() << ": update()" << std::endl;
     for (auto &c : components) c->update();
 }
 
 void Entity::destroy()
 {
-    active = false;
+    _active = false;
 }
 
 template<typename T> bool Entity::hasComponent() const
@@ -24,4 +25,13 @@ template<typename T> bool Entity::hasComponent() const
 void Entity::draw()
 {
     for (auto &c : components) c->draw();
+}
+
+Entity::Entity(std::string name) : _name(name)
+{
+}
+
+const std::string &Entity::getName() const
+{
+    return _name;
 }
