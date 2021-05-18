@@ -5,13 +5,33 @@
 ** Created by Leo Fabre
 */
 #include <iostream>
-#include "../Include/Bomberman.hpp"
+#include <unistd.h>
+#include <Components/PositionComponent.hpp>
+#include "Bomberman.hpp"
 
-Bomberman::Bomberman()
+Bomberman::Bomberman(bool fullscreen)
+    : mainWindow(std::make_unique<Window>(fullscreen)),
+      alive(true),
+      startTime(std::time(nullptr))
 {
-    std::cout << "coucou" << std::endl;
+    auto &testEntity(mgr.addEntity());
+    testEntity.addComponent<PositionComponent>();
+    GameLoop();
+}
+
+void Bomberman::GameLoop()
+{
+    while (alive) {
+        if (std::difftime(std::time(nullptr), startTime) > 5) Quit();
+        mgr.update();
+    }
 }
 
 Bomberman::~Bomberman()
 {
+}
+
+void Bomberman::Quit()
+{
+    alive = false;
 }
