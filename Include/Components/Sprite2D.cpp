@@ -34,7 +34,6 @@ void Sprite2D::update()
 void Sprite2D::draw()
 {
     Component::draw();
-    std::cout << "drawing texture" << std::endl;
     DrawTexture(tex, pos->x(), pos->y(), RAYWHITE);
 }
 
