@@ -16,9 +16,10 @@ public:
     void draw();
     void refresh();
     Entity &addEntity(std::string name);
-    void loadScene(const Scene& sceneToLoad);
+    void destroyOnLoad();
 private:
     std::vector<std::shared_ptr<Entity>> entities;
+
 };
 
 #endif //MANAGER_HPP

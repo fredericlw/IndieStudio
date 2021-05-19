@@ -4,32 +4,26 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "MainMenuScene.hpp"
+#include <ECS/Manager.hpp>
+#include <Bomberman.hpp>
 #include "Components/Components.h"
 
-MainMenuScene::MainMenuScene()
-    : Scene()
+void Bomberman::LoadMenuScene()
 {
-    AddLogo();
+    mgr->destroyOnLoad();
+    AddMenuLogo();
 }
 
-void MainMenuScene::AddLogo()
+void Bomberman::AddMenuLogo()
 {
     //Create an entity
-    std::shared_ptr<Entity> logoEntity = std::make_shared<Entity>("MainMenuLogo");
+    auto &logoEntity = mgr->addEntity("MainMenuLogo");
     //Add Components to it
-    logoEntity->addComponent<TransformComp>(0, 0);
-    logoEntity->addComponent<Sprite2D>("rsc/mainlogo.png");
+    logoEntity.addComponent<TransformComp>(0, 0);
+    logoEntity.addComponent<Sprite2D>("rsc/mainlogo.png");
     //Modify some components
     int ypos =
-        GetScreenHeight() - logoEntity->getComponent<Sprite2D>().getTex().height;
-    logoEntity->getComponent<TransformComp>().position.y = ypos;
-    //Once done, put entity into scene hierarchy.
-    entities.emplace_back(std::move(logoEntity));
-}
-
-void MainMenuScene::AddPlayBtn()
-{
-    auto playBtnEntity = std::make_shared<Entity>("PlayBtn");
-//    playBtnEntity->addComponent<ButtonComp>("rsc/playBtn.png", )
+        GetScreenHeight() -
+            logoEntity.getComponent<Sprite2D>().getTex().height;
+    logoEntity.getComponent<TransformComp>().position.y = (float)ypos;
 }

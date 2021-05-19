@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(bomberman)
 
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 set(CMAKE_CXX_STANDARD 20)
 
@@ -29,8 +30,12 @@ add_executable(bomberman
         Include/Components/Sprite2D.hpp
 
         Source/Scenes/MainMenuScene.cpp
-        Source/Scenes/MainMenuScene.hpp
-        Include/Components/Components.h Include/Components/ButtonComp.cpp Include/Components/ButtonComp.hpp Include/raylib/Vector3D.cpp Include/raylib/Vector3D.hpp)
+        Include/Components/Components.h
+        Include/Components/ButtonComp.cpp
+        Include/Components/ButtonComp.hpp
+        Include/raylib/Vector3D.cpp
+        Include/raylib/Vector3D.hpp
+        )
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

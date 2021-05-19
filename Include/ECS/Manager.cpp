@@ -39,7 +39,7 @@ Entity &Manager::addEntity(std::string name)
     return *e;
 }
 
-void Manager::loadScene(const Scene &sceneToLoad)
+void Manager::destroyOnLoad()
 {
     std::cout << "!!! LoadScene !!!" << std::endl;
     //set inactive all entities except dontDestroyOnLoad ones
@@ -47,8 +47,4 @@ void Manager::loadScene(const Scene &sceneToLoad)
         if (!item->GetDontDestroyOnLoad())
             item->destroy();
     refresh();
-    //Load entities from scene
-    for (auto &item : sceneToLoad.entities) {
-        entities.emplace_back(std::move(item.get()));
-    }
 }
