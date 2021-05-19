@@ -35,6 +35,8 @@ add_executable(bomberman
         Include/Components/ButtonComp.hpp
         Include/raylib/Vector3D.cpp
         Include/raylib/Vector3D.hpp
+        Include/raylib/Vector2D.cpp
+        Include/raylib/Vector2D.hpp
         )
 
 

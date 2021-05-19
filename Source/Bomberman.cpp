@@ -17,21 +17,17 @@ Bomberman::Bomberman(bool fullscreen)
       mgr(std::make_shared<Manager>())
 {
     LoadMenuScene();
-
     GameLoop();
 }
 
 void Bomberman::GameLoop()
 {
-
     while (alive) {
         if (std::difftime(std::time(nullptr), startTime) > 5) Quit();
         mgr->update();
         mgr->draw();
     }
 }
-
-
 
 Bomberman::~Bomberman()
 {

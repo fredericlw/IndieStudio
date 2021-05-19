@@ -38,7 +38,7 @@ public:
 
     static Vector3D Right()
     {
-        return Vector3D(0, 0, 1);
+        return Vector3D(1, 0, 0);
     }
     //endregion
 

@@ -10,7 +10,7 @@
 
 class ButtonComp :public Component{
 public:
-    ButtonComp(const std::string &spritePath);
+    ButtonComp(const std::string &text);
     ~ButtonComp();
 private:
 };
