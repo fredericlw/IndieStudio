@@ -10,9 +10,12 @@
 #include <raylib.h>
 #include <ostream>
 
+class Vector3D;
+
 class Vector2D : public Vector2 {
 public:
     Vector2D(float x, float y);
+    Vector2D(const Vector3D &vec);
     ~Vector2D();
 
     //region Static values
@@ -34,6 +37,12 @@ public:
     static Vector2D Right()
     {
         return Vector2D(1, 0);
+    }
+
+    static Vector2D ScreenCenter()
+    {
+        return Vector2D((float) GetScreenWidth() / 2,
+            (float) GetScreenHeight() / 2);
     }
     //endregion
 

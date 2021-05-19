@@ -15,6 +15,7 @@ class TransformComp : public Component {
 public:
     void update() override;
     explicit TransformComp(float x = 0, float y = 0, float z = 0);
+    explicit TransformComp(const Vector3D& Position);
     Vector3D position;
 };
 

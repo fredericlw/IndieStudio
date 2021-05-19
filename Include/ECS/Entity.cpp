@@ -8,7 +8,6 @@
 
 void Entity::update()
 {
-    std::cout << getName() << ": update()" << std::endl;
     for (auto &c : components) c->update();
 }
 

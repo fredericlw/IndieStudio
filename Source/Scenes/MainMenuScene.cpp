@@ -12,6 +12,19 @@ void Bomberman::LoadMenuScene()
 {
     mgr->destroyOnLoad();
     AddMenuLogo();
+    AddPlayButton();
+}
+
+void Bomberman::AddPlayButton()
+{
+    auto &PlayBtnEnt = mgr->addEntity("PlayButton");
+    PlayBtnEnt.addComponent<TransformComp>(Vector2D::ScreenCenter());
+    auto size = Vector2D{150, 50};
+    auto halfsize = Vector2D{size.x / 2, size.y / 2};
+    std::cout << "halfsize : " << halfsize << std::endl;
+    auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
+    std::cout << "pos = "<< pos << std::endl;
+    PlayBtnEnt.addComponent<ButtonComp>("PLAY", size, pos);
 }
 
 void Bomberman::AddMenuLogo()
@@ -25,5 +38,5 @@ void Bomberman::AddMenuLogo()
     int ypos =
         GetScreenHeight() -
             logoEntity.getComponent<Sprite2D>().getTex().height;
-    logoEntity.getComponent<TransformComp>().position.y = (float)ypos;
+    logoEntity.getComponent<TransformComp>().position.y = (float) ypos;
 }

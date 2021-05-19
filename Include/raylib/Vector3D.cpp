@@ -89,6 +89,11 @@ Vector3D &Vector3D::operator*=(const Vector3D &vec)
 
 std::ostream &operator<<(std::ostream &os, const Vector3D &vec)
 {
-    os << "(" << vec.x << ";" << vec.y << ";" << vec.z;
+    os << "(" << vec.x << ";" << vec.y << ";" << vec.z << ")";
     return os;
 }
+
+Vector3D::Vector3D(const Vector2D& Vec) : Vector3({Vec.x, Vec.y, 0})
+{
+}
+

@@ -6,12 +6,48 @@
 */
 #include <raylib/Vector2D.hpp>
 #include "ButtonComp.hpp"
+#include "ECS/Entity.hpp"
+#include "Components.h"
 
-ButtonComp::~ButtonComp()
+ButtonComp::ButtonComp(const std::string &text, Vector2D size, Vector2D pos)
+: _text(text),
+  size(size),
+  pos(pos)
 {
 }
 
-ButtonComp::ButtonComp(const std::string &text, Vector2D size, Vector2D pos)
+void ButtonComp::init()
 {
+    Component::init();
+    transform = &entity->getComponent<TransformComp>();
+}
+
+void ButtonComp::update()
+{
+    if (CheckCollisionPointRec(GetMousePosition(), rect))
+    {
+        hovering = true;
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            std::cout << "BUTTON CLICKED !!!" << std::endl;
+        }
+    }
+    else hovering = false;
+    pos = transform->position;
+    rect.x = pos.x;
+    rect.y = pos.y;
+    rect.width = size.x;
+    rect.height = size.y;
+}
+
+void ButtonComp::draw()
+{
+    Component::draw();
+
+    DrawRectangleRec(rect, (hovering) ? GREEN : LIGHTGRAY);
+    DrawRectangleLines((int)rect.x, (int) rect.y, (int) rect.width, (int) rect.height,
+        (hovering) ? GREEN : GRAY);
+//    DrawText(_text.c_str(), pos.x, pos.y, 40, BLACK);
+    DrawText(_text.c_str(), (int)(rect.x + rect.width/2 - MeasureText(_text.c_str(), 10)/2), (int) rect.y + 11, 10, hovering ? DARKBLUE : DARKGRAY);
 
 }

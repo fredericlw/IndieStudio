@@ -37,3 +37,4 @@ void Bomberman::Quit()
 {
     alive = false;
 }
+

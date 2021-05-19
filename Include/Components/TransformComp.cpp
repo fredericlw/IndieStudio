@@ -17,3 +17,7 @@ TransformComp::TransformComp(float x, float y, float z)
 void TransformComp::update()
 {
 }
+
+TransformComp::TransformComp(const Vector3D& Position) : position(Position)
+{
+}
