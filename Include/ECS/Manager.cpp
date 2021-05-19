@@ -16,6 +16,7 @@ void Manager::update()
 
 void Manager::draw()
 {
+    ClearBackground(DARKPURPLE);
     BeginDrawing();
     for (auto &e : entities) e->draw();
     EndDrawing();

@@ -11,8 +11,6 @@ MainMenuScene::MainMenuScene()
     : Scene()
 {
     AddLogo();
-
-
 }
 
 void MainMenuScene::AddLogo()
