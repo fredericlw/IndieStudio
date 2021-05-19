@@ -18,16 +18,9 @@ public:
     ~Bomberman();
 private:
     std::unique_ptr<Window> mainWindow;
-    bool alive;
     std::time_t startTime;
     std::shared_ptr<Manager> mgr;
     void GameLoop();
-    void Quit();
-    void LoadMenuScene();
-    void AddMenuLogo();
-    void AddPlayButton();
-    void AddGrid();
-    void AddCubeZER();
 };
 
 #endif //BOMBERMAN_HPP

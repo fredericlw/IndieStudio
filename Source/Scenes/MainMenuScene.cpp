@@ -9,32 +9,47 @@
 #include <Components/BasicCubeComp.hpp>
 #include "Components/Components.h"
 
-void Bomberman::LoadMenuScene()
+void Manager::loadMenuScene()
 {
-    mgr->destroyOnLoad();
     AddMenuLogo();
     AddPlayButton();
+    AddQuitButton();
     //    AddGrid();
-    AddCubeZER();
+   // AddCubeZER();
 }
 
-void Bomberman::AddPlayButton()
+
+
+void Manager::AddPlayButton()
 {
-    auto &PlayBtnEnt = mgr->addEntity("PlayButton");
+    auto &PlayBtnEnt = addEntity("PlayButton");
     PlayBtnEnt.addComponent<TransformComp>(Vector2D::ScreenCenter());
     auto size = Vector2D{150, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
     auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
     PlayBtnEnt.addComponent<ButtonComp>("PLAY", size, pos);
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
+        [this]() {loadScene(Game);}
+    );
+}
+
+void Manager::AddQuitButton()
+{
+    auto &PlayBtnEnt = addEntity("QuitButton");
+    PlayBtnEnt.addComponent<TransformComp>();
+    auto size = Vector2D{150, 50};
+    auto halfsize = Vector2D{size.x / 2, size.y / 2};
+    auto pos = Vector2D::ScreenCenter().Subtract({0, 0});
+    PlayBtnEnt.addComponent<ButtonComp>("QUIT", size, pos);
+    PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {Quit();}
     );
 }
 
-void Bomberman::AddMenuLogo()
+void Manager::AddMenuLogo()
 {
     //Create an entity
-    auto &logoEntity = mgr->addEntity("MainMenuLogo");
+    auto &logoEntity = addEntity("MainMenuLogo");
     //Add Components to it
     logoEntity.addComponent<TransformComp>(0, 0);
     logoEntity.addComponent<Sprite2D>("rsc/mainlogo.png");
@@ -46,9 +61,9 @@ void Bomberman::AddMenuLogo()
 }
 
 
-void Bomberman::AddCubeZER()
+void Manager::AddCubeZER()
 {
-    auto &monCUB = mgr->addEntity("Gro KUBE");
+    auto &monCUB = addEntity("Gro KUBE");
     monCUB.addComponent<TransformComp>();
     monCUB.addComponent<BasicCubeComp>();
 }

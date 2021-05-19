@@ -5,7 +5,7 @@
 ** Created by Leo Fabre
 */
 #include <iostream>
-#include <unistd.h>
+//#include <unistd.h>
 #include <Components/TransformComp.hpp>
 #include <Components/Sprite2D.hpp>
 #include <Components/BasicCubeComp.hpp>
@@ -13,18 +13,17 @@
 
 Bomberman::Bomberman(bool fullscreen)
     : mainWindow(std::make_unique<Window>(fullscreen)),
-      alive(true),
       startTime(std::time(nullptr)),
       mgr(std::make_shared<Manager>())
 {
-    LoadMenuScene();
+    mgr->loadScene(Manager::MainMenu);
     GameLoop();
 }
 
 void Bomberman::GameLoop()
 {
-    while (alive) {
-        if (std::difftime(std::time(nullptr), startTime) > 5) Quit();
+    while (mgr->isAlive()) {
+        if (std::difftime(std::time(nullptr), startTime) > 5) mgr->Quit();
         mgr->update();
         mgr->draw();
     }
@@ -33,14 +32,3 @@ void Bomberman::GameLoop()
 Bomberman::~Bomberman()
 {
 }
-
-void Bomberman::Quit()
-{
-    alive = false;
-}
-
-void Bomberman::AddGrid()
-{
-
-}
-

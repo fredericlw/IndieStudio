@@ -62,3 +62,32 @@ Manager::Manager()
     MainCam.fovy = 45.0f;
     MainCam.projection = CAMERA_PERSPECTIVE;
 }
+
+void Manager::loadScene(Manager::SceneType scene)
+{
+    destroyOnLoad();
+    switch (scene) {
+    case MainMenu:
+        loadMenuScene();
+        break;
+    case Game:
+        loadGamescene();
+        break;
+    }
+}
+
+void Manager::loadGamescene()
+{
+    AddCubeZER();
+}
+
+
+void Manager::Quit()
+{
+    alive = false;
+}
+
+bool Manager::isAlive() const
+{
+    return alive;
+}
