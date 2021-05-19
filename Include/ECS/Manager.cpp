@@ -36,7 +36,7 @@ void Manager::refresh()
 
 Entity &Manager::addEntity(std::string name)
 {
-    auto *e = new Entity(std::move(name), std::make_shared<Manager>(*this));
+    auto *e = new Entity(std::move(name), this);
     std::shared_ptr<Entity> ptr{e};
     entities.emplace_back(std::move(ptr));
     return *e;

@@ -16,9 +16,9 @@ protected:
     std::vector<std::unique_ptr<Component>> components;
     std::string _name;
 public:
-    Entity(std::string name, std::shared_ptr<Manager> mgr);
+    Entity(std::string name, Manager *mgr);
     const std::string &getName() const;
-    std::shared_ptr<Manager> _mgr;
+    Manager *_mgr;
 private:
     ComponentArray componentArray;
     ComponentBitSet componentBitSet;
