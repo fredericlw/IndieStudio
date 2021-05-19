@@ -26,6 +26,7 @@ private:
     void LoadMenuScene();
     void AddMenuLogo();
     void AddPlayButton();
+    void AddGrid();
 };
 
 #endif //BOMBERMAN_HPP

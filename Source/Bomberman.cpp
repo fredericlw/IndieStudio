@@ -38,3 +38,8 @@ void Bomberman::Quit()
     alive = false;
 }
 
+void Bomberman::AddGrid()
+{
+
+}
+

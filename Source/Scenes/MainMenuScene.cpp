@@ -13,6 +13,7 @@ void Bomberman::LoadMenuScene()
     mgr->destroyOnLoad();
     AddMenuLogo();
     AddPlayButton();
+    AddGrid();
 }
 
 void Bomberman::AddPlayButton()
