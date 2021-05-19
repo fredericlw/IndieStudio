@@ -18,6 +18,7 @@ public:
     void update() override;
     void draw() override;
     void init() override;
+    void AddEventFunc(const std::function<void()>& function);
 private:
     Rectangle rect;
     bool hovering;
@@ -25,6 +26,7 @@ private:
     Vector2D size;
     Vector3D pos;
     TransformComp *transform;
+    std::vector<std::function<void()>> EventFuncs;
 };
 
 #endif //BUTTONCOMP_HPP

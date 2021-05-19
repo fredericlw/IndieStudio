@@ -10,9 +10,9 @@
 #include "Components.h"
 
 ButtonComp::ButtonComp(const std::string &text, Vector2D size, Vector2D pos)
-: _text(text),
-  size(size),
-  pos(pos)
+    : _text(text),
+      size(size),
+      pos(pos)
 {
 }
 
@@ -20,19 +20,18 @@ void ButtonComp::init()
 {
     Component::init();
     transform = &entity->getComponent<TransformComp>();
+    AddEventFunc([]() {std::cout << "Pressed button !" << std::endl;});
 }
 
 void ButtonComp::update()
 {
-    if (CheckCollisionPointRec(GetMousePosition(), rect))
-    {
+    if (CheckCollisionPointRec(GetMousePosition(), rect)) {
         hovering = true;
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-        {
-            std::cout << "BUTTON CLICKED !!!" << std::endl;
-        }
-    }
-    else hovering = false;
+            for (const auto &func : EventFuncs)
+                func();
+    } else {hovering = false;}
+
     pos = transform->position;
     rect.x = pos.x;
     rect.y = pos.y;
@@ -45,9 +44,16 @@ void ButtonComp::draw()
     Component::draw();
 
     DrawRectangleRec(rect, (hovering) ? GREEN : LIGHTGRAY);
-    DrawRectangleLines((int)rect.x, (int) rect.y, (int) rect.width, (int) rect.height,
+    DrawRectangleLines((int) rect.x, (int) rect.y, (int) rect.width,
+        (int) rect.height,
         (hovering) ? GREEN : GRAY);
-//    DrawText(_text.c_str(), pos.x, pos.y, 40, BLACK);
-    DrawText(_text.c_str(), (int)(rect.x + rect.width/2 - MeasureText(_text.c_str(), 10)/2), (int) rect.y + 11, 10, hovering ? DARKBLUE : DARKGRAY);
+    //    DrawText(_text.c_str(), pos.x, pos.y, 40, BLACK);
+    DrawText(_text.c_str(),
+        (int) (rect.x + rect.width / 2 - MeasureText(_text.c_str(), 10) / 2),
+        (int) rect.y + 11, 10, hovering ? DARKBLUE : DARKGRAY);
+}
 
+void ButtonComp::AddEventFunc(const std::function<void()> &function)
+{
+    EventFuncs.emplace_back(function);
 }
