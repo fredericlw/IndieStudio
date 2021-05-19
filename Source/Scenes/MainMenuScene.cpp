@@ -36,10 +36,10 @@ void Manager::AddPlayButton()
 void Manager::AddQuitButton()
 {
     auto &PlayBtnEnt = addEntity("QuitButton");
-    PlayBtnEnt.addComponent<TransformComp>();
+    PlayBtnEnt.addComponent<TransformComp>(Vector2D::ScreenCenter());
     auto size = Vector2D{150, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
-    auto pos = Vector2D::ScreenCenter().Subtract({0, 0});
+    auto pos = Vector2D::ScreenCenter().Subtract(halfsize).Add({0, 150});
     PlayBtnEnt.addComponent<ButtonComp>("QUIT", size, pos);
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {Quit();}

@@ -31,7 +31,7 @@ void ButtonComp::update()
                 func();
     } else {hovering = false;}
 
-    pos = transform->position;
+    //pos = transform->position;
     rect.x = pos.x;
     rect.y = pos.y;
     rect.width = size.x;
