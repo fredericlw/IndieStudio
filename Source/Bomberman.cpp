@@ -6,7 +6,7 @@
 */
 #include <iostream>
 #include <unistd.h>
-#include <Components/PositionComponent.hpp>
+#include <Components/TransformComp.hpp>
 #include <Components/Sprite2D.hpp>
 #include "Bomberman.hpp"
 #include "Scenes/MainMenuScene.hpp"

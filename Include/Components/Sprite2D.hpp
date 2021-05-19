@@ -9,7 +9,7 @@
 
 #include <ECS/Component.hpp>
 #include <raylib.h>
-#include "PositionComponent.hpp"
+#include "TransformComp.hpp"
 
 class Sprite2D : public Component {
 public:
@@ -18,13 +18,11 @@ public:
     void update() override;
     void draw() override;
 private:
-    PositionComponent *pos;
+    TransformComp *transform;
     Texture2D tex;
-public:
-    const Texture2D &getTex() const;
-private:
     Rectangle Rect;
 public:
+    const Texture2D &getTex() const;
     const Rectangle &getRect() const;
 };
 

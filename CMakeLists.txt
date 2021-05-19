@@ -15,8 +15,8 @@ add_executable(bomberman
         Include/raylib/Window.cpp
         Include/raylib/Window.hpp
         Include/ECS/Ecs.hpp
-        Include/Components/PositionComponent.cpp
-        Include/Components/PositionComponent.hpp
+        Include/Components/TransformComp.cpp
+        Include/Components/TransformComp.hpp
         Include/ECS/Manager.cpp
         Include/ECS/Manager.hpp
         Include/ECS/Entity.cpp
@@ -30,7 +30,7 @@ add_executable(bomberman
 
         Source/Scenes/MainMenuScene.cpp
         Source/Scenes/MainMenuScene.hpp
-        Include/Components/Components.h)
+        Include/Components/Components.h Include/Components/ButtonComp.cpp Include/Components/ButtonComp.hpp Include/raylib/Vector3D.cpp Include/raylib/Vector3D.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

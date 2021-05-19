@@ -15,7 +15,7 @@
 class Scene {
 public:
     virtual ~Scene(){}
-    std::vector<std::unique_ptr<Entity>> entities;
+    std::vector<std::shared_ptr<Entity>> entities;
 };
 
 #endif //SCENE_HPP

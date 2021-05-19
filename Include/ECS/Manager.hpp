@@ -18,7 +18,7 @@ public:
     Entity &addEntity(std::string name);
     void loadScene(const Scene& sceneToLoad);
 private:
-    std::vector<std::unique_ptr<Entity>> entities;
+    std::vector<std::shared_ptr<Entity>> entities;
 };
 
 #endif //MANAGER_HPP

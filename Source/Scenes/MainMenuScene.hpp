@@ -13,6 +13,7 @@ class MainMenuScene : public Scene {
 public:
     MainMenuScene();
     void AddLogo();
+    void AddPlayBtn();
 };
 
 #endif //MAINMENUSCENE_HPP

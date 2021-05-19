@@ -15,7 +15,10 @@ Sprite2D::Sprite2D(const std::string &path)
 void Sprite2D::init()
 {
     Component::init();
-    pos = &entity->getComponent<PositionComponent>();
+    transform = &entity->getComponent<TransformComp>();
+    if (transform == nullptr) {
+        transform = &entity->addComponent<TransformComp>();
+    }
     Rect.x = 0;
     Rect.y = 0;
     Rect.height = tex.height;
@@ -31,7 +34,8 @@ void Sprite2D::update()
 void Sprite2D::draw()
 {
     Component::draw();
-    DrawTexture(tex, pos->x(), pos->y(), RAYWHITE);
+    DrawTexture(tex,
+        (int)transform->position.x, (int)transform->position.y, RAYWHITE);
 }
 
 const Rectangle &Sprite2D::getRect() const

@@ -24,7 +24,7 @@ void Manager::draw()
 void Manager::refresh()
 {
     entities.erase(std::remove_if(std::begin(entities), std::end(entities),
-        [](const std::unique_ptr<Entity> &mEntity) {
+        [](const std::shared_ptr<Entity> &mEntity) {
             return !mEntity->isActive() && !mEntity->GetDontDestroyOnLoad();
         }),
         std::end(entities));
@@ -33,7 +33,7 @@ void Manager::refresh()
 Entity &Manager::addEntity(std::string name)
 {
     auto *e = new Entity(std::move(name));
-    std::unique_ptr<Entity> ptr{e};
+    std::shared_ptr<Entity> ptr{e};
     entities.emplace_back(std::move(ptr));
     return *e;
 }
@@ -45,13 +45,9 @@ void Manager::loadScene(const Scene &sceneToLoad)
     for (auto &item : entities)
         if (!item->GetDontDestroyOnLoad())
             item->destroy();
-    std::cout << "Refreshing..." << std::endl;
     refresh();
-    std::cout << "Loading Entities from scene..." << std::endl;
     //Load entities from scene
     for (auto &item : sceneToLoad.entities) {
-        std::cout << "loading " << item->getName() << std::endl;
         entities.emplace_back(std::move(item.get()));
-        std::cout << "loaded entity " << item.get()->getName() << std::endl;
     }
 }
