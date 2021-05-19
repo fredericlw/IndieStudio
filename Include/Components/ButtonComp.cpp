@@ -47,10 +47,9 @@ void ButtonComp::draw()
     DrawRectangleLines((int) rect.x, (int) rect.y, (int) rect.width,
         (int) rect.height,
         (hovering) ? GREEN : GRAY);
-    //    DrawText(_text.c_str(), pos.x, pos.y, 40, BLACK);
     DrawText(_text.c_str(),
-        (int) (rect.x + rect.width / 2 - MeasureText(_text.c_str(), 10) / 2),
-        (int) rect.y + 11, 10, hovering ? DARKBLUE : DARKGRAY);
+        (int) (rect.x + rect.width / 2 - MeasureText(_text.c_str(), 40) / 2),
+        (int) rect.y + 11, 40, hovering ? DARKBLUE : DARKGRAY);
 }
 
 void ButtonComp::AddEventFunc(const std::function<void()> &function)
