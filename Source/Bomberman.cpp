@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <Components/TransformComp.hpp>
 #include <Components/Sprite2D.hpp>
+#include <Components/BasicCubeComp.hpp>
 #include "Bomberman.hpp"
 
 Bomberman::Bomberman(bool fullscreen)

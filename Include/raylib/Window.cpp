@@ -6,7 +6,9 @@
 */
 #include "Window.hpp"
 
-Window::Window(bool fullscreen) :screenSize(std::make_tuple(GetScreenWidth(), GetScreenHeight()))
+Window::Window(bool fullscreen)
+    : screenSize(
+        std::make_tuple(GetScreenWidth(), GetScreenHeight()))
 {
     SetTargetFPS(60);
     if (fullscreen) {

@@ -6,20 +6,23 @@
 */
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
+
+#include <raylib.h>
 #include "Component.hpp"
 class Entity {
-private:
+protected:
     bool _active = true;
     bool _dontDesOnLoad = false;
     std::vector<std::unique_ptr<Component>> components;
     std::string _name;
 public:
+    Entity(std::string name, Camera3D MainCam);
     const std::string &getName() const;
+    Camera3D MainCam;
 private:
     ComponentArray componentArray;
     ComponentBitSet componentBitSet;
 public:
-    Entity(std::string name);
     void update();
 
     void draw();

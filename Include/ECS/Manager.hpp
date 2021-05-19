@@ -12,6 +12,7 @@
 
 class Manager {
 public:
+    explicit Manager();
     void update();
     void draw();
     void refresh();
@@ -19,7 +20,7 @@ public:
     void destroyOnLoad();
 private:
     std::vector<std::shared_ptr<Entity>> entities;
-
+    Camera3D MainCam;
 };
 
 #endif //MANAGER_HPP

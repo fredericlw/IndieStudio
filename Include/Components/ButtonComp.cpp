@@ -20,7 +20,6 @@ void ButtonComp::init()
 {
     Component::init();
     transform = &entity->getComponent<TransformComp>();
-    AddEventFunc([]() {std::cout << "Pressed button !" << std::endl;});
 }
 
 void ButtonComp::update()

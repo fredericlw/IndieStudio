@@ -16,9 +16,12 @@ void Manager::update()
 
 void Manager::draw()
 {
-    ClearBackground(DARKPURPLE);
+//    ClearBackground(DARKPURPLE);
     BeginDrawing();
-    for (auto &e : entities) e->draw();
+    for (auto &e : entities) {
+        e->draw();
+    }
+
     EndDrawing();
 }
 
@@ -33,7 +36,7 @@ void Manager::refresh()
 
 Entity &Manager::addEntity(std::string name)
 {
-    auto *e = new Entity(std::move(name));
+    auto *e = new Entity(std::move(name), MainCam);
     std::shared_ptr<Entity> ptr{e};
     entities.emplace_back(std::move(ptr));
     return *e;
@@ -43,8 +46,19 @@ void Manager::destroyOnLoad()
 {
     std::cout << "!!! LoadScene !!!" << std::endl;
     //set inactive all entities except dontDestroyOnLoad ones
-    for (auto &item : entities)
+    for (auto &item : entities) {
         if (!item->GetDontDestroyOnLoad())
             item->destroy();
+    }
     refresh();
+}
+
+Manager::Manager()
+    : MainCam(Camera3D())
+{
+    MainCam.position = (Vector3) {0.0f, 10.0f, 10.0f};
+    MainCam.target = (Vector3) {0.0f, 0.0f, 0.0f};
+    MainCam.up = (Vector3) {0.0f, 1.0f, 0.0f};
+    MainCam.fovy = 45.0f;
+    MainCam.projection = CAMERA_PERSPECTIVE;
 }

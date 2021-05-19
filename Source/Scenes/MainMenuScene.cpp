@@ -6,6 +6,7 @@
 */
 #include <ECS/Manager.hpp>
 #include <Bomberman.hpp>
+#include <Components/BasicCubeComp.hpp>
 #include "Components/Components.h"
 
 void Bomberman::LoadMenuScene()
@@ -13,7 +14,8 @@ void Bomberman::LoadMenuScene()
     mgr->destroyOnLoad();
     AddMenuLogo();
     AddPlayButton();
-    AddGrid();
+    //    AddGrid();
+    AddCubeZER();
 }
 
 void Bomberman::AddPlayButton()
@@ -22,10 +24,11 @@ void Bomberman::AddPlayButton()
     PlayBtnEnt.addComponent<TransformComp>(Vector2D::ScreenCenter());
     auto size = Vector2D{150, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
-    std::cout << "halfsize : " << halfsize << std::endl;
     auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
-    std::cout << "pos = "<< pos << std::endl;
     PlayBtnEnt.addComponent<ButtonComp>("PLAY", size, pos);
+    PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
+        [this]() {Quit();}
+    );
 }
 
 void Bomberman::AddMenuLogo()
@@ -40,4 +43,12 @@ void Bomberman::AddMenuLogo()
         GetScreenHeight() -
             logoEntity.getComponent<Sprite2D>().getTex().height;
     logoEntity.getComponent<TransformComp>().position.y = (float) ypos;
+}
+
+
+void Bomberman::AddCubeZER()
+{
+    auto &monCUB = mgr->addEntity("Gro KUBE");
+    monCUB.addComponent<TransformComp>();
+    monCUB.addComponent<BasicCubeComp>();
 }

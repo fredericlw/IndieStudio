@@ -27,6 +27,7 @@ private:
     void AddMenuLogo();
     void AddPlayButton();
     void AddGrid();
+    void AddCubeZER();
 };
 
 #endif //BOMBERMAN_HPP

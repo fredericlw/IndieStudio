@@ -6,6 +6,8 @@
 */
 #include <raylib.h>
 #include "BasicCubeComp.hpp"
+#include "ECS/Entity.hpp"
+#include "TransformComp.hpp"
 
 BasicCubeComp::BasicCubeComp()
 {
@@ -32,12 +34,12 @@ void BasicCubeComp::draw()
 //  Maybe manager should keep it and pass a ref to all entities
 //  So then we would use &entity->mainCamera
 ////////////
-//    BeginMode3D(camera);
+    BeginMode3D(entity->MainCam);
 //
-//    DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-//    DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, WHITE);
+    DrawCube(entity->getComponent<TransformComp>().position, 2.0f, 2.0f, 2.0f, RED);
+    DrawCubeWires(entity->getComponent<TransformComp>().position, 2.0f, 2.0f, 2.0f, WHITE);
 //
-//    DrawGrid(10, 1.0f);
+    DrawGrid(10, 1.0f);
 //
-//    EndMode3D();
+    EndMode3D();
 }

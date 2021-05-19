@@ -15,7 +15,6 @@ public:
     ~Window();
 private:
     std::tuple<int,int> screenSize;
-
 };
 
 #endif //WINDOW_HPP
