@@ -16,7 +16,7 @@ void Manager::update()
 
 void Manager::draw()
 {
-//    ClearBackground(DARKPURPLE);
+    ClearBackground(DARKPURPLE);
     BeginDrawing();
     for (auto &e : entities) {
         e->draw();
@@ -36,7 +36,7 @@ void Manager::refresh()
 
 Entity &Manager::addEntity(std::string name)
 {
-    auto *e = new Entity(std::move(name), MainCam);
+    auto *e = new Entity(std::move(name), std::make_shared<Manager>(*this));
     std::shared_ptr<Entity> ptr{e};
     entities.emplace_back(std::move(ptr));
     return *e;

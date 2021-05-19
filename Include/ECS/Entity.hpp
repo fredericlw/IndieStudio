@@ -16,9 +16,9 @@ protected:
     std::vector<std::unique_ptr<Component>> components;
     std::string _name;
 public:
-    Entity(std::string name, Camera3D MainCam);
+    Entity(std::string name, std::shared_ptr<Manager> mgr);
     const std::string &getName() const;
-    Camera3D MainCam;
+    std::shared_ptr<Manager> _mgr;
 private:
     ComponentArray componentArray;
     ComponentBitSet componentBitSet;

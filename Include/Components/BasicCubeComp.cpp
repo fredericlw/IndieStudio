@@ -8,6 +8,7 @@
 #include "BasicCubeComp.hpp"
 #include "ECS/Entity.hpp"
 #include "TransformComp.hpp"
+#include "ECS/Manager.hpp"
 
 BasicCubeComp::BasicCubeComp()
 {
@@ -34,12 +35,11 @@ void BasicCubeComp::draw()
 //  Maybe manager should keep it and pass a ref to all entities
 //  So then we would use &entity->mainCamera
 ////////////
-    BeginMode3D(entity->MainCam);
+    BeginMode3D(entity->_mgr->MainCam);
 //
     DrawCube(entity->getComponent<TransformComp>().position, 2.0f, 2.0f, 2.0f, RED);
     DrawCubeWires(entity->getComponent<TransformComp>().position, 2.0f, 2.0f, 2.0f, WHITE);
 //
-    DrawGrid(10, 1.0f);
 //
     EndMode3D();
 }

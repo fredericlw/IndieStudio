@@ -5,7 +5,7 @@
 ** Created by Leo Fabre
 */
 #include "Entity.hpp"
-
+#include "Manager.hpp"
 #include <utility>
 
 void Entity::update()
@@ -28,12 +28,11 @@ void Entity::draw()
     for (auto &c : components) c->draw();
 }
 
-Entity::Entity(std::string name, Camera3D MainCam)
-    : _name(std::move(name)),
-      MainCam(MainCam)
+Entity::Entity(std::string name, std::shared_ptr<Manager> mgr)
+    : _name(std::move(name)), _mgr(std::move(mgr))
 {
-    std::cout << "maincam : " << MainCam.position.x << " " << MainCam.position.y
-        << " " << MainCam.position.z << std::endl;
+    std::cout << "maincam : " << _mgr->MainCam.position.x << " " << _mgr->MainCam.position.y
+        << " " << _mgr->MainCam.position.z << std::endl;
 }
 
 const std::string &Entity::getName() const

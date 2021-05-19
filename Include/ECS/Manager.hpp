@@ -18,9 +18,9 @@ public:
     void refresh();
     Entity &addEntity(std::string name);
     void destroyOnLoad();
+    Camera3D MainCam;
 private:
     std::vector<std::shared_ptr<Entity>> entities;
-    Camera3D MainCam;
 };
 
 #endif //MANAGER_HPP
