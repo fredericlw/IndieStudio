@@ -10,6 +10,7 @@
 #include <raylib/Vector3D.hpp>
 #include "ECS/Component.hpp"
 #include "TransformComp.hpp"
+#include <functional>
 
 class ButtonComp : public Component {
 public:

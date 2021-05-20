@@ -21,7 +21,6 @@ void Manager::draw()
     for (auto &e : entities) {
         e->draw();
     }
-
     EndDrawing();
 }
 
@@ -56,9 +55,9 @@ void Manager::destroyOnLoad()
 Manager::Manager()
     : MainCam(Camera3D())
 {
-    MainCam.position = (Vector3) {0.0f, 10.0f, 10.0f};
-    MainCam.target = (Vector3) {0.0f, 0.0f, 0.0f};
-    MainCam.up = (Vector3) {0.0f, 1.0f, 0.0f};
+    MainCam.position = Vector3 {0.0f, 10.0f, 10.0f};
+    MainCam.target = Vector3 {0.0f, 0.0f, 0.0f};
+    MainCam.up = Vector3 {0.0f, 1.0f, 0.0f};
     MainCam.fovy = 45.0f;
     MainCam.projection = CAMERA_PERSPECTIVE;
 }
@@ -71,15 +70,11 @@ void Manager::loadScene(Manager::SceneType scene)
         loadMenuScene();
         break;
     case Game:
-        loadGamescene();
+        loadGameScene();
         break;
     }
 }
 
-void Manager::loadGamescene()
-{
-    AddCubeZER();
-}
 
 
 void Manager::Quit()
@@ -90,4 +85,9 @@ void Manager::Quit()
 bool Manager::isAlive() const
 {
     return alive;
+}
+
+void Manager::loadGameScene()
+{
+    AddCubeZER();
 }

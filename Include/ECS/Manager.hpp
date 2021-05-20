@@ -24,8 +24,6 @@ public:
     Entity &addEntity(std::string name);
     void destroyOnLoad();
     void loadScene(SceneType scene);
-    void LoadMenuScene();
-    void loadGamescene();
     void AddMenuLogo();
     void AddPlayButton();
     void AddCubeZER();
