@@ -9,21 +9,17 @@
 
 #include <ECS/Component.hpp>
 #include <raylib.h>
+#include <raylib/ESprite.hpp>
 #include "TransformComp.hpp"
 
-class Sprite2D : public Component {
+class Sprite2D : public Component, public ESprite {
 public:
-    Sprite2D(const std::string &path);
+    explicit Sprite2D(const std::string &path);
     void init() override;
     void update() override;
     void draw() override;
 private:
     TransformComp *transform;
-    Texture2D tex;
-    Rectangle Rect;
-public:
-    const Texture2D &getTex() const;
-    const Rectangle &getRect() const;
 };
 
 #endif //SPRITE2D_HPP

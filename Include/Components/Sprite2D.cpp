@@ -7,9 +7,8 @@
 #include "Sprite2D.hpp"
 #include "ECS/Entity.hpp"
 
-Sprite2D::Sprite2D(const std::string &path)
+Sprite2D::Sprite2D(const std::string &path) : ESprite(path)
 {
-    tex = LoadTexture(path.c_str());
 }
 
 void Sprite2D::init()
@@ -19,10 +18,10 @@ void Sprite2D::init()
     if (transform == nullptr) {
         transform = &entity->addComponent<TransformComp>();
     }
-    Rect.x = 0;
-    Rect.y = 0;
-    Rect.height = tex.height;
-    Rect.width = tex.width;
+    _spriteRect.x = 0;
+    _spriteRect.y = 0;
+    _spriteRect.height = _tex.height;
+    _spriteRect.width = _tex.width;
     
 }
 
@@ -34,16 +33,5 @@ void Sprite2D::update()
 void Sprite2D::draw()
 {
     Component::draw();
-    DrawTexture(tex,
-        (int)transform->position.x, (int)transform->position.y, RAYWHITE);
-}
-
-const Rectangle &Sprite2D::getRect() const
-{
-    return Rect;
-}
-
-const Texture2D &Sprite2D::getTex() const
-{
-    return tex;
+    ESprite::draw(transform->position);
 }

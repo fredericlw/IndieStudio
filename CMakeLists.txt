@@ -37,7 +37,7 @@ add_executable(bomberman
         Include/raylib/Vector3D.hpp
         Include/raylib/Vector2D.cpp
         Include/raylib/Vector2D.hpp
-        Include/Components/BasicCubeComp.cpp Include/Components/BasicCubeComp.hpp Source/Scenes/GameScene.cpp)
+        Include/Components/BasicCubeComp.cpp Include/Components/BasicCubeComp.hpp Source/Scenes/GameScene.cpp Include/raylib/ESprite.cpp Include/raylib/ESprite.hpp Include/raylib/ERect.cpp Include/raylib/ERect.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
