@@ -13,6 +13,7 @@ class Window {
 public:
     Window(bool fullscreen);
     ~Window();
+    bool ShouldClose();
 private:
     std::tuple<int,int> screenSize;
 };

@@ -10,7 +10,7 @@
 #include <memory>
 #include <ECS/Manager.hpp>
 #include <ctime>
-#include "raylib/Window.hpp"
+#include "raylib_encap/Window.hpp"
 
 class Bomberman {
 public:

@@ -7,8 +7,8 @@
 #ifndef BUTTONCOMP_HPP
 #define BUTTONCOMP_HPP
 
-#include <raylib/Vector3D.hpp>
-#include <raylib/ERect.hpp>
+#include <raylib_encap/Vector3D.hpp>
+#include <raylib_encap/ERect.hpp>
 #include "ECS/Component.hpp"
 #include "TransformComp.hpp"
 #include <functional>

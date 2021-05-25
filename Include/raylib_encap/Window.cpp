@@ -8,7 +8,7 @@
 
 Window::Window(bool fullscreen)
     : screenSize(
-        std::make_tuple(GetScreenWidth(), GetScreenHeight()))
+    std::make_tuple(GetScreenWidth(), GetScreenHeight()))
 {
     SetTargetFPS(60);
     if (fullscreen) {
@@ -22,4 +22,9 @@ Window::Window(bool fullscreen)
 Window::~Window()
 {
     CloseWindow();
+}
+
+bool Window::ShouldClose()
+{
+    return WindowShouldClose();
 }

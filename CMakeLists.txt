@@ -23,8 +23,8 @@ add_executable(bomberman
         Source/main.cpp
 
         Source/Bomberman.cpp
-        Include/raylib/Window.cpp
-        Include/raylib/Window.hpp
+        Include/raylib_encap/Window.cpp
+        Include/raylib_encap/Window.hpp
         Include/ECS/Ecs.hpp
         Include/Components/TransformComp.cpp
         Include/Components/TransformComp.hpp
@@ -43,11 +43,11 @@ add_executable(bomberman
         Include/Components/Components.h
         Include/Components/ButtonComp.cpp
         Include/Components/ButtonComp.hpp
-        Include/raylib/Vector3D.cpp
-        Include/raylib/Vector3D.hpp
-        Include/raylib/Vector2D.cpp
-        Include/raylib/Vector2D.hpp
-        Include/Components/BasicCubeComp.cpp Include/Components/BasicCubeComp.hpp Source/Scenes/GameScene.cpp Include/raylib/ESprite.cpp Include/raylib/ESprite.hpp Include/raylib/ERect.cpp Include/raylib/ERect.hpp)
+        Include/raylib_encap/Vector3D.cpp
+        Include/raylib_encap/Vector3D.hpp
+        Include/raylib_encap/Vector2D.cpp
+        Include/raylib_encap/Vector2D.hpp
+        Include/Components/BasicCubeComp.cpp Include/Components/BasicCubeComp.hpp Source/Scenes/GameScene.cpp Include/raylib_encap/ESprite.cpp Include/raylib_encap/ESprite.hpp Include/raylib_encap/ERect.cpp Include/raylib_encap/ERect.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

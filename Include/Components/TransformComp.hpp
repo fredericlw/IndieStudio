@@ -9,7 +9,7 @@
 
 #include <ECS/Component.hpp>
 #include <raylib.h>
-#include "raylib/Vector3D.hpp"
+#include "raylib_encap/Vector3D.hpp"
 
 class TransformComp : public Component {
 public:

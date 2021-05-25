@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include <raylib/Vector2D.hpp>
+#include <raylib_encap/Vector2D.hpp>
 #include "ButtonComp.hpp"
 #include "ECS/Entity.hpp"
 #include "Components.h"

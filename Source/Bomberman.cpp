@@ -22,7 +22,7 @@ Bomberman::Bomberman(bool fullscreen)
 
 void Bomberman::GameLoop()
 {
-    while (mgr->isAlive()) {
+    while (mgr->isAlive() && !mainWindow->ShouldClose()) {
         if (std::difftime(std::time(nullptr), startTime) > 5) mgr->Quit();
         mgr->update();
         mgr->draw();
