@@ -13,6 +13,7 @@ class ERect : public Rectangle {
 public:
     ERect(Vector2 size, Vector2 position);
     ~ERect();
+    void draw(bool fill, bool outline, Color fillColor, Color lineCol);
 };
 
 #endif //ERECT_HPP

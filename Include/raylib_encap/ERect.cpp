@@ -14,3 +14,12 @@ ERect::ERect(Vector2 size, Vector2 position)
 ERect::~ERect()
 {
 }
+
+void ERect::draw(bool fill, bool outline, Color fillColor, Color lineCol)
+{
+    if (fill)
+        DrawRectangleRec(*this, fillColor);
+    if (outline)
+        DrawRectangleLines((int) x, (int) y, (int) width, (int) height,
+            lineCol);
+}
