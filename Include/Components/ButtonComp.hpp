@@ -11,6 +11,7 @@
 #include <raylib/ERect.hpp>
 #include "ECS/Component.hpp"
 #include "TransformComp.hpp"
+#include <functional>
 
 class ButtonComp : public Component {
 public:
