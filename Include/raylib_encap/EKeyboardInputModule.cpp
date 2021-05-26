@@ -90,6 +90,7 @@ bool EKeyboardInputModule::GetButtonPressed(Button btn)
 {
     return IsKeyPressed(KeyMap[btn]);
 }
+
 bool EKeyboardInputModule::GetButtonReleased(Button btn)
 {
     return IsKeyReleased(KeyMap[btn]);

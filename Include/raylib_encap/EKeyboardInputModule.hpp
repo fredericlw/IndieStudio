@@ -6,27 +6,11 @@
 */
 #ifndef EKEYBOARDINPUTMODULE_HPP
 #define EKEYBOARDINPUTMODULE_HPP
-
-#include <vector>
+#include "Keys.h"
 #include <map>
 
 class EKeyboardInputModule {
 public:
-    enum Button {
-        Accept,
-        Cancel,
-        Left,
-        Right,
-        Up,
-        Down,
-        DropBomb
-    };
-    enum PlayerNum {
-        PlayerOne,
-        PlayerTwo,
-        PlayerThree,
-        PlayerFour
-    };
     explicit EKeyboardInputModule(PlayerNum num);
     ~EKeyboardInputModule();
     bool GetButtonDown(Button btn);
