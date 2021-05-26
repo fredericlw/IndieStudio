@@ -6,9 +6,9 @@
 */
 #include <raylib.h>
 #include <Colors.h>
-#include "BasicCubeComp.hpp"
+#include "Components/BasicCubeComp.hpp"
 #include "ECS/Entity.hpp"
-#include "TransformComp.hpp"
+#include "Components/TransformComp.hpp"
 #include "ECS/Manager.hpp"
 
 BasicCubeComp::BasicCubeComp(Vector3D size)

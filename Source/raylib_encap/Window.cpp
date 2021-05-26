@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "Window.hpp"
+#include "raylib_encap/Window.hpp"
 
 Window::Window(bool fullscreen)
     : screenSize(

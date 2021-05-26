@@ -5,7 +5,7 @@
 ** Created by Leo Fabre
 */
 #include <raylib.h>
-#include "EGamepadInputModule.hpp"
+#include "raylib_encap/Input/EGamepadInputModule.hpp"
 
 EGamepadInputModule::EGamepadInputModule(int gamepad_nbr)
     : _gamepadNbr(gamepad_nbr)

@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "ECamera.hpp"
+#include "raylib_encap/ECamera.hpp"
 
 ECamera::ECamera() : Camera3D()
 {

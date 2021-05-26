@@ -4,4 +4,4 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "Component.hpp"
+#include "ECS/Component.hpp"

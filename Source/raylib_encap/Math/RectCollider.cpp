@@ -5,7 +5,7 @@
 ** Created by Leo Fabre
 */
 #include <raylib.h>
-#include "RectCollider.hpp"
+#include "raylib_encap/Math/RectCollider.hpp"
 
 bool RectCollider::CheckPointInRect(Vector2 Point, Rectangle Rect)
 {

@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "ERect.hpp"
+#include "raylib_encap/ERect.hpp"
 
 ERect::ERect(Vector2 size, Vector2 position)
     : Rectangle({position.x, position.y, size.x, size.y})

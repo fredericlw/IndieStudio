@@ -7,7 +7,7 @@
 #include <raylib.h>
 
 #include <utility>
-#include "EText.hpp"
+#include "raylib_encap/EText.hpp"
 
 EText::~EText()
 {

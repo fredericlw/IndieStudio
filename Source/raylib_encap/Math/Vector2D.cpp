@@ -4,8 +4,8 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "Vector2D.hpp"
-#include "Vector3D.hpp"
+#include "raylib_encap/Math/Vector2D.hpp"
+#include "raylib_encap/Math/Vector3D.hpp"
 
 Vector2D::~Vector2D()
 {

@@ -4,10 +4,11 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "ESprite.hpp"
+#include "raylib_encap/ESprite.hpp"
 
-ESprite::ESprite(const std::string &path, Color color) : _tex(LoadTexture(path.c_str())),
-                                                         _tintColor(color)
+ESprite::ESprite(const std::string &path, Color color)
+    : _tex(LoadTexture(path.c_str())),
+      _tintColor(color)
 {
 }
 

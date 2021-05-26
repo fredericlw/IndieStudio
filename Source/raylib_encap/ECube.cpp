@@ -6,7 +6,7 @@
 */
 #include <raylib_encap/Math/Vector3D.hpp>
 #include <Colors.h>
-#include "ECube.hpp"
+#include "raylib_encap/ECube.hpp"
 
 ECube::ECube()
 {

@@ -4,8 +4,8 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "Entity.hpp"
-#include "Manager.hpp"
+#include "ECS/Entity.hpp"
+#include "ECS/Manager.hpp"
 #include <utility>
 
 void Entity::update()

@@ -5,7 +5,7 @@
 ** Created by Leo Fabre
 */
 #include <raylib.h>
-#include "EKeyboardInputModule.hpp"
+#include "raylib_encap/Input/EKeyboardInputModule.hpp"
 
 EKeyboardInputModule::~EKeyboardInputModule()
 {

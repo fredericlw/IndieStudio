@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "AInputModule.hpp"
+#include "raylib_encap/Input/AInputModule.hpp"
 
 AInputModule::AInputModule()
 {

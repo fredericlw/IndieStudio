@@ -7,7 +7,7 @@
 #include <raylib.h>
 
 #include <utility>
-#include "Manager.hpp"
+#include "ECS/Manager.hpp"
 
 void Manager::update()
 {

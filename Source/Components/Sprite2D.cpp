@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "Sprite2D.hpp"
+#include "Components/Sprite2D.hpp"
 #include "ECS/Entity.hpp"
 
 Sprite2D::Sprite2D(const std::string &path) : ESprite(path)

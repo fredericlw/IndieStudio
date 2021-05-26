@@ -8,9 +8,9 @@
 #include <raylib_encap/Math/RectCollider.hpp>
 #include <raylib_encap/Input/EMouseInputModule.hpp>
 #include <Colors.h>
-#include "ButtonComp.hpp"
+#include "Components/ButtonComp.hpp"
 #include "ECS/Entity.hpp"
-#include "Components.h"
+#include "Components/Components.h"
 
 ButtonComp::ButtonComp(const std::string &text, Vector2D size, Vector2D pos)
     : _text(text),

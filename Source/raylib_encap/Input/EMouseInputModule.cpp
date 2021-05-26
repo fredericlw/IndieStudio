@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "EMouseInputModule.hpp"
+#include "raylib_encap/Input/EMouseInputModule.hpp"
 #include <raylib.h>
 
 EMouseInputModule::EMouseInputModule()

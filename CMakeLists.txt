@@ -23,56 +23,56 @@ add_executable(bomberman
         Source/main.cpp
 
         Source/Bomberman.cpp
-        Include/raylib_encap/Window.cpp
+        Source/raylib_encap/Window.cpp
         Include/raylib_encap/Window.hpp
         Include/ECS/Ecs.hpp
-        Include/Components/TransformComp.cpp
+        Source/Components/TransformComp.cpp
         Include/Components/TransformComp.hpp
-        Include/ECS/Manager.cpp
+        Source/ECS/Manager.cpp
         Include/ECS/Manager.hpp
-        Include/ECS/Entity.cpp
+        Source/ECS/Entity.cpp
         Include/ECS/Entity.hpp
-        Include/ECS/Component.cpp
+        Source/ECS/Component.cpp
         Include/ECS/Component.hpp
         Include/Scene.hpp
 
-        Include/Components/Sprite2D.cpp
+        Source/Components/Sprite2D.cpp
         Include/Components/Sprite2D.hpp
 
         Source/Scenes/MainMenuScene.cpp
         Include/Components/Components.h
-        Include/Components/ButtonComp.cpp
+        Source/Components/ButtonComp.cpp
         Include/Components/ButtonComp.hpp
-        Include/raylib_encap/Math/Vector3D.cpp
+        Source/raylib_encap/Math/Vector3D.cpp
         Include/raylib_encap/Math/Vector3D.hpp
-        Include/raylib_encap/Math/Vector2D.cpp
+        Source/raylib_encap/Math/Vector2D.cpp
         Include/raylib_encap/Math/Vector2D.hpp
-        Include/Components/BasicCubeComp.cpp
+        Source/Components/BasicCubeComp.cpp
         Include/Components/BasicCubeComp.hpp
         Source/Scenes/GameScene.cpp
-        Include/raylib_encap/ESprite.cpp
+        Source/raylib_encap/ESprite.cpp
         Include/raylib_encap/ESprite.hpp
-        Include/raylib_encap/ERect.cpp
+        Source/raylib_encap/ERect.cpp
         Include/raylib_encap/ERect.hpp
-        Include/raylib_encap/Math/RectCollider.cpp
+        Source/raylib_encap/Math/RectCollider.cpp
         Include/raylib_encap/Math/RectCollider.hpp
-        Include/raylib_encap/ECamera.cpp
+        Source/raylib_encap/ECamera.cpp
         Include/raylib_encap/ECamera.hpp
-        Include/raylib_encap/Input/EKeyboardInputModule.cpp
+        Source/raylib_encap/Input/EKeyboardInputModule.cpp
         Include/raylib_encap/Input/EKeyboardInputModule.hpp
-        Include/raylib_encap/Input/EMouseInputModule.cpp
+        Source/raylib_encap/Input/EMouseInputModule.cpp
         Include/raylib_encap/Input/EMouseInputModule.hpp
-        Include/raylib_encap/Input/EGamepadInputModule.cpp
+        Source/raylib_encap/Input/EGamepadInputModule.cpp
         Include/raylib_encap/Input/EGamepadInputModule.hpp
         Include/Keys.h
-        Include/Components/MovementComp.cpp
+        Source/Components/MovementComp.cpp
         Include/Components/MovementComp.hpp
-        Include/raylib_encap/Input/AInputModule.cpp
+        Source/raylib_encap/Input/AInputModule.cpp
         Include/raylib_encap/Input/AInputModule.hpp
-        Include/raylib_encap/EText.cpp
+        Source/raylib_encap/EText.cpp
         Include/raylib_encap/EText.hpp
         Include/Colors.h
-        Include/raylib_encap/ECube.cpp Include/raylib_encap/ECube.hpp)
+        Source/raylib_encap/ECube.cpp Include/raylib_encap/ECube.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
