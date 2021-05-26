@@ -7,6 +7,7 @@
 #include <ECS/Manager.hpp>
 #include <Bomberman.hpp>
 #include <Components/BasicCubeComp.hpp>
+#include <raylib_encap/Vector2D.hpp>
 #include "Components/Components.h"
 
 void Manager::loadMenuScene()
@@ -66,4 +67,5 @@ void Manager::AddCubeZER()
     auto &monCUB = addEntity("Gro KUBE");
     monCUB.addComponent<TransformComp>();
     monCUB.addComponent<BasicCubeComp>();
+    monCUB.addComponent<MovementComp>(EInputType::Keyboard, PlayerNum::PlayerOne);
 }

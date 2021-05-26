@@ -12,14 +12,19 @@
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)
     : Velocity(Vector3D::Zero())
 {
-    transform = &entity->getComponent<TransformComp>();
-    if (!transform)
-        transform = &entity->addComponent<TransformComp>();
     GenerateInputModule(input_type, num);
 }
 
 MovementComp::~MovementComp()
 {
+}
+
+void MovementComp::init()
+{
+    Component::init();
+    transform = &entity->getComponent<TransformComp>();
+    if (!transform)
+        transform = &entity->addComponent<TransformComp>();
 }
 
 void MovementComp::update()
@@ -35,16 +40,13 @@ void MovementComp::update()
     } else if (_inputMod->GetButtonDown(Down)) {
         Velocity.y = -1;
     }
-    if (_inputMod->GetButtonUp(Right)) {
-        Velocity.x = 0;
-    } else if (_inputMod->GetButtonUp(Left)) {
+    if (_inputMod->GetButtonUp(Right) || _inputMod->GetButtonUp(Left)) {
         Velocity.x = 0;
     }
-    if (_inputMod->GetButtonUp(Up)) {
-        Velocity.y = 0;
-    } else if (_inputMod->GetButtonUp(Down)) {
+    if (_inputMod->GetButtonUp(Up) || _inputMod->GetButtonUp(Down)) {
         Velocity.y = 0;
     }
+    transform->position += Velocity;
 }
 
 void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)

@@ -15,6 +15,7 @@ public:
     MovementComp(EInputType input_type, PlayerNum num);
     ~MovementComp();
     void update() override;
+    void init() override;
 private:
     TransformComp *transform;
     std::unique_ptr<AInputModule> _inputMod;

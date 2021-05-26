@@ -18,7 +18,7 @@ public:
     virtual bool GetButtonUp(Button btn) = 0;
     virtual bool GetButtonPressed(Button btn) = 0;
     virtual bool GetButtonReleased(Button btn) = 0;
-private:
+protected:
     std::map<Button, int> KeyMap;
 };
 

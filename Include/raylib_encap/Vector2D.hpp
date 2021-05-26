@@ -9,7 +9,7 @@
 
 #include <raylib.h>
 #include <ostream>
-#include "Vector3D.hpp"
+class Vector3D;
 
 class Vector2D : public Vector2 {
 public:

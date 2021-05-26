@@ -11,7 +11,7 @@ EKeyboardInputModule::~EKeyboardInputModule()
 {
 }
 
-EKeyboardInputModule::EKeyboardInputModule(EKeyboardInputModule::PlayerNum num)
+EKeyboardInputModule::EKeyboardInputModule(PlayerNum num)
 {
     switch (num) {
     case PlayerOne:
@@ -76,12 +76,12 @@ void EKeyboardInputModule::SetP4Buttons()
 }
 //endregion
 
-bool EKeyboardInputModule::GetButtonDown(EKeyboardInputModule::Button btn)
+bool EKeyboardInputModule::GetButtonDown(Button btn)
 {
     return IsKeyDown(KeyMap[btn]);
 }
 
-bool EKeyboardInputModule::GetButtonUp(EKeyboardInputModule::Button btn)
+bool EKeyboardInputModule::GetButtonUp(Button btn)
 {
     return IsKeyUp(KeyMap[btn]);
 }

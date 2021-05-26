@@ -5,6 +5,7 @@
 ** Created by Leo Fabre
 */
 #include "Vector2D.hpp"
+#include "Vector3D.hpp"
 
 Vector2D::~Vector2D()
 {
