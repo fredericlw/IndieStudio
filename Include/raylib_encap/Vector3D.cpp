@@ -48,6 +48,14 @@ Vector3D &Vector3D::Multiply(const Vector3D &vec)
     return *this;
 }
 
+Vector3D &Vector3D::Multiply(float factor)
+{
+    x *= factor;
+    y *= factor;
+    z *= factor;
+    return *this;
+}
+
 Vector3D &operator+(Vector3D &v1, const Vector3D &v2)
 {
     return v1.Add(v2);
@@ -68,6 +76,11 @@ Vector3D &operator*(Vector3D &v1, const Vector3D &v2)
     return v1.Multiply(v2);
 }
 
+Vector3D &operator*(Vector3D &v1, float factor)
+{
+    return v1.Multiply(factor);
+}
+
 Vector3D &Vector3D::operator+=(const Vector3D &vec)
 {
     return Add(vec);
@@ -86,6 +99,11 @@ Vector3D &Vector3D::operator/=(const Vector3D &vec)
 Vector3D &Vector3D::operator*=(const Vector3D &vec)
 {
     return Multiply(vec);
+}
+
+Vector3D &Vector3D::operator*=(float factor)
+{
+    return Multiply(factor);
 }
 
 std::ostream &operator<<(std::ostream &os, const Vector3D &vec)

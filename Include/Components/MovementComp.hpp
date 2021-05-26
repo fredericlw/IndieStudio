@@ -21,6 +21,10 @@ private:
     std::unique_ptr<AInputModule> _inputMod;
     void GenerateInputModule(EInputType type, PlayerNum num);
     Vector3D Velocity;
+    float _speed;
+public:
+    float getSpeed() const;
+    void setSpeed(float speed);
 };
 
 #endif //MOVEMENTCOMP_HPP

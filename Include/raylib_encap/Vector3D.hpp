@@ -60,9 +60,11 @@ public:
     Vector3D &operator-=(const Vector3D &vec);
     Vector3D &operator/=(const Vector3D &vec);
     Vector3D &operator*=(const Vector3D &vec);
+    Vector3D &operator*=(float factor);
 
     friend std::ostream &operator<<(std::ostream &os, const Vector3D &d);
     //endregion
+    Vector3D &Multiply(float factor);
 };
 
 #endif //VECTOR3D_HPP
