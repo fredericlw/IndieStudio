@@ -31,8 +31,6 @@ void Entity::draw()
 Entity::Entity(std::string name, Manager* mgr)
     : _name(std::move(name)), _mgr(mgr)
 {
-    std::cout << "maincam : " << _mgr->MainCam.position.x << " " << _mgr->MainCam.position.y
-        << " " << _mgr->MainCam.position.z << std::endl;
 }
 
 const std::string &Entity::getName() const

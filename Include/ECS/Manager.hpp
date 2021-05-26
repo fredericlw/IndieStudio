@@ -8,6 +8,7 @@
 #define MANAGER_HPP
 
 #include <Scene.hpp>
+#include <raylib_encap/ECamera.hpp>
 #include "Entity.hpp"
 
 class Manager {
@@ -28,7 +29,7 @@ public:
     void AddPlayButton();
     void AddCubeZER();
     void Quit();
-    Camera3D MainCam;
+    ECamera MainCam;
 private:
 public:
     bool isAlive() const;

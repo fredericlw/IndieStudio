@@ -31,10 +31,6 @@ void BasicCubeComp::update()
 void BasicCubeComp::draw()
 {
     Component::draw();
-//TODO: Must figure out where to keep that camera before anything 3D
-//  Maybe manager should keep it and pass a ref to all entities
-//  So then we would use &entity->mainCamera
-////////////
     BeginMode3D(entity->_mgr->MainCam);
 //
     DrawCube(entity->getComponent<TransformComp>().position, 2.0f, 2.0f, 2.0f, RED);

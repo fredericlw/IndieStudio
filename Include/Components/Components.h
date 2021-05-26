@@ -9,4 +9,5 @@
 #include "TransformComp.hpp"
 #include "Sprite2D.hpp"
 #include "ButtonComp.hpp"
+#include "BasicCubeComp.hpp"
 #endif //COMPONENTS_H

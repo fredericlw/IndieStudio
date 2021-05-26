@@ -7,16 +7,12 @@
 #include <raylib.h>
 #include "RectCollider.hpp"
 
-RectCollider::~RectCollider()
-{
-}
-
 bool RectCollider::CheckPointInRect(Vector2 Point, Rectangle Rect)
 {
     return CheckCollisionPointRec(Point, Rect);
 }
 
-bool RectCollider::CheckMouseInRect( Rectangle Rect)
+bool RectCollider::CheckMouseInRect(Rectangle Rect)
 {
     return CheckCollisionPointRec(GetMousePosition(), Rect);
 }
