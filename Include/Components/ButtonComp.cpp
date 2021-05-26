@@ -6,6 +6,7 @@
 */
 #include <raylib_encap/Vector2D.hpp>
 #include <raylib_encap/RectCollider.hpp>
+#include <raylib_encap/EMouseInputModule.hpp>
 #include "ButtonComp.hpp"
 #include "ECS/Entity.hpp"
 #include "Components.h"
@@ -31,7 +32,7 @@ void ButtonComp::update()
 {
     if (RectCollider::CheckMouseInRect(_rect)) {
         hovering = true;
-        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        if (EMouseInputModule::GetButtonReleased(LeftClick))
             for (const auto &func : EventFuncs)
                 func();
     } else {
