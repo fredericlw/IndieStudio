@@ -8,12 +8,13 @@
 #define ERECT_HPP
 
 #include <raylib.h>
+#include <Colors.h>
 
 class ERect : public Rectangle {
 public:
     ERect(Vector2 size, Vector2 position);
     ~ERect();
-    void draw(bool fill, bool outline, Color fillColor, Color lineCol);
+    void draw(bool fill, bool outline, Colors fillColor, Colors lineCol);
 };
 
 #endif //ERECT_HPP

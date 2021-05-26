@@ -15,11 +15,11 @@ ERect::~ERect()
 {
 }
 
-void ERect::draw(bool fill, bool outline, Color fillColor, Color lineCol)
+void ERect::draw(bool fill, bool outline, Colors fillColor, Colors lineCol)
 {
     if (fill)
-        DrawRectangleRec(*this, fillColor);
+        DrawRectangleRec(*this, GetRaylibColor(fillColor));
     if (outline)
         DrawRectangleLines((int) x, (int) y, (int) width, (int) height,
-            lineCol);
+            GetRaylibColor(lineCol));
 }

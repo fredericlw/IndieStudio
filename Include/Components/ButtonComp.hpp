@@ -12,6 +12,7 @@
 #include "ECS/Component.hpp"
 #include "TransformComp.hpp"
 #include <functional>
+#include <raylib_encap/EText.hpp>
 
 class ButtonComp : public Component {
 public:
@@ -25,7 +26,7 @@ public:
         const std::function<void()> &function);
 private:
     bool hovering;
-    std::string _text;
+    EText _text;
     Vector2D size;
     Vector3D pos;
     ERect _rect;

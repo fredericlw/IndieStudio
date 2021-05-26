@@ -7,10 +7,10 @@
 #include <raylib_encap/Vector2D.hpp>
 #include <raylib_encap/RectCollider.hpp>
 #include <raylib_encap/EMouseInputModule.hpp>
+#include <Colors.h>
 #include "ButtonComp.hpp"
 #include "ECS/Entity.hpp"
 #include "Components.h"
-
 ButtonComp::ButtonComp(const std::string &text, Vector2D size, Vector2D pos)
     : _text(text),
       size(size),
@@ -47,11 +47,10 @@ void ButtonComp::update()
 void ButtonComp::draw()
 {
     Component::draw();
-    _rect.draw(true, true, (hovering) ? GREEN : LIGHTGRAY,
-        (hovering) ? GREEN : GRAY);
-    DrawText(_text.c_str(),
-        (int) (_rect.x + _rect.width / 2 - MeasureText(_text.c_str(), 40) / 2),
-        (int) _rect.y + 11, 40, hovering ? DARKBLUE : DARKGRAY);
+    _rect.draw(true, true, (hovering) ? Green : LightGray,
+        (hovering) ? Green : Gray);
+
+    _text.drawInRectCenter(_rect, 40);
 }
 
 void ButtonComp::AddEventFunc(const std::function<void()> &function)

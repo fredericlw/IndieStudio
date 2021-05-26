@@ -5,7 +5,6 @@
 ** Created by Leo Fabre
 */
 #include <ECS/Manager.hpp>
-#include <Bomberman.hpp>
 #include <Components/BasicCubeComp.hpp>
 #include <raylib_encap/Vector2D.hpp>
 #include "Components/Components.h"
