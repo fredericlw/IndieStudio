@@ -63,6 +63,15 @@ public:
         auto ptr(componentArray[getComponentTypeID<T>()]);
         return *static_cast<T *>(ptr);
     }
+
+    template<typename T> T &requireComponent() const
+    {
+        auto ptr(componentArray[getComponentTypeID<T>()]);
+        auto cast = *static_cast<T *>(ptr);
+        if (!cast)
+            cast = addComponent<T>();
+        return cast;
+    }
 };
 
 #endif //ENTITY_HPP
