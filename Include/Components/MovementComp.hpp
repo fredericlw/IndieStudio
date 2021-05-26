@@ -14,10 +14,12 @@ class MovementComp : public Component {
 public:
     MovementComp(EInputType input_type, PlayerNum num);
     ~MovementComp();
+    void update() override;
 private:
     TransformComp *transform;
     std::unique_ptr<AInputModule> _inputMod;
     void GenerateInputModule(EInputType type, PlayerNum num);
+    Vector3D Velocity;
 };
 
 #endif //MOVEMENTCOMP_HPP
