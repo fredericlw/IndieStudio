@@ -42,3 +42,8 @@ bool EMouseInputModule::GetButtonReleased(EMouseButton btn)
         btn == LeftClick ? MOUSE_BUTTON_LEFT : MOUSE_BUTTON_RIGHT
     );
 }
+
+Vector2D EMouseInputModule::GetMousePos()
+{
+    return GetMousePosition();
+}

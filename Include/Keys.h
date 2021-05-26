@@ -6,7 +6,9 @@
 */
 #ifndef KEYS_H
 #define KEYS_H
-
+enum EInputType {
+    Keyboard, Gamepad
+};
 enum EMouseButton {
     LeftClick,
     RightClick

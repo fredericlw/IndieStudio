@@ -88,3 +88,7 @@ std::ostream &operator<<(std::ostream &os, const Vector2D &vec)
     os << "(" << vec.x << ";" << vec.y << ")";
     return os;
 }
+
+Vector2D::Vector2D(const Vector3D &vec) : Vector2({vec.x, vec.y})
+{
+}

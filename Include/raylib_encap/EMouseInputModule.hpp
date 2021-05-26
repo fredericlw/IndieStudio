@@ -8,6 +8,7 @@
 #define EMOUSEINPUTMODULE_HPP
 
 #include <Keys.h>
+#include "Vector2D.hpp"
 
 class EMouseInputModule {
 public:
@@ -17,6 +18,7 @@ public:
     static bool GetButtonUp(EMouseButton btn);
     static bool GetButtonPressed(EMouseButton btn);
     static bool GetButtonReleased(EMouseButton btn);
+    static Vector2D GetMousePos();
 private:
 };
 

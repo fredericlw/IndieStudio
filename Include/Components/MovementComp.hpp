@@ -7,11 +7,17 @@
 #ifndef MOVEMENTCOMP_HPP
 #define MOVEMENTCOMP_HPP
 
-class MovementComp {
+#include <raylib_encap/AInputModule.hpp>
+#include "Components.h"
+
+class MovementComp : public Component {
 public:
-    MovementComp();
+    MovementComp(EInputType input_type, PlayerNum num);
     ~MovementComp();
 private:
+    TransformComp *transform;
+    std::unique_ptr<AInputModule> _inputMod;
+    void GenerateInputModule(EInputType type, PlayerNum num);
 };
 
 #endif //MOVEMENTCOMP_HPP
