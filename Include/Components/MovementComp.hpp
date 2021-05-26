@@ -7,7 +7,7 @@
 #ifndef MOVEMENTCOMP_HPP
 #define MOVEMENTCOMP_HPP
 
-#include <raylib_encap/AInputModule.hpp>
+#include <raylib_encap/Input/AInputModule.hpp>
 #include "Components.h"
 
 class MovementComp : public Component {

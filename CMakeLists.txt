@@ -43,10 +43,10 @@ add_executable(bomberman
         Include/Components/Components.h
         Include/Components/ButtonComp.cpp
         Include/Components/ButtonComp.hpp
-        Include/raylib_encap/Vector3D.cpp
-        Include/raylib_encap/Vector3D.hpp
-        Include/raylib_encap/Vector2D.cpp
-        Include/raylib_encap/Vector2D.hpp
+        Include/raylib_encap/Math/Vector3D.cpp
+        Include/raylib_encap/Math/Vector3D.hpp
+        Include/raylib_encap/Math/Vector2D.cpp
+        Include/raylib_encap/Math/Vector2D.hpp
         Include/Components/BasicCubeComp.cpp
         Include/Components/BasicCubeComp.hpp
         Source/Scenes/GameScene.cpp
@@ -54,30 +54,29 @@ add_executable(bomberman
         Include/raylib_encap/ESprite.hpp
         Include/raylib_encap/ERect.cpp
         Include/raylib_encap/ERect.hpp
-        Include/raylib_encap/RectCollider.cpp
-        Include/raylib_encap/RectCollider.hpp
+        Include/raylib_encap/Math/RectCollider.cpp
+        Include/raylib_encap/Math/RectCollider.hpp
         Include/raylib_encap/ECamera.cpp
         Include/raylib_encap/ECamera.hpp
-        Include/raylib_encap/EKeyboardInputModule.cpp
-        Include/raylib_encap/EKeyboardInputModule.hpp
-        Include/raylib_encap/EMouseInputModule.cpp
-        Include/raylib_encap/EMouseInputModule.hpp
-        Include/raylib_encap/EGamepadInputModule.cpp
-        Include/raylib_encap/EGamepadInputModule.hpp
+        Include/raylib_encap/Input/EKeyboardInputModule.cpp
+        Include/raylib_encap/Input/EKeyboardInputModule.hpp
+        Include/raylib_encap/Input/EMouseInputModule.cpp
+        Include/raylib_encap/Input/EMouseInputModule.hpp
+        Include/raylib_encap/Input/EGamepadInputModule.cpp
+        Include/raylib_encap/Input/EGamepadInputModule.hpp
         Include/Keys.h
         Include/Components/MovementComp.cpp
         Include/Components/MovementComp.hpp
-        Include/raylib_encap/AInputModule.cpp
-        Include/raylib_encap/AInputModule.hpp
+        Include/raylib_encap/Input/AInputModule.cpp
+        Include/raylib_encap/Input/AInputModule.hpp
         Include/raylib_encap/EText.cpp
         Include/raylib_encap/EText.hpp
         Include/Colors.h
-        Include/raygui_encap/Button.cpp Include/raygui_encap/Button.hpp)
+        Include/raylib_encap/ECube.cpp Include/raylib_encap/ECube.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
 set(OpenGL_GL_PREFERENCE LEGACY)
 find_package(raylib REQUIRED QUIET)
-add_subdirectory(lib/raygui)
 
-target_link_libraries(bomberman raylib raygui)
+target_link_libraries(bomberman raylib)

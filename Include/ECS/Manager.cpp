@@ -26,16 +26,25 @@ void Manager::draw()
 
 void Manager::refresh()
 {
+    for (auto i(0u); i < maxGroups; i++) {
+        auto &v(groupedEntities[i]);
+        v.erase(
+            std::remove_if(std::begin(v), std::end(v), [i](Entity *entity) {
+                return ((!entity->isActive() && !entity->GetDontDestroyOnLoad())
+                    || !entity->hasGroup(i));
+            }), std::end(v)
+        );
+    }
     entities.erase(std::remove_if(std::begin(entities), std::end(entities),
-        [](const std::shared_ptr<Entity> &mEntity) {
-            return !mEntity->isActive() && !mEntity->GetDontDestroyOnLoad();
+        [](const std::shared_ptr<Entity> &entity) {
+            return !entity->isActive() && !entity->GetDontDestroyOnLoad();
         }),
         std::end(entities));
 }
 
 Entity &Manager::addEntity(std::string name)
 {
-    auto *e = new Entity(std::move(name), this);
+    auto *e = new Entity(std::move(name), *this);
     std::shared_ptr<Entity> ptr{e};
     entities.emplace_back(std::move(ptr));
     return *e;
@@ -54,9 +63,9 @@ void Manager::destroyOnLoad()
 
 Manager::Manager()
 {
-    MainCam.position = Vector3 {0.0f, 10.0f, 10.0f};
-    MainCam.target = Vector3 {0.0f, 0.0f, 0.0f};
-    MainCam.up = Vector3 {0.0f, 1.0f, 0.0f};
+    MainCam.position = Vector3{0.0f, 10.0f, 10.0f};
+    MainCam.target = Vector3{0.0f, 0.0f, 0.0f};
+    MainCam.up = Vector3{0.0f, 1.0f, 0.0f};
     MainCam.fovy = 45.0f;
     MainCam.projection = CAMERA_PERSPECTIVE;
 }
@@ -74,8 +83,6 @@ void Manager::loadScene(Manager::SceneType scene)
     }
 }
 
-
-
 void Manager::Quit()
 {
     alive = false;
@@ -89,4 +96,14 @@ bool Manager::isAlive() const
 void Manager::loadGameScene()
 {
     AddCubeZER();
+}
+
+void Manager::addEntityToGroup(Entity *entity, Group group)
+{
+    groupedEntities[group].emplace_back(entity);
+}
+
+std::vector<Entity *> &Manager::getEntitiesInGroup(Group group)
+{
+    return groupedEntities[group];
 }

@@ -50,6 +50,7 @@ public:
     Vector3D &Subtract(const Vector3D &vec);
     Vector3D &Divide(const Vector3D &vec);
     Vector3D &Multiply(const Vector3D &vec);
+    Vector3D &Clamp(float maxMagnitude);
 
     friend Vector3D &operator+(Vector3D &v1, const Vector3D &v2);
     friend Vector3D &operator-(Vector3D &v1, const Vector3D &v2);

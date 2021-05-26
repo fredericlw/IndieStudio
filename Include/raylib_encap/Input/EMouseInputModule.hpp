@@ -8,7 +8,7 @@
 #define EMOUSEINPUTMODULE_HPP
 
 #include <Keys.h>
-#include "Vector2D.hpp"
+#include "raylib_encap/Math/Vector2D.hpp"
 
 class EMouseInputModule {
 public:

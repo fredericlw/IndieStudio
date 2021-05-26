@@ -14,12 +14,9 @@ class EText {
 public:
     EText(std::string text);
     ~EText();
-    void draw(int posX, int posY, int size);
-    void drawInRectCenter(ERect rect, int size);
+    void draw(int posX, int posY, int size, Colors _color);
+    void drawInRectCenter(ERect rect, int size, Colors _color);
     std::string _text;
-    void setColor(Colors color);
-private:
-    Colors _color;
 };
 
 #endif //ETEXT_HPP

@@ -5,12 +5,14 @@
 ** Created by Leo Fabre
 */
 #include <raylib.h>
+#include <Colors.h>
 #include "BasicCubeComp.hpp"
 #include "ECS/Entity.hpp"
 #include "TransformComp.hpp"
 #include "ECS/Manager.hpp"
 
-BasicCubeComp::BasicCubeComp()
+BasicCubeComp::BasicCubeComp(Vector3D size)
+    : _size(size)
 {
 }
 
@@ -21,6 +23,9 @@ BasicCubeComp::~BasicCubeComp()
 void BasicCubeComp::init()
 {
     Component::init();
+    transform = &entity->getComponent<TransformComp>();
+    if (!transform)
+        transform = &entity->addComponent<TransformComp>();
 }
 
 void BasicCubeComp::update()
@@ -31,11 +36,7 @@ void BasicCubeComp::update()
 void BasicCubeComp::draw()
 {
     Component::draw();
-    BeginMode3D(entity->_mgr->MainCam);
-//
-    DrawCube(entity->getComponent<TransformComp>().position, 2.0f, 2.0f, 2.0f, RED);
-    DrawCubeWires(entity->getComponent<TransformComp>().position, 2.0f, 2.0f, 2.0f, WHITE);
-//
-//
-    EndMode3D();
+    entity->_mgr.MainCam.Begin3D();
+    _cube.draw(transform->position, _size, Colors::Red, Colors::White);
+    entity->_mgr.MainCam.End3D();
 }

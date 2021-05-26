@@ -4,13 +4,14 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include <raylib_encap/Vector2D.hpp>
-#include <raylib_encap/RectCollider.hpp>
-#include <raylib_encap/EMouseInputModule.hpp>
+#include <raylib_encap/Math/Vector2D.hpp>
+#include <raylib_encap/Math/RectCollider.hpp>
+#include <raylib_encap/Input/EMouseInputModule.hpp>
 #include <Colors.h>
 #include "ButtonComp.hpp"
 #include "ECS/Entity.hpp"
 #include "Components.h"
+
 ButtonComp::ButtonComp(const std::string &text, Vector2D size, Vector2D pos)
     : _text(text),
       size(size),
@@ -50,7 +51,7 @@ void ButtonComp::draw()
     _rect.draw(true, true, (hovering) ? Green : LightGray,
         (hovering) ? Green : Gray);
 
-    _text.drawInRectCenter(_rect, 40);
+    _text.drawInRectCenter(_rect, 40, (hovering) ? DarkBlue : DarkGray);
 }
 
 void ButtonComp::AddEventFunc(const std::function<void()> &function)

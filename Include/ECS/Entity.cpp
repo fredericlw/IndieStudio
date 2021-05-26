@@ -28,7 +28,7 @@ void Entity::draw()
     for (auto &c : components) c->draw();
 }
 
-Entity::Entity(std::string name, Manager* mgr)
+Entity::Entity(std::string name, Manager& mgr)
     : _name(std::move(name)), _mgr(mgr)
 {
 }
@@ -36,4 +36,10 @@ Entity::Entity(std::string name, Manager* mgr)
 const std::string &Entity::getName() const
 {
     return _name;
+}
+
+void Entity::addGroup(Group grp)
+{
+    groupBitSet[grp] = true;
+    _mgr.addEntityToGroup(this, grp);
 }

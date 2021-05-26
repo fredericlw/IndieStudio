@@ -18,7 +18,7 @@ public:
     virtual ~Component() {}
 };
 
-ComponentID getComponentTypeID()
+ComponentID getNewComponentTypeID()
 {
     static ComponentID lastID = 0;
     return lastID++;

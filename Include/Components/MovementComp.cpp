@@ -4,13 +4,14 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include <raylib_encap/EKeyboardInputModule.hpp>
-#include <raylib_encap/EGamepadInputModule.hpp>
+#include <raylib_encap/Input/EKeyboardInputModule.hpp>
+#include <raylib_encap/Input/EGamepadInputModule.hpp>
 #include "MovementComp.hpp"
 #include "ECS/Entity.hpp"
 
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)
-    : Velocity(Vector3D::Zero()), _speed(.5f)
+    : Velocity(Vector3D::Zero()),
+      _speed(.5f)
 {
     GenerateInputModule(input_type, num);
 }
@@ -30,30 +31,15 @@ void MovementComp::init()
 void MovementComp::update()
 {
     Component::update();
-    if (_inputMod->GetButtonDown(Right)) {
-        std::cout << "RIGHT DOWN" << std::endl;
-        Velocity.x = 1;
-    } else if (_inputMod->GetButtonDown(Left)) {
-        std::cout << "Left DOWN" << std::endl;
-        Velocity.x = -1;
-    } else {
-        std::cout << "Left/right UP ?" << std::endl;
-        Velocity.x = 0;
-    }
-    if (_inputMod->GetButtonDown(Up)) {
-        std::cout << "Up DOWN" << std::endl;
-        Velocity.y = 1;
-    } else if (_inputMod->GetButtonDown(Down)) {
-        std::cout << "Down DOWN" << std::endl;
-        Velocity.y = -1;
-    } else {
-        std::cout << "Down UP ?" << std::endl;
-        Velocity.y = 0;
-    }
+    if (_inputMod->GetButtonDown(Right)) Velocity.x = 1;
+    else if (_inputMod->GetButtonDown(Left)) Velocity.x = -1;
+    else Velocity.x = 0;
 
+    if (_inputMod->GetButtonDown(Up)) Velocity.y = 1;
+    else if (_inputMod->GetButtonDown(Down)) Velocity.y = -1;
+    else Velocity.y = 0;
 
-    transform->position += Velocity.Multiply(_speed);
-    std::cout << "Velocity : " << Velocity << std::endl;
+    transform->position += Velocity.Multiply(_speed).Clamp(1);
 }
 
 void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)

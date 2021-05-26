@@ -16,12 +16,13 @@ protected:
     std::vector<std::unique_ptr<Component>> components;
     std::string _name;
 public:
-    Entity(std::string name, Manager *mgr);
+    Entity(std::string name, Manager& mgr);
     const std::string &getName() const;
-    Manager *_mgr;
+    Manager& _mgr;
 private:
     ComponentArray componentArray;
     ComponentBitSet componentBitSet;
+    GroupBitSet groupBitSet;
 public:
     void update();
 
@@ -41,6 +42,17 @@ public:
     }
 
     void destroy();
+
+    bool hasGroup(Group grp){
+        return groupBitSet[grp];
+    }
+
+    void addGroup(Group grp);
+
+    void delGroup(Group grp)
+    {
+        groupBitSet[grp] = false;
+    }
 
     template<typename T> bool hasComponent() const;
 

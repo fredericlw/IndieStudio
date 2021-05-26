@@ -18,16 +18,20 @@ public:
         Game
     };
 
+    enum GroupLabel{
+        Map,
+        Players,
+        GUI
+    };
     explicit Manager();
     void update();
     void draw();
     void refresh();
     Entity &addEntity(std::string name);
+    void addEntityToGroup(Entity *entity, Group group);
+    std::vector<Entity *> &getEntitiesInGroup(Group group);
     void destroyOnLoad();
     void loadScene(SceneType scene);
-    void AddMenuLogo();
-    void AddPlayButton();
-    void AddCubeZER();
     void Quit();
     ECamera MainCam;
 private:
@@ -36,9 +40,13 @@ public:
 private:
     bool alive = true;
     std::vector<std::shared_ptr<Entity>> entities;
+    std::array<std::vector<Entity *>, maxGroups> groupedEntities;
     void loadGameScene();
     void loadMenuScene();
     void AddQuitButton();
+    void AddMenuLogo();
+    void AddPlayButton();
+    void AddCubeZER();
 };
 
 #endif //MANAGER_HPP

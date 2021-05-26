@@ -8,15 +8,21 @@
 #define BASICCUBECOMP_HPP
 
 #include <ECS/Component.hpp>
+#include <raylib_encap/Math/Vector3D.hpp>
+#include <raylib_encap/ECube.hpp>
+#include "TransformComp.hpp"
 
 class BasicCubeComp : public Component {
 public:
-    BasicCubeComp();
+    BasicCubeComp(Vector3D size);
     ~BasicCubeComp();
     void init() override;
     void update() override;
     void draw() override;
+    Vector3D _size;
 private:
+    TransformComp *transform;
+    ECube _cube;
 };
 
 #endif //BASICCUBECOMP_HPP

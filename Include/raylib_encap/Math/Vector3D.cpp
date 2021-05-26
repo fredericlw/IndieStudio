@@ -56,6 +56,14 @@ Vector3D &Vector3D::Multiply(float factor)
     return *this;
 }
 
+Vector3D &Vector3D::Clamp(float maxMagnitude)
+{
+    if (x > maxMagnitude) x = maxMagnitude;
+    if (y > maxMagnitude) y = maxMagnitude;
+    if (z > maxMagnitude) z = maxMagnitude;
+    return *this;
+}
+
 Vector3D &operator+(Vector3D &v1, const Vector3D &v2)
 {
     return v1.Add(v2);

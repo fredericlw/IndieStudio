@@ -13,12 +13,12 @@ EText::~EText()
 {
 }
 
-void EText::draw(int posX, int posY, int size)
+void EText::draw(int posX, int posY, int size, Colors _color)
 {
     DrawText(_text.c_str(), posX, posY, size, GetRaylibColor(_color));
 }
 
-void EText::drawInRectCenter(ERect _rect, int size)
+void EText::drawInRectCenter(ERect _rect, int size, Colors _color)
 {
     DrawText(_text.c_str(),
         (int) (_rect.x + _rect.width / 2 -
@@ -27,13 +27,7 @@ void EText::drawInRectCenter(ERect _rect, int size)
 }
 
 EText::EText(std::string text)
-    : _text(std::move(text)),
-      _color(RayWhite)
+    : _text(std::move(text))
 {
-}
-
-void EText::setColor(Colors color)
-{
-    _color = color;
 }
 
