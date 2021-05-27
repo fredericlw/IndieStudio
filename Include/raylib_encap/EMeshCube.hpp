@@ -16,7 +16,7 @@ class EMeshCube {
 public:
     EMeshCube(const Vector3D &size = Vector3D::One(), std::string sprPath = "");
     virtual ~EMeshCube();
-    void draw(const Vector3D &poz);
+    void draw(const Vector3D &pos);
 private:
     Model _model;
     Mesh _meshCube;

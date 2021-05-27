@@ -19,13 +19,12 @@ EMeshCube::EMeshCube(const Vector3D &size, std::string sprPath)
     std::cout << "SET MATERIAL TEX OK" << std::endl;
 }
 
-void EMeshCube::draw(const Vector3D &poz)
+void EMeshCube::draw(const Vector3D &pos)
 {
-//    std::cout << "Drawing cube" << std::endl;
-    DrawModel(_model, poz, 10, WHITE);
+    std::cout << "Drawing cube. pos : " << pos << std::endl;
+    DrawModel(_model, pos, 10, WHITE);
 }
 
 EMeshCube::~EMeshCube()
 {
-
 }
