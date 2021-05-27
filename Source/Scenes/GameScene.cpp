@@ -11,7 +11,7 @@
 void Manager::loadGameScene()
 {
     AddCubeZER();
-    //    GenerateMap();
+        GenerateMap();
     auto &myEnt = addEntity("tigerCube");
     myEnt.addComponent<TransformComp>(0, -20, -30);
     myEnt.addComponent<MeshCubeComp>(Vector3D::One().Multiply(2),
