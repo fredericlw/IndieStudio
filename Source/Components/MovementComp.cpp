@@ -6,7 +6,7 @@
 */
 #include <raylib_encap/Input/EKeyboardInputModule.hpp>
 #include <raylib_encap/Input/EGamepadInputModule.hpp>
-#include "Components/MovementComp.hpp"
+#include "Components/Character/MovementComp.hpp"
 #include "ECS/Entity.hpp"
 
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)

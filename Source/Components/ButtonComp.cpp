@@ -8,7 +8,7 @@
 #include <raylib_encap/Math/RectCollider.hpp>
 #include <raylib_encap/Input/EMouseInputModule.hpp>
 #include <Colors.h>
-#include "Components/ButtonComp.hpp"
+#include "Components/GUI/ButtonComp.hpp"
 #include "ECS/Entity.hpp"
 #include "Components/Components.h"
 
@@ -27,6 +27,10 @@ void ButtonComp::init()
     if (!transform) {
         transform = &entity->addComponent<TransformComp>();
     }
+    _rect.x = pos.x;
+    _rect.y = pos.y;
+    _rect.width = size.x;
+    _rect.height = size.y;
 }
 
 void ButtonComp::update()
@@ -39,10 +43,6 @@ void ButtonComp::update()
     } else {
         hovering = false;
     }
-    _rect.x = pos.x;
-    _rect.y = pos.y;
-    _rect.width = size.x;
-    _rect.height = size.y;
 }
 
 void ButtonComp::draw()

@@ -93,3 +93,8 @@ std::ostream &operator<<(std::ostream &os, const Vector2D &vec)
 Vector2D::Vector2D(const Vector3D &vec) : Vector2({vec.x, vec.y})
 {
 }
+
+bool Vector2D::operator==(const Vector2D &vec)
+{
+    return x == vec.x && y == vec.y;
+}

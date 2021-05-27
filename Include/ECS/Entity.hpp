@@ -9,6 +9,7 @@
 
 #include <raylib.h>
 #include "Component.hpp"
+
 class Entity {
 protected:
     bool _active = true;
@@ -16,9 +17,15 @@ protected:
     std::vector<std::unique_ptr<Component>> components;
     std::string _name;
 public:
-    Entity(std::string name, Manager& mgr);
+    Entity(std::string name, Manager &mgr);
+
+    ~Entity()
+    {
+//        std::cout << "Destroying entity : " << _name << std::endl;
+    }
+
     const std::string &getName() const;
-    Manager& _mgr;
+    Manager &_mgr;
 private:
     ComponentArray componentArray;
     ComponentBitSet componentBitSet;
@@ -33,17 +40,20 @@ public:
         return _active;
     }
 
-    bool GetDontDestroyOnLoad() {
+    bool GetDontDestroyOnLoad()
+    {
         return _dontDesOnLoad;
     }
 
-    void SetDontDestroyOnLoad(bool state){
+    void SetDontDestroyOnLoad(bool state)
+    {
         _dontDesOnLoad = state;
     }
 
     void destroy();
 
-    bool hasGroup(Group grp){
+    bool hasGroup(Group grp)
+    {
         return groupBitSet[grp];
     }
 

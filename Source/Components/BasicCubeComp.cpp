@@ -6,13 +6,14 @@
 */
 #include <raylib.h>
 #include <Colors.h>
-#include "Components/BasicCubeComp.hpp"
+#include "Components/3D/BasicCubeComp.hpp"
 #include "ECS/Entity.hpp"
-#include "Components/TransformComp.hpp"
+#include "Components/3D/TransformComp.hpp"
 #include "ECS/Manager.hpp"
 
-BasicCubeComp::BasicCubeComp(Vector3D size, Colors cubeCol, Colors wireCol)
-    : _size(size), _cubeCol(cubeCol), _wireCol(wireCol)
+BasicCubeComp::BasicCubeComp(Vector3D size, Colors cubeCol, Colors wireCol, Vector3D offset)
+    : _size(size), _cubeCol(cubeCol), _wireCol(wireCol),
+      _offset(offset)
 {
 }
 
@@ -37,6 +38,6 @@ void BasicCubeComp::draw()
 {
     Component::draw();
     entity->_mgr.MainCam.Begin3D();
-    _cube.draw(transform->position, _size, Colors::Red, Colors::White);
+    _cube.draw(transform->position.Add(_offset), _size, _cubeCol, _wireCol);
     entity->_mgr.MainCam.End3D();
 }

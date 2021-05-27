@@ -6,9 +6,9 @@
 */
 #ifndef COMPONENTS_H
 #define COMPONENTS_H
-#include "TransformComp.hpp"
-#include "Sprite2D.hpp"
-#include "ButtonComp.hpp"
-#include "BasicCubeComp.hpp"
-#include "MovementComp.hpp"
+#include "Components/3D/TransformComp.hpp"
+#include "Components/GUI/Sprite2D.hpp"
+#include "Components/GUI/ButtonComp.hpp"
+#include "Components/3D/BasicCubeComp.hpp"
+#include "Components/Character/MovementComp.hpp"
 #endif //COMPONENTS_H

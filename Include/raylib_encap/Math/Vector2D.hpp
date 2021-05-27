@@ -64,6 +64,8 @@ public:
     Vector2D &operator/=(const Vector2D &vec);
     Vector2D &operator*=(const Vector2D &vec);
 
+    bool operator==(const Vector2D &vec);
+
     friend std::ostream &operator<<(std::ostream &os, const Vector2D &d);
     //endregion
 

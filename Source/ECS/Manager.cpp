@@ -7,6 +7,7 @@
 #include <raylib.h>
 
 #include <utility>
+#include <raylib_encap/Math/Vector3D.hpp>
 #include "ECS/Manager.hpp"
 
 void Manager::update()
@@ -96,6 +97,7 @@ bool Manager::isAlive() const
 void Manager::loadGameScene()
 {
     AddCubeZER();
+    GenerateMap();
 }
 
 void Manager::addEntityToGroup(Entity *entity, Group group)
@@ -107,3 +109,4 @@ std::vector<Entity *> &Manager::getEntitiesInGroup(Group group)
 {
     return groupedEntities[group];
 }
+
