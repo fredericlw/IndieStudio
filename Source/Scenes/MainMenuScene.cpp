@@ -54,6 +54,6 @@ void Manager::AddMenuLogo()
     logoEntity.addComponent<Sprite2D>("rsc/mainlogo.png");
     //Modify some components
     int ypos = GetScreenHeight() -
-        logoEntity.getComponent<Sprite2D>().getTex().height;
+        logoEntity.getComponent<Sprite2D>().height;
     logoEntity.getComponent<TransformComp>().position.y = (float) ypos;
 }

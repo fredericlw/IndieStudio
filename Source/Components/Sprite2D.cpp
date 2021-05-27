@@ -20,9 +20,8 @@ void Sprite2D::init()
     }
     _spriteRect.x = 0;
     _spriteRect.y = 0;
-    _spriteRect.height = _tex.height;
-    _spriteRect.width = _tex.width;
-    
+    _spriteRect.height = (float) height;
+    _spriteRect.width = (float) width;
 }
 
 void Sprite2D::update()

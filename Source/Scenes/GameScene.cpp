@@ -8,6 +8,17 @@
 #include "Components/Components.h"
 #include "MapComponent.hpp"
 
+void Manager::loadGameScene()
+{
+    AddCubeZER();
+    //    GenerateMap();
+    auto &myEnt = addEntity("tigerCube");
+    myEnt.addComponent<TransformComp>();
+    myEnt.addComponent<MeshCubeComp>(Vector3D::One().Multiply(2),
+        "./rsc/dirtCube.png");
+    //    myEnt.addComponent<BasicCubeComp>(Vector3D::One());
+}
+
 void Manager::AddCubeZER()
 {
     auto &monCUB = addEntity("Gro KUBE");
@@ -74,19 +85,4 @@ void Manager::GenerateMap()
             Vector3D::One().Multiply(cubeScale),
             Colors::Gray, Colors::Black);
     }
-}
-
-Manager::SceneType Manager::getNextSceneToLoad() const
-{
-    return nextSceneToLoad;
-}
-
-void Manager::setNextSceneToLoad(Manager::SceneType next_scene_to_load)
-{
-    nextSceneToLoad = next_scene_to_load;
-}
-
-void Manager::setAlive(bool alive)
-{
-    Manager::alive = alive;
 }

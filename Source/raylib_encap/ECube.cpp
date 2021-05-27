@@ -9,6 +9,8 @@
 #include "raylib_encap/ECube.hpp"
 
 ECube::ECube()
+    : _pos(Vector3D::Zero()),
+      _size(Vector3D::One())
 {
 }
 
@@ -16,8 +18,28 @@ ECube::~ECube()
 {
 }
 
-void ECube::draw(Vector3D pos, Vector3D _size, Colors cubeColor, Colors wiresColor)
+void ECube::draw(
+    const Vector3D &pos, const Vector3D &size, Colors cubeColor,
+    Colors wiresColor
+)
 {
+    _size = size;
+    _pos = pos;
     DrawCube(pos, _size.x, _size.y, _size.z, GetRaylibColor(cubeColor));
     DrawCubeWires(pos, _size.x, _size.y, _size.z, GetRaylibColor(wiresColor));
 }
+
+//region get/set
+
+const Vector3D &ECube::getPos() const
+{
+    return _pos;
+}
+
+const Vector3D &ECube::getSize() const
+{
+    return _size;
+}
+
+//endregion
+

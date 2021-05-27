@@ -10,7 +10,7 @@
 #include <raylib.h>
 #include <string>
 
-class ESprite {
+class ESprite : public Texture2D {
 public:
     explicit ESprite(const std::string &path, Color color = WHITE);
     ~ESprite();
@@ -20,7 +20,6 @@ public:
     void draw(Vector3 pos);
     [[nodiscard]] const Texture2D &getTex() const;
 protected:
-    Texture2D _tex;
     Rectangle _spriteRect;
     Color _tintColor;
 };

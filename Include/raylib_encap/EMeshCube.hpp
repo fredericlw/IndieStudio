@@ -18,7 +18,7 @@ public:
     void draw(const Vector3D &poz, Matrix matrix);
 private:
     Mesh _meshCube;
-    Material *_mat;
+    Material _mat;
     ESprite _sprite;
     Vector3D _size;
 };

@@ -96,14 +96,6 @@ bool Manager::isAlive() const
     return alive;
 }
 
-void Manager::loadGameScene()
-{
-    AddCubeZER();
-    GenerateMap();
-    auto &myEnt = addEntity("tigerCube");
-    myEnt.addComponent<TransformComp>();
-    myEnt.addComponent<MeshCubeComp>(Vector3D::One(), "./rsc/mainlogo.png");
-}
 
 void Manager::addEntityToGroup(Entity *entity, Group group)
 {
@@ -115,3 +107,18 @@ std::vector<Entity *> &Manager::getEntitiesInGroup(Group group)
     return groupedEntities[group];
 }
 
+
+Manager::SceneType Manager::getNextSceneToLoad() const
+{
+    return nextSceneToLoad;
+}
+
+void Manager::setNextSceneToLoad(Manager::SceneType next_scene_to_load)
+{
+    nextSceneToLoad = next_scene_to_load;
+}
+
+void Manager::setAlive(bool alive)
+{
+    Manager::alive = alive;
+}
