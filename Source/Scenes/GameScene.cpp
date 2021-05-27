@@ -75,3 +75,18 @@ void Manager::GenerateMap()
             Colors::Gray, Colors::Black);
     }
 }
+
+Manager::SceneType Manager::getNextSceneToLoad() const
+{
+    return nextSceneToLoad;
+}
+
+void Manager::setNextSceneToLoad(Manager::SceneType next_scene_to_load)
+{
+    nextSceneToLoad = next_scene_to_load;
+}
+
+void Manager::setAlive(bool alive)
+{
+    Manager::alive = alive;
+}
