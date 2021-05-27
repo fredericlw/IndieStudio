@@ -12,7 +12,7 @@
 
 class ESprite : public Texture2D {
 public:
-    explicit ESprite(const std::string &path, Color color = WHITE);
+    explicit ESprite(const std::string &path = "", Color color = WHITE);
     ESprite(Texture2D texture);
     ~ESprite();
     void setColor(const Color &color);
@@ -23,6 +23,7 @@ public:
 protected:
     Rectangle _spriteRect;
     Color _tintColor;
+    std::string path;
 };
 
 #endif //ESPRITE_HPP

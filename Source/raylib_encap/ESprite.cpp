@@ -4,11 +4,12 @@
 ** File description:
 ** Created by Leo Fabre
 */
+#include <iostream>
 #include "raylib_encap/ESprite.hpp"
 
 ESprite::ESprite(const std::string &path, Color color)
     : Texture2D(LoadTexture(path.c_str())),
-      _tintColor(color)
+      _tintColor(color), path(path)
 {
 }
 
@@ -34,9 +35,12 @@ void ESprite::setColor(const Color &color)
 
 ESprite::~ESprite()
 {
+    std::cerr << "UNLOADING TEXTURE (" << path << ")" << std::endl;
+    UnloadTexture(*this);
 }
 
-ESprite::ESprite(Texture2D texture) : Texture2D(texture),
-                                      _tintColor(WHITE)
+ESprite::ESprite(Texture2D texture)
+    : Texture2D(texture),
+      _tintColor(WHITE)
 {
 }
