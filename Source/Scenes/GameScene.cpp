@@ -11,7 +11,7 @@
 void Manager::AddCubeZER()
 {
     auto &monCUB = addEntity("Gro KUBE");
-    monCUB.addComponent<TransformComp>(Vector3D(0, -15, -20));
+    monCUB.addComponent<TransformComp>(Vector3D(0, -38, -30));
     monCUB.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     monCUB.addComponent<MovementComp>(EInputType::Keyboard,
         PlayerNum::PlayerOne);
@@ -19,7 +19,7 @@ void Manager::AddCubeZER()
 
 void Manager::GenerateMap()
 {
-    Vector2D mapSize(20, 10);
+    Vector2D mapSize(20, 20);
     auto &MapEntity = addEntity("mapRoot");
     auto &transform =
         MapEntity.addComponent<TransformComp>(Vector3D(0, -20, -20));
@@ -38,7 +38,7 @@ void Manager::GenerateMap()
             Entity *cube =
                 &addEntity(std::to_string(pos.x).append(std::to_string(pos.y)));
             cube->addComponent<TransformComp>(
-                Vector3D(-mapSize.x, -20, -mapSize.y * 4).Add(pos));
+                Vector3D(-mapSize.x, -20, -mapSize.y * 3).Add(pos));
             cube->addComponent<BasicCubeComp>(
                 Vector3D::One().Multiply(cubeScale),
                 Colors::Black, Colors::RayWhite);
