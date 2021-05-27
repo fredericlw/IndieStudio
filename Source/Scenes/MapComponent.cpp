@@ -18,16 +18,16 @@ MapComponent::MapComponent(
 {
     //generate walls and obstacles
     for (int i = 0; i < numWalls; ++i) {
-        auto x = (float) Random::Range(0, (int) _size.x);
-        auto y = (float) Random::Range(0, (int) _size.y);
+        auto x = (float) Random::Range(0, (int) _size.x-1);
+        auto y = (float) Random::Range(0, (int) _size.y-1);
         Walls.emplace_back(Vector2D(x, y));
     }
     //generate walls and obstacles
     for (int i = 0; i < numObstacles; ++i) {
         Vector2D pos = Vector2D::Zero();
         do {
-            pos.x = (float) Random::Range(0, (int) _size.x);
-            pos.y = (float) Random::Range(0, (int) _size.y);
+            pos.x = (float) Random::Range(0, (int) _size.x-1);
+            pos.y = (float) Random::Range(0, (int) _size.y-1);
         } while (std::find(Walls.begin(), Walls.end(), pos) != Walls.end());
         //random coords until not on a wall
         Obstacles.emplace_back(pos);
