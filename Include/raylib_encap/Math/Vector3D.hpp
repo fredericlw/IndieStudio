@@ -63,6 +63,9 @@ public:
     Vector3D &operator*=(const Vector3D &vec);
     Vector3D &operator*=(float factor);
 
+    bool operator==(Vector3D other);
+    bool operator!=(Vector3D other);
+
     friend std::ostream &operator<<(std::ostream &os, const Vector3D &d);
     //endregion
     Vector3D &Multiply(float factor);

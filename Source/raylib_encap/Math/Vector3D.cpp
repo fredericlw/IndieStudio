@@ -124,3 +124,13 @@ Vector3D::Vector3D(const Vector2D& Vec) : Vector3({Vec.x, Vec.y, 0})
 {
 }
 
+bool Vector3D::operator==(Vector3D other)
+{
+    return x == other.x && y == other.y && z == other.z;
+}
+
+bool Vector3D::operator!=(Vector3D other)
+{
+    return x != other.x || y != other.y || z != other.z;
+}
+

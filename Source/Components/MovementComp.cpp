@@ -40,7 +40,9 @@ void MovementComp::update()
     else Velocity.z = 0;
 
     transform->position += Velocity.Multiply(_speed).Clamp(1);
-    std::cout << "Player pos : " << transform->position << std::endl;
+    if (Velocity != Vector3D::Zero()) {
+        std::cout << "Player pos : " << transform->position << std::endl;
+    }
 }
 
 void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)
