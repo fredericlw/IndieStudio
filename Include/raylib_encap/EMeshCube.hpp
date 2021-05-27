@@ -15,8 +15,9 @@
 class EMeshCube {
 public:
     EMeshCube(const Vector3D &size, std::string sprPath);
-    void draw(const Vector3D &poz, Matrix matrix);
+    void draw(const Vector3D &poz);
 private:
+    Model _model;
     Mesh _meshCube;
     Material _mat;
     ESprite _sprite;

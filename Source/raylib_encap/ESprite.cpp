@@ -35,3 +35,8 @@ void ESprite::setColor(const Color &color)
 ESprite::~ESprite()
 {
 }
+
+ESprite::ESprite(Texture2D texture) : Texture2D(texture),
+                                      _tintColor(WHITE)
+{
+}

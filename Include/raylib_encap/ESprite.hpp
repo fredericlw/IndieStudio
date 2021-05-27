@@ -13,6 +13,7 @@
 class ESprite : public Texture2D {
 public:
     explicit ESprite(const std::string &path, Color color = WHITE);
+    ESprite(Texture2D texture);
     ~ESprite();
     void setColor(const Color &color);
     [[nodiscard]] const Color &getColor() const;

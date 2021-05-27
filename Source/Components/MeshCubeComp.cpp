@@ -16,7 +16,7 @@ MeshCubeComp::MeshCubeComp(const Vector3D &size, std::string sprPath)
 void MeshCubeComp::draw()
 {
     Component::draw();
-    EMeshCube::draw(transform->position, entity->_mgr.MainCam.getMatrix());
+    EMeshCube::draw(transform->position);
 }
 
 void MeshCubeComp::init()
