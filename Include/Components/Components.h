@@ -11,4 +11,5 @@
 #include "Components/GUI/ButtonComp.hpp"
 #include "Components/3D/BasicCubeComp.hpp"
 #include "Components/Character/MovementComp.hpp"
+#include "Components/3D/MeshCubeComp.hpp"
 #endif //COMPONENTS_H

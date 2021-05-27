@@ -15,6 +15,7 @@ public:
     ~ECamera();
     void Begin3D();
     void End3D();
+    Matrix getMatrix();
 };
 
 #endif //ECAMERA_HPP

@@ -7,6 +7,7 @@
 #ifndef ECUBE_HPP
 #define ECUBE_HPP
 #include "Colors.h"
+
 class ECube {
 public:
     ECube();

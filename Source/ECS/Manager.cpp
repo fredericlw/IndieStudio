@@ -9,6 +9,7 @@
 #include <utility>
 #include <raylib_encap/Math/Vector3D.hpp>
 #include "ECS/Manager.hpp"
+#include "Components.h"
 
 void Manager::update()
 {
@@ -99,6 +100,9 @@ void Manager::loadGameScene()
 {
     AddCubeZER();
     GenerateMap();
+    auto &myEnt = addEntity("tigerCube");
+    myEnt.addComponent<TransformComp>();
+    myEnt.addComponent<MeshCubeComp>(Vector3D::One(), "./rsc/mainlogo.png");
 }
 
 void Manager::addEntityToGroup(Entity *entity, Group group)

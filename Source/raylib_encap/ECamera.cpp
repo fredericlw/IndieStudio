@@ -23,3 +23,8 @@ void ECamera::End3D()
 {
     EndMode3D();
 }
+
+Matrix ECamera::getMatrix()
+{
+    return GetCameraMatrix(*this);
+}
