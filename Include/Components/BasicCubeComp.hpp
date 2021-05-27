@@ -14,12 +14,14 @@
 
 class BasicCubeComp : public Component {
 public:
-    BasicCubeComp(Vector3D size);
+    BasicCubeComp(Vector3D size, Colors cubeCol = Red, Colors wireCol = RayWhite);
     ~BasicCubeComp();
     void init() override;
     void update() override;
     void draw() override;
     Vector3D _size;
+    Colors _cubeCol;
+    Colors _wireCol;
 private:
     TransformComp *transform;
     ECube _cube;

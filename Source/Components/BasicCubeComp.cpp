@@ -11,8 +11,8 @@
 #include "Components/TransformComp.hpp"
 #include "ECS/Manager.hpp"
 
-BasicCubeComp::BasicCubeComp(Vector3D size)
-    : _size(size)
+BasicCubeComp::BasicCubeComp(Vector3D size, Colors cubeCol, Colors wireCol)
+    : _size(size), _cubeCol(cubeCol), _wireCol(wireCol)
 {
 }
 

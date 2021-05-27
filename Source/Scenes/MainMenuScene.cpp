@@ -59,12 +59,3 @@ void Manager::AddMenuLogo()
             logoEntity.getComponent<Sprite2D>().getTex().height;
     logoEntity.getComponent<TransformComp>().position.y = (float) ypos;
 }
-
-
-void Manager::AddCubeZER()
-{
-    auto &monCUB = addEntity("Gro KUBE");
-    monCUB.addComponent<TransformComp>();
-    monCUB.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    monCUB.addComponent<MovementComp>(EInputType::Keyboard, PlayerNum::PlayerOne);
-}

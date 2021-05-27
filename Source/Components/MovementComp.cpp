@@ -35,9 +35,9 @@ void MovementComp::update()
     else if (_inputMod->GetButtonDown(Left)) Velocity.x = -1;
     else Velocity.x = 0;
 
-    if (_inputMod->GetButtonDown(Up)) Velocity.y = 1;
-    else if (_inputMod->GetButtonDown(Down)) Velocity.y = -1;
-    else Velocity.y = 0;
+    if (_inputMod->GetButtonDown(Up)) Velocity.z = -1;
+    else if (_inputMod->GetButtonDown(Down)) Velocity.z = 1;
+    else Velocity.z = 0;
 
     transform->position += Velocity.Multiply(_speed).Clamp(1);
 }

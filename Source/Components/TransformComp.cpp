@@ -18,6 +18,7 @@ void TransformComp::update()
 {
 }
 
-TransformComp::TransformComp(const Vector3D& Position) : position(Position)
+TransformComp::TransformComp(const Vector3D &Position)
+    : position(Position)
 {
 }
