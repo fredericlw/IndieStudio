@@ -5,7 +5,7 @@
 ** Created by Leo Fabre
 */
 #include <ECS/Manager.hpp>
-#include <Components/BasicCubeComp.hpp>
+#include <Components/3D/BasicCubeComp.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
 #include "Components/Components.h"
 
@@ -14,11 +14,7 @@ void Manager::loadMenuScene()
     AddMenuLogo();
     AddPlayButton();
     AddQuitButton();
-    //    AddGrid();
-   // AddCubeZER();
 }
-
-
 
 void Manager::AddPlayButton()
 {
@@ -54,8 +50,7 @@ void Manager::AddMenuLogo()
     logoEntity.addComponent<TransformComp>(0, 0);
     logoEntity.addComponent<Sprite2D>("rsc/mainlogo.png");
     //Modify some components
-    int ypos =
-        GetScreenHeight() -
+    int ypos = GetScreenHeight() -
             logoEntity.getComponent<Sprite2D>().getTex().height;
     logoEntity.getComponent<TransformComp>().position.y = (float) ypos;
 }

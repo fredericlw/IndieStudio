@@ -47,6 +47,7 @@ private:
     void AddMenuLogo();
     void AddPlayButton();
     void AddCubeZER();
+    void GenerateMap();
 };
 
 #endif //MANAGER_HPP

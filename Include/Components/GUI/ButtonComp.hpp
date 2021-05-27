@@ -10,7 +10,7 @@
 #include <raylib_encap/Math/Vector3D.hpp>
 #include <raylib_encap/ERect.hpp>
 #include "ECS/Component.hpp"
-#include "TransformComp.hpp"
+#include "Components/3D/TransformComp.hpp"
 #include <functional>
 #include <raylib_encap/EText.hpp>
 

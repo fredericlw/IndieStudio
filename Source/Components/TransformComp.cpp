@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "Components/TransformComp.hpp"
+#include "Components/3D/TransformComp.hpp"
 
 TransformComp::TransformComp(float x, float y, float z)
     : position(x, y, z)

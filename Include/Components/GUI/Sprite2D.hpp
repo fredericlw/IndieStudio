@@ -10,7 +10,7 @@
 #include <ECS/Component.hpp>
 #include <raylib.h>
 #include <raylib_encap/ESprite.hpp>
-#include "TransformComp.hpp"
+#include "Components/3D/TransformComp.hpp"
 
 class Sprite2D : public Component, public ESprite {
 public:

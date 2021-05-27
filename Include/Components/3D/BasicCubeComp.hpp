@@ -14,7 +14,7 @@
 
 class BasicCubeComp : public Component {
 public:
-    BasicCubeComp(Vector3D size, Colors cubeCol = Red, Colors wireCol = RayWhite);
+    BasicCubeComp(Vector3D size, Colors cubeCol = Red, Colors wireCol = RayWhite, Vector3D offset = Vector3D::Zero());
     ~BasicCubeComp();
     void init() override;
     void update() override;
@@ -25,6 +25,7 @@ public:
 private:
     TransformComp *transform;
     ECube _cube;
+    Vector3D _offset;
 };
 
 #endif //BASICCUBECOMP_HPP

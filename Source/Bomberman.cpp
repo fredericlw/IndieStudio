@@ -6,9 +6,9 @@
 */
 #include <iostream>
 //#include <unistd.h>
-#include <Components/TransformComp.hpp>
-#include <Components/Sprite2D.hpp>
-#include <Components/BasicCubeComp.hpp>
+#include <Components/3D/TransformComp.hpp>
+#include <Components/GUI/Sprite2D.hpp>
+#include <Components/3D/BasicCubeComp.hpp>
 #include "Bomberman.hpp"
 
 Bomberman::Bomberman(bool fullscreen)
@@ -16,17 +16,18 @@ Bomberman::Bomberman(bool fullscreen)
       startTime(std::time(nullptr)),
       mgr(std::make_shared<Manager>())
 {
-    mgr->loadScene(Manager::MainMenu);
+    mgr->loadScene(Manager::Game); //todo : fix scene changing segfault
     GameLoop();
 }
 
 void Bomberman::GameLoop()
 {
     while (mgr->isAlive() && !mainWindow->ShouldClose()) {
-        if (std::difftime(std::time(nullptr), startTime) > 5) mgr->Quit();
+//        if (std::difftime(std::time(nullptr), startTime) > 5) mgr->Quit();
         mgr->update();
         mgr->draw();
     }
+    std::cerr << "GAMELOOP END" << std::endl;
 }
 
 Bomberman::~Bomberman()
