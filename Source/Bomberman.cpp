@@ -16,19 +16,28 @@ Bomberman::Bomberman(bool fullscreen)
       startTime(std::time(nullptr)),
       mgr(std::make_shared<Manager>())
 {
-    mgr->loadScene(Manager::Game); //todo : fix scene changing segfault
+    mgr->loadScene(Manager::MainMenu); //todo : fix scene changing segfault
     GameLoop();
+
 }
 
 void Bomberman::GameLoop()
 {
+
+    mgr->setAlive(true);
     while (mgr->isAlive() && !mainWindow->ShouldClose()) {
 //        if (std::difftime(std::time(nullptr), startTime) > 5) mgr->Quit();
         mgr->update();
         mgr->draw();
     }
     std::cerr << "GAMELOOP END" << std::endl;
-}
+    if (mgr->getNextSceneToLoad() != Manager::None)
+    {
+        mgr->loadScene(mgr->getNextSceneToLoad());
+        mgr->setNextSceneToLoad(Manager::None);
+        GameLoop();
+    }
+}//TODO set manger.nextscenetype to none on constru
 
 Bomberman::~Bomberman()
 {

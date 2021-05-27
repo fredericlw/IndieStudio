@@ -25,7 +25,10 @@ void Manager::AddPlayButton()
     auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
     PlayBtnEnt.addComponent<ButtonComp>("PLAY", size, pos);
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
-        [this]() {loadScene(Game);}
+        [this]() {
+            setNextSceneToLoad(Game);
+            alive = false;
+        }
     );
 }
 
@@ -51,6 +54,6 @@ void Manager::AddMenuLogo()
     logoEntity.addComponent<Sprite2D>("rsc/mainlogo.png");
     //Modify some components
     int ypos = GetScreenHeight() -
-            logoEntity.getComponent<Sprite2D>().getTex().height;
+        logoEntity.getComponent<Sprite2D>().getTex().height;
     logoEntity.getComponent<TransformComp>().position.y = (float) ypos;
 }

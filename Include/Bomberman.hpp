@@ -12,6 +12,7 @@
 #include <ctime>
 #include "raylib_encap/Window.hpp"
 
+
 class Bomberman {
 public:
     explicit Bomberman(bool fullscreen);

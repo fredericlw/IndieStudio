@@ -69,6 +69,7 @@ Manager::Manager()
     MainCam.up = Vector3{0.0f, 1.0f, 0.0f};
     MainCam.fovy = 45.0f;
     MainCam.projection = CAMERA_PERSPECTIVE;
+    nextSceneToLoad = None;
 }
 
 void Manager::loadScene(Manager::SceneType scene)

@@ -15,7 +15,8 @@ class Manager {
 public:
     enum SceneType{
         MainMenu,
-        Game
+        Game,
+        None
     };
 
     enum GroupLabel{
@@ -48,6 +49,13 @@ private:
     void AddPlayButton();
     void AddCubeZER();
     void GenerateMap();
+public:
+    void setAlive(bool alive);
+private:
+    SceneType nextSceneToLoad;
+public:
+    SceneType getNextSceneToLoad() const;
+    void setNextSceneToLoad(SceneType next_scene_to_load);
 };
 
 #endif //MANAGER_HPP
