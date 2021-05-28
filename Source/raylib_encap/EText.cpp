@@ -31,3 +31,8 @@ EText::EText(std::string text)
 {
 }
 
+void EText::drawCentered(int posX, int posY, int size, Colors _color)
+{
+    DrawText(_text.c_str(), posX - (MeasureText(_text.c_str(), size) / 2), posY, size, GetRaylibColor(_color));
+}
+

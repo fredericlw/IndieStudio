@@ -28,3 +28,8 @@ bool Window::ShouldClose()
 {
     return WindowShouldClose();
 }
+
+Vector2D Window::GetWinSize()
+{
+    return Vector2D(GetScreenWidth(), GetScreenHeight());
+}

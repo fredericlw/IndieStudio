@@ -12,11 +12,10 @@
 #include "ECS/Entity.hpp"
 #include "Components/Components.h"
 
-ButtonComp::ButtonComp(const std::string &text, Vector2D size, Vector2D pos)
+ButtonComp::ButtonComp(const std::string &text, Vector2D size)
     : _text(text),
       size(size),
-      pos(pos),
-      _rect(size, pos)
+      _rect(size, Vector2D::Zero())
 {
 }
 
@@ -24,11 +23,10 @@ void ButtonComp::init()
 {
     Component::init();
     transform = &entity->getComponent<TransformComp>();
-    if (!transform) {
+    if (!transform)
         transform = &entity->addComponent<TransformComp>();
-    }
-    _rect.x = pos.x;
-    _rect.y = pos.y;
+    _rect.x = transform->position.x;
+    _rect.y = transform->position.y;
     _rect.width = size.x;
     _rect.height = size.y;
 }

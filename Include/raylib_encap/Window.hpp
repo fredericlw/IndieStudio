@@ -8,9 +8,11 @@
 #define WINDOW_HPP
 #include <raylib.h>
 #include <tuple>
+#include <raylib_encap/Math/Vector2D.hpp>
 
 class Window {
 public:
+    static Vector2D GetWinSize();
     Window(bool fullscreen);
     ~Window();
     bool ShouldClose();

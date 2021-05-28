@@ -15,6 +15,7 @@ public:
     EText(std::string text);
     ~EText();
     void draw(int posX, int posY, int size, Colors _color);
+    void drawCentered(int posX, int posY, int size, Colors _color);
     void drawInRectCenter(ERect rect, int size, Colors _color);
     std::string _text;
 };

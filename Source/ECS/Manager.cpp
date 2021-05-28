@@ -111,3 +111,5 @@ void Manager::setNextSceneToLoad(Manager::SceneType next_scene_to_load) {
 void Manager::setAlive(bool alive) {
     Manager::alive = alive;
 }
+
+

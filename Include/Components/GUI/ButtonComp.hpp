@@ -17,7 +17,7 @@
 class ButtonComp : public Component {
 public:
     ButtonComp(const std::string &text,
-        Vector2D size, Vector2D pos);
+        Vector2D size);
 public:
     void update() override;
     void draw() override;
@@ -28,7 +28,6 @@ private:
     bool hovering;
     EText _text;
     Vector2D size;
-    Vector3D pos;
     ERect _rect;
     TransformComp *transform;
     std::vector<std::function<void()>> EventFuncs;
