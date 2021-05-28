@@ -23,9 +23,9 @@ void listSelectorComp::init() {
     Component::init();
     _transform = &entity->getComponent<TransformComp>();
     _prevRect.y = _transform->position.y - 10;
-    _prevRect.x = _transform->position.x - 190;
+    _prevRect.x = _transform->position.x - 130;
     _nextRect.y = _transform->position.y - 10;
-    _nextRect.x = _transform->position.x + 150;
+    _nextRect.x = _transform->position.x + 80;
 
 }
 
@@ -54,9 +54,9 @@ void listSelectorComp::update() {
 void listSelectorComp::draw() {
     Component::draw();
     _prevRect.draw(true, true, (_prevHover) ? Green : LightGray, (_prevHover) ? Green : Gray);
-    _prevText.drawInRectCenter(_prevRect, 40, Black);
+    _prevText.drawInRectCenter(_prevRect, 30, Black);
     _nextRect.draw(true, true, (_nextHover) ? Green : LightGray, (_prevHover) ? Green : Gray);
-    _nextText.drawInRectCenter(_nextRect, 40, Black);
-    _Select.drawCentered(_transform->position.x, _transform->position.y, 40, DarkBlue);
-    _label.drawCentered(_transform->position.x, _transform->position.y - 65, 50, DarkBlue);
+    _nextText.drawInRectCenter(_nextRect, 30, Black);
+    _Select.drawCentered(_transform->position.x, _transform->position.y, 30, DarkBlue);
+    _label.drawCentered(_transform->position.x, _transform->position.y - 65, 40, DarkBlue);
 }
