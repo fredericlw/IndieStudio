@@ -16,6 +16,7 @@ public:
     enum SceneType{
         MainMenu,
         Game,
+        Lobby,
         None
     };
 
@@ -56,6 +57,12 @@ private:
 public:
     SceneType getNextSceneToLoad() const;
     void setNextSceneToLoad(SceneType next_scene_to_load);
+
+    void loadLobbyScene();
+
+    void AddMenuButton();
+
+    void AddGameButton();
 };
 
 #endif //MANAGER_HPP
