@@ -72,7 +72,20 @@ add_executable(bomberman
         Source/raylib_encap/EText.cpp
         Include/raylib_encap/EText.hpp
         Include/Colors.h
-        Source/raylib_encap/ECube.cpp Include/raylib_encap/ECube.hpp Source/Scenes/MapComponent.cpp Source/Scenes/MapComponent.hpp Source/raylib_encap/Math/Random.cpp Include/raylib_encap/Math/Random.hpp Source/Components/MeshCubeComp.cpp Include/Components/3D/MeshCubeComp.hpp Source/raylib_encap/EMeshCube.cpp Include/raylib_encap/EMeshCube.hpp Source/Scenes/LobbyScene.cpp Source/Components/TextComp.cpp Include/Components/GUI/TextComp.hpp)
+        Source/raylib_encap/ECube.cpp
+        Include/raylib_encap/ECube.hpp
+        Source/Scenes/MapComponent.cpp
+        Source/Scenes/MapComponent.hpp
+        Source/raylib_encap/Math/Random.cpp
+        Include/raylib_encap/Math/Random.hpp
+        Source/Components/MeshCubeComp.cpp
+        Include/Components/3D/MeshCubeComp.hpp
+        Source/raylib_encap/EMeshCube.cpp
+        Include/raylib_encap/EMeshCube.hpp
+        Source/Scenes/LobbyScene.cpp
+        Include/Components/GUI/TextComp.hpp
+        Source/Components/TextComp.cpp
+        )
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

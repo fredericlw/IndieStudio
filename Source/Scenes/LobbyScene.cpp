@@ -25,10 +25,10 @@ void Manager::AddLobbyName() {
 void Manager::AddMenuButton() {
     auto &backMenu = addEntity("MenuButton");
     auto winSize = Window::GetWinSize();
-    backMenu.addComponent<TransformComp>(winSize);
     auto size = Vector2D{400, 50};
     auto pos = Vector2D{winSize.x / 2 - (winSize.x / 2), winSize.y - size.y};
-    backMenu.addComponent<ButtonComp>("Back to main menu", size, pos);
+    backMenu.addComponent<TransformComp>(pos);
+    backMenu.addComponent<ButtonComp>("Back to main menu", size);
     backMenu.getComponent<ButtonComp>().AddEventFunc(
             [this]() {
                 setNextSceneToLoad(MainMenu);
@@ -40,10 +40,10 @@ void Manager::AddMenuButton() {
 void Manager::AddGameButton() {
     auto &backMenu = addEntity("GameButton");
     auto winSize = Window::GetWinSize();
-    backMenu.addComponent<TransformComp>(winSize);
     auto size = Vector2D{300, 50};
     auto pos = Vector2D{winSize.x - size.x, winSize.y - size.y};
-    backMenu.addComponent<ButtonComp>("Start game", size, pos);
+    backMenu.addComponent<TransformComp>(pos);
+    backMenu.addComponent<ButtonComp>("Start game", size);
     backMenu.getComponent<ButtonComp>().AddEventFunc(
             [this]() {
                 setNextSceneToLoad(Game);
