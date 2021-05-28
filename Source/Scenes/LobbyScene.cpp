@@ -14,6 +14,14 @@ void Manager::loadLobbyScene() {
     AddMenuButton();
     AddGameButton();
     AddLobbyName();
+    AddListSelector();
+}
+
+void Manager::AddListSelector() {
+    auto &ListSelector = addEntity("firstPlayer");
+    ListSelector.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0, 50}));
+    std::vector<std::string> list = {"IA", "Keyboard", "Gamepad"};
+    ListSelector.addComponent<listSelectorComp>(list);
 }
 
 void Manager::AddLobbyName() {

@@ -39,7 +39,7 @@ void MovementComp::update()
     else if (_inputMod->GetButtonDown(Down)) Velocity.z = 1;
     else Velocity.z = 0;
 
-    transform->position += Velocity.Multiply(_speed).Clamp(1);
+    transform->position += Velocity.Clamp(1).Multiply(_speed);
     if (Velocity != Vector3D::Zero()) {
         std::cout << "Player pos : " << transform->position << std::endl;
     }

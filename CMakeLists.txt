@@ -85,6 +85,8 @@ add_executable(bomberman
         Source/Scenes/LobbyScene.cpp
         Include/Components/GUI/TextComp.hpp
         Source/Components/TextComp.cpp
+        Include/Components/GUI/listSelectorComp.hpp
+        Source/Components/listSelectorComp.cpp
         )
 
 

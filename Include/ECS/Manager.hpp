@@ -65,6 +65,8 @@ public:
     void AddGameButton();
 
     void AddLobbyName();
+
+    void AddListSelector();
 };
 
 #endif //MANAGER_HPP
