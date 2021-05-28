@@ -10,13 +10,12 @@
 
 void Manager::loadGameScene()
 {
-    AddCubeZER();
-        GenerateMap();
-    auto &myEnt = addEntity("tigerCube");
-    myEnt.addComponent<TransformComp>(0, -20, -30);
-    myEnt.addComponent<MeshCubeComp>(Vector3D::One().Multiply(2),
-        "./rsc/dirtCube.png");
-    //    myEnt.addComponent<BasicCubeComp>(Vector3D::One());
+   // AddCubeZER();
+    //    GenerateMap();
+
+    auto &myEnt = addEntity("model");
+    myEnt.addComponent<TransformComp>(Vector3D(0, -28, -30));
+    myEnt.addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", "./rsc/mainlogo.png");
 }
 
 void Manager::AddCubeZER()

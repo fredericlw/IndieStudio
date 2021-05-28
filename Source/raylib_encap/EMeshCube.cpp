@@ -21,7 +21,6 @@ EMeshCube::EMeshCube(const Vector3D &size, std::string sprPath)
 
 void EMeshCube::draw(const Vector3D &pos)
 {
-    std::cout << "Drawing cube. pos : " << pos << std::endl;
     DrawModel(_model, pos, 10, WHITE);
 }
 
