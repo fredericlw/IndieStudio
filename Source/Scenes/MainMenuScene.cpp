@@ -26,7 +26,7 @@ void Manager::AddPlayButton()
     PlayBtnEnt.addComponent<ButtonComp>("PLAY", size, pos);
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
-            setNextSceneToLoad(Game);
+            setNextSceneToLoad(Lobby);
             alive = false;
         }
     );
