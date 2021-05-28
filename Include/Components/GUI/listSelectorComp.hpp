@@ -13,7 +13,7 @@ class listSelectorComp : public Component {
 public:
     listSelectorComp();
 
-    listSelectorComp(const std::vector<std::string> &options);
+    listSelectorComp(const std::vector<std::string> &options, const std::string &label);
 
 private:
 public:
@@ -29,6 +29,7 @@ private:
     EText _Select;
     EText _prevText;
     EText _nextText;
+    EText _label;
     int selIndex;
     std::vector<std::string> _options;
     TransformComp *_transform;

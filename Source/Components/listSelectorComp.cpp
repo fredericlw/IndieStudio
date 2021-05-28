@@ -7,25 +7,25 @@
 #include "raylib_encap/Math/RectCollider.hpp"
 #include "raylib_encap/Input/EMouseInputModule.hpp"
 
-listSelectorComp::listSelectorComp(const std::vector<std::string> &options)
+listSelectorComp::listSelectorComp(const std::vector<std::string> &options, const std::string &label)
 : _options(options),
 _prevRect(Vector2D(50, 50), Vector2D::Zero()),
 _nextRect(Vector2D(50, 50), Vector2D::Zero()),
 selIndex(0),
   _Select(""),
   _prevText("<"),
-  _nextText(">")
+  _nextText(">"),
+  _label(label)
 {
-
 }
 
 void listSelectorComp::init() {
     Component::init();
     _transform = &entity->getComponent<TransformComp>();
-    _prevRect.y = _transform->position.y;
-    _prevRect.x = _transform->position.x - 350;
-    _nextRect.y = _transform->position.y;
-    _nextRect.x = _transform->position.x + 350;
+    _prevRect.y = _transform->position.y - 10;
+    _prevRect.x = _transform->position.x - 190;
+    _nextRect.y = _transform->position.y - 10;
+    _nextRect.x = _transform->position.x + 150;
 
 }
 
@@ -58,4 +58,5 @@ void listSelectorComp::draw() {
     _nextRect.draw(true, true, (_nextHover) ? Green : LightGray, (_prevHover) ? Green : Gray);
     _nextText.drawInRectCenter(_nextRect, 40, Black);
     _Select.drawCentered(_transform->position.x, _transform->position.y, 40, DarkBlue);
+    _label.drawCentered(_transform->position.x, _transform->position.y - 65, 50, DarkBlue);
 }

@@ -18,10 +18,19 @@ void Manager::loadLobbyScene() {
 }
 
 void Manager::AddListSelector() {
-    auto &ListSelector = addEntity("firstPlayer");
-    ListSelector.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0, 50}));
     std::vector<std::string> list = {"IA", "Keyboard", "Gamepad"};
-    ListSelector.addComponent<listSelectorComp>(list);
+    auto &ListSelector1 = addEntity("firstPlayer");
+    ListSelector1.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0, 200}));
+    ListSelector1.addComponent<listSelectorComp>(list, "Player 1");
+    auto &ListSelector2 = addEntity("SecondPlayer");
+    ListSelector2.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0,50}));
+    ListSelector2.addComponent<listSelectorComp>(list, "Player 2");
+    auto &ListSelector3 = addEntity("ThirdPlayer");
+    ListSelector3.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0, - 100}));
+    ListSelector3.addComponent<listSelectorComp>(list, "Player 3");
+    auto &ListSelector4 = addEntity("lastPlayer");
+    ListSelector4.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0, - 250}));
+    ListSelector4.addComponent<listSelectorComp>(list, "Player 4");
 }
 
 void Manager::AddLobbyName() {
