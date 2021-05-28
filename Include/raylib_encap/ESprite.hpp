@@ -25,5 +25,5 @@ protected:
     Color _tintColor;
     std::string path;
 };
-
+    
 #endif //ESPRITE_HPP

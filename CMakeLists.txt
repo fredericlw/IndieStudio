@@ -87,7 +87,7 @@ add_executable(bomberman
         Source/Components/TextComp.cpp
         Include/Components/GUI/listSelectorComp.hpp
         Source/Components/listSelectorComp.cpp
-        )
+        Source/raylib_encap/ECube.cpp Include/raylib_encap/ECube.hpp Source/Scenes/MapComponent.cpp Source/Scenes/MapComponent.hpp Source/raylib_encap/Math/Random.cpp Include/raylib_encap/Math/Random.hpp Source/Components/MeshCubeComp.cpp Include/Components/3D/MeshCubeComp.hpp Source/raylib_encap/EMeshCube.cpp Include/raylib_encap/EMeshCube.hpp Source/Scenes/LobbyScene.cpp Source/raylib_encap/EModel.cpp Include/raylib_encap/EModel.hpp Include/Components/3D/ModelComp.cpp Include/Components/3D/ModelComp.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
