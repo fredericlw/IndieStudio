@@ -10,12 +10,15 @@
 
 void Manager::loadGameScene()
 {
-   // AddCubeZER();
-    //    GenerateMap();
+    AddCubeZER();
+        GenerateMap();
 
     auto &myEnt = addEntity("model");
     myEnt.addComponent<TransformComp>(Vector3D(0, -28, -30));
-    myEnt.addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", "./rsc/mainlogo.png");
+    myEnt.addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", Green, 0.77);
+    myEnt.getComponent<ModelComp>().rotate({90,0,0});
+    myEnt.addComponent<MovementComp>(EInputType::Keyboard,
+        PlayerNum::PlayerOne);
 }
 
 void Manager::AddCubeZER()

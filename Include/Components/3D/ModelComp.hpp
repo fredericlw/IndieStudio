@@ -15,8 +15,10 @@
 class ModelComp : public Component
     {
     public:
-    ModelComp(std::string modelPath, std::string texturePath);
+    ModelComp(std::string modelPath, std::string texturePath, float scale);
+    ModelComp(std::string modelPath, Colors colors, float scale);
     void update() override;
+    void rotate(const Vector3D &vec);
     void draw() override;
     void init() override;
 private:

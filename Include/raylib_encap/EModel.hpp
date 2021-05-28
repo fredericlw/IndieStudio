@@ -10,15 +10,21 @@
 #include <raylib_encap/Math/Vector3D.hpp>
 #include "raylib.h"
 #include "ESprite.hpp"
+#include "Colors.h"
 
 class EModel {
 public:
-    EModel(const std::string modpath, const std::string textpath);
+    EModel(
+        std::string modpath, std::string textpath, float scale
+    );
+    EModel(const std::string modpath, Colors colors, float scale);
+    void rotate(const Vector3D &vec);
     void draw(const Vector3D &pos);
     virtual ~EModel();
 private:
     Texture texture;
     Model model;
+    float scale;
 };
 
 #endif //EMODEL_HPP

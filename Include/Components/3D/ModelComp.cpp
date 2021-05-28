@@ -8,8 +8,13 @@
 #include "ECS/Entity.hpp"
 #include "Manager.hpp"
 
-ModelComp::ModelComp(std::string modelPath, std::string texturePath)
-    : model(modelPath, texturePath)
+ModelComp::ModelComp(std::string modelPath, std::string texturePath, float scale)
+    : model(modelPath, texturePath, scale)
+{
+}
+
+ModelComp::ModelComp(std::string modelPath, Colors colors, float scale)
+    : model(modelPath, colors, scale)
 {
 }
 
@@ -33,4 +38,9 @@ void ModelComp::draw()
 void ModelComp::update()
 {
     Component::update();
+}
+
+void ModelComp::rotate(const Vector3D &vec)
+{
+    model.rotate(vec);
 }
