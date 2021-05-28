@@ -13,7 +13,7 @@ class listSelectorComp : public Component {
 public:
     listSelectorComp();
 
-    listSelectorComp(const std::vector<std::string> &options, const std::string &label);
+    listSelectorComp(const std::vector<std::string> &options, const std::string &label, Colors color);
 
 private:
 public:
@@ -35,6 +35,7 @@ private:
     TransformComp *_transform;
     bool _prevHover;
     bool _nextHover;
+    Colors _color;
 };
 
 
