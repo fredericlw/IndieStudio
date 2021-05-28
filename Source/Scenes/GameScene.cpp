@@ -13,6 +13,7 @@ void Manager::loadGameScene()
     AddCubeZER();
         GenerateMap();
 
+        //TODO PUT VECTOR 3D ROTATE IN TRANSFORM
     auto &myEnt = addEntity("model");
     myEnt.addComponent<TransformComp>(Vector3D(0, -28, -30));
     myEnt.addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", Green, 0.77);
