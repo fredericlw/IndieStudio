@@ -19,10 +19,10 @@ void Manager::loadMenuScene()
 void Manager::AddPlayButton()
 {
     auto &PlayBtnEnt = addEntity("PlayButton");
-    PlayBtnEnt.addComponent<TransformComp>(Vector2D::ScreenCenter());
     auto size = Vector2D{150, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
     auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
+    PlayBtnEnt.addComponent<TransformComp>(pos);
     PlayBtnEnt.addComponent<ButtonComp>("PLAY", size);
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
