@@ -13,9 +13,13 @@
 void Manager::loadLobbyScene() {
     AddMenuButton();
     AddGameButton();
+    AddLobbyName();
+}
+
+void Manager::AddLobbyName() {
     auto &lobbyName = addEntity("LobbyName");
-    lobbyName.addComponent<TransformComp>(Vector2D::ScreenCenter());
-    lobbyName.addComponent<TextComp>("Lobby", Colors::Black);
+    lobbyName.addComponent<TransformComp>(Vector2D::ScreenCenter().x, 0);
+    lobbyName.addComponent<TextComp>("Lobby", Black);
 }
 
 void Manager::AddMenuButton() {
