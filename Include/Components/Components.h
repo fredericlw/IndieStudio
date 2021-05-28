@@ -12,4 +12,5 @@
 #include "Components/3D/BasicCubeComp.hpp"
 #include "Components/Character/MovementComp.hpp"
 #include "Components/3D/MeshCubeComp.hpp"
+#include "Components/GUI/TextComp.hpp"
 #endif //COMPONENTS_H

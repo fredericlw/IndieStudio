@@ -7,18 +7,23 @@
 
 #include <Manager.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
+#include <raylib_encap/Window.hpp>
 #include "Components/Components.h"
 
 void Manager::loadLobbyScene() {
     AddMenuButton();
     AddGameButton();
+    auto &lobbyName = addEntity("LobbyName");
+    lobbyName.addComponent<TransformComp>(Vector2D::ScreenCenter());
+    lobbyName.addComponent<TextComp>("Lobby", Colors::Black);
 }
 
 void Manager::AddMenuButton() {
     auto &backMenu = addEntity("MenuButton");
-    backMenu.addComponent<TransformComp>();
+    auto winSize = Window::GetWinSize();
+    backMenu.addComponent<TransformComp>(winSize);
     auto size = Vector2D{400, 50};
-    auto pos = Vector2D{0, 0};
+    auto pos = Vector2D{winSize.x / 2 - (winSize.x / 2), winSize.y - size.y};
     backMenu.addComponent<ButtonComp>("Back to main menu", size, pos);
     backMenu.getComponent<ButtonComp>().AddEventFunc(
             [this]() {
@@ -30,9 +35,10 @@ void Manager::AddMenuButton() {
 
 void Manager::AddGameButton() {
     auto &backMenu = addEntity("GameButton");
-    backMenu.addComponent<TransformComp>();
+    auto winSize = Window::GetWinSize();
+    backMenu.addComponent<TransformComp>(winSize);
     auto size = Vector2D{300, 50};
-    auto pos = Vector2D{500, 200};
+    auto pos = Vector2D{winSize.x - size.x, winSize.y - size.y};
     backMenu.addComponent<ButtonComp>("Start game", size, pos);
     backMenu.getComponent<ButtonComp>().AddEventFunc(
             [this]() {
