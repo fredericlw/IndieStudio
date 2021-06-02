@@ -57,12 +57,13 @@ void MovementComp::update()
             cube->getCube(),
             nextPos,
             cast->getCube())) {
+           cube->stickCube(nextPos, cast->getCube());
            std::cerr << "Colision detected" << std::endl;
-           return;
+           //set nextpos to stick to collision cube
+           //next pos = makeplayerstick(nextpos, collicion cude)
        }
     }
     //if cube collides, return
-
     transform->position = nextPos;
     if (Velocity != Vector3D::Zero()) {
         std::cout << "Player pos : " << transform->position << std::endl;

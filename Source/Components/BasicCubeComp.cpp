@@ -10,9 +10,14 @@
 #include "ECS/Entity.hpp"
 #include "Components/3D/TransformComp.hpp"
 #include "ECS/Manager.hpp"
+#include <cmath>        // std::abs
 
-BasicCubeComp::BasicCubeComp(Vector3D size, Colors cubeCol, Colors wireCol, Vector3D offset)
-    : _size(size), _cubeCol(cubeCol), _wireCol(wireCol),
+BasicCubeComp::BasicCubeComp(
+    Vector3D size, Colors cubeCol, Colors wireCol, Vector3D offset
+)
+    : _size(size),
+      _cubeCol(cubeCol),
+      _wireCol(wireCol),
       _offset(offset)
 {
 }
@@ -46,3 +51,27 @@ void BasicCubeComp::draw()
     _cube.draw(transform->position.Add(_offset), _size, _cubeCol, _wireCol);
     entity->_mgr.MainCam.End3D();
 }
+
+void BasicCubeComp::stickCube(Vector3D &nextpos, const ECube &colisionCube)
+{
+    const Vector3D &colisionPos = colisionCube.getPos();
+    float diffx = colisionPos.x - nextpos.x;
+    float diffz = colisionPos.z - nextpos.z;
+
+    if (std::abs(diffx) > std::abs(diffz)) {
+        if (diffx < 0)
+            nextpos.x =
+                colisionPos.x + (colisionCube.getSize().x / 2) + _size.x / 2;
+        else
+            nextpos.x =
+                colisionPos.x - (colisionCube.getSize().x / 2) - _size.x / 2;
+    } else {
+        if (diffz < 0)
+            nextpos.z =
+                colisionPos.z + (colisionCube.getSize().z / 2) + _size.z / 2;
+        else
+            nextpos.z =
+                colisionPos.z - (colisionCube.getSize().z / 2) - _size.z / 2;
+    }
+}
+

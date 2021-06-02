@@ -20,6 +20,7 @@ public:
     void update() override;
     void draw() override;
     const ECube &getCube() const;
+    void stickCube(Vector3D &nextpos, ECube const &colisionCube);
     Vector3D _size;
     Colors _cubeCol;
     Colors _wireCol;
