@@ -10,7 +10,6 @@
 
 void Manager::loadGameScene()
 {
-    //    AddCubeZER();
     GenerateMap();
     auto myEnt = getEntByName("gamelogic");
     myEnt->addComponent<GameLogicComp>();
@@ -27,11 +26,11 @@ void Manager::loadGameScene()
 
 void Manager::GenerateMap()
 {
-    Vector2D mapSize(20, 20);
+    Vector2D mapSize(13, 13);
     auto &MapEntity = addEntity("mapRoot");
-    auto &transform =
-        MapEntity.addComponent<TransformComp>(Vector3D(0, -30, 10));
-    auto &mapComp = MapEntity.addComponent<MapComponent>(mapSize, 7, 7);
+    auto &mapTransform =
+        MapEntity.addComponent<TransformComp>(Vector3D(0, -30, 0));
+    auto &mapComp = MapEntity.addComponent<MapComponent>( 7, 7);
     MapEntity.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
 
     float cubeScale = 2;
@@ -39,14 +38,12 @@ void Manager::GenerateMap()
 
     std::cout << "Making floor." << std::endl;
     for (int z = 0; (float) z < mapSize.y; ++z) {
-        Vector3D pos(
-            0,
-            transform.position.y,
-            (float) transform.position.z + z * cubeScale);
+        Vector3D pos(0, mapTransform.position.y,
+            (float) mapTransform.position.z + z * cubeScale);
         for (int x = 0; (float) x < mapSize.x; ++x) {
             pos.x = (float) x * cubeScale;
-            Entity *cube =
-                &addEntity(std::to_string(pos.x).append(std::to_string(pos.y)));
+            Entity *cube = &addEntity(
+                std::to_string(pos.x).append(std::to_string(pos.y)));
             cube->addComponent<TransformComp>(
                 Vector3D(-mapSize.x, 0, -mapSize.y * 3).Add(pos));
             cube->addComponent<BasicCubeComp>(
@@ -58,8 +55,8 @@ void Manager::GenerateMap()
     for (auto &wallPos:mapComp.getWalls()) {
         Vector3D pos(
             wallPos.x * cubeScale,
-            transform.position.y + cubeScale,
-            (float) transform.position.z + wallPos.y * cubeScale);
+            mapTransform.position.y + cubeScale,
+            (float) mapTransform.position.z + wallPos.y * cubeScale);
         Entity *cube =
             &addEntity(std::to_string(pos.x).append(std::to_string(pos.y)));
         cube->addComponent<TransformComp>(
@@ -73,8 +70,8 @@ void Manager::GenerateMap()
     for (auto &obsPos : mapComp.getObstacles()) {
         Vector3D pos(
             obsPos.x * cubeScale,
-            transform.position.y + cubeScale,
-            (float) transform.position.z + obsPos.y * cubeScale);
+            mapTransform.position.y + cubeScale,
+            (float) mapTransform.position.z + obsPos.y * cubeScale);
         Entity *cube =
             &addEntity(std::to_string(pos.x).append(std::to_string(pos.y)));
         cube->addComponent<TransformComp>(

@@ -6,20 +6,20 @@
 */
 #ifndef MAPCOMPONENT_HPP
 #define MAPCOMPONENT_HPP
+
 #include "ECS/Component.hpp"
 #include "Components/Components.h"
 
 class MapComponent : public Component {
 public:
     explicit MapComponent(
-        Vector2D size, int num_walls, int num_obstacles
+        int num_walls, int num_obstacles
     );
     ~MapComponent();
     void init() override;
     void update() override;
     void draw() override;
 private:
-    TransformComp *transform;
     Vector2D _size;
     std::vector<Vector2D> Walls;
 public:
