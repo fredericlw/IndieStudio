@@ -46,12 +46,14 @@ void MovementComp::update()
     else Velocity.z = 0;
 
     bool collides = false;
+    Vector3D nextPos = transform->position;
+    nextPos.Add(Velocity.Clamp(1).Multiply(_speed));
     //move collider cube to new p
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Walls)) {
        BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
        if ( cast && CubeCollider::CheckBoxOverLap(
             cube->getCube(),
-            transform->position.Add(Velocity.Clamp(1).Multiply(_speed)),
+            nextPos,
             cast->getCube())) {
            std::cerr << "Colision detected" << std::endl;
            return;
