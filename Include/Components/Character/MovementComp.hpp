@@ -8,7 +8,8 @@
 #define MOVEMENTCOMP_HPP
 
 #include <raylib_encap/Input/AInputModule.hpp>
-#include "Components/Components.h"
+#include <3D/TransformComp.hpp>
+#include <3D/BasicCubeComp.hpp>
 
 #define BASESPEED .25f
 
