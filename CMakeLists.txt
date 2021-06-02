@@ -19,75 +19,90 @@ include_directories(Include Include/Components Include/ECS)
 
 add_executable(bomberman
         Include/Bomberman.hpp
-
-        Source/main.cpp
-
-        Source/Bomberman.cpp
-        Source/raylib_encap/Window.cpp
-        Include/raylib_encap/Window.hpp
-        Include/ECS/Ecs.hpp
-        Source/Components/TransformComp.cpp
-        Include/Components/3D/TransformComp.hpp
-        Source/ECS/Manager.cpp
-        Include/ECS/Manager.hpp
-        Source/ECS/Entity.cpp
-        Include/ECS/Entity.hpp
-        Source/ECS/Component.cpp
-        Include/ECS/Component.hpp
-        Include/Scene.hpp
-
-        Source/Components/Sprite2D.cpp
-        Include/Components/GUI/Sprite2D.hpp
-
-        Source/Scenes/MainMenuScene.cpp
-        Include/Components/Components.h
-        Source/Components/ButtonComp.cpp
-        Include/Components/GUI/ButtonComp.hpp
-        Source/raylib_encap/Math/Vector3D.cpp
-        Include/raylib_encap/Math/Vector3D.hpp
-        Source/raylib_encap/Math/Vector2D.cpp
-        Include/raylib_encap/Math/Vector2D.hpp
-        Source/Components/BasicCubeComp.cpp
-        Include/Components/3D/BasicCubeComp.hpp
-        Source/Scenes/GameScene.cpp
-        Source/raylib_encap/ESprite.cpp
-        Include/raylib_encap/ESprite.hpp
-        Source/raylib_encap/ERect.cpp
-        Include/raylib_encap/ERect.hpp
-        Source/raylib_encap/Math/RectCollider.cpp
-        Include/raylib_encap/Math/RectCollider.hpp
-        Source/raylib_encap/ECamera.cpp
-        Include/raylib_encap/ECamera.hpp
-        Source/raylib_encap/Input/EKeyboardInputModule.cpp
-        Include/raylib_encap/Input/EKeyboardInputModule.hpp
-        Source/raylib_encap/Input/EMouseInputModule.cpp
-        Include/raylib_encap/Input/EMouseInputModule.hpp
-        Source/raylib_encap/Input/EGamepadInputModule.cpp
-        Include/raylib_encap/Input/EGamepadInputModule.hpp
-        Include/Keys.h
-        Source/Components/MovementComp.cpp
-        Include/Components/Character/MovementComp.hpp
-        Source/raylib_encap/Input/AInputModule.cpp
-        Include/raylib_encap/Input/AInputModule.hpp
-        Source/raylib_encap/EText.cpp
-        Include/raylib_encap/EText.hpp
         Include/Colors.h
-        Source/raylib_encap/ECube.cpp
+        Include/Components/3D/BasicCubeComp.hpp
+        Include/Components/3D/MeshCubeComp.hpp
+        Include/Components/3D/MeshCubeComp.hpp
+        Include/Components/3D/ModelComp.cpp
+        Include/Components/3D/ModelComp.hpp
+        Include/Components/3D/TransformComp.hpp
+        Include/Components/Character/MovementComp.hpp
+        Include/Components/Components.h
+        Include/Components/GUI/ButtonComp.hpp
+        Include/Components/GUI/ListSelectorComp.hpp
+        Include/Components/GUI/LobbyComp.hpp
+        Include/Components/GUI/Sprite2D.hpp
+        Include/Components/GUI/TextComp.hpp
+        Include/ECS/Component.hpp
+        Include/ECS/Ecs.hpp
+        Include/ECS/Entity.hpp
+        Include/ECS/Manager.hpp
+        Include/Keys.h
+        Include/raylib_encap/ECamera.hpp
         Include/raylib_encap/ECube.hpp
+        Include/raylib_encap/ECube.hpp
+        Include/raylib_encap/EMeshCube.hpp
+        Include/raylib_encap/EMeshCube.hpp
+        Include/raylib_encap/EModel.hpp
+        Include/raylib_encap/ERect.hpp
+        Include/raylib_encap/ESprite.hpp
+        Include/raylib_encap/EText.hpp
+        Include/raylib_encap/Input/AInputModule.hpp
+        Include/raylib_encap/Input/EGamepadInputModule.hpp
+        Include/raylib_encap/Input/EKeyboardInputModule.hpp
+        Include/raylib_encap/Input/EMouseInputModule.hpp
+        Include/raylib_encap/Math/CubeCollider.cpp
+        Include/raylib_encap/Math/CubeCollider.hpp
+        Include/raylib_encap/Math/Random.hpp
+        Include/raylib_encap/Math/Random.hpp
+        Include/raylib_encap/Math/RectCollider.hpp
+        Include/raylib_encap/Math/Vector2D.hpp
+        Include/raylib_encap/Math/Vector3D.hpp
+        Include/raylib_encap/Window.hpp
+        Include/Scene.hpp
+        Source/Bomberman.cpp
+        Source/Components/BasicCubeComp.cpp
+        Source/Components/ButtonComp.cpp
+        Source/Components/ListSelectorComp.cpp
+        Source/Components/LobbyComp.cpp
+        Source/Components/MeshCubeComp.cpp
+        Source/Components/MeshCubeComp.cpp
+        Source/Components/MovementComp.cpp
+        Source/Components/Sprite2D.cpp
+        Source/Components/TextComp.cpp
+        Source/Components/TransformComp.cpp
+        Source/ECS/Component.cpp
+        Source/ECS/Entity.cpp
+        Source/ECS/Manager.cpp
+        Source/main.cpp
+        Source/raylib_encap/ECamera.cpp
+        Source/raylib_encap/ECube.cpp
+        Source/raylib_encap/ECube.cpp
+        Source/raylib_encap/EMeshCube.cpp
+        Source/raylib_encap/EMeshCube.cpp
+        Source/raylib_encap/EModel.cpp
+        Source/raylib_encap/ERect.cpp
+        Source/raylib_encap/ESprite.cpp
+        Source/raylib_encap/EText.cpp
+        Source/raylib_encap/Input/AInputModule.cpp
+        Source/raylib_encap/Input/EGamepadInputModule.cpp
+        Source/raylib_encap/Input/EKeyboardInputModule.cpp
+        Source/raylib_encap/Input/EMouseInputModule.cpp
+        Source/raylib_encap/Math/Random.cpp
+        Source/raylib_encap/Math/Random.cpp
+        Source/raylib_encap/Math/RectCollider.cpp
+        Source/raylib_encap/Math/Vector2D.cpp
+        Source/raylib_encap/Math/Vector3D.cpp
+        Source/raylib_encap/Window.cpp
+        Source/Scenes/GameScene.cpp
+        Source/Scenes/LobbyScene.cpp
+        Source/Scenes/LobbyScene.cpp
+        Source/Scenes/MainMenuScene.cpp
+        Source/Scenes/MapComponent.cpp
         Source/Scenes/MapComponent.cpp
         Source/Scenes/MapComponent.hpp
-        Source/raylib_encap/Math/Random.cpp
-        Include/raylib_encap/Math/Random.hpp
-        Source/Components/MeshCubeComp.cpp
-        Include/Components/3D/MeshCubeComp.hpp
-        Source/raylib_encap/EMeshCube.cpp
-        Include/raylib_encap/EMeshCube.hpp
-        Source/Scenes/LobbyScene.cpp
-        Include/Components/GUI/TextComp.hpp
-        Source/Components/TextComp.cpp
-        Include/Components/GUI/listSelectorComp.hpp
-        Source/Components/listSelectorComp.cpp
-        Source/raylib_encap/ECube.cpp Include/raylib_encap/ECube.hpp Source/Scenes/MapComponent.cpp Source/Scenes/MapComponent.hpp Source/raylib_encap/Math/Random.cpp Include/raylib_encap/Math/Random.hpp Source/Components/MeshCubeComp.cpp Include/Components/3D/MeshCubeComp.hpp Source/raylib_encap/EMeshCube.cpp Include/raylib_encap/EMeshCube.hpp Source/Scenes/LobbyScene.cpp Source/raylib_encap/EModel.cpp Include/raylib_encap/EModel.hpp Include/Components/3D/ModelComp.cpp Include/Components/3D/ModelComp.hpp Include/raylib_encap/Math/CubeCollider.cpp Include/raylib_encap/Math/CubeCollider.hpp)
+        Source/Scenes/MapComponent.hpp
+        )
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

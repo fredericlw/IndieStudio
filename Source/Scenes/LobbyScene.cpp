@@ -11,27 +11,13 @@
 #include "Components/Components.h"
 
 void Manager::loadLobbyScene() {
+    auto &lobby = addEntity("lobby");
+    lobby.addComponent<LobbyComp>();
     AddMenuButton();
     AddGameButton();
     AddLobbyName();
-    AddListSelector();
 }
 
-void Manager::AddListSelector() {
-    std::vector<std::string> list = {"IA", "Keyboard", "Gamepad"};
-    auto &ListSelector1 = addEntity("firstPlayer");
-    ListSelector1.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({450, - 200}));
-    ListSelector1.addComponent<listSelectorComp>(list, "Player 1", DarkBlue);
-    auto &ListSelector2 = addEntity("SecondPlayer");
-    ListSelector2.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({150,- 200}));
-    ListSelector2.addComponent<listSelectorComp>(list, "Player 2", Green);
-    auto &ListSelector3 = addEntity("ThirdPlayer");
-    ListSelector3.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({- 150, - 200}));
-    ListSelector3.addComponent<listSelectorComp>(list, "Player 3", Red);
-    auto &ListSelector4 = addEntity("lastPlayer");
-    ListSelector4.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({- 450, - 200}));
-    ListSelector4.addComponent<listSelectorComp>(list, "Player 4", LightGray);
-}
 
 void Manager::AddLobbyName() {
     auto &lobbyName = addEntity("LobbyName");

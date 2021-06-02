@@ -5,15 +5,16 @@
 #ifndef BOMBERMAN_LISTSELECTORCOMP_H
 #define BOMBERMAN_LISTSELECTORCOMP_H
 
+#include <raylib_encap/EText.hpp>
+#include <3D/TransformComp.hpp>
 #include "Component.hpp"
-#include "Components.h"
 
 
-class listSelectorComp : public Component {
+class ListSelectorComp : public Component {
 public:
-    listSelectorComp();
+    ListSelectorComp();
 
-    listSelectorComp(const std::vector<std::string> &options, const std::string &label, Colors color);
+    ListSelectorComp(const std::vector<std::string> &options, const std::string &label, Colors color);
 
 private:
 public:

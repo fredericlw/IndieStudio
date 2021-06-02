@@ -2,12 +2,12 @@
 // Created by jupi on 28/05/2021.
 //
 
-#include "Components/GUI/listSelectorComp.hpp"
+#include "Components/GUI/ListSelectorComp.hpp"
 #include "Entity.hpp"
 #include "raylib_encap/Math/RectCollider.hpp"
 #include "raylib_encap/Input/EMouseInputModule.hpp"
 
-listSelectorComp::listSelectorComp(const std::vector<std::string> &options, const std::string &label, Colors color)
+ListSelectorComp::ListSelectorComp(const std::vector<std::string> &options, const std::string &label, Colors color)
 : _options(options),
 _prevRect(Vector2D(50, 50), Vector2D::Zero()),
 _nextRect(Vector2D(50, 50), Vector2D::Zero()),
@@ -20,9 +20,12 @@ selIndex(0),
 {
 }
 
-void listSelectorComp::init() {
+void ListSelectorComp::init() {
+
     Component::init();
     _transform = &entity->getComponent<TransformComp>();
+    if (!_transform)
+        _transform =  &entity->addComponent<TransformComp>();
     _prevRect.y = _transform->position.y - 10;
     _prevRect.x = _transform->position.x - 130;
     _nextRect.y = _transform->position.y - 10;
@@ -30,7 +33,7 @@ void listSelectorComp::init() {
 
 }
 
-void listSelectorComp::update() {
+void ListSelectorComp::update() {
     Component::update();
     if (RectCollider::CheckMouseInRect(_prevRect)) {
         _prevHover = true;
@@ -52,7 +55,7 @@ void listSelectorComp::update() {
         _Select._text = _options[selIndex];
 }
 
-void listSelectorComp::draw() {
+void ListSelectorComp::draw() {
     Component::draw();
     _prevRect.draw(true, true, (_prevHover) ? Green : LightGray, (_prevHover) ? Green : Gray);
     _prevText.drawInRectCenter(_prevRect, 30, Black);
