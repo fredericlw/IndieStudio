@@ -11,7 +11,7 @@
 #include "Components/Components.h"
 
 void Manager::loadLobbyScene() {
-    auto &lobby = addEntity("lobby");
+    auto &lobby = addEntity("gamelogic");
     lobby.addComponent<LobbyComp>();
     AddMenuButton();
     AddGameButton();
@@ -49,6 +49,7 @@ void Manager::AddGameButton() {
     backMenu.addComponent<ButtonComp>("Start game", size);
     backMenu.getComponent<ButtonComp>().AddEventFunc(
             [this]() {
+                getEntByName("gamelogic")->getComponent<LobbyComp>().getSelection();
                 setNextSceneToLoad(Game);
                 alive = false;
             }

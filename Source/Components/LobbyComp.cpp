@@ -10,23 +10,23 @@
 
 void LobbyComp::AddListSelector()
 {
-    std::vector<std::string> list = {"IA", "Keyboard", "Gamepad"};
+    std::vector<std::string> list = {"Keyboard", "Gamepad", "IA"};
 
-    addSel(
+    ListSelector1 =  addSel(
         list, "First PLayer", Blue,
         Vector2D::ScreenCenter().Subtract({450, -200}), "PLayer 1");
-    addSel(
+    ListSelector2 = addSel(
         list, "Second PLayer", Green,
         Vector2D::ScreenCenter().Subtract({150, -200}), "PLayer 2");
-    addSel(
+    ListSelector3 = addSel(
         list, "Third PLayer", Red,
         Vector2D::ScreenCenter().Subtract({-150, -200}), "PLayer 3");
-    addSel(
+    ListSelector4 = addSel(
         list, "Fourth PLayer", LightGray,
         Vector2D::ScreenCenter().Subtract({-450, -200}), "PLayer 4");
 }
 
-void LobbyComp::addSel(
+ListSelectorComp *LobbyComp::addSel(
     std::vector<std::string> &list, const std::string &entitityName,
     Colors colors,
     Vector2D pos, const std::string &printedText
@@ -34,7 +34,7 @@ void LobbyComp::addSel(
 {
     auto &entitity = entity->_mgr.addEntity(entitityName);
     entitity.addComponent<TransformComp>(pos);
-    ListSelector1 = &entitity
+    return &entitity
         .addComponent<ListSelectorComp>(
             list, printedText, colors);
 }
@@ -42,12 +42,21 @@ void LobbyComp::addSel(
 void LobbyComp::init()
 {
     Component::init();
+    entity->SetDontDestroyOnLoad(true);
     AddListSelector();
 }
 
 void LobbyComp::update()
 {
     Component::update();
+}
+
+void LobbyComp::getSelection()
+{
+    sel1 = ListSelector1->getSel();
+    sel2 = ListSelector2->getSel();
+    sel3 = ListSelector3->getSel();
+    sel4 = ListSelector4->getSel();
 }
 
 void LobbyComp::draw()

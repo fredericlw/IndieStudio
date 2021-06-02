@@ -64,3 +64,8 @@ void ListSelectorComp::draw() {
     _Select.drawCentered(_transform->position.x, _transform->position.y, 30, _color);
     _label.drawCentered(_transform->position.x, _transform->position.y - 65, 40, _color);
 }
+
+EInputType ListSelectorComp::getSel() const
+{
+        return (EInputType)selIndex;
+}

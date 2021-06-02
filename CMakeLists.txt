@@ -102,7 +102,7 @@ add_executable(bomberman
         Source/Scenes/MapComponent.cpp
         Source/Scenes/MapComponent.hpp
         Source/Scenes/MapComponent.hpp
-        )
+        Source/Components/GameLogicComp.cpp Include/Components/GameLogicComp.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

@@ -7,6 +7,7 @@
 
 #include <raylib_encap/EText.hpp>
 #include <3D/TransformComp.hpp>
+#include <Keys.h>
 #include "Component.hpp"
 
 
@@ -16,6 +17,7 @@ public:
 
     ListSelectorComp(const std::vector<std::string> &options, const std::string &label, Colors color);
 
+    EInputType getSel() const;
 private:
 public:
     void init() override;
