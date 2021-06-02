@@ -10,24 +10,15 @@
 
 void Manager::loadGameScene()
 {
-//    AddCubeZER();
-        GenerateMap();
-
-        //TODO PUT VECTOR 3D ROTATE IN TRANSFORM
-    auto &myEnt = addEntity("model");
+    //    AddCubeZER();
+    GenerateMap();
+    //TODO PUT VECTOR 3D ROTATE IN TRANSFORM
+    auto &myEnt = addEntity("Player");
     myEnt.addComponent<TransformComp>(Vector3D(0, -28, -30));
     myEnt.addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", Green, 0.77);
-    myEnt.getComponent<ModelComp>().rotate({90,0,0});
+    myEnt.getComponent<ModelComp>().rotate({90, 0, 0});
+    myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     myEnt.addComponent<MovementComp>(EInputType::Keyboard,
-        PlayerNum::PlayerOne);
-}
-
-void Manager::AddCubeZER()
-{
-    auto &monCUB = addEntity("Gro KUBE");
-    monCUB.addComponent<TransformComp>(Vector3D(0, -28, -30));
-    monCUB.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    monCUB.addComponent<MovementComp>(EInputType::Keyboard,
         PlayerNum::PlayerOne);
 }
 

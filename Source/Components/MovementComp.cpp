@@ -14,7 +14,7 @@
 
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)
     : Velocity(Vector3D::Zero()),
-      _speed(.5f)
+      _speed(BASESPEED)
 {
     GenerateInputModule(input_type, num);
 }
@@ -58,7 +58,6 @@ void MovementComp::update()
             nextPos,
             cast->getCube())) {
            cube->stickCube(nextPos, cast->getCube());
-           std::cerr << "Colision detected" << std::endl;
            //set nextpos to stick to collision cube
            //next pos = makeplayerstick(nextpos, collicion cude)
        }

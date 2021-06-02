@@ -10,6 +10,8 @@
 #include <raylib_encap/Input/AInputModule.hpp>
 #include "Components/Components.h"
 
+#define BASESPEED .25f
+
 class MovementComp : public Component {
 public:
     MovementComp(EInputType input_type, PlayerNum num);
