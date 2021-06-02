@@ -44,11 +44,11 @@ void EKeyboardInputModule::SetP1Buttons()
 
 void EKeyboardInputModule::SetP2Buttons()
 {
-    KeyMap[Accept] = KEY_A;
-    KeyMap[Cancel] = KEY_W;
-    KeyMap[Left] = KEY_Q;
+    KeyMap[Accept] = KEY_Q;
+    KeyMap[Cancel] = KEY_Z;
+    KeyMap[Left] = KEY_A;
     KeyMap[Right] = KEY_D;
-    KeyMap[Up] = KEY_Z;
+    KeyMap[Up] = KEY_W;
     KeyMap[Down] = KEY_S;
     KeyMap[DropBomb] = KEY_E;
 }
