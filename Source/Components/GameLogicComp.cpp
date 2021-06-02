@@ -20,27 +20,27 @@ void GameLogicComp::init()
     myEnt.addComponent<TransformComp>(Vector3D(-10, -28, -40));
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     myEnt.addComponent<Player>(entity->getComponent<LobbyComp>().sel1,
-        PlayerNum::PlayerOne);
+        PlayerNum::PlayerOne, Blue);
 
     auto &myEnt2 = entity->_mgr.addEntity("Player 2");
     myEnt2.addComponent<TransformComp>(Vector3D(10, -28, -40));
     myEnt2.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     myEnt2.addComponent<Player>(entity->getComponent<LobbyComp>().sel2,
-        PlayerNum::PlayerTwo);
+        PlayerNum::PlayerTwo, Green);
 
 
     auto &myEnt3 = entity->_mgr.addEntity("Player 3");
     myEnt3.addComponent<TransformComp>(Vector3D(-10, -28, -50));
     myEnt3.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     myEnt3.addComponent<Player>(entity->getComponent<LobbyComp>().sel3,
-        PlayerNum::PlayerThree);
+        PlayerNum::PlayerThree, Red);
 
 
     auto &myEnt4 = entity->_mgr.addEntity("Player 4");
     myEnt4.addComponent<TransformComp>(Vector3D(10, -28, -50));
     myEnt4.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     myEnt4.addComponent<Player>(entity->getComponent<LobbyComp>().sel4,
-        PlayerNum::PlayerFour);
+        PlayerNum::PlayerFour, LightGray);
 
 }
 

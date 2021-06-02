@@ -16,13 +16,16 @@
 
 class Player : public Component {
     public:
-    Player(EInputType e_type, PlayerNum player_num);
+    Player(
+        EInputType e_type, PlayerNum player_num, Colors color
+    );
     void init() override;
     void update() override;
     void draw() override;
     private:
     EInputType _eType;
     PlayerNum _playerNum;
+    Colors _color;
     MovementComp *_mc;
     ModelComp *_model;
 };
