@@ -11,6 +11,14 @@
 #include <raylib_encap/ECamera.hpp>
 #include "Entity.hpp"
 
+enum GroupLabel{
+    Walls,
+    Obstacles,
+    Bombs,
+    Players,
+    GUI
+};
+
 class Manager {
 public:
     enum SceneType{
@@ -18,14 +26,6 @@ public:
         Game,
         Lobby,
         None
-    };
-
-    enum GroupLabel{
-        Walls,
-        Obstacles,
-        Bombs,
-        Players,
-        GUI
     };
     explicit Manager();
     void update();

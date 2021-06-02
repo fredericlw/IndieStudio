@@ -8,6 +8,9 @@
 #include <raylib_encap/Input/EGamepadInputModule.hpp>
 #include "Components/Character/MovementComp.hpp"
 #include "ECS/Entity.hpp"
+#include "raylib_encap/Math/CubeCollider.hpp"
+#include "Manager.hpp"
+
 
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)
     : Velocity(Vector3D::Zero()),
@@ -26,6 +29,9 @@ void MovementComp::init()
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>();
+    cube = &entity->getComponent<BasicCubeComp>();
+    if (!cube)
+        cube = &entity->addComponent<BasicCubeComp>(Vector3D::One());
 }
 
 void MovementComp::update()
@@ -38,6 +44,20 @@ void MovementComp::update()
     if (_inputMod->GetButtonDown(Up)) Velocity.z = -1;
     else if (_inputMod->GetButtonDown(Down)) Velocity.z = 1;
     else Velocity.z = 0;
+
+    bool collides = false;
+    //move collider cube to new p
+    for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Walls)) {
+       BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
+       if ( cast && CubeCollider::CheckBoxOverLap(
+            cube->getCube(),
+            transform->position.Add(Velocity.Clamp(1).Multiply(_speed)),
+            cast->getCube())) {
+           std::cerr << "Colision detected" << std::endl;
+           return;
+       }
+    }
+    //if cube collides, return
 
     transform->position += Velocity.Clamp(1).Multiply(_speed);
     if (Velocity != Vector3D::Zero()) {

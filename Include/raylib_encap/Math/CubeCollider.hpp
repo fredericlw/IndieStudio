@@ -13,7 +13,8 @@
 class CubeCollider {
 public:
     static bool CheckBoxOverLap(BoundingBox A, BoundingBox B);
-    static bool CheckBoxOverLap(const ECube& A, const ECube& B);
+    static bool CheckBoxOverLap(const ECube& A, const Vector3D& pos, const ECube& B);
+    static bool CheckBoxOverLap(const ECube &A, const ECube &B);
 };
 
 #endif //CUBECOLLIDER_HPP

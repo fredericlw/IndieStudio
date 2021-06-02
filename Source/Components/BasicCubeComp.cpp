@@ -34,6 +34,11 @@ void BasicCubeComp::update()
     Component::update();
 }
 
+const ECube &BasicCubeComp::getCube() const
+{
+    return _cube;
+}
+
 void BasicCubeComp::draw()
 {
     Component::draw();

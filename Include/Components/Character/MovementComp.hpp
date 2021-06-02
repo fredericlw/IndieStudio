@@ -18,6 +18,7 @@ public:
     void init() override;
 private:
     TransformComp *transform;
+    BasicCubeComp *cube;
     std::unique_ptr<AInputModule> _inputMod;
     void GenerateInputModule(EInputType type, PlayerNum num);
     Vector3D Velocity;

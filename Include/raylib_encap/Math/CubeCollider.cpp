@@ -8,10 +8,37 @@
 
 bool CubeCollider::CheckBoxOverLap(BoundingBox A, BoundingBox B)
 {
-    return CheckCollisionBoxes(A,B);
+    return CheckCollisionBoxes(A, B);
 }
 
-bool CubeCollider::CheckBoxOverLap(const ECube& A, const ECube& B)
+bool CubeCollider::CheckBoxOverLap(
+    const ECube &A, const Vector3D &pos, const ECube &B
+)
+{
+    BoundingBox a = {{
+        pos.x - A.getSize().x / 2,
+        pos.y - A.getSize().y / 2,
+        pos.z - A.getSize().z / 2
+    }, {
+        pos.x + A.getSize().x / 2,
+        pos.y + A.getSize().y / 2,
+        pos.z + A.getSize().z / 2
+    }
+    };
+    BoundingBox b = {{
+        B.getPos().x - B.getSize().x / 2,
+        B.getPos().y - B.getSize().y / 2,
+        B.getPos().z - B.getSize().z / 2
+    }, {
+        B.getPos().x + B.getSize().x / 2,
+        B.getPos().y + B.getSize().y / 2,
+        B.getPos().z + B.getSize().z / 2
+    }
+    };
+    return CheckCollisionBoxes(a, b);
+}
+
+bool CubeCollider::CheckBoxOverLap(const ECube &A, const ECube &B)
 {
     BoundingBox a = {{
         A.getPos().x - A.getSize().x / 2,
@@ -33,5 +60,5 @@ bool CubeCollider::CheckBoxOverLap(const ECube& A, const ECube& B)
         B.getPos().z + B.getSize().z / 2
     }
     };
-    return  CheckCollisionBoxes(a,b);
+    return CheckCollisionBoxes(a, b);
 }

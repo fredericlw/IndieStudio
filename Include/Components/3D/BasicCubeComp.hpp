@@ -19,6 +19,7 @@ public:
     void init() override;
     void update() override;
     void draw() override;
+    const ECube &getCube() const;
     Vector3D _size;
     Colors _cubeCol;
     Colors _wireCol;
