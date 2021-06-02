@@ -30,8 +30,10 @@ void MovementComp::init()
     if (!transform)
         transform = &entity->addComponent<TransformComp>();
     cube = &entity->getComponent<BasicCubeComp>();
-    if (!cube)
-        cube = &entity->addComponent<BasicCubeComp>(Vector3D::One());
+    if (!cube) {
+        std::cerr << "CUBE WAS NOT FOUND" << std::endl;
+        cube = &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
+    }
 }
 
 void MovementComp::update()
@@ -61,7 +63,7 @@ void MovementComp::update()
     }
     //if cube collides, return
 
-    transform->position += Velocity.Clamp(1).Multiply(_speed);
+    transform->position = nextPos;
     if (Velocity != Vector3D::Zero()) {
         std::cout << "Player pos : " << transform->position << std::endl;
     }

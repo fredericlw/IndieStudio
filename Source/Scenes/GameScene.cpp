@@ -10,7 +10,7 @@
 
 void Manager::loadGameScene()
 {
-    AddCubeZER();
+//    AddCubeZER();
         GenerateMap();
 
         //TODO PUT VECTOR 3D ROTATE IN TRANSFORM
