@@ -23,7 +23,7 @@ add_executable(bomberman
         Include/Components/3D/BasicCubeComp.hpp
         Include/Components/3D/MeshCubeComp.hpp
         Include/Components/3D/MeshCubeComp.hpp
-        Include/Components/3D/ModelComp.cpp
+        Source/Components/ModelComp.cpp
         Include/Components/3D/ModelComp.hpp
         Include/Components/3D/TransformComp.hpp
         Include/Components/Character/MovementComp.hpp
@@ -100,9 +100,13 @@ add_executable(bomberman
         Source/Scenes/MainMenuScene.cpp
         Source/Scenes/MapComponent.cpp
         Source/Scenes/MapComponent.cpp
-        Source/Scenes/MapComponent.hpp
-        Source/Scenes/MapComponent.hpp
-        Source/Components/GameLogicComp.cpp Include/Components/GameLogicComp.hpp)
+        Include/Components/MapComponent.hpp
+        Include/Components/MapComponent.hpp
+        Source/Components/GameLogicComp.cpp
+        Source/Components/Player.cpp
+        Include/Components/GameLogicComp.hpp
+        Include/Components/Player.hpp
+        )
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

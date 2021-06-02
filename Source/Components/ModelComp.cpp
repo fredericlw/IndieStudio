@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Adrien Courbebaisse
 */
-#include "ModelComp.hpp"
+#include "Components/3D/ModelComp.hpp"
 #include "ECS/Entity.hpp"
 #include "Manager.hpp"
 
