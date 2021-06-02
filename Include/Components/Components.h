@@ -15,6 +15,8 @@
 #include "Components/3D/MeshCubeComp.hpp"
 #include "Components/GUI/TextComp.hpp"
 #include "Components/GUI/LobbyComp.hpp"
+#include "Components/GameLogicComp.hpp"
 #include "Components/3D/ModelComp.hpp"
+
 
 #endif //COMPONENTS_H
