@@ -112,4 +112,14 @@ void Manager::setAlive(bool alive) {
     Manager::alive = alive;
 }
 
+std::shared_ptr<Entity> Manager::getEntByName(const std::string &name)
+{
+    for (auto a : entities)
+    {
+        if (a->getName() == name)
+            return a;
+    }
+    return nullptr;
+}
+
 

@@ -73,6 +73,7 @@ void Manager::GenerateMap()
         cube->addComponent<BasicCubeComp>(
             Vector3D::One().Multiply(cubeScale),
             Colors::RayWhite, Colors::Black);
+        cube->addGroup(Walls);
     }
     std::cout << "Making Obstacles." << std::endl;
     for (auto &obsPos : mapComp.getObstacles()) {
@@ -87,5 +88,6 @@ void Manager::GenerateMap()
         cube->addComponent<BasicCubeComp>(
             Vector3D::One().Multiply(cubeScale),
             Colors::Gray, Colors::Black);
+        cube->addGroup(Obstacles);
     }
 }

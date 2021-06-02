@@ -21,7 +21,9 @@ public:
     };
 
     enum GroupLabel{
-        Map,
+        Walls,
+        Obstacles,
+        Bombs,
         Players,
         GUI
     };
@@ -50,6 +52,7 @@ private:
     void AddPlayButton();
     void AddCubeZER();
     void GenerateMap();
+    std::shared_ptr<Entity> getEntByName(const std::string &name);
 public:
     void setAlive(bool alive);
 private:
