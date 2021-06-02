@@ -18,7 +18,6 @@ Bomberman::Bomberman(bool fullscreen)
 {
     mgr->loadScene(Manager::MainMenu); //todo : fix scene changing segfault
     GameLoop();
-
 }
 
 void Bomberman::GameLoop()

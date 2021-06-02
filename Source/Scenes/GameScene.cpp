@@ -26,11 +26,11 @@ void Manager::loadGameScene()
 
 void Manager::GenerateMap()
 {
-    Vector2D mapSize(13, 13);
+    Vector2D mapSize(13, 11);
     auto &MapEntity = addEntity("mapRoot");
     auto &mapTransform =
         MapEntity.addComponent<TransformComp>(Vector3D(0, -30, 0));
-    auto &mapComp = MapEntity.addComponent<MapComponent>( 7, 7);
+    auto &mapComp = MapEntity.addComponent<MapComponent>( 7, 59);
     MapEntity.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
 
     float cubeScale = 2;

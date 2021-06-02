@@ -29,6 +29,7 @@ private:
     std::vector<Vector2D> Obstacles;
     int numWalls;
     int numObstacles;
+    bool InCorner(Vector2D vector_2_d);
 };
 
 #endif //MAPCOMPONENT_HPP
