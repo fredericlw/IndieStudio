@@ -13,6 +13,7 @@ class Vector3D;
 
 class Vector2D : public Vector2 {
 public:
+    Vector2D();
     Vector2D(float x, float y);
     explicit Vector2D(const Vector3D &vec);
     Vector2D(Vector2 vec) : Vector2({vec.x, vec.y}){}

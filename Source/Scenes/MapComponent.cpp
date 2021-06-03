@@ -23,13 +23,13 @@ MapComponent::MapComponent(
         }
     }
     //generate  obstacles
-    for (int i = 0; i < numObstacles; ++i) {
-        Vector2D pos = Vector2D::Zero();
+    for (int i = 0; i < /*numObstacles*/50; ++i) {
+        Vector2D pos;
         do {
             pos.x = (float) Random::Range(0, (int) _size.x - 1);
             pos.y = (float) Random::Range(0, (int) _size.y - 1);
-        } while (std::find(Walls.begin(), Walls.end(), pos) != Walls.end()
-            && /*forbidden places (corners)*/ !InCorner(pos));
+        } while (InCorner(pos) ||
+            std::find(Walls.begin(), Walls.end(), pos) != Walls.end());
         //random coords until not on a wall
         Obstacles.emplace_back(pos);
     }
@@ -64,21 +64,23 @@ const std::vector<Vector2D> &MapComponent::getObstacles() const
     return Obstacles;
 }
 
-bool MapComponent::InCorner(Vector2D pos)
+bool MapComponent::InCorner(const Vector2D &pos)
 {
-    if (pos == Vector2D::Zero()
-        || pos == Vector2D(0, 1)
-        || pos == Vector2D(1, 0)
-        || pos == Vector2D(_size.x, _size.y)
-        || pos == Vector2D(_size.x - 2, _size.y)
-        || pos == Vector2D(_size.x, _size.y - 2)
-        || pos == Vector2D(0, _size.y)
-        || pos == Vector2D(1, _size.y)
-        || pos == Vector2D(0, _size.y - 2)
-        || pos == Vector2D(_size.x, 0)
-        || pos == Vector2D(_size.x, 1)
-        || pos == Vector2D(_size.x - 2, 0)
-        )
-        return true;
+    //upper left
+    if (pos.x == 0 && pos.y == 0) return true;
+    if (pos.x == 1 && pos.y == 0) return true;
+    if (pos.x == 0 && pos.y == 1) return true;
+    //lower left
+    if (pos.x == 0 && pos.y == _size.y - 1) return true;
+    if (pos.x == 1 && pos.y == _size.y - 1) return true;
+    if (pos.x == 0 && pos.y == _size.y - 2) return true;
+    //lower right
+    if (pos.x == _size.x - 1 && pos.y == _size.y - 1) return true;
+    if (pos.x == _size.x - 1 && pos.y == _size.y - 2) return true;
+    if (pos.x == _size.x - 2 && pos.y == _size.y - 1) return true;
+    //upper right
+    if (pos.x == _size.x - 1 && pos.y == 0) return true;
+    if (pos.x == _size.x - 2 && pos.y == 0) return true;
+    if (pos.x == _size.x - 1 && pos.y == 1) return true;
     return false;
 }

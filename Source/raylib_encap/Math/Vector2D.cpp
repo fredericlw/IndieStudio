@@ -98,3 +98,7 @@ bool Vector2D::operator==(const Vector2D &vec) const
 {
     return x == vec.x && y == vec.y;
 }
+
+Vector2D::Vector2D() : Vector2({0,0})
+{
+}
