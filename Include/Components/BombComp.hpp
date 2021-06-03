@@ -15,18 +15,21 @@
 #include <3D/ModelComp.hpp>
 
 class BombComp : public Component {
-    public:
+public:
     BombComp(Colors color);
     void init() override;
     void update() override;
     void draw() override;
-    private:
+private:
     void explode();
     std::time_t spawnTime{};
     TransformComp *_transform;
     BasicCubeComp *_cube;
     ModelComp *model;
     Colors _color;
+
+    Model bombModel;
+    Texture2D texture;
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP
