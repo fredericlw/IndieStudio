@@ -12,7 +12,7 @@
 #include <3D/BasicCubeComp.hpp>
 #include "Component.hpp"
 #include <ctime>
-
+#include <3D/ModelComp.hpp>
 
 class BombComp : public Component {
     public:
@@ -25,6 +25,7 @@ class BombComp : public Component {
     std::time_t spawnTime{};
     TransformComp *_transform;
     BasicCubeComp *_cube;
+    ModelComp *model;
     Colors _color;
 };
 
