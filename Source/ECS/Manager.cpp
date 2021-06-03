@@ -78,7 +78,7 @@ void Manager::loadScene(Manager::SceneType scene)
     case MainMenu:
         loadMenuScene();
         break;
-    case Option:
+    case Settings:
         loadOptionScene();
         break;
     case Game:

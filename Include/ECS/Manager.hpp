@@ -25,7 +25,7 @@ public:
         MainMenu,
         Game,
         Lobby,
-        Option,
+        Settings,
         None
     };
     explicit Manager();
@@ -73,6 +73,8 @@ public:
 
     void AddListSelector();
     void loadOptionScene();
+    void AddSettingsButton();
+    void AddHowToPlayButton();
 };
 
 #endif //MANAGER_HPP

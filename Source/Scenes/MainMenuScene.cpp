@@ -14,12 +14,14 @@ void Manager::loadMenuScene()
     AddMenuLogo();
     AddPlayButton();
     addBackToGameBtn();
+    AddSettingsButton();
+    AddHowToPlayButton();
 }
 
 void Manager::AddPlayButton()
 {
     auto &PlayBtnEnt = addEntity("PlayButton");
-    auto size = Vector2D{150, 50};
+    auto size = Vector2D{270, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
     auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
     PlayBtnEnt.addComponent<TransformComp>(pos);
@@ -32,11 +34,43 @@ void Manager::AddPlayButton()
     );
 }
 
-void Manager::addBackToGameBtn()
+void Manager::AddSettingsButton()
 {
-    auto size = Vector2D{150, 50};
+    auto &PlayBtnEnt = addEntity("SettingsButton");
+    auto size = Vector2D{270, 50};
+    auto halfsize = Vector2D{size.x / 2, size.y / 2};
+    auto pos = Vector2D::ScreenCenter().Subtract(halfsize).Add({0, 140});
+    PlayBtnEnt.addComponent<TransformComp>(pos);
+    PlayBtnEnt.addComponent<ButtonComp>("Settings", size);
+    PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
+        [this]() {
+            setNextSceneToLoad(Settings);
+            alive = false;
+        }
+    );
+}
+
+void Manager::AddHowToPlayButton()
+{
+    auto &PlayBtnEnt = addEntity("HowToPlayButton");
+    auto size = Vector2D{270, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
     auto pos = Vector2D::ScreenCenter().Subtract(halfsize).Add({0, 70});
+    PlayBtnEnt.addComponent<TransformComp>(pos);
+    PlayBtnEnt.addComponent<ButtonComp>("How to Play", size);
+    PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
+        [this]() {
+            setNextSceneToLoad(Settings);
+            alive = false;
+        }
+    );
+}
+
+void Manager::addBackToGameBtn()
+{
+    auto size = Vector2D{270, 50};
+    auto halfsize = Vector2D{size.x / 2, size.y / 2};
+    auto pos = Vector2D::ScreenCenter().Subtract(halfsize).Add({0, 210});
     auto &PlayBtnEnt = addEntity("QuitButton");
     PlayBtnEnt.addComponent<TransformComp>(pos);
     PlayBtnEnt.addComponent<ButtonComp>("QUIT", size);
