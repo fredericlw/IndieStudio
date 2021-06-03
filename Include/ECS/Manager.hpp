@@ -25,6 +25,7 @@ public:
         MainMenu,
         Game,
         Lobby,
+        Option,
         None
     };
     explicit Manager();
@@ -47,7 +48,8 @@ private:
     std::array<std::vector<Entity *>, maxGroups> groupedEntities;
     void loadGameScene();
     void loadMenuScene();
-    void AddQuitButton();
+    void addBackToGameBtn();
+    void addBackToGameOptionBtn();
     void AddMenuLogo();
     void AddPlayButton();
     void AddCubeZER();
@@ -70,6 +72,7 @@ public:
     void AddLobbyName();
 
     void AddListSelector();
+    void loadOptionScene();
 };
 
 #endif //MANAGER_HPP
