@@ -13,6 +13,7 @@ BombComp::BombComp(Colors color)
     : _color(color),
       _transform(nullptr),
       _cube(nullptr),
+      model(nullptr),
       spawnTime(std::time(nullptr))
 {
 }
@@ -24,16 +25,16 @@ void BombComp::init()
     if (!_transform)
         _transform = &entity->addComponent<TransformComp>();
     //TODO : replace cube by bomb model
-    _cube = &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
+//    _cube = &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
+    model = &entity->addComponent<ModelComp>("./rsc/Models/bomb/Bomb.obj", 1);
 }
 
 void BombComp::update()
 {
     Component::update();
     auto timeAlive = std::difftime(std::time(nullptr), spawnTime);
-    if (timeAlive > 3) {
+    if (timeAlive > 3)
         explode();
-    }
 }
 
 void BombComp::draw()

@@ -27,7 +27,7 @@ void Player::init()
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
     _model =
         &entity->addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", _color,
-            0.77);
+            .5);
     _model->rotate({90, 0, 0});
 }
 
