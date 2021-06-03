@@ -27,10 +27,6 @@ void BombComp::init()
     //TODO : replace cube by bomb model
 //    _cube = &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     model = &entity->addComponent<ModelComp>("./rsc/Models/bomb/Bombout.obj", Blue, 10);
-//    model = &entity->addComponent<ModelComp>("./rsc/Models/bomberman.obj", 1);
-//    bombModel = LoadModel("./rsc/Models/bomb/mrfixit.iqm");
-//    texture = LoadTexture("./rsc/Models/bomb/Albedo.png");
-//    bombModel.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
 }
 
 void BombComp::update()
