@@ -52,8 +52,8 @@ private:
     void AddPlayButton();
     void AddCubeZER();
     void GenerateMap();
-    std::shared_ptr<Entity> getEntByName(const std::string &name);
 public:
+    std::shared_ptr<Entity> getEntByName(const std::string &name);
     void setAlive(bool alive);
 private:
     SceneType nextSceneToLoad;

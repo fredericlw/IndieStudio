@@ -19,6 +19,12 @@ private:
     Entity *p2;
     Entity *p3;
     Entity *p4;
+    void SpawnPlayer(
+        std::string entityName, const Vector3D& pos, EInputType inputType,
+        PlayerNum num,
+        Colors color
+    );
+    void SpawnPlayers();
 };
 
 #endif //GAMELOGICCOMP_HPP

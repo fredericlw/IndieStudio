@@ -10,6 +10,7 @@
 
 void Manager::loadGameScene()
 {
+    //warning : Keep this order !
     GenerateMap();
     auto myEnt = getEntByName("gamelogic");
     myEnt->addComponent<GameLogicComp>();

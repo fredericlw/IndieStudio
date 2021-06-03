@@ -9,6 +9,7 @@
 #include <3D/BasicCubeComp.hpp>
 #include <Character/MovementComp.hpp>
 #include <GUI/LobbyComp.hpp>
+#include <utility>
 #include "GameLogicComp.hpp"
 #include "Manager.hpp"
 #include "Player.hpp"
@@ -16,32 +17,41 @@
 void GameLogicComp::init()
 {
     Component::init();
-    auto &myEnt = entity->_mgr.addEntity("Player 1");
-    myEnt.addComponent<TransformComp>(Vector3D(-10, -28, -40));
+    SpawnPlayers();
+}
+
+void GameLogicComp::SpawnPlayers()
+{
+    auto spawnPos = entity->_mgr.getEntByName(
+        "mapRoot")->getComponent<TransformComp>().position;
+    //get upper right spawnpos offset from map root entity pos
+    spawnPos.z -= 33;
+    spawnPos.y += 2;
+    spawnPos.x -= 13;
+    std::cout << "MAP POSITION IS " << spawnPos<< std::endl;
+    SpawnPlayer(std::string("Player 1"), spawnPos,
+        entity->getComponent<LobbyComp>().sel1, PlayerOne, Blue);
+    spawnPos.x += 24;
+    SpawnPlayer(std::string("Player 2"), spawnPos,
+        entity->getComponent<LobbyComp>().sel2, PlayerTwo, Green);
+    spawnPos.z += 20;
+    SpawnPlayer(std::string("Player 3"), spawnPos,
+        entity->getComponent<LobbyComp>().sel3, PlayerThree, Red);
+    spawnPos.x -= 24;
+    SpawnPlayer(std::string("Player 4"), spawnPos,
+        entity->getComponent<LobbyComp>().sel4, PlayerFour, LightGray);
+}
+
+void GameLogicComp::SpawnPlayer(
+    std::string entityName, const Vector3D &pos, EInputType inputType,
+    PlayerNum num,
+    Colors color
+)
+{
+    auto &myEnt = entity->_mgr.addEntity(std::move(entityName));
+    myEnt.addComponent<TransformComp>(pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    myEnt.addComponent<Player>(entity->getComponent<LobbyComp>().sel1,
-        PlayerNum::PlayerOne, Blue);
-
-    auto &myEnt2 = entity->_mgr.addEntity("Player 2");
-    myEnt2.addComponent<TransformComp>(Vector3D(10, -28, -40));
-    myEnt2.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    myEnt2.addComponent<Player>(entity->getComponent<LobbyComp>().sel2,
-        PlayerNum::PlayerTwo, Green);
-
-
-    auto &myEnt3 = entity->_mgr.addEntity("Player 3");
-    myEnt3.addComponent<TransformComp>(Vector3D(-10, -28, -50));
-    myEnt3.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    myEnt3.addComponent<Player>(entity->getComponent<LobbyComp>().sel3,
-        PlayerNum::PlayerThree, Red);
-
-
-    auto &myEnt4 = entity->_mgr.addEntity("Player 4");
-    myEnt4.addComponent<TransformComp>(Vector3D(10, -28, -50));
-    myEnt4.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    myEnt4.addComponent<Player>(entity->getComponent<LobbyComp>().sel4,
-        PlayerNum::PlayerFour, LightGray);
-
+    myEnt.addComponent<Player>(inputType, num, color);
 }
 
 void GameLogicComp::update()
