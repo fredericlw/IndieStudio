@@ -105,6 +105,8 @@ add_executable(bomberman
         Source/Components/GameLogicComp.cpp
         Source/Components/Player.cpp
         Include/Components/GameLogicComp.hpp
+        Source/Components/BombComp.cpp
+        Include/Components/BombComp.hpp
         Include/Components/Player.hpp
         )
 

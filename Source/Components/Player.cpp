@@ -5,6 +5,7 @@
 ** Created by Achille Bourgault
 */
 
+#include <BombComp.hpp>
 #include "Player.hpp"
 
 Player::Player(
@@ -12,7 +13,11 @@ Player::Player(
 )
     : _eType(e_type),
       _playerNum(player_num),
-      _color(color)
+      _color(color),
+      _mc(nullptr),
+      _model(nullptr),
+      droppedBombs(0),
+      bombCoolDown(3)
 {
 }
 
@@ -20,18 +25,32 @@ void Player::init()
 {
     Component::init();
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
-
-    _model = &entity->addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", _color,
-        0.77);
+    _model =
+        &entity->addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", _color,
+            0.77);
     _model->rotate({90, 0, 0});
 }
 
 void Player::update()
 {
     Component::update();
+    if (_mc->getInputModule()->GetButtonPressed(DropBomb)
+    && (std::difftime(std::time(nullptr), lastBombTime) > bombCoolDown || droppedBombs == 0)) {
+        DoDropBomb();
+    }
 }
 
 void Player::draw()
 {
     Component::draw();
+}
+
+void Player::DoDropBomb()
+{
+    lastBombTime = std::time(nullptr);
+    droppedBombs++;
+    auto curPos = entity->getComponent<TransformComp>().position;
+    auto &bombEnt = entity->_mgr.addEntity("bomb");
+    bombEnt.addComponent<TransformComp>(curPos);
+    bombEnt.addComponent<BombComp>(_color);
 }

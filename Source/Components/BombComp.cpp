@@ -9,8 +9,11 @@
 #include "BombComp.hpp"
 #include "Manager.hpp"
 
-BombComp::BombComp(Colors color) : _color(color), _transform(nullptr),
-    _cube(nullptr)
+BombComp::BombComp(Colors color)
+    : _color(color),
+      _transform(nullptr),
+      _cube(nullptr),
+      spawnTime(std::time(nullptr))
 {
 }
 
@@ -20,16 +23,28 @@ void BombComp::init()
     _transform = &entity->getComponent<TransformComp>();
     if (!_transform)
         _transform = &entity->addComponent<TransformComp>();
+    //TODO : replace cube by bomb model
     _cube = &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
 }
 
 void BombComp::update()
 {
     Component::update();
+    auto timeAlive = std::difftime(std::time(nullptr), spawnTime);
+    if (timeAlive > 3) {
+        explode();
+    }
 }
 
 void BombComp::draw()
 {
     Component::draw();
+}
+
+void BombComp::explode()
+{
+    std::cout << "BOOM !" << std::endl;
+    //todo : spawn explosion sprites in a cross pattern
+    entity->destroy();
 }
 

@@ -26,6 +26,7 @@ void Bomberman::GameLoop()
     mgr->setAlive(true);
     while (mgr->isAlive() && !mainWindow->ShouldClose()) {
 //        if (std::difftime(std::time(nullptr), startTime) > 5) mgr->Quit();
+        mgr->refresh();
         mgr->update();
         mgr->draw();
     }

@@ -13,21 +13,25 @@
 #include <3D/ModelComp.hpp>
 #include "Entity.hpp"
 #include "Manager.hpp"
-
+#include <ctime>
 class Player : public Component {
-    public:
+public:
     Player(
         EInputType e_type, PlayerNum player_num, Colors color
     );
     void init() override;
     void update() override;
     void draw() override;
-    private:
+private:
     EInputType _eType;
     PlayerNum _playerNum;
     Colors _color;
     MovementComp *_mc;
     ModelComp *_model;
+    void DoDropBomb();
+    std::time_t lastBombTime;
+    int droppedBombs;
+    double bombCoolDown;
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

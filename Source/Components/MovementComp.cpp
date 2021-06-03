@@ -21,6 +21,7 @@ MovementComp::MovementComp(EInputType input_type, PlayerNum num)
 
 MovementComp::~MovementComp()
 {
+    delete _inputMod;
 }
 
 void MovementComp::init()
@@ -65,7 +66,7 @@ void MovementComp::update()
     //if cube collides, return
     transform->position = nextPos;
     if (Velocity != Vector3D::Zero()) {
-        std::cout << "Player pos : " << transform->position << std::endl;
+//        std::cout << "Player pos : " << transform->position << std::endl;
     }
 }
 
@@ -73,10 +74,10 @@ void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)
 {
     switch (type) {
     case Keyboard:
-        _inputMod = std::make_unique<EKeyboardInputModule>(num);
+        _inputMod = new EKeyboardInputModule(num);
         break;
     case Gamepad:
-        _inputMod = std::make_unique<EGamepadInputModule>(num);
+        _inputMod = new EGamepadInputModule(num);
         break;
     case AI:
         break;
@@ -95,4 +96,9 @@ void MovementComp::setSpeed(float speed)
     else if (speed > 10)
         speed = 10;
     _speed = speed;
+}
+
+AInputModule *MovementComp::getInputModule()
+{
+    return _inputMod;
 }

@@ -23,7 +23,7 @@ MapComponent::MapComponent(
         }
     }
     //generate  obstacles
-    for (int i = 0; i < /*numObstacles*/50; ++i) {
+    for (int i = 0; i < numObstacles; ++i) {
         Vector2D pos;
         do {
             pos.x = (float) Random::Range(0, (int) _size.x - 1);

@@ -22,13 +22,14 @@ public:
 private:
     TransformComp *transform;
     BasicCubeComp *cube;
-    std::unique_ptr<AInputModule> _inputMod;
+    AInputModule *_inputMod;
     void GenerateInputModule(EInputType type, PlayerNum num);
     Vector3D Velocity;
     float _speed;
 public:
     float getSpeed() const;
     void setSpeed(float speed);
+    AInputModule *getInputModule();
 };
 
 #endif //MOVEMENTCOMP_HPP
