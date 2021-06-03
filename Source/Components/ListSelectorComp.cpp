@@ -27,9 +27,9 @@ void ListSelectorComp::init() {
     if (!_transform)
         _transform =  &entity->addComponent<TransformComp>();
     _prevRect.y = _transform->position.y - 10;
-    _prevRect.x = _transform->position.x - 130;
+    _prevRect.x = _transform->position.x - 140;
     _nextRect.y = _transform->position.y - 10;
-    _nextRect.x = _transform->position.x + 80;
+    _nextRect.x = _transform->position.x + 90;
 
 }
 

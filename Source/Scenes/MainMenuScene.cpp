@@ -13,7 +13,7 @@ void Manager::loadMenuScene()
 {
     AddMenuLogo();
     AddPlayButton();
-    AddQuitButton();
+    addBackToGameBtn();
 }
 
 void Manager::AddPlayButton()
@@ -32,7 +32,7 @@ void Manager::AddPlayButton()
     );
 }
 
-void Manager::AddQuitButton()
+void Manager::addBackToGameBtn()
 {
     auto size = Vector2D{150, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
