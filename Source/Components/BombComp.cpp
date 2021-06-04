@@ -26,7 +26,7 @@ void BombComp::init()
         _transform = &entity->addComponent<TransformComp>();
     //TODO : replace cube by bomb model
 //    _cube = &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    model = &entity->addComponent<ModelComp>("./rsc/Models/bomb/Bombout.obj", Blue, 10);
+    model = &entity->addComponent<ModelComp>("./rsc/Models/bomb/Bombout.obj", Blue, 6);
 }
 
 void BombComp::update()
