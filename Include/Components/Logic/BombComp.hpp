@@ -30,6 +30,8 @@ private:
 
     Model bombModel;
     Texture2D texture;
+    void GenerateParticles();
+    void SpawnParticle(Vector3D &pos);
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP

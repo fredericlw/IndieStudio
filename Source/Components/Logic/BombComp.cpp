@@ -50,12 +50,56 @@ void BombComp::explode()
 {
     std::cout << "BOOM !" << std::endl;
     //todo : spawn explosion sprites in a cross pattern
+    GenerateParticles();
+    entity->destroy();
+}
+
+void BombComp::GenerateParticles()
+{
+    //TODO : this is bad code pls fix
+    Vector3D pos(_transform->position);
+
+    SpawnParticle(pos);
+
+    pos.x += 2;
+    SpawnParticle(pos);
+    pos.x += 2;
+    SpawnParticle(pos);
+    pos.x += 2;
+    SpawnParticle(pos);
+    pos.x = _transform->position.x;
+
+    pos.x -= 2;
+    SpawnParticle(pos);
+    pos.x -= 2;
+    SpawnParticle(pos);
+    pos.x -= 2;
+    SpawnParticle(pos);
+    pos.x = _transform->position.x;
+
+    pos.y -= 2;
+    SpawnParticle(pos);
+    pos.y -= 2;
+    SpawnParticle(pos);
+    pos.y -= 2;
+    SpawnParticle(pos);
+    pos.y = _transform->position.y;
+
+    pos.y += 2;
+    SpawnParticle(pos);
+    pos.y += 2;
+    SpawnParticle(pos);
+    pos.y += 2;
+    SpawnParticle(pos);
+    pos.y = _transform->position.y;
+}
+
+void BombComp::SpawnParticle(Vector3D &pos)
+{
     auto &testBoom = entity->_mgr.addEntity("boom");
-    testBoom.addComponent<TransformComp>(_transform->position);
-    std::cout << "position : " << _transform->position << std::endl;
+    testBoom.addComponent<TransformComp>(pos);
     testBoom.addComponent<AnimatedSprite>("./rsc/explosion.png",
         Vector2D{5, 5});
     testBoom.addGroup(Particles);
-    entity->destroy();
 }
 
