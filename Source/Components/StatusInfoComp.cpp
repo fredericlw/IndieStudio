@@ -7,9 +7,11 @@
 
 #include "Components/GUI/StatusInfoComp.hpp"
 
-StatusInfoComp::StatusInfoComp(Player *player, ERect rect) : _rect(rect)
+StatusInfoComp::StatusInfoComp(Player *player, Vector2D size)
+    : _rect(ERect{size,{0, 0}}),
+    _player(player)
 {
-    _player = player;
+
 }
 
 void StatusInfoComp::init()
@@ -20,8 +22,6 @@ void StatusInfoComp::init()
         transform = &entity->addComponent<TransformComp>();
     _rect.x = transform->position.x;
     _rect.y = transform->position.y;
-    _rect.width = size.x;
-    _rect.height = size.y;
 }
 
 void StatusInfoComp::update()

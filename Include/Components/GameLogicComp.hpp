@@ -15,16 +15,17 @@ public:
     void update() override;
     void draw() override;
 private:
-    //Entity &p1;
-    Entity *p2;
-    Entity *p3;
-    Entity *p4;
-    void SpawnPlayer(
+    Player *p1;
+    Player *p2;
+    Player *p3;
+    Player *p4;
+    Player * SpawnPlayer(
         std::string entityName, const Vector3D& pos, EInputType inputType,
         PlayerNum num,
         Colors color
     );
     void SpawnPlayers();
+    void SpawnPlayerHUD();
 };
 
 #endif //GAMELOGICCOMP_HPP
