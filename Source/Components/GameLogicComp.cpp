@@ -10,14 +10,17 @@
 #include <Character/MovementComp.hpp>
 #include <GUI/LobbyComp.hpp>
 #include <utility>
+#include <raylib_encap/Window.hpp>
 #include "GameLogicComp.hpp"
 #include "Manager.hpp"
 #include "Player.hpp"
+#include "Components/GUI/PlayerHUD.hpp"
 
 void GameLogicComp::init()
 {
     Component::init();
     SpawnPlayers();
+    SpawnPlayerHUD();
 }
 
 void GameLogicComp::SpawnPlayers()
@@ -29,20 +32,20 @@ void GameLogicComp::SpawnPlayers()
     spawnPos.y += 2;
     spawnPos.x -= 13;
     std::cout << "MAP POSITION IS " << spawnPos<< std::endl;
-    SpawnPlayer(std::string("Player 1"), spawnPos,
+    p1 = SpawnPlayer(std::string("Player 1"), spawnPos,
         entity->getComponent<LobbyComp>().sel1, PlayerOne, Blue);
     spawnPos.x += 24;
-    SpawnPlayer(std::string("Player 2"), spawnPos,
+    p2 = SpawnPlayer(std::string("Player 2"), spawnPos,
         entity->getComponent<LobbyComp>().sel2, PlayerTwo, Green);
     spawnPos.z += 20;
-    SpawnPlayer(std::string("Player 3"), spawnPos,
+    p3 =SpawnPlayer(std::string("Player 3"), spawnPos,
         entity->getComponent<LobbyComp>().sel3, PlayerThree, Red);
     spawnPos.x -= 24;
-    SpawnPlayer(std::string("Player 4"), spawnPos,
+    p4 =SpawnPlayer(std::string("Player 4"), spawnPos,
         entity->getComponent<LobbyComp>().sel4, PlayerFour, LightGray);
 }
 
-void GameLogicComp::SpawnPlayer(
+Player *GameLogicComp::SpawnPlayer(
     std::string entityName, const Vector3D &pos, EInputType inputType,
     PlayerNum num,
     Colors color
@@ -51,7 +54,7 @@ void GameLogicComp::SpawnPlayer(
     auto &myEnt = entity->_mgr.addEntity(std::move(entityName));
     myEnt.addComponent<TransformComp>(pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    myEnt.addComponent<Player>(inputType, num, color);
+    return &myEnt.addComponent<Player>(inputType, num, color);
 }
 
 void GameLogicComp::update()
@@ -62,4 +65,31 @@ void GameLogicComp::update()
 void GameLogicComp::draw()
 {
     Component::draw();
+}
+
+void GameLogicComp::SpawnPlayerHUD()
+{
+    auto winSize = Window::GetWinSize();
+    auto size = Vector2D{300, 100};
+    auto pos = Vector2D{0,0};
+    auto &hud1 = entity->_mgr.addEntity("P1 hud");
+    hud1.addComponent<TransformComp>(pos);
+    hud1.addComponent<PlayerHUD>(p1, size);
+
+    pos.x = winSize.x - size.x;
+    auto &hud2 = entity->_mgr.addEntity("P2 hud");
+    hud2.addComponent<TransformComp>(pos);
+    hud2.addComponent<PlayerHUD>(p2, size);
+
+    pos.x = 0;
+    pos.y = winSize.y - size.y;
+    auto &hud3 = entity->_mgr.addEntity("P3 hud");
+    hud3.addComponent<TransformComp>(pos);
+    hud3.addComponent<PlayerHUD>(p3, size);
+
+    pos.x = winSize.x - size.x;
+    auto &hud4 = entity->_mgr.addEntity("P4 hud");
+    hud4.addComponent<TransformComp>(pos);
+    hud4.addComponent<PlayerHUD>(p4, size);
+
 }
