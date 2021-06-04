@@ -7,6 +7,7 @@
 #include <ECS/Manager.hpp>
 #include <Components/3D/BasicCubeComp.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
+#include <GUI/AnimatedSprite2D.hpp>
 #include "Components/Components.h"
 
 void Manager::loadMenuScene()
@@ -16,6 +17,10 @@ void Manager::loadMenuScene()
     addBackToGameBtn();
     AddSettingsButton();
     AddHowToPlayButton();
+
+    auto &testBoom = addEntity("boom");
+    testBoom.addComponent<TransformComp>(Vector2D::ScreenCenter());
+    testBoom.addComponent<AnimatedSprite2D>("./rsc/explosion.png", Vector2D{5, 5});
 }
 
 void Manager::AddPlayButton()

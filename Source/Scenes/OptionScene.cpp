@@ -11,7 +11,7 @@
 #include <raylib_encap/Math/Vector2D.hpp>
 #include <raylib_encap/Window.hpp>
 #include "Components/Components.h"
-#include "../Components/OptionComp.hpp"
+#include "Components/GUI/OptionComp.hpp"
 
 void Manager::loadOptionScene()
 {

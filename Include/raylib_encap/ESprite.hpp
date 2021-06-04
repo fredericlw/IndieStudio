@@ -9,20 +9,25 @@
 
 #include <raylib.h>
 #include <string>
+#include <Colors.h>
+#include <raylib_encap/Math/Vector3D.hpp>
+#include <raylib_encap/ERect.hpp>
 
 class ESprite : public Texture2D {
 public:
-    explicit ESprite(const std::string &path = "", Color color = WHITE);
+    explicit ESprite(const std::string &path = "", Colors color = White);
     ESprite(Texture2D texture);
     ~ESprite();
-    void setColor(const Color &color);
-    [[nodiscard]] const Color &getColor() const;
+    void setColor(const Colors &color);
+    [[nodiscard]] const Colors &getColor() const;
     [[nodiscard]] const Rectangle &getRect() const;
     void draw(Vector3 pos);
+    void drawInRect(Vector2D pos, ERect frameRect);
     [[nodiscard]] const Texture2D &getTex() const;
+    void setTex(const std::string &path, Colors color = White);
 protected:
     Rectangle _spriteRect;
-    Color _tintColor;
+    Colors _tintColor;
     std::string path;
 };
     

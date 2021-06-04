@@ -108,7 +108,7 @@ add_executable(bomberman
         Source/Components/BombComp.cpp
         Include/Components/BombComp.hpp
         Include/Components/Player.hpp
-        Source/Scenes/OptionScene.cpp Source/Components/OptionComp.cpp Source/Components/OptionComp.hpp Source/Components/PlayerHUD.cpp Include/Components/GUI/PlayerHUD.hpp)
+        Source/Scenes/OptionScene.cpp Source/Components/OptionComp.cpp Include/Components/GUI/OptionComp.hpp Source/Components/PlayerHUD.cpp Include/Components/GUI/PlayerHUD.hpp Source/Components/AnimatedSprite2D.cpp Include/Components/GUI/AnimatedSprite2D.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
