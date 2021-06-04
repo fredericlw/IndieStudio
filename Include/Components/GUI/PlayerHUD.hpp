@@ -9,7 +9,7 @@
 #define STATUSINFOCOMP
 
 #include <Component.hpp>
-#include <Player.hpp>
+#include <Components/Character/Player.hpp>
 #include <functional>
 #include <raylib_encap/ERect.hpp>
 

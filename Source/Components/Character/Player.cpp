@@ -5,8 +5,8 @@
 ** Created by Achille Bourgault
 */
 
-#include <BombComp.hpp>
-#include "Player.hpp"
+#include <Components/Logic/BombComp.hpp>
+#include "Components/Character/Player.hpp"
 
 Player::Player(
     EInputType e_type, PlayerNum player_num, Colors color

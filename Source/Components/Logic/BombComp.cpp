@@ -6,8 +6,8 @@
 */
 
 #include <Component.hpp>
-#include <GUI/AnimatedSprite2D.hpp>
-#include "BombComp.hpp"
+#include <GUI/AnimatedSprite.hpp>
+#include "Components/Logic/BombComp.hpp"
 #include "Manager.hpp"
 
 BombComp::BombComp(Colors color)
@@ -53,7 +53,7 @@ void BombComp::explode()
     auto &testBoom = entity->_mgr.addEntity("boom");
     testBoom.addComponent<TransformComp>(_transform->position);
     std::cout << "position : " << _transform->position << std::endl;
-    testBoom.addComponent<AnimatedSprite2D>("./rsc/explosion.png",
+    testBoom.addComponent<AnimatedSprite>("./rsc/explosion.png",
         Vector2D{5, 5});
     testBoom.addGroup(Particles);
     entity->destroy();

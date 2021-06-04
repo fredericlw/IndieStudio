@@ -8,7 +8,7 @@
 #define LOBBYCOMP_HPP
 
 #include <Keys.h>
-#include <Player.hpp>
+#include <Components/Character/Player.hpp>
 #include "Component.hpp"
 
 #include "ListSelectorComp.hpp"

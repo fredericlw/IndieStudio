@@ -7,7 +7,7 @@
 #include <ECS/Manager.hpp>
 #include <Components/3D/BasicCubeComp.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
-#include <GUI/AnimatedSprite2D.hpp>
+#include <GUI/AnimatedSprite.hpp>
 #include "Components/Components.h"
 
 void Manager::loadMenuScene()

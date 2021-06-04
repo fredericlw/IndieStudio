@@ -11,9 +11,9 @@
 #include <GUI/LobbyComp.hpp>
 #include <utility>
 #include <raylib_encap/Window.hpp>
-#include "GameLogicComp.hpp"
+#include "Components/Logic/GameLogicComp.hpp"
 #include "Manager.hpp"
-#include "Player.hpp"
+#include "Components/Character/Player.hpp"
 #include "Components/GUI/PlayerHUD.hpp"
 
 void GameLogicComp::init()

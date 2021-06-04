@@ -5,7 +5,7 @@
 ** Created by Leo Fabre
 */
 #include <raylib_encap/Math/Random.hpp>
-#include "MapComponent.hpp"
+#include "Components/Logic/MapComponent.hpp"
 #include "ECS/Entity.hpp"
 #include "ECS/Manager.hpp"
 

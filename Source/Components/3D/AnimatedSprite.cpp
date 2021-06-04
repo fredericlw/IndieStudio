@@ -2,11 +2,11 @@
 // Created by leofa on 04/06/2021.
 //
 
-#include "Components/GUI/AnimatedSprite2D.hpp"
+#include "Components/GUI/AnimatedSprite.hpp"
 #include "Entity.hpp"
 #include "Manager.hpp"
 
-AnimatedSprite2D::AnimatedSprite2D(
+AnimatedSprite::AnimatedSprite(
     const std::string &path, Vector2D nbFrames, bool loop
 )
     : _sprite(path),
@@ -20,7 +20,7 @@ AnimatedSprite2D::AnimatedSprite2D(
 {
 }
 
-void AnimatedSprite2D::init()
+void AnimatedSprite::init()
 {
     Component::init();
     transform = &entity->getComponent<TransformComp>();
@@ -29,7 +29,7 @@ void AnimatedSprite2D::init()
     std::cout << "Boom pos : " << transform->position << std::endl;
 }
 
-void AnimatedSprite2D::update()
+void AnimatedSprite::update()
 {
     Component::update();
     framesCounter++;
@@ -51,7 +51,7 @@ void AnimatedSprite2D::update()
     frameRect.y = _frameSize.y * (float) currentLine;
 }
 
-void AnimatedSprite2D::draw()
+void AnimatedSprite::draw()
 {
     Component::draw();
     if (!active) return;

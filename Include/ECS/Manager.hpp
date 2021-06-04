@@ -9,7 +9,7 @@
 
 #include <Scene.hpp>
 #include <raylib_encap/ECamera.hpp>
-#include <Player.hpp>
+#include <Components/Character/Player.hpp>
 #include "Entity.hpp"
 
 enum GroupLabel{

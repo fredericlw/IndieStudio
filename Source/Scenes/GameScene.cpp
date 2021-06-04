@@ -6,7 +6,7 @@
 */
 #include "ECS/Manager.hpp"
 #include "Components/Components.h"
-#include "MapComponent.hpp"
+#include "Components/Logic/MapComponent.hpp"
 
 void Manager::loadGameScene()
 {

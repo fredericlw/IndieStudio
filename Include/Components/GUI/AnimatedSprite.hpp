@@ -2,17 +2,17 @@
 // Created by leofa on 04/06/2021.
 //
 
-#ifndef ANIMATEDSPRITE2D_HPP
-#define ANIMATEDSPRITE2D_HPP
+#ifndef ANIMATEDSPRITE_HPP
+#define ANIMATEDSPRITE_HPP
 
 #include <raylib_encap/ESprite.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
 #include <3D/TransformComp.hpp>
 #include <raylib_encap/ERect.hpp>
 #include "Component.hpp"
-class AnimatedSprite2D : public Component {
+class AnimatedSprite : public Component {
 public:
-    AnimatedSprite2D(
+    AnimatedSprite(
         const std::string &path, Vector2D nbFrames, bool loop = false
     );
     void init() override;
@@ -31,4 +31,4 @@ public:
     ERect frameRect;
 };
 
-#endif //ANIMATEDSPRITE2D_HPP
+#endif //ANIMATEDSPRITE_HPP
