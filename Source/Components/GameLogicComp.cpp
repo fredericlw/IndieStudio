@@ -88,7 +88,7 @@ void GameLogicComp::SpawnPlayerHUD()
     hud3.addComponent<PlayerHUD>(p3, size);
 
     pos.x = winSize.x - size.x;
-    auto &hud4 = entity->_mgr.addEntity("P3 hud");
+    auto &hud4 = entity->_mgr.addEntity("P4 hud");
     hud4.addComponent<TransformComp>(pos);
     hud4.addComponent<PlayerHUD>(p4, size);
 
