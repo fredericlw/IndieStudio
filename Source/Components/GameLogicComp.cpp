@@ -14,7 +14,7 @@
 #include "GameLogicComp.hpp"
 #include "Manager.hpp"
 #include "Player.hpp"
-#include "Components/GUI/StatusInfoComp.hpp"
+#include "Components/GUI/PlayerHUD.hpp"
 
 void GameLogicComp::init()
 {
@@ -74,5 +74,5 @@ void GameLogicComp::SpawnPlayerHUD()
     auto pos = Vector2D{0,0};
     auto &hud1 = entity->_mgr.addEntity("P1 hud");
     hud1.addComponent<TransformComp>(pos);
-    hud1.addComponent<StatusInfoComp>(p1, size);
+    hud1.addComponent<PlayerHUD>(p1, size);
 }
