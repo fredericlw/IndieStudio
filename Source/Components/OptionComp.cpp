@@ -32,6 +32,7 @@ ListSelectorComp *OptionComp::addSel(std::vector<std::string> &list,
 {
     auto &entitity = entity->_mgr.addEntity(entitityName);
     entitity.addComponent<TransformComp>(pos);
+    entitity.addGroup(GUI);
     return &entitity.addComponent<ListSelectorComp>(list, printedText, colors);
 }
 

@@ -98,8 +98,8 @@ add_executable(bomberman
         Source/Scenes/LobbyScene.cpp
         Source/Scenes/LobbyScene.cpp
         Source/Scenes/MainMenuScene.cpp
-        Source/Scenes/MapComponent.cpp
-        Source/Scenes/MapComponent.cpp
+        Source/Components/MapComponent.cpp
+        Source/Components/MapComponent.cpp
         Include/Components/MapComponent.hpp
         Include/Components/MapComponent.hpp
         Source/Components/GameLogicComp.cpp
