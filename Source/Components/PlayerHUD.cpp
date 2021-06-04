@@ -5,16 +5,16 @@
 ** Created by Achille Bourgault
 */
 
-#include "Components/GUI/StatusInfoComp.hpp"
+#include "Components/GUI/PlayerHUD.hpp"
 
-StatusInfoComp::StatusInfoComp(Player *player, Vector2D size)
+PlayerHUD::PlayerHUD(Player *player, Vector2D size)
     : _rect(ERect{size,{0, 0}}),
     _player(player)
 {
 
 }
 
-void StatusInfoComp::init()
+void PlayerHUD::init()
 {
     Component::init();
     transform = &entity->getComponent<TransformComp>();
@@ -24,12 +24,12 @@ void StatusInfoComp::init()
     _rect.y = transform->position.y;
 }
 
-void StatusInfoComp::update()
+void PlayerHUD::update()
 {
     Component::update();
 }
 
-void StatusInfoComp::draw()
+void PlayerHUD::draw()
 {
     Component::draw();
     _rect.draw(true, true, _player->getColor(), Gray);

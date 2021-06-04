@@ -13,9 +13,9 @@
 #include <functional>
 #include <raylib_encap/ERect.hpp>
 
-class StatusInfoComp : public Component {
+class PlayerHUD : public Component {
     public:
-    StatusInfoComp(Player *player, Vector2D size);
+    PlayerHUD(Player *player, Vector2D size);
     void init() override;
     void update() override;
     void draw() override;
