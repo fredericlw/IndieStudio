@@ -34,4 +34,5 @@ void Manager::addBackToGameOptionBtn()
             alive = false;
         }
     );
+    BackToGameBtnEnt.addGroup(GUI);
 }

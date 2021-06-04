@@ -19,11 +19,32 @@ void Manager::update()
 
 void Manager::draw()
 {
+    auto &floorEnts(getEntitiesInGroup(Floor));
+    auto &walls(getEntitiesInGroup(Walls));
+    auto &obstacles(getEntitiesInGroup(Obstacles));
+    auto &bombs(getEntitiesInGroup(Bombs));
+    auto &players(getEntitiesInGroup(Players));
+    auto &particles(getEntitiesInGroup(Particles));
+    auto &guiEnts(getEntitiesInGroup(GUI));
+
     ClearBackground(DARKPURPLE);
     BeginDrawing();
-    for (auto &e : entities) {
-        e->draw();
-    }
+    MainCam.Begin3D();
+    for (auto &ent : floorEnts)
+        ent->draw();
+    for (auto &ent : walls)
+        ent->draw();
+    for (auto &ent : obstacles)
+        ent->draw();
+    for (auto &ent : bombs)
+        ent->draw();
+    for (auto &ent : players)
+        ent->draw();
+    for (auto &ent : particles)
+        ent->draw();
+    MainCam.End3D();
+    for (auto &ent : guiEnts)
+        ent->draw();
     EndDrawing();
 }
 

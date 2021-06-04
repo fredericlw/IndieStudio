@@ -17,10 +17,6 @@ void Manager::loadMenuScene()
     addBackToGameBtn();
     AddSettingsButton();
     AddHowToPlayButton();
-
-    auto &testBoom = addEntity("boom");
-    testBoom.addComponent<TransformComp>(Vector2D::ScreenCenter());
-    testBoom.addComponent<AnimatedSprite2D>("./rsc/explosion.png", Vector2D{5, 5});
 }
 
 void Manager::AddPlayButton()
@@ -37,6 +33,7 @@ void Manager::AddPlayButton()
             alive = false;
         }
     );
+    PlayBtnEnt.addGroup(GUI);
 }
 
 void Manager::AddSettingsButton()
@@ -53,6 +50,7 @@ void Manager::AddSettingsButton()
             alive = false;
         }
     );
+    PlayBtnEnt.addGroup(GUI);
 }
 
 void Manager::AddHowToPlayButton()
@@ -69,6 +67,7 @@ void Manager::AddHowToPlayButton()
             alive = false;
         }
     );
+    PlayBtnEnt.addGroup(GUI);
 }
 
 void Manager::addBackToGameBtn()
@@ -82,6 +81,7 @@ void Manager::addBackToGameBtn()
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {Quit();}
     );
+    PlayBtnEnt.addGroup(GUI);
 }
 
 void Manager::AddMenuLogo()
@@ -95,4 +95,5 @@ void Manager::AddMenuLogo()
     int ypos = GetScreenHeight() -
         logoEntity.getComponent<Sprite2D>().height - 430;
     logoEntity.getComponent<TransformComp>().position.y = (float) ypos;
+    logoEntity.addGroup(GUI);
 }

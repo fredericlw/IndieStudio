@@ -24,6 +24,10 @@ public:
     void draw(Vector3 pos);
     void drawInRect(Vector2D pos, ERect frameRect);
     [[nodiscard]] const Texture2D &getTex() const;
+    void drawBillboardRect(
+        Camera camera, Rectangle rect, Vector3 position, Vector2 size,
+        Colors tint = White
+    );
     void setTex(const std::string &path, Colors color = White);
 protected:
     Rectangle _spriteRect;

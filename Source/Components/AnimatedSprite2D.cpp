@@ -4,6 +4,7 @@
 
 #include "Components/GUI/AnimatedSprite2D.hpp"
 #include "Entity.hpp"
+#include "Manager.hpp"
 
 AnimatedSprite2D::AnimatedSprite2D(
     const std::string &path, Vector2D nbFrames, bool loop
@@ -25,6 +26,7 @@ void AnimatedSprite2D::init()
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>();
+    std::cout << "Boom pos : " << transform->position << std::endl;
 }
 
 void AnimatedSprite2D::update()
@@ -53,7 +55,12 @@ void AnimatedSprite2D::draw()
 {
     Component::draw();
     if (!active) return;
-    //TODO : Make the 3D version, implementing _sprite.drawBillboard
-    _sprite.drawInRect(Vector2D(transform->position.x, transform->position.y),
-        frameRect);
+    //2D version
+//        _sprite.drawInRect(Vector2D(transform->position.x, transform->position.y),
+//            frameRect);
+    //3D version
+    entity->_mgr.MainCam.Begin3D();
+    _sprite.drawBillboardRect(entity->_mgr.MainCam, frameRect,
+        transform->position, {7,7}, White);
+    entity->_mgr.MainCam.End3D();
 }

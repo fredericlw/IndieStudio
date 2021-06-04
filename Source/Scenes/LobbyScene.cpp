@@ -23,6 +23,7 @@ void Manager::AddLobbyName() {
     auto &lobbyName = addEntity("LobbyName");
     lobbyName.addComponent<TransformComp>(Vector2D::ScreenCenter().x, 0);
     lobbyName.addComponent<TextComp>("Lobby", Black);
+    lobbyName.addGroup(GUI);
 }
 
 void Manager::AddMenuButton() {
@@ -38,6 +39,8 @@ void Manager::AddMenuButton() {
                 alive = false;
             }
     );
+    backMenu.addGroup(GUI);
+
 }
 
 void Manager::AddGameButton() {
@@ -54,4 +57,5 @@ void Manager::AddGameButton() {
                 alive = false;
             }
     );
+    backMenu.addGroup(GUI);
 }

@@ -13,10 +13,12 @@
 #include "Entity.hpp"
 
 enum GroupLabel{
+    Floor,
     Walls,
     Obstacles,
     Bombs,
     Players,
+    Particles,
     GUI
 };
 
@@ -65,11 +67,8 @@ public:
     void setNextSceneToLoad(SceneType next_scene_to_load);
 
     void loadLobbyScene();
-
     void AddMenuButton();
-
     void AddGameButton();
-
     void AddLobbyName();
 
     void AddListSelector();

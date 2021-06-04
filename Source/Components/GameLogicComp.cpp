@@ -54,6 +54,7 @@ Player *GameLogicComp::SpawnPlayer(
     auto &myEnt = entity->_mgr.addEntity(std::move(entityName));
     myEnt.addComponent<TransformComp>(pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
+    myEnt.addGroup(Players);
     return &myEnt.addComponent<Player>(inputType, num, color);
 }
 
@@ -75,21 +76,24 @@ void GameLogicComp::SpawnPlayerHUD()
     auto &hud1 = entity->_mgr.addEntity("P1 hud");
     hud1.addComponent<TransformComp>(pos);
     hud1.addComponent<PlayerHUD>(p1, size);
+    hud1.addGroup(GUI);
 
     pos.x = winSize.x - size.x;
     auto &hud2 = entity->_mgr.addEntity("P2 hud");
     hud2.addComponent<TransformComp>(pos);
     hud2.addComponent<PlayerHUD>(p2, size);
+    hud2.addGroup(GUI);
 
-    pos.x = 0;
+    pos.x = winSize.x - size.x;
     pos.y = winSize.y - size.y;
     auto &hud3 = entity->_mgr.addEntity("P3 hud");
     hud3.addComponent<TransformComp>(pos);
     hud3.addComponent<PlayerHUD>(p3, size);
+    hud3.addGroup(GUI);
 
-    pos.x = winSize.x - size.x;
+    pos.x = 0;
     auto &hud4 = entity->_mgr.addEntity("P4 hud");
     hud4.addComponent<TransformComp>(pos);
     hud4.addComponent<PlayerHUD>(p4, size);
-
+    hud4.addGroup(GUI);
 }

@@ -56,3 +56,9 @@ void ESprite::setTex(const std::string &path, Colors color)
     *this = LoadTexture(path.c_str());
     _tintColor = color;
 }
+
+void ESprite::drawBillboardRect(Camera camera, Rectangle rect,
+    Vector3 position, Vector2 size, Colors tint)
+{
+    DrawBillboardRec(camera, *this, rect, position, size, GetRaylibColor(tint));
+}

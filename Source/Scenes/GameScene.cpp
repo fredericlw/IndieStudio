@@ -16,13 +16,6 @@ void Manager::loadGameScene()
     myEnt->addComponent<GameLogicComp>();
 
     //TODO PUT VECTOR 3D ROTATE IN TRANSFORM
-    /*auto &myEnt = addEntity("Player");
-    myEnt.addComponent<TransformComp>(Vector3D(0, -28, -30));
-    myEnt.addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", Green, 0.77);
-    myEnt.getComponent<ModelComp>().rotate({90, 0, 0});
-    myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    myEnt.addComponent<MovementComp>(EInputType::Keyboard,
-        PlayerNum::PlayerOne);*/
 }
 
 void Manager::GenerateMap()
@@ -50,6 +43,7 @@ void Manager::GenerateMap()
             cube->addComponent<BasicCubeComp>(
                 Vector3D::One().Multiply(cubeScale),
                 Colors::Black, Colors::Black);
+            cube->addGroup(Floor);
         }
     }
     std::cout << "Making Walls." << std::endl;

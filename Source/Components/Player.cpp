@@ -53,6 +53,7 @@ void Player::DoDropBomb()
     auto &bombEnt = entity->_mgr.addEntity("bomb");
     bombEnt.addComponent<TransformComp>(curPos);
     bombEnt.addComponent<BombComp>(_color);
+    bombEnt.addGroup(Bombs);
 }
 
 Colors Player::getColor() const
