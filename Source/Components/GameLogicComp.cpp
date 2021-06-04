@@ -52,6 +52,8 @@ void GameLogicComp::SpawnPlayer(
     myEnt.addComponent<TransformComp>(pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     myEnt.addComponent<Player>(inputType, num, color);
+
+    auto &player
 }
 
 void GameLogicComp::update()

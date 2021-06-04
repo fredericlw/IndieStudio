@@ -54,3 +54,8 @@ void Player::DoDropBomb()
     bombEnt.addComponent<TransformComp>(curPos);
     bombEnt.addComponent<BombComp>(_color);
 }
+
+Colors Player::getColor() const
+{
+    return _color;
+}

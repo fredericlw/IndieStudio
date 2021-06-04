@@ -8,6 +8,7 @@
 #define LOBBYCOMP_HPP
 
 #include <Keys.h>
+#include <Player.hpp>
 #include "Component.hpp"
 
 #include "ListSelectorComp.hpp"
@@ -19,7 +20,6 @@ public:
     void draw() override;
     void init() override;
     void update() override;
-public:
     ListSelectorComp *ListSelector1;
     ListSelectorComp *ListSelector2;
     ListSelectorComp *ListSelector3;

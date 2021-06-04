@@ -22,7 +22,8 @@ public:
     void init() override;
     void update() override;
     void draw() override;
-private:
+    Colors getColor() const;
+    private:
     EInputType _eType;
     PlayerNum _playerNum;
     Colors _color;
