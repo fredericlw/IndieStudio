@@ -66,8 +66,31 @@ Vector3D Player::getNearestBlockPos(Vector3D pos)
     Vector3D res(pos);
     res.Add(Vector3D::One());
     res.y -= 1;
-    std::fesetround(FE_TOWARDZERO);
-    res.x = std::nearbyint(pos.x * .5f) * 2.f - 1;
-    res.z = std::nearbyint(pos.z * .5f) * 2.f - 1;
+    std::fesetround(FE_TONEAREST);
+    res.x = std::nearbyint(pos.x);
+    res.z = std::nearbyint(pos.z);
+
+    if (static_cast<int>(res.x) % 2 == 0)
+    {
+        std::cout << "player cpp line 75\n";
+        if (res.x > pos.x)
+        {
+            res.x -= 1;
+        }
+        else {
+            res.x += 1;
+        }
+    }
+    if (static_cast<int>(res.z) % 2 == 0)
+    {
+        if (res.z > pos.z) {
+            res.z -= 1;
+        }
+        else {
+            res.z += 1;
+        }
+    }
+
+
     return res;
 }

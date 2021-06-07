@@ -21,6 +21,7 @@ public:
     EModel(const std::string& modpath, float scale);
     void rotate(const Vector3D &vec);
     void draw(const Vector3D &pos);
+    void transpose(const Vector3D &vec);
     virtual ~EModel();
     float scale;
 private:
