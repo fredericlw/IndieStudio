@@ -7,6 +7,8 @@
 
 #include <Components/Logic/BombComp.hpp>
 #include "Components/Character/Player.hpp"
+#include <cmath>
+#include <cfenv>
 
 Player::Player(
     EInputType e_type, PlayerNum player_num, Colors color
@@ -51,7 +53,7 @@ void Player::DoDropBomb()
     droppedBombs++;
     auto curPos = entity->getComponent<TransformComp>().position;
     auto &bombEnt = entity->_mgr.addEntity("bomb");
-    bombEnt.addComponent<TransformComp>(curPos);
+    bombEnt.addComponent<TransformComp>(getNearestBlockPos(curPos));
     bombEnt.addComponent<BombComp>(_color);
     bombEnt.addGroup(Bombs);
 }
@@ -59,4 +61,15 @@ void Player::DoDropBomb()
 Colors Player::getColor() const
 {
     return _color;
+}
+
+Vector3D Player::getNearestBlockPos(Vector3D pos)
+{
+    Vector3D res(pos);
+    res.Add(Vector3D::One());
+    res.y -= 1;
+    std::fesetround(FE_TOWARDZERO);
+    res.x = std::nearbyint(pos.x * .5f) * 2.f - 1;
+    res.z = std::nearbyint(pos.z * .5f) * 2.f - 1;
+    return res;
 }

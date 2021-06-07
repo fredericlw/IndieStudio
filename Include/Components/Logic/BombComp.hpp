@@ -22,16 +22,16 @@ public:
     void draw() override;
 private:
     void explode();
-    std::time_t spawnTime{};
+    std::time_t spawnTime;
     TransformComp *_transform;
-    BasicCubeComp *_cube;
     ModelComp *model;
     Colors _color;
+    std::vector<Entity *> particles;
 
-    Model bombModel;
-    Texture2D texture;
     void GenerateParticles();
     void SpawnParticle(Vector3D &pos);
+    bool hasExploded;
+    bool particlesCleared;
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP

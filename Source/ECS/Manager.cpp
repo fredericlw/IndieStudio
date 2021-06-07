@@ -108,6 +108,8 @@ void Manager::loadScene(Manager::SceneType scene)
     case Lobby:
         loadLobbyScene();
         break;
+    case None:
+        break;
     }
 }
 

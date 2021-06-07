@@ -20,24 +20,39 @@ include_directories(Include Include/Components Include/ECS)
 add_executable(bomberman
         Include/Bomberman.hpp
         Include/Colors.h
+
+        Include/Components/Components.h
+
         Include/Components/3D/BasicCubeComp.hpp
         Include/Components/3D/MeshCubeComp.hpp
         Include/Components/3D/MeshCubeComp.hpp
-        Source/Components/3D/ModelComp.cpp
         Include/Components/3D/ModelComp.hpp
         Include/Components/3D/TransformComp.hpp
+
         Include/Components/Character/MovementComp.hpp
-        Include/Components/Components.h
+        Include/Components/Character/Player.hpp
+
+        Include/Components/GUI/AnimatedSprite.hpp
         Include/Components/GUI/ButtonComp.hpp
         Include/Components/GUI/ListSelectorComp.hpp
         Include/Components/GUI/LobbyComp.hpp
+        Include/Components/GUI/OptionComp.hpp
+        Include/Components/GUI/PlayerHUD.hpp
         Include/Components/GUI/Sprite2D.hpp
         Include/Components/GUI/TextComp.hpp
+
+        Include/Components/Logic/BombComp.hpp
+        Include/Components/Logic/GameLogicComp.hpp
+        Include/Components/Logic/MapComponent.hpp
+        Include/Components/Logic/MapComponent.hpp
+
         Include/ECS/Component.hpp
         Include/ECS/Ecs.hpp
         Include/ECS/Entity.hpp
         Include/ECS/Manager.hpp
+
         Include/Keys.h
+
         Include/raylib_encap/ECamera.hpp
         Include/raylib_encap/ECube.hpp
         Include/raylib_encap/ECube.hpp
@@ -59,22 +74,36 @@ add_executable(bomberman
         Include/raylib_encap/Math/Vector2D.hpp
         Include/raylib_encap/Math/Vector3D.hpp
         Include/raylib_encap/Window.hpp
+
         Include/Scene.hpp
         Source/Bomberman.cpp
+
+        Source/Components/3D/AnimatedSprite.cpp
         Source/Components/3D/BasicCubeComp.cpp
+        Source/Components/3D/MeshCubeComp.cpp
+        Source/Components/3D/MeshCubeComp.cpp
+        Source/Components/3D/ModelComp.cpp
+        Source/Components/3D/TransformComp.cpp
+        Source/Components/Character/MovementComp.cpp
+        Source/Components/Character/Player.cpp
         Source/Components/GUI/ButtonComp.cpp
         Source/Components/GUI/ListSelectorComp.cpp
-        Source/Components/Logic/LobbyComp.cpp
-        Source/Components/3D/MeshCubeComp.cpp
-        Source/Components/3D/MeshCubeComp.cpp
-        Source/Components/Character/MovementComp.cpp
+        Source/Components/GUI/OptionComp.cpp
+        Source/Components/GUI/PlayerHUD.cpp
         Source/Components/GUI/Sprite2D.cpp
         Source/Components/GUI/TextComp.cpp
-        Source/Components/3D/TransformComp.cpp
+        Source/Components/Logic/BombComp.cpp
+        Source/Components/Logic/GameLogicComp.cpp
+        Source/Components/Logic/LobbyComp.cpp
+        Source/Components/Logic/MapComponent.cpp
+        Source/Components/Logic/MapComponent.cpp
+
         Source/ECS/Component.cpp
         Source/ECS/Entity.cpp
         Source/ECS/Manager.cpp
+
         Source/main.cpp
+
         Source/raylib_encap/ECamera.cpp
         Source/raylib_encap/ECube.cpp
         Source/raylib_encap/ECube.cpp
@@ -94,21 +123,13 @@ add_executable(bomberman
         Source/raylib_encap/Math/Vector2D.cpp
         Source/raylib_encap/Math/Vector3D.cpp
         Source/raylib_encap/Window.cpp
+
         Source/Scenes/GameScene.cpp
         Source/Scenes/LobbyScene.cpp
         Source/Scenes/LobbyScene.cpp
         Source/Scenes/MainMenuScene.cpp
-        Source/Components/Logic/MapComponent.cpp
-        Source/Components/Logic/MapComponent.cpp
-        Include/Components/Logic/MapComponent.hpp
-        Include/Components/Logic/MapComponent.hpp
-        Source/Components/Logic/GameLogicComp.cpp
-        Source/Components/Character/Player.cpp
-        Include/Components/Logic/GameLogicComp.hpp
-        Source/Components/Logic/BombComp.cpp
-        Include/Components/Logic/BombComp.hpp
-        Include/Components/Character/Player.hpp
-        Source/Scenes/OptionScene.cpp Source/Components/GUI/OptionComp.cpp Include/Components/GUI/OptionComp.hpp Source/Components/GUI/PlayerHUD.cpp Include/Components/GUI/PlayerHUD.hpp Source/Components/3D/AnimatedSprite.cpp Include/Components/GUI/AnimatedSprite.hpp)
+        Source/Scenes/OptionScene.cpp
+        )
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
