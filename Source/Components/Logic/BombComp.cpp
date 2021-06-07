@@ -55,7 +55,6 @@ void BombComp::update()
 void BombComp::draw()
 {
     Component::draw();
-    //    DrawModel(bombModel, _transform->position, 10000, BLUE);
 }
 
 void BombComp::explode()
