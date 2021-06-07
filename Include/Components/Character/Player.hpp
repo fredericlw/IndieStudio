@@ -14,6 +14,9 @@
 #include "Entity.hpp"
 #include "Manager.hpp"
 #include <ctime>
+
+#include "powerup.hpp"
+
 class Player : public Component {
 public:
     Player(
@@ -23,6 +26,8 @@ public:
     void update() override;
     void draw() override;
     Colors getColor() const;
+    [[nodiscard]] PowerUp getPowerUp() const;
+    std::map<PowerUp, std::string> _powerUpFilename;
     int droppedBombs;
 private:
     EInputType _eType;
@@ -30,6 +35,11 @@ private:
     Colors _color;
     MovementComp *_mc;
     ModelComp *_model;
+    PowerUp _powerUp;
+    public:
+    void setPowerUp(PowerUp power_up);
+    private:
+
     void DoDropBomb();
     Vector3D getNearestBlockPos(Vector3D pos);
 };

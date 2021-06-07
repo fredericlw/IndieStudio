@@ -9,9 +9,10 @@
 #define STATUSINFOCOMP
 
 #include <Component.hpp>
-#include <Components/Character/Player.hpp>
 #include <functional>
 #include <raylib_encap/ERect.hpp>
+#include <raylib_encap/Math/Vector2D.hpp>
+#include <Character/Player.hpp>
 
 class PlayerHUD : public Component {
     public:
@@ -24,7 +25,9 @@ class PlayerHUD : public Component {
     bool hovering;
     Vector2D size;
     ERect _rect;
+    PowerUp _lastPowerup;
     TransformComp *transform;
+    Entity *_PowerUpDisplay;
     std::vector<std::function<void()>> EventFuncs;
 };
 #endif
