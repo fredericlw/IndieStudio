@@ -18,8 +18,7 @@ Player::Player(
       _color(color),
       _mc(nullptr),
       _model(nullptr),
-      droppedBombs(0),
-      bombCoolDown(4)
+      droppedBombs(0)
 {
 }
 

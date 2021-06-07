@@ -37,7 +37,6 @@ void BombComp::update()
     Component::update();
     auto timeAlive = std::difftime(std::time(nullptr), spawnTime);
     if (timeAlive > 3 && !hasExploded) {
-        hasExploded = true;
         explode();
     }
     if (timeAlive > 4 && !particlesCleared) {
@@ -61,8 +60,9 @@ void BombComp::draw()
 
 void BombComp::explode()
 {
+    hasExploded = true;
+    model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
-    //todo : spawn explosion sprites in a cross pattern
     GenerateParticles();
 }
 

@@ -22,10 +22,10 @@ public:
     void rotate(const Vector3D &vec);
     void draw(const Vector3D &pos);
     virtual ~EModel();
+    float scale;
 private:
     Texture texture;
     Model model;
-    float scale;
     Texture2D GenTex();
 };
 
