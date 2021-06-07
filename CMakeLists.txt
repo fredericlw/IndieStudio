@@ -45,6 +45,7 @@ add_executable(bomberman
         Include/Components/Logic/GameLogicComp.hpp
         Include/Components/Logic/MapComponent.hpp
         Include/Components/Logic/MapComponent.hpp
+        Include/Components/Logic/SoundEffectComp.hpp
 
         Include/ECS/Component.hpp
         Include/ECS/Ecs.hpp
@@ -62,6 +63,9 @@ add_executable(bomberman
         Include/raylib_encap/ERect.hpp
         Include/raylib_encap/ESprite.hpp
         Include/raylib_encap/EText.hpp
+        Include/raylib_encap/EAudio.hpp
+        Include/raylib_encap/EMusic.hpp
+        Include/raylib_encap/ESound.hpp
         Include/raylib_encap/Input/AInputModule.hpp
         Include/raylib_encap/Input/EGamepadInputModule.hpp
         Include/raylib_encap/Input/EKeyboardInputModule.hpp
@@ -97,6 +101,7 @@ add_executable(bomberman
         Source/Components/Logic/LobbyComp.cpp
         Source/Components/Logic/MapComponent.cpp
         Source/Components/Logic/MapComponent.cpp
+        Source/Components/Logic/SoundEffectComp.cpp
 
         Source/ECS/Component.cpp
         Source/ECS/Entity.cpp
@@ -113,6 +118,9 @@ add_executable(bomberman
         Source/raylib_encap/ERect.cpp
         Source/raylib_encap/ESprite.cpp
         Source/raylib_encap/EText.cpp
+        Source/raylib_encap/EAudio.cpp
+        Source/raylib_encap/EMusic.cpp
+        Source/raylib_encap/ESound.cpp
         Source/raylib_encap/Input/AInputModule.cpp
         Source/raylib_encap/Input/EGamepadInputModule.cpp
         Source/raylib_encap/Input/EKeyboardInputModule.cpp

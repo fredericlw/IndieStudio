@@ -17,6 +17,7 @@
 #include "Components/GUI/Sprite2D.hpp"
 #include "Components/GUI/TextComp.hpp"
 #include "Components/Logic/GameLogicComp.hpp"
+#include "Components/Logic/SoundEffectComp.hpp"
 
 
 #endif //COMPONENTS_H

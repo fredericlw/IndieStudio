@@ -19,6 +19,7 @@ BombComp::BombComp(Colors color, Player *owner)
       particlesCleared(false),
       _owner(owner)
 {
+    _explosion_sound = new ESound("rsc/sounds/explosion.wav");
 }
 
 void BombComp::init()
@@ -63,6 +64,7 @@ void BombComp::explode()
     model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
     GenerateParticles();
+    _explosion_sound->playSound();
 }
 
 void BombComp::GenerateParticles()

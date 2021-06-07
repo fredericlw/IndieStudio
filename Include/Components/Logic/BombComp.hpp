@@ -14,6 +14,7 @@
 #include <ctime>
 #include <3D/ModelComp.hpp>
 #include <Character/Player.hpp>
+#include "raylib_encap/ESound.hpp"
 
 class BombComp : public Component {
 public:
@@ -29,6 +30,7 @@ private:
     Colors _color;
     std::vector<Entity *> particles;
     Player *_owner;
+    ESound *_explosion_sound;
 
     void GenerateParticles();
     void SpawnParticle(Vector3D &pos);

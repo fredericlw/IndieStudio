@@ -10,12 +10,14 @@
 #include <Components/GUI/Sprite2D.hpp>
 #include <Components/3D/BasicCubeComp.hpp>
 #include "Bomberman.hpp"
+#include <raylib_encap/EAudio.hpp>
 
 Bomberman::Bomberman(bool fullscreen)
     : mainWindow(std::make_unique<Window>(fullscreen)),
       startTime(std::time(nullptr)),
       mgr(std::make_shared<Manager>())
 {
+    auto audioDevice = new EAudio;
     mgr->loadScene(Manager::MainMenu); //todo : fix scene changing segfault
     GameLoop();
 }
