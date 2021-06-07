@@ -29,6 +29,8 @@ public:
     [[nodiscard]] PowerUp getPowerUp() const;
     std::map<PowerUp, std::string> _powerUpFilename;
     private:
+    int droppedBombs;
+private:
     EInputType _eType;
     PlayerNum _playerNum;
     Colors _color;
@@ -40,9 +42,6 @@ public:
     private:
 
     void DoDropBomb();
-    std::time_t lastBombTime;
-    int droppedBombs;
-    double bombCoolDown;
     Vector3D getNearestBlockPos(Vector3D pos);
 };
 

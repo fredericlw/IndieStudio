@@ -10,13 +10,14 @@
 #include "Components/Logic/BombComp.hpp"
 #include "Manager.hpp"
 
-BombComp::BombComp(Colors color)
+BombComp::BombComp(Colors color, Player *owner)
     : _color(color),
       _transform(nullptr),
       model(nullptr),
       spawnTime(std::time(nullptr)),
       hasExploded(false),
-      particlesCleared(false)
+      particlesCleared(false),
+      _owner(owner)
 {
 }
 
@@ -36,7 +37,6 @@ void BombComp::update()
     Component::update();
     auto timeAlive = std::difftime(std::time(nullptr), spawnTime);
     if (timeAlive > 3 && !hasExploded) {
-        hasExploded = true;
         explode();
     }
     if (timeAlive > 4 && !particlesCleared) {
@@ -48,19 +48,20 @@ void BombComp::update()
         }
         std::cout << "destroyed bomb" << std::endl;
         entity->destroy();
+        _owner->droppedBombs--;
     }
 }
 
 void BombComp::draw()
 {
     Component::draw();
-    //    DrawModel(bombModel, _transform->position, 10000, BLUE);
 }
 
 void BombComp::explode()
 {
+    hasExploded = true;
+    model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
-    //todo : spawn explosion sprites in a cross pattern
     GenerateParticles();
 }
 
