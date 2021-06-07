@@ -19,8 +19,14 @@ Player::Player(
       _mc(nullptr),
       _model(nullptr),
       droppedBombs(0),
-      bombCoolDown(3)
+      bombCoolDown(3),
+      _powerUp(NONE)
 {
+    _powerUpFilename[NONE] = "";
+    _powerUpFilename[FIRE] = "rsc/Models/powerups/Fire.png";
+    _powerUpFilename[SKATE] = "rsc/Models/powerups/Skate.png";
+    _powerUpFilename[BOMB_UP] = "rsc/Models/powerups/Bomb_Up.png";
+    _powerUpFilename[SOFT_BLOCK_PASS] = "rsc/Models/powerups/Soft_Block_Pass.png";
 }
 
 void Player::init()
@@ -72,4 +78,14 @@ Vector3D Player::getNearestBlockPos(Vector3D pos)
     res.x = std::nearbyint(pos.x * .5f) * 2.f - 1;
     res.z = std::nearbyint(pos.z * .5f) * 2.f - 1;
     return res;
+}
+
+PowerUp Player::getPowerUp() const
+{
+    return _powerUp;
+}
+
+void Player::setPowerUp(PowerUp power_up)
+{
+    _powerUp = power_up;
 }

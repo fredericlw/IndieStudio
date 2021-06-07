@@ -14,14 +14,21 @@ ESprite::ESprite(const std::string &path, Colors color)
 {
 }
 
+ESprite::ESprite()
+{
+
+}
+
 void ESprite::draw(Vector3 pos)
 {
-    DrawTexture(*this, (int) pos.x, (int) pos.y, GetRaylibColor(_tintColor));
+    if (!path.empty())
+        DrawTexture(*this, (int) pos.x, (int) pos.y, GetRaylibColor(_tintColor));
 }
 
 void ESprite::drawInRect(Vector2D pos, ERect frameRect)
 {
-    DrawTextureRec(*this, frameRect, pos, GetRaylibColor(_tintColor));
+    if (!path.empty())
+        DrawTextureRec(*this, frameRect, pos, GetRaylibColor(_tintColor));
 }
 
 const Rectangle &ESprite::getRect() const

@@ -14,6 +14,9 @@
 #include "Entity.hpp"
 #include "Manager.hpp"
 #include <ctime>
+
+#include "powerup.hpp"
+
 class Player : public Component {
 public:
     Player(
@@ -23,12 +26,19 @@ public:
     void update() override;
     void draw() override;
     Colors getColor() const;
+    [[nodiscard]] PowerUp getPowerUp() const;
+    std::map<PowerUp, std::string> _powerUpFilename;
     private:
     EInputType _eType;
     PlayerNum _playerNum;
     Colors _color;
     MovementComp *_mc;
     ModelComp *_model;
+    PowerUp _powerUp;
+    public:
+    void setPowerUp(PowerUp power_up);
+    private:
+
     void DoDropBomb();
     std::time_t lastBombTime;
     int droppedBombs;

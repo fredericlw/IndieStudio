@@ -129,7 +129,7 @@ add_executable(bomberman
         Source/Scenes/LobbyScene.cpp
         Source/Scenes/MainMenuScene.cpp
         Source/Scenes/OptionScene.cpp
-        )
+        Include/Components/Character/powerup.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
