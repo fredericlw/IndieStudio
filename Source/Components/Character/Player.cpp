@@ -19,7 +19,7 @@ Player::Player(
       _mc(nullptr),
       _model(nullptr),
       droppedBombs(0),
-      bombCoolDown(3)
+      bombCoolDown(4)
 {
 }
 
@@ -28,8 +28,8 @@ void Player::init()
     Component::init();
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
     _model =
-        &entity->addComponent<ModelComp>("./rsc/Models/mrfixit.iqm", _color,
-            .5);
+        &entity->addComponent<ModelComp>("./rsc/Models/mrfixit.iqm",
+            _color,.5);
     _model->rotate({90, 0, 0});
 }
 
@@ -37,7 +37,7 @@ void Player::update()
 {
     Component::update();
     if (_mc->getInputModule()->GetButtonPressed(DropBomb)
-    && (std::difftime(std::time(nullptr), lastBombTime) > bombCoolDown || droppedBombs == 0)) {
+    && (droppedBombs== 0)) {
         DoDropBomb();
     }
 }
@@ -49,12 +49,11 @@ void Player::draw()
 
 void Player::DoDropBomb()
 {
-    lastBombTime = std::time(nullptr);
     droppedBombs++;
     auto curPos = entity->getComponent<TransformComp>().position;
     auto &bombEnt = entity->_mgr.addEntity("bomb");
     bombEnt.addComponent<TransformComp>(getNearestBlockPos(curPos));
-    bombEnt.addComponent<BombComp>(_color);
+    bombEnt.addComponent<BombComp>(_color, this);
     bombEnt.addGroup(Bombs);
 }
 

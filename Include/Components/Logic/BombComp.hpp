@@ -13,10 +13,11 @@
 #include "Component.hpp"
 #include <ctime>
 #include <3D/ModelComp.hpp>
+#include <Character/Player.hpp>
 
 class BombComp : public Component {
 public:
-    BombComp(Colors color);
+    BombComp(Colors color, Player *owner);
     void init() override;
     void update() override;
     void draw() override;
@@ -27,6 +28,7 @@ private:
     ModelComp *model;
     Colors _color;
     std::vector<Entity *> particles;
+    Player *_owner;
 
     void GenerateParticles();
     void SpawnParticle(Vector3D &pos);

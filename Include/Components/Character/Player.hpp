@@ -23,16 +23,14 @@ public:
     void update() override;
     void draw() override;
     Colors getColor() const;
-    private:
+    int droppedBombs;
+private:
     EInputType _eType;
     PlayerNum _playerNum;
     Colors _color;
     MovementComp *_mc;
     ModelComp *_model;
     void DoDropBomb();
-    std::time_t lastBombTime;
-    int droppedBombs;
-    double bombCoolDown;
     Vector3D getNearestBlockPos(Vector3D pos);
 };
 

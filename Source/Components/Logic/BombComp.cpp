@@ -10,13 +10,14 @@
 #include "Components/Logic/BombComp.hpp"
 #include "Manager.hpp"
 
-BombComp::BombComp(Colors color)
+BombComp::BombComp(Colors color, Player *owner)
     : _color(color),
       _transform(nullptr),
       model(nullptr),
       spawnTime(std::time(nullptr)),
       hasExploded(false),
-      particlesCleared(false)
+      particlesCleared(false),
+      _owner(owner)
 {
 }
 
@@ -48,6 +49,7 @@ void BombComp::update()
         }
         std::cout << "destroyed bomb" << std::endl;
         entity->destroy();
+        _owner->droppedBombs--;
     }
 }
 
