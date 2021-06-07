@@ -28,7 +28,6 @@ public:
     Colors getColor() const;
     [[nodiscard]] PowerUp getPowerUp() const;
     std::map<PowerUp, std::string> _powerUpFilename;
-    private:
     int droppedBombs;
 private:
     EInputType _eType;
