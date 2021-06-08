@@ -54,6 +54,7 @@ public:
 
     friend Vector3D &operator+(Vector3D &v1, const Vector3D &v2);
     friend Vector3D &operator-(Vector3D &v1, const Vector3D &v2);
+    friend Vector3D &operator-(Vector3D &v1, const Vector3D &v2);
     friend Vector3D &operator/(Vector3D &v1, const Vector3D &v2);
     friend Vector3D &operator*(Vector3D &v1, const Vector3D &v2);
 
