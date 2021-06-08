@@ -67,8 +67,8 @@ void BombComp::explode()
     hasExploded = true;
     model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
-    GenerateParticles();
     _explosion_sound->playSound();
+    GenerateParticles();
 }
 
 void BombComp::GenerateParticles()
