@@ -95,7 +95,7 @@ Vector3D Player::getNearestBlockPos(Vector3D pos)
             res.z += 1;
         }
     }
-    //todo : this is quick and ugly fix
+    //todo : this is quick and ugly (and not working) fix
     res.x -= 1;
     res.z -= 1;
     return res;
