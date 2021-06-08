@@ -21,15 +21,15 @@ public:
     void draw() override;
 private:
     Vector2D _size;
-    std::vector<Vector2D> Walls;
+    std::vector<Entity *> Walls;
 public:
-    const std::vector<Vector2D> &getWalls() const;
-    const std::vector<Vector2D> &getObstacles() const;
+    const std::vector<Entity *> & getWalls() const;
+    const std::vector<Entity *> &getObstacles() const;
 private:
-    std::vector<Vector2D> Obstacles;
+    std::vector<Entity *> Obstacles;
     int numWalls;
     int numObstacles;
-    bool InCorner(const Vector2D& vector_2_d);
+    TransformComp *transform;
 };
 
 #endif //MAPCOMPONENT_HPP

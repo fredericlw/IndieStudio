@@ -16,23 +16,6 @@ MapComponent::MapComponent(
       numWalls(num_walls),
       numObstacles(num_obstacles)
 {
-    //generate walls
-    for (int x = 1; x < _size.x - 1; x += 2) {
-        for (int y = 1; y < _size.y - 1; y += 2) {
-            Walls.emplace_back(Vector2D((float) x, (float) y));
-        }
-    }
-    //generate  obstacles
-    for (int i = 0; i < numObstacles; ++i) {
-        Vector2D pos;
-        do {
-            pos.x = (float) Random::Range(0, (int) _size.x - 1);
-            pos.y = (float) Random::Range(0, (int) _size.y - 1);
-        } while (InCorner(pos) ||
-            std::find(Walls.begin(), Walls.end(), pos) != Walls.end());
-        //random coords until not on a wall
-        Obstacles.emplace_back(pos);
-    }
 }
 
 MapComponent::~MapComponent()
@@ -42,6 +25,50 @@ MapComponent::~MapComponent()
 void MapComponent::init()
 {
     Component::init();
+    //generate walls
+    transform = &entity->getComponent<TransformComp>();
+    if (!transform)
+        transform = &entity->addComponent<TransformComp>(0, -30, 0);
+    auto newEnt = &entity->_mgr.addEntity(
+        "puto");
+    newEnt->addGroup(GroupLabel::Walls);
+    newEnt->addComponent<TransformComp>(-11, -28, -9);
+    newEnt->addComponent<BasicCubeComp>(
+        Vector3D::One().Multiply(2), Colors::RayWhite, Colors::Black);
+    for (int x = 1; x < _size.x - 1; x += 2) {
+        for (int z = 1; z < _size.y - 1; z += 2) {
+            auto newEnt = &entity->_mgr.addEntity(
+                "Wall:" + std::to_string(x) + ":" + std::to_string(z));
+            newEnt->addGroup(GroupLabel::Walls);
+            newEnt->addComponent<TransformComp>(x, transform->position.y, z);
+            newEnt->addComponent<BasicCubeComp>(
+                Vector3D::One().Multiply(2), Colors::RayWhite, Colors::Black);
+            Walls.emplace_back(newEnt);
+        }
+    }
+    //generate  obstacles
+    for (int i = 0; i < numObstacles; ++i) {
+        Vector3D pos = Vector3D::Zero();
+        do {
+            pos.x = (float) Random::Range(0, (int) _size.x - 1);
+            pos.y = transform->position.y - 2;
+            if (pos.x == 0 || pos.x == _size.x - 1)
+                pos.z = (float) Random::Range(1, (int) _size.y - 2);
+            else
+                pos.z = (float) Random::Range(0, (int) _size.y - 1);
+        } while (std::find_if(
+            Walls.begin(), Walls.end(),
+            [pos](const Entity *ent) {return ent->getComponent<TransformComp>().position == pos;}) != Walls.end());
+            auto newEnt = &entity->_mgr.addEntity(
+                "Obstacle:" + std::to_string(pos.x) + ":" +
+                    std::to_string(pos.z));
+            newEnt->addGroup(GroupLabel::Walls);
+            newEnt->addComponent<TransformComp>(
+                pos.x, transform->position.y, pos.z);
+            newEnt->addComponent<BasicCubeComp>(
+                Vector3D::One().Multiply(2), Colors::RayWhite, Colors::Black);
+            Obstacles.emplace_back(newEnt);
+    }
 }
 
 void MapComponent::update()
@@ -54,33 +81,12 @@ void MapComponent::draw()
     Component::draw();
 }
 
-const std::vector<Vector2D> &MapComponent::getWalls() const
+const std::vector<Entity *> &MapComponent::getWalls() const
 {
     return Walls;
 }
 
-const std::vector<Vector2D> &MapComponent::getObstacles() const
+const std::vector<Entity *> &MapComponent::getObstacles() const
 {
     return Obstacles;
-}
-
-bool MapComponent::InCorner(const Vector2D &pos)
-{
-    //upper left
-    if (pos.x == 0 && pos.y == 0) return true;
-    if (pos.x == 1 && pos.y == 0) return true;
-    if (pos.x == 0 && pos.y == 1) return true;
-    //lower left
-    if (pos.x == 0 && pos.y == _size.y - 1) return true;
-    if (pos.x == 1 && pos.y == _size.y - 1) return true;
-    if (pos.x == 0 && pos.y == _size.y - 2) return true;
-    //lower right
-    if (pos.x == _size.x - 1 && pos.y == _size.y - 1) return true;
-    if (pos.x == _size.x - 1 && pos.y == _size.y - 2) return true;
-    if (pos.x == _size.x - 2 && pos.y == _size.y - 1) return true;
-    //upper right
-    if (pos.x == _size.x - 1 && pos.y == 0) return true;
-    if (pos.x == _size.x - 2 && pos.y == 0) return true;
-    if (pos.x == _size.x - 1 && pos.y == 1) return true;
-    return false;
 }

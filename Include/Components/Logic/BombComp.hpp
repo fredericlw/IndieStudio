@@ -36,6 +36,10 @@ private:
     void SpawnParticle(Vector3D &pos);
     bool hasExploded;
     bool particlesCleared;
+    bool checkCol(
+        const Vector3D &mapPos, const ECube &flameCube, ECube &wallCube,
+        Vector3D &wallCubePos, std::vector<Vector2D> &walls
+    ) const;
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP
