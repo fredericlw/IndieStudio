@@ -25,6 +25,9 @@ void Manager::addBackToHowToPlayButton()
     auto winSize = Window::GetWinSize();
     auto pos = Vector2D{winSize.x - size.x, winSize.y - size.y};
     auto &BackToGameBtnEnt = addEntity("BackToGameButton");
+    auto &textTest = addEntity("textTest");
+    textTest.addComponent<TextComp>("ceci est un text", Green);
+    textTest.addComponent<TransformComp>(200, 200 , 200);
     BackToGameBtnEnt.addComponent<TransformComp>(pos);
     BackToGameBtnEnt.addComponent<OptionComp>();
     BackToGameBtnEnt.addComponent<ButtonComp>("BACK TO GAME", size);
@@ -35,4 +38,5 @@ void Manager::addBackToHowToPlayButton()
             }
     );
     BackToGameBtnEnt.addGroup(GUI);
+    textTest.addGroup(GUI);
 }
