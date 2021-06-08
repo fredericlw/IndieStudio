@@ -29,6 +29,7 @@ public:
         Game,
         Lobby,
         Settings,
+        HowToPlay,
         None
     };
     explicit Manager();
@@ -53,6 +54,7 @@ private:
     void loadMenuScene();
     void addBackToGameBtn();
     void addBackToGameOptionBtn();
+    void addBackToHowToPlayButton();
     void AddMenuLogo();
     void AddPlayButton();
     void AddCubeZER();
@@ -71,6 +73,7 @@ public:
     void AddGameButton();
     void AddLobbyName();
 
+    void loadHowToPlayScene();
     void AddListSelector();
     void loadOptionScene();
     void AddSettingsButton();

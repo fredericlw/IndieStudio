@@ -137,6 +137,7 @@ add_executable(bomberman
         Source/Scenes/LobbyScene.cpp
         Source/Scenes/MainMenuScene.cpp
         Source/Scenes/OptionScene.cpp
+        Source/Scenes/HowToPlay.cpp
         Include/Components/Character/powerup.hpp)
 
 

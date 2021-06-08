@@ -63,7 +63,7 @@ void Manager::AddHowToPlayButton()
     PlayBtnEnt.addComponent<ButtonComp>("How to Play", size);
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
-            setNextSceneToLoad(Settings);
+            setNextSceneToLoad(HowToPlay);
             alive = false;
         }
     );
