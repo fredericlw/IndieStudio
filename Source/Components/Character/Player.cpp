@@ -78,7 +78,6 @@ Vector3D Player::getNearestBlockPos(Vector3D pos)
 
     if (static_cast<int>(res.x) % 2 == 0)
     {
-        std::cout << "player cpp line 75\n";
         if (res.x > pos.x)
         {
             res.x -= 1;
@@ -96,8 +95,9 @@ Vector3D Player::getNearestBlockPos(Vector3D pos)
             res.z += 1;
         }
     }
-
-
+    //todo : this is quick and ugly fix
+    res.x -= 1;
+    res.z -= 1;
     return res;
 }
 

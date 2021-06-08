@@ -45,12 +45,14 @@ void MapComponent::gen_obstacles()
     for (int i = 0; i < numObstacles; ++i) {
         Vector3D pos = Vector3D::Zero();
         do {
-            pos.x = transform->position.x + (Random::Range(0, _size.x - 1) * cubesize);
+            pos.x = transform->position.x +
+                (Random::Range(0, _size.x - 1) * cubesize);
             pos.y = transform->position.y;
-            pos.z = transform->position.z + (Random::Range(0, _size.y - 1) * cubesize);
+            pos.z = transform->position.z +
+                (Random::Range(0, _size.y - 1) * cubesize);
         } while (positionAlreadyExists(pos) || positionIsInCorner(pos));
-        std::cout << "pos : "<<pos << std::endl;
-        std::cout << "map pos : " << transform->position<<std::endl;
+        std::cout << "pos : " << pos << std::endl;
+        std::cout << "map pos : " << transform->position << std::endl;
         auto newEnt = &entity->_mgr.addEntity("Obstacle:" +
             std::to_string(pos.x) + ":" + std::to_string(pos.z));
         newEnt->addGroup(GroupLabel::Obstacles);
@@ -68,7 +70,7 @@ bool MapComponent::positionAlreadyExists(const Vector3D &pos)
         [pos](const Entity *ent) {
             return ent->getComponent<TransformComp>().position == pos;
         }) != Walls.end())
-        &&
+        ||
         (std::find_if(Obstacles.begin(), Obstacles.end(),
             [pos](const Entity *ent) {
                 return ent->getComponent<TransformComp>().position == pos;
@@ -101,11 +103,13 @@ void MapComponent::gen_floor()
         for (int z = 0;
             z < (_size.y) * cubesize;
             z += static_cast<int>(cubesize)) {
-            auto newEnt = &entity->_mgr.addEntity(
-                "Wall:" + std::to_string(x) + ":" + std::to_string(z));
+            Vector3D pos(x + transform->position.x,
+                transform->position.y - cubesize,
+                transform->position.z + z);
+            auto newEnt = &entity->_mgr.addEntity("Wall:" +
+                std::to_string(x) + ":" + std::to_string(z));
             newEnt->addGroup(GroupLabel::Floor);
-            newEnt->addComponent<TransformComp>(x + transform->position.x,
-                transform->position.y - cubesize, transform->position.z + z);
+            newEnt->addComponent<TransformComp>(pos);
             newEnt->addComponent<BasicCubeComp>(
                 Vector3D::One().Multiply(2), Black, Black);
         }
@@ -155,7 +159,7 @@ bool MapComponent::positionIsInCorner(Vector3D pos)
 
     //lower left
     if (pos.x == origin.x && pos.z == maxPos.z) return true;
-    if (pos.x == origin.x+cubesize && pos.z == maxPos.z) return true;
+    if (pos.x == origin.x + cubesize && pos.z == maxPos.z) return true;
     if (pos.x == origin.x && pos.z == maxPos.z - cubesize) return true;
     //lower right
     if (pos.x == maxPos.x && pos.z == maxPos.z) return true;
