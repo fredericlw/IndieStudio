@@ -33,13 +33,16 @@ private:
     ESound *_explosion_sound;
 
     void GenerateParticles();
-    void SpawnParticle(Vector3D &pos);
+    bool SpawnParticle(Vector3D &pos);
     bool hasExploded;
     bool particlesCleared;
     bool checkCol(
         const Vector3D &mapPos, const ECube &flameCube, ECube &wallCube,
         Vector3D &wallCubePos, std::vector<Entity *> walls
     ) const;
+    void checkPlayer(Vector3D pos);
+    bool checkWall(Vector3D pos);
+    bool checkObstacle(Vector3D pos);
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP

@@ -37,9 +37,12 @@ private:
     ModelComp *_model;
     PowerUp _powerUp;
     void DoDropBomb();
-    Vector3D getNearestBlockPos(Vector3D pos);
 public:
+    Vector3D getNearestBlockPos(Vector3D pos);
     void setPowerUp(PowerUp power_up);
+    void takeDamage();
+    int health;
+    void Die();
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

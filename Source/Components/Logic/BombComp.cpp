@@ -8,6 +8,7 @@
 #include <Component.hpp>
 #include <GUI/AnimatedSprite.hpp>
 #include <Logic/MapComponent.hpp>
+#include <raylib_encap/Math/Random.hpp>
 #include "Components/Logic/BombComp.hpp"
 #include "Manager.hpp"
 #include "raylib_encap/ECube.hpp"
@@ -49,9 +50,7 @@ void BombComp::update()
         particlesCleared = true;
         for (auto &item : particles) {
             item->destroy();
-            std::cout << "destroyed particle" << std::endl;
         }
-        std::cout << "destroyed bomb" << std::endl;
         entity->destroy();
         _owner->droppedBombs--;
     }
@@ -77,78 +76,96 @@ void BombComp::GenerateParticles()
     Vector3D pos(_transform->position);
 
     SpawnParticle(pos);
-
     //right
     for (int i = 0; i < 3; i++) {
         pos.x += 2;
-        SpawnParticle(pos);
-        //check for barier
-            //if explosion break
+        if (SpawnParticle(pos)) break;
     }
     pos.x = _transform->position.x;
 
+    //left
     for (int i = 0; i < 3; i++) {
         pos.x -= 2;
-        SpawnParticle(pos);
-        //check for barier
-        //if explosion breaka
+        if (SpawnParticle(pos)) break;
     }
     pos.x = _transform->position.x;
 
+    //up
     for (int i = 0; i < 3; i++) {
         pos.z -= 2;
-        SpawnParticle(pos);
-        //check for barier
-        //if explosion breaka
+        if (SpawnParticle(pos)) break;
     }
     pos.z = _transform->position.z;
 
+    //down
     for (int i = 0; i < 3; i++) {
         pos.z += 2;
-        SpawnParticle(pos);
-        //check for barier
-        //if explosion breaka
+        if (SpawnParticle(pos)) break;
     }
     pos.z = _transform->position.z;
 
-//    auto mapPos = entity->_mgr.getEntByName("mapRoot")->getComponent<TransformComp>().position;
-//    ECube flameCube(pos, Vector3D::One());
-//    ECube wallCube(pos, Vector3D::One().Multiply(2));
-//    Vector3D wallCubePos({0,0,0});
-//    auto walls = entity->_mgr.getEntByName("mapRoot")->getComponent<MapComponent>().getWalls();
-//    auto obstacles = entity->_mgr.getEntByName("mapRoot")->getComponent<MapComponent>().getObstacles();
-//    for (int i = 0; i < 3; i++) {
-//        pos.z += 2;
-//        flameCube.setPos(pos);
-//        if (checkCol(mapPos, flameCube, wallCube, wallCubePos, obstacles)) {
-//            break;
-//        }
-//        if (checkCol(mapPos, flameCube, wallCube, wallCubePos, walls)) break;
-//        SpawnParticle(pos);
-//    }
 }
 
-bool BombComp::checkCol(
-    const Vector3D &mapPos, const ECube &flameCube, ECube &wallCube,
-    Vector3D &wallCubePos, std::vector<Entity *> walls
-) const
+bool BombComp::SpawnParticle(Vector3D &pos)
 {
-    for (const auto& wall : walls) {
-            wallCubePos = {(wall->getComponent<TransformComp>().position.x * 2) + mapPos.x, mapPos.y, (wall->getComponent<TransformComp>().position.y * 2) + mapPos.z};
-            wallCube.setPos(wallCubePos);
-        if (CubeCollider::CheckBoxOverLap(flameCube, wallCube)) {
+    //will return true if hit a wall or an obstacle (hurting players and destroying obstacle)
+    auto &particleEnt = entity->_mgr.addEntity("boom_particle");
+    particleEnt.addComponent<TransformComp>(pos);
+    particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
+    particleEnt.addGroup(Particles);
+    particles.emplace_back(&particleEnt);
+    if (checkWall(pos))
+        return true;
+    if (checkObstacle(pos))
+        return true;
+    checkPlayer(pos);
+    return false;
+}
+
+bool BombComp::checkObstacle(Vector3D pos)
+{
+    auto obstacles = entity->_mgr.getEntitiesInGroup(Obstacles);
+    for (auto &obstacle : obstacles) {
+        Vector3D obstaclePos = obstacle->getComponent<TransformComp>().position;
+        if (obstaclePos == pos) {
+            obstacle->destroy();
+            if (Random::Range(0, 1) == 1) {
+                //TODO : Spawn a random powerup here
+                std::cout << "Spawning powerup !" << std::endl;
+            }
+            std::cout << "hit obstacle !" << std::endl;
             return true;
         }
     }
     return false;
 }
 
-void BombComp::SpawnParticle(Vector3D &pos)
+bool BombComp::checkWall(Vector3D pos)
 {
-    auto &testBoom = entity->_mgr.addEntity("boom");
-    testBoom.addComponent<TransformComp>(pos);
-    testBoom.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    testBoom.addGroup(Particles);
-    particles.emplace_back(&testBoom);
+    auto walls = entity->_mgr.getEntitiesInGroup(Walls);
+    for (auto &wall : walls) {
+        Vector3D wallPos = wall->getComponent<TransformComp>().position;
+        if (wallPos == pos) {
+            std::cout << "Hit wall !" << std::endl;
+            return true;
+        }
+    }
+    return false;
 }
+
+void BombComp::checkPlayer(Vector3D pos)
+{
+    //for each players :
+    for (const auto &player : entity->_mgr.getEntitiesInGroup(
+        GroupLabel::Players)) {
+        auto &playerComp = player->getComponent<Player>();
+        if (pos ==
+            playerComp.getNearestBlockPos(
+                player->getComponent<TransformComp>().position)) {
+            std::cout << "Hit player !" << std::endl;
+//            playerComp.takeDamage();
+        }
+    }
+}
+
 

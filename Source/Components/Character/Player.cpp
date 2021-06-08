@@ -19,13 +19,15 @@ Player::Player(
       _mc(nullptr),
       _model(nullptr),
       _powerUp(NONE),
-      droppedBombs(0)
+      droppedBombs(0),
+      health(1)
 {
     _powerUpFilename[NONE] = "";
     _powerUpFilename[FIRE] = "rsc/Models/powerups/Fire.png";
     _powerUpFilename[SKATE] = "rsc/Models/powerups/Skate.png";
     _powerUpFilename[BOMB_UP] = "rsc/Models/powerups/Bomb_Up.png";
-    _powerUpFilename[SOFT_BLOCK_PASS] = "rsc/Models/powerups/Soft_Block_Pass.png";
+    _powerUpFilename[SOFT_BLOCK_PASS] =
+        "rsc/Models/powerups/Soft_Block_Pass.png";
 }
 
 void Player::init()
@@ -109,4 +111,17 @@ PowerUp Player::getPowerUp() const
 void Player::setPowerUp(PowerUp power_up)
 {
     _powerUp = power_up;
+}
+
+void Player::takeDamage()
+{
+    health--;
+    if (health <= 0) {
+        Die();
+    }
+}
+
+void Player::Die()
+{
+    std::cout << "PLAYER DED :)" << std::endl;
 }
