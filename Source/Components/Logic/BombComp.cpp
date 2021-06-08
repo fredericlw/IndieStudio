@@ -103,32 +103,38 @@ void BombComp::GenerateParticles()
     }
     pos.z = _transform->position.z;
 
-    /*auto mapPos = entity->_mgr.getEntByName("mapRoot")->getComponent<TransformComp>().position;
-    ECube flameCube(pos, Vector3D::One());
-    ECube wallCube(pos, Vector3D::One().Multiply(2));
-    Vector3D wallCubePos({0,0,0});
-    auto walls = entity->_mgr.getEntByName("mapRoot")->getComponent<MapComponent>().getWalls();
-    auto obstacles = entity->_mgr.getEntByName("mapRoot")->getComponent<MapComponent>().getObstacles();
     for (int i = 0; i < 3; i++) {
         pos.z += 2;
-        flameCube.setPos(pos);
-        if (checkCol(mapPos, flameCube, wallCube, wallCubePos, obstacles)) {
-
-
-            break;
-        }
-        if (checkCol(mapPos, flameCube, wallCube, wallCubePos, walls)) break;
         SpawnParticle(pos);
-    }*/
+        //check for barier
+        //if explosion breaka
+    }
+    pos.z = _transform->position.z;
+
+//    auto mapPos = entity->_mgr.getEntByName("mapRoot")->getComponent<TransformComp>().position;
+//    ECube flameCube(pos, Vector3D::One());
+//    ECube wallCube(pos, Vector3D::One().Multiply(2));
+//    Vector3D wallCubePos({0,0,0});
+//    auto walls = entity->_mgr.getEntByName("mapRoot")->getComponent<MapComponent>().getWalls();
+//    auto obstacles = entity->_mgr.getEntByName("mapRoot")->getComponent<MapComponent>().getObstacles();
+//    for (int i = 0; i < 3; i++) {
+//        pos.z += 2;
+//        flameCube.setPos(pos);
+//        if (checkCol(mapPos, flameCube, wallCube, wallCubePos, obstacles)) {
+//            break;
+//        }
+//        if (checkCol(mapPos, flameCube, wallCube, wallCubePos, walls)) break;
+//        SpawnParticle(pos);
+//    }
 }
 
 bool BombComp::checkCol(
     const Vector3D &mapPos, const ECube &flameCube, ECube &wallCube,
-    Vector3D &wallCubePos, std::vector<Vector2D> &walls
+    Vector3D &wallCubePos, std::vector<Entity *> walls
 ) const
 {
     for (const auto& wall : walls) {
-            wallCubePos = {(wall.x * 2) + mapPos.x, mapPos.y, (wall.y * 2) + mapPos.z};
+            wallCubePos = {(wall->getComponent<TransformComp>().position.x * 2) + mapPos.x, mapPos.y, (wall->getComponent<TransformComp>().position.y * 2) + mapPos.z};
             wallCube.setPos(wallCubePos);
         if (CubeCollider::CheckBoxOverLap(flameCube, wallCube)) {
             return true;
