@@ -24,7 +24,7 @@ void Manager::GenerateMap()
     auto &MapEntity = addEntity("mapRoot");
     auto &mapTransform =
 
-        MapEntity.addComponent<TransformComp>(Vector3D(-33, -28, -26));
+        MapEntity.addComponent<TransformComp>(Vector3D(-12, -30, -32));
     auto &mapComp = MapEntity.addComponent<MapComponent>( 7, 59);
     MapEntity.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
 
