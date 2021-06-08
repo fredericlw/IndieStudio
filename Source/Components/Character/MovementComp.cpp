@@ -11,7 +11,6 @@
 #include "raylib_encap/Math/CubeCollider.hpp"
 #include "Manager.hpp"
 
-
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)
     : Velocity(Vector3D::Zero()),
       _speed(BASESPEED)
@@ -33,7 +32,8 @@ void MovementComp::init()
     cube = &entity->getComponent<BasicCubeComp>();
     if (!cube) {
         std::cerr << "CUBE WAS NOT FOUND" << std::endl;
-        cube = &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
+        cube =
+            &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     }
 }
 
@@ -51,22 +51,23 @@ void MovementComp::update()
     bool collides = false;
     Vector3D nextPos = transform->position;
     nextPos.Add(Velocity.Clamp(1).Multiply(_speed));
-    //move collider cube to new p
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Walls)) {
-       BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
-       if ( cast && CubeCollider::CheckBoxOverLap(
-            cube->getCube(),
-            nextPos,
-            cast->getCube())) {
-           cube->stickCube(nextPos, cast->getCube());
-           //set nextpos to stick to collision cube
-           //next pos = makeplayerstick(nextpos, collicion cude)
-       }
+        BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
+        if (cast && CubeCollider::CheckBoxOverLap(
+            cube->getCube(), nextPos, cast->getCube())) {
+            cube->stickCube(nextPos, cast->getCube());
+        }
     }
-    //if cube collides, return
+    for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles)) {
+        BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
+        if (cast && CubeCollider::CheckBoxOverLap(
+            cube->getCube(), nextPos, cast->getCube())) {
+            cube->stickCube(nextPos, cast->getCube());
+        }
+    }
     transform->position = nextPos;
     if (Velocity != Vector3D::Zero()) {
-//        std::cout << "Player pos : " << transform->position << std::endl;
+        //        std::cout << "Player pos : " << transform->position << std::endl;
     }
 }
 

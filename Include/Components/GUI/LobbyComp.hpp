@@ -26,7 +26,7 @@ public:
     ListSelectorComp *ListSelector4;
     void AddListSelector();
     ListSelectorComp * addSel(
-        std::vector<std::string> &list, const std::string &entittyName,
+        std::vector<std::string> &list, const std::string &entityName,
         Colors colors, Vector2D pos, const std::string &printedText
     );
     void getSelection();

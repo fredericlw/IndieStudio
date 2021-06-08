@@ -27,14 +27,15 @@ void LobbyComp::AddListSelector()
 }
 
 ListSelectorComp *LobbyComp::addSel(
-    std::vector<std::string> &list, const std::string &entitityName,
+    std::vector<std::string> &list, const std::string &entityName,
     Colors colors,
     Vector2D pos, const std::string &printedText
 )
 {
-    auto &entitity = entity->_mgr.addEntity(entitityName);
+    auto &entitity = entity->_mgr.addEntity(entityName);
     entitity.addComponent<TransformComp>(pos);
     entitity.addGroup(GUI);
+    //todo : Show player model on top of selector (in a new entity >> new modelcomp)
     return &entitity
         .addComponent<ListSelectorComp>(
             list, printedText, colors);
