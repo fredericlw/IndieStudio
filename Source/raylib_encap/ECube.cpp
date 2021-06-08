@@ -36,9 +36,20 @@ const Vector3D &ECube::getPos() const
     return _pos;
 }
 
+void ECube::setPos(const Vector3D &pos)
+{
+    _pos = pos;
+}
+
 const Vector3D &ECube::getSize() const
 {
     return _size;
+}
+
+ECube::ECube(const Vector3D& pos, const Vector3D &size):
+    _pos(pos),
+    _size(size)
+{
 }
 
 //endregion

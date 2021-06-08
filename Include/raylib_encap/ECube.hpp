@@ -13,6 +13,7 @@
 class ECube {
 public:
     ECube();
+    ECube(const Vector3D& pos, const Vector3D& size);
     ~ECube();
     void draw(
         const Vector3D& pos, const Vector3D& size, Colors cubeColor, Colors wiresColor
@@ -22,6 +23,7 @@ private:
 public:
     const Vector3D &getPos() const;
     const Vector3D &getSize() const;
+    void setPos(const Vector3D &pos);
 private:
     Vector3D _size;
 };
