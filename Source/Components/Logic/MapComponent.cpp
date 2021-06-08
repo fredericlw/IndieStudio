@@ -28,11 +28,11 @@ void MapComponent::init()
     //generate walls
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
-        transform = &entity->addComponent<TransformComp>(0, -30, 0);
+        transform = &entity->addComponent<TransformComp>(-13, -28, -26);
     auto newEnt = &entity->_mgr.addEntity(
         "puto");
     newEnt->addGroup(GroupLabel::Walls);
-    newEnt->addComponent<TransformComp>(-11, -28, -9);
+    newEnt->addComponent<TransformComp>(transform->position);
     newEnt->addComponent<BasicCubeComp>(
         Vector3D::One().Multiply(2), Colors::RayWhite, Colors::Black);
     for (int x = 1; x < _size.x - 1; x += 2) {
