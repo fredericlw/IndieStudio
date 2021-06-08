@@ -74,6 +74,7 @@ public:
     void AddLobbyName();
     void AddOptionName();
     void AddHowToPlayName();
+    void AddHowToPlayRules();
 
     void loadHowToPlayScene();
     void AddListSelector();

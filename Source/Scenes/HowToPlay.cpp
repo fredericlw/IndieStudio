@@ -17,6 +17,7 @@ void Manager::loadHowToPlayScene()
 {
     addBackToHowToPlayButton();
     AddHowToPlayName();
+    AddHowToPlayRules();
 }
 
 void Manager::AddHowToPlayName() {
@@ -24,6 +25,13 @@ void Manager::AddHowToPlayName() {
     HowToPlayName.addComponent<TransformComp>(Vector2D::ScreenCenter().x, 0);
     HowToPlayName.addComponent<TextComp>("How to Play?", Black);
     HowToPlayName.addGroup(GUI);
+}
+
+void Manager::AddHowToPlayRules() {
+    auto &HowToPlayRules = addEntity("HowToPlayRules");
+    HowToPlayRules.addComponent<TransformComp>(Vector2D::ScreenCenter().x, Vector2D::ScreenCenter().y);
+    HowToPlayRules.addComponent<TextComp>("The rules of this game is to be the last alive", Black);
+    HowToPlayRules.addGroup(GUI);
 }
 
 void Manager::addBackToHowToPlayButton()
