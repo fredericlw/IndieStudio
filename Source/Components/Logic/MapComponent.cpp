@@ -10,11 +10,12 @@
 #include "ECS/Manager.hpp"
 
 MapComponent::MapComponent(
-    int num_walls, int num_obstacles
+    int num_walls, int num_obstacles, float cubesize
 )
     : _size(Vector2D(13, 11)),
       numWalls(num_walls),
-      numObstacles(num_obstacles)
+      numObstacles(num_obstacles),
+      cubesize(cubesize)
 {
 }
 
@@ -35,12 +36,12 @@ void MapComponent::init()
     newEnt->addComponent<TransformComp>(transform->position);
     newEnt->addComponent<BasicCubeComp>(
         Vector3D::One().Multiply(2), Colors::RayWhite, Colors::Black);
-    for (int x = 1; x < _size.x - 1; x += 2) {
-        for (int z = 1; z < _size.y - 1; z += 2) {
+    for (int x = cubesize; x < (_size.x - 1) * cubesize; x += static_cast<int>(cubesize)) {
+        for (int z = cubesize; z < (_size.y - 1) * cubesize; z += static_cast<int>(cubesize)) {
             auto newEnt = &entity->_mgr.addEntity(
                 "Wall:" + std::to_string(x) + ":" + std::to_string(z));
             newEnt->addGroup(GroupLabel::Walls);
-            newEnt->addComponent<TransformComp>(x, transform->position.y, z);
+            newEnt->addComponent<TransformComp>(x + transform->position.x, transform->position.y, transform->position.z + z);
             newEnt->addComponent<BasicCubeComp>(
                 Vector3D::One().Multiply(2), Colors::RayWhite, Colors::Black);
             Walls.emplace_back(newEnt);

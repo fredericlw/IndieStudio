@@ -13,7 +13,7 @@
 class MapComponent : public Component {
 public:
     explicit MapComponent(
-        int num_walls, int num_obstacles
+        int num_walls, int num_obstacles, float cubesize
     );
     ~MapComponent();
     void init() override;
@@ -29,6 +29,7 @@ private:
     std::vector<Entity *> Obstacles;
     int numWalls;
     int numObstacles;
+    float cubesize;
     TransformComp *transform;
 };
 
