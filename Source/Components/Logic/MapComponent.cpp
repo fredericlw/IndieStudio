@@ -111,7 +111,7 @@ void MapComponent::gen_walls()
             newEnt->addGroup(GroupLabel::Walls);
             newEnt->addComponent<TransformComp>(x, basePos.y, z);
             newEnt->addComponent<BasicCubeComp>(
-                Vector3D::One().Multiply(cubesize), White, Black);
+                Vector3D::One().Multiply(cubesize),  RayWhite, White);
         }
     }
 }
