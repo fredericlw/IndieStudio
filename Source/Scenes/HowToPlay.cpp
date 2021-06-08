@@ -16,6 +16,14 @@
 void Manager::loadHowToPlayScene()
 {
     addBackToHowToPlayButton();
+    AddHowToPlayName();
+}
+
+void Manager::AddHowToPlayName() {
+    auto &HowToPlayName = addEntity("HowToPlayName");
+    HowToPlayName.addComponent<TransformComp>(Vector2D::ScreenCenter().x, 0);
+    HowToPlayName.addComponent<TextComp>("How to Play?", Black);
+    HowToPlayName.addGroup(GUI);
 }
 
 void Manager::addBackToHowToPlayButton()
@@ -25,9 +33,6 @@ void Manager::addBackToHowToPlayButton()
     auto winSize = Window::GetWinSize();
     auto pos = Vector2D{winSize.x - size.x, winSize.y - size.y};
     auto &BackToGameBtnEnt = addEntity("BackToGameButton");
-    auto &textTest = addEntity("textTest");
-    textTest.addComponent<TextComp>("ceci est un text", Green);
-    textTest.addComponent<TransformComp>(size.x / 2, size.y / 2 , 0);
     BackToGameBtnEnt.addComponent<TransformComp>(pos);
     BackToGameBtnEnt.addComponent<ButtonComp>("BACK TO GAME", size);
     BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
@@ -37,5 +42,4 @@ void Manager::addBackToHowToPlayButton()
             }
     );
     BackToGameBtnEnt.addGroup(GUI);
-    textTest.addGroup(GUI);
 }
