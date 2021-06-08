@@ -31,6 +31,10 @@ private:
     int numObstacles;
     float cubesize;
     TransformComp *transform;
+    void place_root_visualizer();
+    void gen_walls();
+    void gen_obstacles();
+    void gen_floor();
 };
 
 #endif //MAPCOMPONENT_HPP
