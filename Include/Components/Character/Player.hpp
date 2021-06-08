@@ -36,12 +36,10 @@ private:
     MovementComp *_mc;
     ModelComp *_model;
     PowerUp _powerUp;
-    public:
-    void setPowerUp(PowerUp power_up);
-    private:
-
     void DoDropBomb();
     Vector3D getNearestBlockPos(Vector3D pos);
+public:
+    void setPowerUp(PowerUp power_up);
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

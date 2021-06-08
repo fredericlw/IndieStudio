@@ -29,7 +29,7 @@ void MapComponent::init()
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>(-13, -28, -26);
-//    place_root_visualizer();
+    //    place_root_visualizer();
     gen_floor();
     //generate walls
     gen_walls();
@@ -39,30 +39,40 @@ void MapComponent::init()
 
 void MapComponent::gen_obstacles()
 {
+    Vector3D maxPos(transform->position.x + (_size.x * cubesize) - cubesize,
+        transform->position.y,
+        transform->position.z + (_size.y * cubesize) - cubesize);
     for (int i = 0; i < numObstacles; ++i) {
         Vector3D pos = Vector3D::Zero();
         do {
-            pos.x = (float) Random::Range(0, (int) _size.x - 1);
-            pos.y = transform->position.y - 2;
-            if (pos.x == 0 || pos.x == _size.x - 1)
-                pos.z = (float) Random::Range(1, (int) _size.y - 2);
-            else
-                pos.z = (float) Random::Range(0, (int) _size.y - 1);
-        } while (std::find_if(
-            Walls.begin(), Walls.end(),
-            [pos](const Entity *ent) {
-                return ent->getComponent<TransformComp>().position == pos;
-            }) != Walls.end());
-        auto newEnt = &entity->_mgr.addEntity(
-            "Obstacle:" + std::to_string(pos.x) + ":" +
-                std::to_string(pos.z));
+            pos.x = transform->position.x + (Random::Range(0, _size.x - 1) * cubesize);
+            pos.y = transform->position.y;
+            pos.z = transform->position.z + (Random::Range(0, _size.y - 1) * cubesize);
+        } while (positionAlreadyExists(pos) || positionIsInCorner(pos));
+        std::cout << "pos : "<<pos << std::endl;
+        std::cout << "map pos : " << transform->position<<std::endl;
+        auto newEnt = &entity->_mgr.addEntity("Obstacle:" +
+            std::to_string(pos.x) + ":" + std::to_string(pos.z));
         newEnt->addGroup(GroupLabel::Obstacles);
-        newEnt->addComponent<TransformComp>(
-            pos.x, transform->position.y, pos.z);
+        newEnt->addComponent<TransformComp>(pos);
         newEnt->addComponent<BasicCubeComp>(
-            Vector3D::One().Multiply(2), RayWhite, Black);
+            Vector3D::One().Multiply(2), Gray, Black);
         Obstacles.emplace_back(newEnt);
     }
+}
+
+bool MapComponent::positionAlreadyExists(const Vector3D &pos)
+{
+    return (std::find_if(
+        Walls.begin(), Walls.end(),
+        [pos](const Entity *ent) {
+            return ent->getComponent<TransformComp>().position == pos;
+        }) != Walls.end())
+        &&
+        (std::find_if(Obstacles.begin(), Obstacles.end(),
+            [pos](const Entity *ent) {
+                return ent->getComponent<TransformComp>().position == pos;
+            }) != Obstacles.end());
 }
 
 void MapComponent::gen_walls()
@@ -106,7 +116,7 @@ void MapComponent::place_root_visualizer()
 {
     auto newEnt = &entity->_mgr.addEntity(
         "root_visualiser");
-    newEnt->addGroup(GroupLabel::Walls);
+    newEnt->addGroup(GroupLabel::Floor);
     newEnt->addComponent<TransformComp>(transform->position);
     newEnt->addComponent<BasicCubeComp>(
         Vector3D::One().Multiply(2), Green, Black);
@@ -130,4 +140,31 @@ const std::vector<Entity *> &MapComponent::getWalls() const
 const std::vector<Entity *> &MapComponent::getObstacles() const
 {
     return Obstacles;
+}
+
+bool MapComponent::positionIsInCorner(Vector3D pos)
+{
+    Vector3D maxPos(transform->position.x + (_size.x * cubesize) - cubesize,
+        transform->position.y,
+        transform->position.z + (_size.y * cubesize) - cubesize);
+    Vector3D origin = transform->position;
+    //upper left
+    if (pos.x == origin.x && pos.z == origin.z) return true;
+    if (pos.x == origin.x + cubesize && pos.z == origin.z) return true;
+    if (pos.x == origin.x && pos.z == origin.z + cubesize) return true;
+
+    //lower left
+    if (pos.x == origin.x && pos.z == maxPos.z) return true;
+    if (pos.x == origin.x+cubesize && pos.z == maxPos.z) return true;
+    if (pos.x == origin.x && pos.z == maxPos.z - cubesize) return true;
+    //lower right
+    if (pos.x == maxPos.x && pos.z == maxPos.z) return true;
+    if (pos.x == maxPos.x && pos.z == maxPos.z - cubesize) return true;
+    if (pos.x == maxPos.x - cubesize && pos.z == maxPos.z) return true;
+    //upper right
+    if (pos.x == maxPos.x && pos.z == origin.z) return true;
+    if (pos.x == maxPos.x - cubesize && pos.z == origin.z) return true;
+    if (pos.x == maxPos.x && pos.z == origin.z + cubesize) return true;
+
+    return false;
 }
