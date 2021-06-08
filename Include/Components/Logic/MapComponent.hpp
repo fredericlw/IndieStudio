@@ -35,6 +35,8 @@ private:
     void gen_walls();
     void gen_obstacles();
     void gen_floor();
+    bool positionAlreadyExists(const Vector3D &pos);
+    bool positionIsInCorner(Vector3D pos);
 };
 
 #endif //MAPCOMPONENT_HPP
