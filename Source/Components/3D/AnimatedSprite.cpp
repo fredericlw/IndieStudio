@@ -56,11 +56,11 @@ void AnimatedSprite::draw()
     Component::draw();
     if (!active) return;
     //2D version
-//        _sprite.drawInRect(Vector2D(transform->position.x, transform->position.y),
-//            frameRect);
+        _sprite.drawInRect(entity->_mgr.MainCam.WorldToScreen(transform->position),
+            frameRect);
     //3D version
-    entity->_mgr.MainCam.Begin3D();
-    _sprite.drawBillboardRect(entity->_mgr.MainCam, frameRect,
-        transform->position, {7,7}, White);
-    entity->_mgr.MainCam.End3D();
+//    entity->_mgr.MainCam.Begin3D();
+//    _sprite.drawBillboardRect(entity->_mgr.MainCam, frameRect,
+//        transform->position, {7,7}, White);
+//    entity->_mgr.MainCam.End3D();
 }

@@ -31,9 +31,7 @@ void MapComponent::init()
         transform = &entity->addComponent<TransformComp>(-13, -28, -26);
     //    place_root_visualizer();
     gen_floor();
-    //generate walls
     gen_walls();
-    //generate  obstacles
     gen_obstacles();
 }
 
@@ -63,9 +61,9 @@ void MapComponent::gen_obstacles()
     }
 }
 
+//will return true if pos is already taken by a wall or an obstacle
 bool MapComponent::positionAlreadyExists(const Vector3D &pos)
 {
-    //will return true if pos is already taken by a wall or an obstacle
     return (std::find_if(
         Walls.begin(), Walls.end(),
         [pos](const Entity *ent) {
@@ -90,8 +88,30 @@ void MapComponent::gen_walls()
             newEnt->addComponent<TransformComp>(x + transform->position.x,
                 transform->position.y, transform->position.z + z);
             newEnt->addComponent<BasicCubeComp>(
-                Vector3D::One().Multiply(2), RayWhite, Black);
+                Vector3D::One().Multiply(cubesize), RayWhite, Black);
             Walls.emplace_back(newEnt);
+        }
+    }
+    //outer walls
+
+    Vector3D basePos(transform->position);
+    basePos.x -= cubesize;
+    basePos.z -= cubesize;
+    for (float z = basePos.z;
+        z <= basePos.z + ((_size.y + 1) * cubesize); z += cubesize) {
+        for (float x = basePos.x;
+            x <= basePos.x + ((_size.x + 1) * cubesize); x += cubesize) {
+            if (z > basePos.z && z < basePos.z + ((_size.y + 1) * cubesize)
+                && x > basePos.x &&
+                x < basePos.x + ((_size.x + 1) * cubesize)) {
+                continue;
+            }
+            auto newEnt = &entity->_mgr.addEntity(
+                "root_visualiser");
+            newEnt->addGroup(GroupLabel::Walls);
+            newEnt->addComponent<TransformComp>(x, basePos.y, z);
+            newEnt->addComponent<BasicCubeComp>(
+                Vector3D::One().Multiply(cubesize),  RayWhite, White);
         }
     }
 }
@@ -112,7 +132,7 @@ void MapComponent::gen_floor()
             newEnt->addGroup(GroupLabel::Floor);
             newEnt->addComponent<TransformComp>(pos);
             newEnt->addComponent<BasicCubeComp>(
-                Vector3D::One().Multiply(2), Black, Black);
+                Vector3D::One().Multiply(cubesize), Black, Black);
         }
     }
 }
@@ -124,7 +144,7 @@ void MapComponent::place_root_visualizer()
     newEnt->addGroup(GroupLabel::Floor);
     newEnt->addComponent<TransformComp>(transform->position);
     newEnt->addComponent<BasicCubeComp>(
-        Vector3D::One().Multiply(2), Green, Black);
+        Vector3D::One().Multiply(cubesize), Green, Black);
 }
 
 void MapComponent::update()

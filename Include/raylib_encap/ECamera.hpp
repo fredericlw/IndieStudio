@@ -8,6 +8,7 @@
 #define ECAMERA_HPP
 
 #include <raylib.h>
+#include <raylib_encap/Math/Vector2D.hpp>
 
 class ECamera : public Camera3D {
 public:
@@ -16,6 +17,7 @@ public:
     void Begin3D();
     void End3D();
     Matrix getMatrix();
+    Vector2D WorldToScreen(Vector3D pos);
 };
 
 #endif //ECAMERA_HPP
