@@ -72,6 +72,7 @@ public:
     void AddMenuButton();
     void AddGameButton();
     void AddLobbyName();
+    void AddOptionName();
     void AddHowToPlayName();
 
     void loadHowToPlayScene();

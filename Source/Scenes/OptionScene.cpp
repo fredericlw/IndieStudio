@@ -16,6 +16,14 @@
 void Manager::loadOptionScene()
 {
     addBackToGameOptionBtn();
+    AddOptionName();
+}
+
+void Manager::AddOptionName() {
+    auto &OptionName = addEntity("HowToPlayName");
+    OptionName.addComponent<TransformComp>(Vector2D::ScreenCenter().x, 0);
+    OptionName.addComponent<TextComp>("Settings", Black);
+    OptionName.addGroup(GUI);
 }
 
 void Manager::addBackToGameOptionBtn()
