@@ -36,7 +36,7 @@ void Player::init()
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
     _model =
         &entity->addComponent<ModelComp>("./rsc/Models/mrfixit.iqm",
-            _color,.5);
+            _color, .5);
     _model->rotate({90, 0, 0});
 }
 
@@ -44,7 +44,7 @@ void Player::update()
 {
     Component::update();
     if (_mc->getInputModule()->GetButtonPressed(DropBomb)
-    && (droppedBombs== 0)) {
+        && (droppedBombs == 0)) {
         DoDropBomb();
     }
 }
@@ -78,22 +78,17 @@ Vector3D Player::getNearestBlockPos(Vector3D pos)
     res.x = std::nearbyint(pos.x);
     res.z = std::nearbyint(pos.z);
 
-    if (static_cast<int>(res.x) % 2 == 0)
-    {
-        if (res.x > pos.x)
-        {
+    if (static_cast<int>(res.x) % 2 == 0) {
+        if (res.x > pos.x) {
             res.x -= 1;
-        }
-        else {
+        } else {
             res.x += 1;
         }
     }
-    if (static_cast<int>(res.z) % 2 == 0)
-    {
+    if (static_cast<int>(res.z) % 2 == 0) {
         if (res.z > pos.z) {
             res.z -= 1;
-        }
-        else {
+        } else {
             res.z += 1;
         }
     }

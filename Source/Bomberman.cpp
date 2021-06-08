@@ -18,7 +18,7 @@ Bomberman::Bomberman(bool fullscreen)
       mgr(std::make_shared<Manager>())
 {
     auto audioDevice = new EAudio;
-    mgr->loadScene(Manager::MainMenu); //todo : fix scene changing segfault
+    mgr->loadScene(Manager::MainMenu);
     GameLoop();
 }
 
@@ -39,7 +39,7 @@ void Bomberman::GameLoop()
         mgr->setNextSceneToLoad(Manager::None);
         GameLoop();
     }
-}//TODO set manger.nextscenetype to none on constru
+}
 
 Bomberman::~Bomberman()
 {

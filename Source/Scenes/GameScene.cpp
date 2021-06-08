@@ -15,7 +15,7 @@ void Manager::loadGameScene()
     auto myEnt = getEntByName("gamelogic");
     myEnt->addComponent<GameLogicComp>();
 
-    //TODO PUT VECTOR 3D ROTATE IN TRANSFORM
+    //TODO PUT VECTOR3D::ROTATE() IN TRANSFORM
 }
 
 void Manager::GenerateMap()

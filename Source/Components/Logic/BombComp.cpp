@@ -72,18 +72,33 @@ void BombComp::explode()
 
 void BombComp::GenerateParticles()
 {
-    //TODO : this is bad code pls fix
-    Vector3D pos(_transform->position);
-
-    SpawnParticle(pos);
-    spreadExplosion(pos, Right);
-    spreadExplosion(pos, Left);
-    spreadExplosion(pos, Up);
-    spreadExplosion(pos, Down);
+    SpawnParticle(_transform->position);
+    spreadExplosion(Right);
+    spreadExplosion(Left);
+    spreadExplosion(Up);
+    spreadExplosion(Down);
 }
 
-void BombComp::spreadExplosion(Vector3D &pos, Way way)
+bool BombComp::SpawnParticle(Vector3D &pos)
 {
+    //will return true if hit a wall or an obstacle (hurting players and destroying obstacle)
+    checkPlayer(pos);
+    if (checkWall(pos))
+        return true;
+    auto &particleEnt = entity->_mgr.addEntity("boom_particle");
+    particleEnt.addComponent<TransformComp>(pos);
+    //todo: if on obstacle, change color
+    particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
+    particleEnt.addGroup(Particles);
+    particles.emplace_back(&particleEnt);
+    if (checkObstacle(pos))
+        return true;
+    return false;
+}
+
+void BombComp::spreadExplosion(Way way)
+{
+    Vector3D pos(_transform->position);
     for (int i = 0; i < 3; i++) {
         switch (way) {
         case Left:
@@ -101,32 +116,16 @@ void BombComp::spreadExplosion(Vector3D &pos, Way way)
         }
         if (SpawnParticle(pos)) break;
     }
-    switch (way) {
-    case Left:
-    case Right:
-        pos.x = _transform->position.x;
-        break;
-    case Down:
-    case Up:
-        pos.z = _transform->position.z;
-        break;
-    }
-}
-
-bool BombComp::SpawnParticle(Vector3D &pos)
-{
-    //will return true if hit a wall or an obstacle (hurting players and destroying obstacle)
-    if (checkWall(pos))
-        return true;
-    auto &particleEnt = entity->_mgr.addEntity("boom_particle");
-    particleEnt.addComponent<TransformComp>(pos);
-    particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    particleEnt.addGroup(Particles);
-    particles.emplace_back(&particleEnt);
-    if (checkObstacle(pos))
-        return true;
-    checkPlayer(pos);
-    return false;
+//    switch (way) {
+//    case Left:
+//    case Right:
+//        pos.x = _transform->position.x;
+//        break;
+//    case Down:
+//    case Up:
+//        pos.z = _transform->position.z;
+//        break;
+//    }
 }
 
 bool BombComp::checkObstacle(Vector3D pos)

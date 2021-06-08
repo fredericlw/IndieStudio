@@ -31,7 +31,7 @@ private:
     std::vector<Entity *> particles;
     Player *_owner;
     ESound *_explosion_sound;
-
+    enum Way{Left, Down, Up, Right};
     void GenerateParticles();
     bool SpawnParticle(Vector3D &pos);
     bool hasExploded;
@@ -43,6 +43,7 @@ private:
     void checkPlayer(Vector3D pos);
     bool checkWall(Vector3D pos);
     bool checkObstacle(Vector3D pos);
+    void spreadExplosion(Way way);
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP
