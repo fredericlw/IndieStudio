@@ -76,46 +76,53 @@ void BombComp::GenerateParticles()
     Vector3D pos(_transform->position);
 
     SpawnParticle(pos);
-    //right
+    spreadExplosion(pos, Right);
+    spreadExplosion(pos, Left);
+    spreadExplosion(pos, Up);
+    spreadExplosion(pos, Down);
+}
+
+void BombComp::spreadExplosion(Vector3D &pos, Way way)
+{
     for (int i = 0; i < 3; i++) {
-        pos.x += 2;
+        switch (way) {
+        case Left:
+            pos.x -= 2;
+            break;
+        case Down:
+            pos.z += 2;
+            break;
+        case Up:
+            pos.z -= 2;
+            break;
+        case Right:
+            pos.x += 2;
+            break;
+        }
         if (SpawnParticle(pos)) break;
     }
-    pos.x = _transform->position.x;
-
-    //left
-    for (int i = 0; i < 3; i++) {
-        pos.x -= 2;
-        if (SpawnParticle(pos)) break;
+    switch (way) {
+    case Left:
+    case Right:
+        pos.x = _transform->position.x;
+        break;
+    case Down:
+    case Up:
+        pos.z = _transform->position.z;
+        break;
     }
-    pos.x = _transform->position.x;
-
-    //up
-    for (int i = 0; i < 3; i++) {
-        pos.z -= 2;
-        if (SpawnParticle(pos)) break;
-    }
-    pos.z = _transform->position.z;
-
-    //down
-    for (int i = 0; i < 3; i++) {
-        pos.z += 2;
-        if (SpawnParticle(pos)) break;
-    }
-    pos.z = _transform->position.z;
-
 }
 
 bool BombComp::SpawnParticle(Vector3D &pos)
 {
     //will return true if hit a wall or an obstacle (hurting players and destroying obstacle)
+    if (checkWall(pos))
+        return true;
     auto &particleEnt = entity->_mgr.addEntity("boom_particle");
     particleEnt.addComponent<TransformComp>(pos);
     particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     particleEnt.addGroup(Particles);
     particles.emplace_back(&particleEnt);
-    if (checkWall(pos))
-        return true;
     if (checkObstacle(pos))
         return true;
     checkPlayer(pos);
@@ -156,14 +163,12 @@ bool BombComp::checkWall(Vector3D pos)
 void BombComp::checkPlayer(Vector3D pos)
 {
     //for each players :
-    for (const auto &player : entity->_mgr.getEntitiesInGroup(
-        GroupLabel::Players)) {
+    for (const auto &player : entity->_mgr.getEntitiesInGroup(Players)) {
         auto &playerComp = player->getComponent<Player>();
-        if (pos ==
-            playerComp.getNearestBlockPos(
-                player->getComponent<TransformComp>().position)) {
+        auto &playerPos = player->getComponent<TransformComp>().position;
+        if (pos == playerComp.getNearestBlockPos(playerPos)) {
             std::cout << "Hit player !" << std::endl;
-//            playerComp.takeDamage();
+            //            playerComp.takeDamage();
         }
     }
 }
