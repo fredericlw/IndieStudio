@@ -30,7 +30,7 @@ void Manager::AddHowToPlayName() {
 void Manager::AddHowToPlayRules() {
     auto &HowToPlayRules = addEntity("HowToPlayRules");
     HowToPlayRules.addComponent<TransformComp>(Vector2D::ScreenCenter().x, Vector2D::ScreenCenter().y - 200);
-    HowToPlayRules.addComponent<TextComp>("Pressing a button will make Bomberman drop a bomb at his\nfeet. This bomb will pulse for a few seconds and then\nexplode, shooting flames horizontally and vertically. The\ngame revolves around the idea of using these bomb blasts\nto destroy walls and enemies. If the flame from any bomb\nhits any character it will injure or kill them.\nThe goal of this game is to be the last alive.", Black);
+    HowToPlayRules.addComponent<TextComp>("Pressing a button will make Bomberman drop a bomb at his\nfeet. This bomb will pulse for a few seconds and then\nexplode, shooting flames horizontally and vertically. The\ngame revolves around the idea of using these bomb blasts\nto destroy walls and enemies. If the flame from any bomb\nhits any character it will injure or kill them.\nThe goal of this game is to be the last alive", Black);
     HowToPlayRules.addGroup(GUI);
 }
 
