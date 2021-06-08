@@ -27,9 +27,8 @@ void Manager::addBackToHowToPlayButton()
     auto &BackToGameBtnEnt = addEntity("BackToGameButton");
     auto &textTest = addEntity("textTest");
     textTest.addComponent<TextComp>("ceci est un text", Green);
-    textTest.addComponent<TransformComp>(200, 200 , 200);
+    textTest.addComponent<TransformComp>(size.x / 2, size.y / 2 , 0);
     BackToGameBtnEnt.addComponent<TransformComp>(pos);
-    BackToGameBtnEnt.addComponent<OptionComp>();
     BackToGameBtnEnt.addComponent<ButtonComp>("BACK TO GAME", size);
     BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
             [this]() {
