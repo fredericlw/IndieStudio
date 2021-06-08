@@ -65,6 +65,7 @@ void MapComponent::gen_obstacles()
 
 bool MapComponent::positionAlreadyExists(const Vector3D &pos)
 {
+    //will return true if pos is already taken by a wall or an obstacle
     return (std::find_if(
         Walls.begin(), Walls.end(),
         [pos](const Entity *ent) {
@@ -148,6 +149,7 @@ const std::vector<Entity *> &MapComponent::getObstacles() const
 
 bool MapComponent::positionIsInCorner(Vector3D pos)
 {
+    //returns true if pos is blocking player spawn zone
     Vector3D maxPos(transform->position.x + (_size.x * cubesize) - cubesize,
         transform->position.y,
         transform->position.z + (_size.y * cubesize) - cubesize);
