@@ -60,7 +60,7 @@ void Player::DoDropBomb()
     droppedBombs++;
     auto curPos = entity->getComponent<TransformComp>().position;
     auto &bombEnt = entity->_mgr.addEntity("bomb");
-    bombEnt.addComponent<TransformComp>(getNearestBlockPos(curPos));
+    bombEnt.addComponent<TransformComp>(getNearestBlockPos(curPos.Add({1, 0, 1})));
     bombEnt.addComponent<BombComp>(_color, this);
     bombEnt.addGroup(Bombs);
 }
