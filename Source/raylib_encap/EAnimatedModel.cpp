@@ -10,9 +10,8 @@ EAnimatedModel::EAnimatedModel(
     const std::string &path, EModel &model
 )
     : animCount(0),
-        animations(LoadModelAnimations(path.c_str(), &animCount)),
+      animations(LoadModelAnimations(path.c_str(), &animCount)),
       model(&model)
-
 {
     std::cout << "ANIM VALID ? : "
         << IsModelAnimationValid(model.model, animations[0]) << std::endl;
@@ -35,6 +34,7 @@ EAnimatedModel::~EAnimatedModel()
 
 void EAnimatedModel::draw(Vector3D pos)
 {
-    DrawModelEx(model->model, pos, {1,0,0}, -90, Vector3D::One(), WHITE);
+    DrawModelEx(model->model, pos, {1, 0, 0}, -90,
+        Vector3D::One().Multiply(model->scale), WHITE);
     GetFrameTime();
 }
