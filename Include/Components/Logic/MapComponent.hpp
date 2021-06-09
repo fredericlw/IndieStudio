@@ -22,9 +22,6 @@ public:
 private:
     Vector2D _size;
     std::vector<Entity *> Walls;
-public:
-    const std::vector<Entity *> & getWalls() const;
-    const std::vector<Entity *> &getObstacles() const;
 private:
     std::vector<Entity *> Obstacles;
     int numWalls;

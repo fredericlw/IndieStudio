@@ -19,7 +19,8 @@ enum Colors {
     DarkBlue,
     DarkGray,
     Black,
-    Blue
+    Blue,
+    Purple
 };
 
 static Color GetRaylibColor(Colors color){
@@ -44,6 +45,8 @@ static Color GetRaylibColor(Colors color){
         return BLACK;
     case Blue:
         return BLUE;
+    case Purple:
+        return PURPLE;
     default:
         std::cout << "Bad color" << std::endl;
         return WHITE;

@@ -52,13 +52,10 @@ void BombComp::update()
         explode();
     }
     if (hasExploded && _curParticleScale > 0.f) {
-        std::cout << "SHOULD FADE OUT" << std::endl;
-//        _curParticleScale -= 0.001f;
         clock_t current_clock = clock() - _particleStartTime;
         float current_time = (float)current_clock / CLOCKS_PER_SEC;
         _curParticleScale =
                     Easing::LinearOut(current_time, _baseParticleSize, 0, .3f);
-        std::cout << "cur scale "<< _curParticleScale << std::endl;
         for (auto& particle : particles) {
             particle->getComponent<BasicCubeComp>().SetSizeCentered(
                 _curParticleScale);

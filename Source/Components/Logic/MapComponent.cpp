@@ -29,7 +29,7 @@ void MapComponent::init()
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>(-13, -28, -26);
-    //    place_root_visualizer();
+//        place_root_visualizer();
     gen_floor();
     gen_walls();
     gen_obstacles();
@@ -89,6 +89,7 @@ void MapComponent::gen_walls()
                 transform->position.y, transform->position.z + z);
             newEnt->addComponent<BasicCubeComp>(
                 Vector3D::One().Multiply(cubesize), RayWhite, Black);
+//            newEnt->addComponent<ModelComp>("./rsc/Models/StoneCube/StoneCube.glb",  1);
             Walls.emplace_back(newEnt);
         }
     }
@@ -143,8 +144,11 @@ void MapComponent::place_root_visualizer()
         "root_visualiser");
     newEnt->addGroup(GroupLabel::Floor);
     newEnt->addComponent<TransformComp>(transform->position);
-    newEnt->addComponent<BasicCubeComp>(
-        Vector3D::One().Multiply(cubesize), Green, Black);
+//    newEnt->addComponent<BasicCubeComp>(
+//        Vector3D::One().Multiply(cubesize), Green, Black);
+std::cout << "Loading stone cube" << std::endl;
+    auto &comp = newEnt->addComponent<ModelComp>("./rsc/Models/StoneCube/StoneCube.glb",  1);
+
 }
 
 void MapComponent::update()
@@ -155,16 +159,6 @@ void MapComponent::update()
 void MapComponent::draw()
 {
     Component::draw();
-}
-
-const std::vector<Entity *> &MapComponent::getWalls() const
-{
-    return Walls;
-}
-
-const std::vector<Entity *> &MapComponent::getObstacles() const
-{
-    return Obstacles;
 }
 
 bool MapComponent::positionIsInCorner(Vector3D pos)
