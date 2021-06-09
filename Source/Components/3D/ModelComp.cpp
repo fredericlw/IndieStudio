@@ -94,3 +94,8 @@ Mesh ModelComp::getMesh()
     return model.getMesh();
 }
 
+Material ModelComp::getMat()
+{
+    return model.model.materials[0];
+}
+

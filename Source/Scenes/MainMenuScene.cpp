@@ -90,7 +90,7 @@ void Manager::AddMenuLogo()
     auto &logoEntity = addEntity("MainMenuLogo");
     //Add Components to it
     logoEntity.addComponent<TransformComp>(50, 0);
-    logoEntity.addComponent<Sprite2D>("rsc/mainlogo.png");
+    logoEntity.addComponent<Sprite2D>("Assets/mainlogo.png");
     //Modify some components
     int ypos = GetScreenHeight() -
         logoEntity.getComponent<Sprite2D>().height - 430;

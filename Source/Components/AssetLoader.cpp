@@ -7,15 +7,15 @@
 #include "AssetLoader.hpp"
 
 AssetLoader::AssetLoader()
-    : PlayerModel("./rsc/Models/mrfixit.iqm", .5),
-      StoneCubeModel("./rsc/Models/StoneCube/StoneCube.glb", 1),
-      BombModel("./rsc/Models/bomb/Bombout.obj", 6),
-      ObstacleModel("./rsc/Models/Obstacle/Obstacle.glb", 1),
-      ExplosionModel("./rsc/Models/Explosion/Explosion.glb", 1.5),
-      ExplosionAnim("./rsc/Models/Explosion/Explosion.glb", ExplosionModel),
-      FloorModel("./rsc/Models/Floor/floor.glb", 1)
-//      ExplosionModel("./rsc/Models/Explosion/Explosionout.iqm", 1),
-//      ExplosionAnim("./rsc/Models/Explosion/Explosionout.iqm", ExplosionModel)
+    : PlayerModel("./Assets/Models/Bomberman/Bomberman.glb", 1),
+      StoneCubeModel("./Assets/Models/StoneCube/StoneCube.glb", 1),
+      BombModel("./Assets/Models/bomb/Bombout.obj", 6),
+      ObstacleModel("./Assets/Models/Obstacle/Obstacle.glb", 1),
+      ExplosionModel("./Assets/Models/Explosion/Explosion.glb", 1.5),
+      ExplosionAnim("./Assets/Models/Explosion/Explosion.glb", ExplosionModel),
+      FloorModel("./Assets/Models/Floor/floorUnit.glb", 1)
+//      ExplosionModel("./Assets/Models/Explosion/Explosionout.iqm", 1),
+//      ExplosionAnim("./Assets/Models/Explosion/Explosionout.iqm", ExplosionModel)
 {
 }
 

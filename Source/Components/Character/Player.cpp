@@ -24,11 +24,11 @@ Player::Player(
       health(1)
 {
     _powerUpFilename[NONE] = "";
-    _powerUpFilename[FIRE] = "rsc/Models/powerups/Fire.png";
-    _powerUpFilename[SKATE] = "rsc/Models/powerups/Skate.png";
-    _powerUpFilename[BOMB_UP] = "rsc/Models/powerups/Bomb_Up.png";
+    _powerUpFilename[FIRE] = "Assets/Models/powerups/Fire.png";
+    _powerUpFilename[SKATE] = "Assets/Models/powerups/Skate.png";
+    _powerUpFilename[BOMB_UP] = "Assets/Models/powerups/Bomb_Up.png";
     _powerUpFilename[SOFT_BLOCK_PASS] =
-        "rsc/Models/powerups/Soft_Block_Pass.png";
+        "Assets/Models/powerups/Soft_Block_Pass.png";
 }
 
 void Player::init()
@@ -36,13 +36,13 @@ void Player::init()
     Component::init();
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
     //    _model =
-    //        &entity->addComponent<ModelComp>("./rsc/Models/mrfixit.iqm",
+    //        &entity->addComponent<ModelComp>("./Assets/Models/mrfixit.iqm",
     //            _color, .5);
     auto& assets = entity->_mgr.getEntByName(
         "gamelogic")->getComponent<AssetLoader>();
     _model =
-        &entity->addComponent<ModelComp>(assets.PlayerModel, _color);
-    _model->rotate({90, 0, 0});
+        &entity->addComponent<ModelComp>(assets.PlayerModel, White);
+    _model->rotate({-90, 0, 0});
 }
 
 void Player::update()

@@ -29,7 +29,7 @@ void MapComponent::init()
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>(-12, -28, -20);
-//    place_root_visualizer();
+    //    place_root_visualizer();
     gen_floor();
     gen_walls();
     gen_obstacles();
@@ -127,33 +127,37 @@ void MapComponent::gen_walls()
 
 void MapComponent::gen_floor()
 {
-    /*for (int x = 0;
+    int count = 0;
+    for (int x = 0;
         x < (_size.x) * cubesize;
         x += static_cast<int>(cubesize)) {
         for (int z = 0;
             z < (_size.y) * cubesize;
             z += static_cast<int>(cubesize)) {
             Vector3D pos(x + transform->position.x,
-                transform->position.y - cubesize,
+                transform->position.y - 1,
                 transform->position.z + z);
             auto newEnt = &entity->_mgr.addEntity("Wall:" +
                 std::to_string(x) + ":" + std::to_string(z));
             newEnt->addGroup(GroupLabel::Floor);
             newEnt->addComponent<TransformComp>(pos);
-            newEnt->addComponent<BasicCubeComp>(
-                Vector3D::One().Multiply(cubesize), Black, Black);
+            //            newEnt->addComponent<BasicCubeComp>(
+            //                Vector3D::One().Multiply(cubesize), Black, Black);
+            auto &assets = entity->_mgr.getEntByName(
+                "gamelogic")->getComponent<AssetLoader>();
+            newEnt->addComponent<ModelComp>(assets.FloorModel,
+                (count % 2) ? White : Gray);
+            count++;
         }
-    }*/
-    Vector3D pos(transform->position);
-    pos.y -= 1;
-    pos.x += (_size.x / 2) + 6;// * cubesize;
-    pos.z += (_size.y / 2) + 3;// * cubesize;
-    auto &assets = entity->_mgr.getEntByName(
-        "gamelogic")->getComponent<AssetLoader>();
-    auto newEnt = &entity->_mgr.addEntity("floor");
-    newEnt->addGroup(GroupLabel::Floor);
-    newEnt->addComponent<TransformComp>(pos);
-    newEnt->addComponent<ModelComp>(assets.FloorModel);
+    }
+    //    Vector3D pos(transform->position);
+    //    pos.y -= 1;
+    //    pos.x += (_size.x / 2) + 6;// * cubesize;
+    //    pos.z += (_size.y / 2) + 3;// * cubesize;
+    //    auto newEnt = &entity->_mgr.addEntity("floor");
+    //    newEnt->addGroup(GroupLabel::Floor);
+    //    newEnt->addComponent<TransformComp>(pos);
+    //    newEnt->addComponent<ModelComp>(assets.FloorModel);
 
 }
 
@@ -167,7 +171,7 @@ void MapComponent::place_root_visualizer()
     //        Vector3D::One().Multiply(cubesize), Green, Black);
     std::cout << "Loading stone cube" << std::endl;
     //    auto &comp =
-    //        newEnt->addComponent<ModelComp>("./rsc/Models/StoneCube/StoneCube.glb",
+    //        newEnt->addComponent<ModelComp>("./Assets/Models/StoneCube/StoneCube.glb",
     //            1);
     auto &assets = entity->_mgr.getEntByName(
         "gamelogic")->getComponent<AssetLoader>();

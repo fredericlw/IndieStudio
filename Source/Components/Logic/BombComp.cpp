@@ -29,7 +29,7 @@ BombComp::BombComp(Colors color, Player *owner)
       _particleStartTime(0)
 {
     _curParticleScale = _baseParticleSize;
-    _explosion_sound = new ESound("rsc/sounds/explosion.wav");
+    _explosion_sound = new ESound("Assets/sounds/explosion.wav");
 }
 
 void BombComp::init()
@@ -110,7 +110,7 @@ bool BombComp::SpawnParticle(Vector3D &pos)
     auto &cube =
         particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2),
             isOnObstacle ? Green : Red).shouldDraw= false;
-//    particleEnt.addComponent<AnimatedSprite>("./rsc/explosion.png", Vector2D{5, 5});
+//    particleEnt.addComponent<AnimatedSprite>("./Assets/explosion.png", Vector2D{5, 5});
     auto &assets = entity->_mgr.getEntByName(
         "gamelogic")->getComponent<AssetLoader>();
     auto &modelComp = particleEnt.addComponent<ModelComp>(assets.ExplosionModel);
