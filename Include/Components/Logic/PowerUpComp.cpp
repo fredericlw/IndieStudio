@@ -16,7 +16,7 @@ PowerUpComp::PowerUpComp()
     : type((PowerUpType)Random::Range(NONE+1, ENUM_END-1))
 {
     std::cout << "POWERUP CTOR ========================================" << std::endl;
-
+    std::cout << "Type : " << type << std::endl;
 }
 
 PowerUpComp::~PowerUpComp()
@@ -40,7 +40,7 @@ void PowerUpComp::init()
         std::cerr << "POWERUP ERR : BAD POWERUP TYPE" << std::endl;
         break;
     case FIREUP:
-        model = &entity->addComponent<ModelComp>(assets.FullFireModel);
+        model = &entity->addComponent<ModelComp>(assets.FireUpModel);
         break;
     case SKATE:
         model = &entity->addComponent<ModelComp>(assets.SkateModel);

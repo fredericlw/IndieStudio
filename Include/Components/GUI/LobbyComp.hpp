@@ -34,6 +34,10 @@ public:
     EInputType sel2;
     EInputType sel3;
     EInputType sel4;
+    ModelComp *p1Model;
+    ModelComp *p2Model;
+    ModelComp *p3Model;
+    ModelComp *p4Model;
 };
 
 #endif //LOBBYCOMP_HPP

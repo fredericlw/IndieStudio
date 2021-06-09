@@ -12,7 +12,6 @@ void Manager::loadGameScene()
 {
     //warning : Keep this order !
     auto gl = getEntByName("gamelogic");
-    gl->addComponent<AssetLoader>();
     GenerateMap();
     gl->addComponent<GameLogicComp>();
 }

@@ -11,8 +11,9 @@
 #include "Components/Components.h"
 
 void Manager::loadLobbyScene() {
-    auto &lobby = addEntity("gamelogic");
-    lobby.addComponent<LobbyComp>();
+    auto &gl = addEntity("gamelogic");
+    gl.addComponent<AssetLoader>();
+    gl.addComponent<LobbyComp>();
     AddMenuButton();
     AddGameButton();
     AddLobbyName();
