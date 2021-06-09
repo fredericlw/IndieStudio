@@ -23,6 +23,10 @@ public:
     EModel ExplosionModel;
     EAnimatedModel ExplosionAnim;
     EModel FloorModel;
+    EModel FireupModel;
+    EModel BombupModel;
+    EModel SkateModel;
+    EModel SoftBlockPassModel;
 };
 
 #endif //ASSETLOADER_HPP

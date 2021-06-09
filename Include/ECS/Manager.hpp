@@ -19,7 +19,8 @@ enum GroupLabel{
     Bombs,
     Players,
     Particles,
-    GUI
+    GUI,
+    PowerUps
 };
 
 class Manager {

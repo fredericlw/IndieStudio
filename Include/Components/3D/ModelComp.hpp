@@ -34,6 +34,10 @@ private:
     float _baseScale;
     Colors _color;
     bool shouldDrawColor;
+    Vector3D Offset;
+public:
+    const Vector3D &getOffset() const;
+    void setOffset(const Vector3D &offset);
 };
 
 #endif //MODELCOMP_HPP

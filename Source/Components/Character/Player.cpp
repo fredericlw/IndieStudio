@@ -99,12 +99,12 @@ Vector3D Player::getNearestBlockPos(Vector3D pos)
     return res;
 }
 
-PowerUp Player::getPowerUp() const
+PowerUpType Player::getPowerUp() const
 {
     return _powerUp;
 }
 
-void Player::setPowerUp(PowerUp power_up)
+void Player::setPowerUp(PowerUpType power_up)
 {
     _powerUp = power_up;
 }

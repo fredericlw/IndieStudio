@@ -25,7 +25,7 @@ class PlayerHUD : public Component {
     bool hovering;
     Vector2D size;
     ERect _rect;
-    PowerUp _lastPowerup;
+    PowerUpType _lastPowerup;
     TransformComp *transform;
     Entity *_PowerUpDisplay;
     std::vector<std::function<void()>> EventFuncs;

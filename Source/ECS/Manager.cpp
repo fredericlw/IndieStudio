@@ -24,6 +24,7 @@ void Manager::draw()
     auto &walls(getEntitiesInGroup(Walls));
     auto &obstacles(getEntitiesInGroup(Obstacles));
     auto &bombs(getEntitiesInGroup(Bombs));
+    auto &powerups(getEntitiesInGroup(PowerUps));
     auto &players(getEntitiesInGroup(Players));
     auto &particles(getEntitiesInGroup(Particles));
     auto &guiEnts(getEntitiesInGroup(GUI));
@@ -38,6 +39,8 @@ void Manager::draw()
     for (auto &ent : obstacles)
         ent->draw();
     for (auto &ent : bombs)
+        ent->draw();
+    for (auto &ent : powerups)
         ent->draw();
     for (auto &ent : players)
         ent->draw();

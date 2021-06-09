@@ -135,7 +135,7 @@ void MapComponent::gen_floor()
             z < (_size.y) * cubesize;
             z += static_cast<int>(cubesize)) {
             Vector3D pos(x + transform->position.x,
-                transform->position.y - 1,
+                transform->position.y - 0.8,
                 transform->position.z + z);
             auto newEnt = &entity->_mgr.addEntity("Wall:" +
                 std::to_string(x) + ":" + std::to_string(z));

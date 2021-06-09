@@ -11,6 +11,7 @@
 #include <raylib_encap/Math/Random.hpp>
 #include <raylib_encap/Easing.hpp>
 #include "Components/Logic/BombComp.hpp"
+#include "Components/Logic/PowerUpComp.hpp"
 #include "Manager.hpp"
 #include "raylib_encap/ECube.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
@@ -154,6 +155,9 @@ bool BombComp::checkObstacle(Vector3D pos)
             if (Random::Range(0, 1) == 1) {
                 //TODO : Spawn a random powerup here
                 std::cout << "Spawning powerup !" << std::endl;
+                auto &puEnt = entity->_mgr.addEntity("powerup");
+                puEnt.addComponent<TransformComp>(pos);
+                puEnt.addComponent<PowerUpComp>();
             }
             std::cout << "hit obstacle !" << std::endl;
             return true;

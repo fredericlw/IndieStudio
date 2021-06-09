@@ -30,10 +30,10 @@ void MovementComp::init()
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>();
-    feet_cube = &entity->getComponent<BasicCubeComp>();
-    if (!feet_cube) {
+    collider = &entity->getComponent<BasicCubeComp>();
+    if (!collider) {
         std::cerr << "CUBE WAS NOT FOUND" << std::endl;
-        feet_cube =
+        collider =
             &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     }
 }
@@ -55,23 +55,23 @@ void MovementComp::update()
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Walls)) {
         BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
         if (cast && CubeCollider::CheckBoxOverLap(
-            feet_cube->getCube(), nextPos, cast->getCube())) {
-            feet_cube->stickCube(nextPos, cast->getCube());
+            collider->getCube(), nextPos, cast->getCube())) {
+            collider->stickCube(nextPos, cast->getCube());
         }
     }
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles)) {
         BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
         if (cast && CubeCollider::CheckBoxOverLap(
-            feet_cube->getCube(), nextPos, cast->getCube())) {
-            feet_cube->stickCube(nextPos, cast->getCube());
+            collider->getCube(), nextPos, cast->getCube())) {
+            collider->stickCube(nextPos, cast->getCube());
         }
     }
     //TODO : Fix player bumped around when dropping a bomb bc of this collision code
 //    for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Bombs)) {
 //        BombComp *cast = &i->getComponent<BombComp>();
 //        if (cast && CubeCollider::CheckBoxOverLap(
-//            feet_cube->getCube(), nextPos, cast->getCube())) {
-//            feet_cube->stickCube(nextPos, cast->getCube());
+//            collider->getCube(), nextPos, cast->getCube())) {
+//            collider->stickCube(nextPos, cast->getCube());
 //        }
 //    }
     transform->position = nextPos;

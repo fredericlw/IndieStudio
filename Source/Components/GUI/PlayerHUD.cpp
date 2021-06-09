@@ -19,7 +19,7 @@ PlayerHUD::PlayerHUD(Player *player, Vector2D size)
 //    std::cout << "file : " << _player->_powerUpFilename[_player->getPowerUp()] << std::endl;
 
     /*
-     *     if (_player->getPowerUp() != PowerUp::NONE)
+     *     if (_player->getPowerUp() != PowerUpType::NONE)
         _iconPowerup = ESprite(_player->_powerUpFilename[_player->getPowerUp()]);
      */
 }

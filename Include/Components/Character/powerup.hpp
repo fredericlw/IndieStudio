@@ -7,12 +7,13 @@
 #ifndef BOMBERMAN_POWERUP_HPP
 #define BOMBERMAN_POWERUP_HPP
 
-enum PowerUp {
+enum PowerUpType {
     NONE,
     FIRE,
     SKATE,
     BOMB_UP,
     SOFT_BLOCK_PASS,
+    ENUM_END
 };
 
 #endif

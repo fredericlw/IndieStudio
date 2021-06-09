@@ -139,7 +139,7 @@ add_executable(bomberman
         Source/Scenes/MainMenuScene.cpp
         Source/Scenes/OptionScene.cpp
         Source/Scenes/HowToPlay.cpp
-        Include/Components/Character/powerup.hpp Include/raylib_encap/Easing.hpp Source/raylib_encap/Easing.cpp Source/Components/AssetLoader.cpp Include/Components/AssetLoader.hpp Source/raylib_encap/EAnimatedModel.cpp Source/raylib_encap/EAnimatedModel.hpp Source/Components/3D/AnimatedModel.cpp Include/Components/3D/AnimatedModel.hpp)
+        Include/Components/Character/powerup.hpp Include/raylib_encap/Easing.hpp Source/raylib_encap/Easing.cpp Source/Components/AssetLoader.cpp Include/Components/AssetLoader.hpp Source/raylib_encap/EAnimatedModel.cpp Source/raylib_encap/EAnimatedModel.hpp Source/Components/3D/AnimatedModel.cpp Include/Components/3D/AnimatedModel.hpp Include/Components/Logic/PowerUpComp.cpp Include/Components/Logic/PowerUpComp.hpp)
 
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

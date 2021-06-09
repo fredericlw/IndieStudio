@@ -26,8 +26,8 @@ public:
     void update() override;
     void draw() override;
     Colors getColor() const;
-    [[nodiscard]] PowerUp getPowerUp() const;
-    std::map<PowerUp, std::string> _powerUpFilename;
+    [[nodiscard]] PowerUpType getPowerUp() const;
+    std::map<PowerUpType, std::string> _powerUpFilename;
     int droppedBombs;
 private:
     EInputType _eType;
@@ -35,11 +35,11 @@ private:
     Colors _color;
     MovementComp *_mc;
     ModelComp *_model;
-    PowerUp _powerUp;
+    PowerUpType _powerUp;
     void DoDropBomb();
 public:
     Vector3D getNearestBlockPos(Vector3D pos);
-    void setPowerUp(PowerUp power_up);
+    void setPowerUp(PowerUpType power_up);
     void takeDamage();
     int health;
     void Die();
