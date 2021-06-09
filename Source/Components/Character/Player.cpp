@@ -92,7 +92,7 @@ Vector3D Player::getNearestBlockPos(Vector3D pos)
             res.z += 1;
         }
     }
-    //todo : this is quick and ugly (and not working) fix
+    //todo : this is a quick and ugly (and not working) fix
     res.x -= 1;
     res.z -= 1;
     return res;
@@ -111,6 +111,7 @@ void Player::setPowerUp(PowerUp power_up)
 void Player::takeDamage()
 {
     health--;
+    std::cout << "Player hurt" << std::endl;
     if (health <= 0) {
         Die();
     }
@@ -119,4 +120,5 @@ void Player::takeDamage()
 void Player::Die()
 {
     std::cout << "PLAYER DED :)" << std::endl;
+    entity->destroy();
 }

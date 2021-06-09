@@ -90,7 +90,6 @@ bool BombComp::SpawnParticle(Vector3D &pos)
     bool onObstacle = checkObstacle(pos);
     auto &particleEnt = entity->_mgr.addEntity("boom_particle");
     particleEnt.addComponent<TransformComp>(pos);
-    //todo: if on obstacle, change color
     auto &cube =
         particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2), onObstacle?Green:Red);
     cube.ScaleCentered(.5f);
@@ -120,16 +119,6 @@ void BombComp::spreadExplosion(Way way)
         }
         if (SpawnParticle(pos)) break;
     }
-//    switch (way) {
-//    case Left:
-//    case Right:
-//        pos.x = _transform->position.x;
-//        break;
-//    case Down:
-//    case Up:
-//        pos.z = _transform->position.z;
-//        break;
-//    }
 }
 
 bool BombComp::checkObstacle(Vector3D pos)
@@ -171,7 +160,7 @@ void BombComp::checkPlayer(Vector3D pos)
         auto &playerPos = player->getComponent<TransformComp>().position;
         if (pos == playerComp.getNearestBlockPos(playerPos)) {
             std::cout << "Hit player !" << std::endl;
-            //            playerComp.takeDamage();
+            playerComp.takeDamage();
         }
     }
 }
