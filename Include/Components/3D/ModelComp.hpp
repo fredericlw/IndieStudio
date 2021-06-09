@@ -27,7 +27,6 @@ public:
     void init() override;
     void SetVisibility(bool state);
     Mesh getMesh();
-    void RunAnimation();
     Material getMat();
 private:
     EModel model;

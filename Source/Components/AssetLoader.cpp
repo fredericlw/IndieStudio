@@ -14,8 +14,6 @@ AssetLoader::AssetLoader()
       ExplosionModel("./Assets/Models/Explosion/Explosion.glb", 1.5),
       ExplosionAnim("./Assets/Models/Explosion/Explosion.glb", ExplosionModel),
       FloorModel("./Assets/Models/Floor/floorUnit.glb", 1)
-//      ExplosionModel("./Assets/Models/Explosion/Explosionout.iqm", 1),
-//      ExplosionAnim("./Assets/Models/Explosion/Explosionout.iqm", ExplosionModel)
 {
 }
 
