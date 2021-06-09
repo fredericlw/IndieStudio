@@ -9,6 +9,7 @@
 #include "Components/Character/Player.hpp"
 #include <cmath>
 #include <cfenv>
+#include <Logic/GameLogicComp.hpp>
 
 Player::Player(
     EInputType e_type, PlayerNum player_num, Colors color
@@ -34,9 +35,13 @@ void Player::init()
 {
     Component::init();
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
+    //    _model =
+    //        &entity->addComponent<ModelComp>("./rsc/Models/mrfixit.iqm",
+    //            _color, .5);
+    auto& assets = entity->_mgr.getEntByName(
+        "gamelogic")->getComponent<AssetLoader>();
     _model =
-        &entity->addComponent<ModelComp>("./rsc/Models/mrfixit.iqm",
-            _color, .5);
+        &entity->addComponent<ModelComp>(assets.PlayerModel, _color);
     _model->rotate({90, 0, 0});
 }
 

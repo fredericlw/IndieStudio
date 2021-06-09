@@ -20,11 +20,12 @@ public:
     EModel(const std::string& modpath, Colors colors, float scale);
     EModel(const std::string& modpath, float scale);
     void rotate(const Vector3D &vec);
-    void draw(const Vector3D &pos);
+    void draw(const Vector3D &pos, Colors color = White);
     void transpose(const Vector3D &vec);
     virtual ~EModel();
     float scale;
     Mesh &getMesh();
+    void Unload();
 private:
     Texture texture;
     Model model;

@@ -8,6 +8,7 @@
 #define GAMELOGICCOMP_HPP
 
 #include <Component.hpp>
+#include <AssetLoader.hpp>
 
 class GameLogicComp : public Component{
 public:
@@ -26,6 +27,7 @@ private:
     );
     void SpawnPlayers();
     void SpawnPlayerHUD();
+
 };
 
 #endif //GAMELOGICCOMP_HPP

@@ -24,7 +24,6 @@ EModel::EModel(const std::string& modpath, float scale)
     : model(LoadModel(modpath.c_str())),
       scale(scale)
 {
-    std::cout << "EMODEL CTOR" << std::endl;
 
     Image image = GenImageColor(1, 1, GetRaylibColor(LightGray));
     texture = LoadTextureFromImage(image);
@@ -32,9 +31,9 @@ EModel::EModel(const std::string& modpath, float scale)
 //    model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
 }
 
-void EModel::draw(const Vector3D &pos)
+void EModel::draw(const Vector3D &pos, Colors color)
 {
-    DrawModel(model, pos, scale, WHITE);
+    DrawModel(model, pos, scale, GetRaylibColor(color));
 }
 
 EModel::EModel(const std::string &modpath, Colors colors, float scale)
@@ -50,7 +49,7 @@ EModel::EModel(const std::string &modpath, Colors colors, float scale)
 EModel::~EModel()
 {
     UnloadTexture(texture);     // Unload texture
-    UnloadModel(model);
+//    UnloadModel(model); //this produces segfault when using assetLoader
 }
 
 void EModel::rotate(const Vector3D &vec)
@@ -61,4 +60,9 @@ void EModel::rotate(const Vector3D &vec)
 Mesh &EModel::getMesh()
 {
     return model.meshes[0];
+}
+
+void EModel::Unload()
+{
+    UnloadModel(model);
 }

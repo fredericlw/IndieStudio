@@ -16,7 +16,7 @@ PlayerHUD::PlayerHUD(Player *player, Vector2D size)
     : _rect(ERect{size,{0, 0}}),
     _player(player), _lastPowerup(player->getPowerUp()), _PowerUpDisplay(nullptr)
 {
-    std::cout << "file : " << _player->_powerUpFilename[_player->getPowerUp()] << "\n" << std::endl;
+//    std::cout << "file : " << _player->_powerUpFilename[_player->getPowerUp()] << std::endl;
 
     /*
      *     if (_player->getPowerUp() != PowerUp::NONE)

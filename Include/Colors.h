@@ -48,7 +48,7 @@ static Color GetRaylibColor(Colors color){
     case Purple:
         return PURPLE;
     default:
-        std::cout << "Bad color" << std::endl;
+        std::cerr << "Bad color" << std::endl;
         return WHITE;
     }
 }

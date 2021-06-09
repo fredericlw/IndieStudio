@@ -14,7 +14,7 @@
 
 class BasicCubeComp : public Component {
 public:
-    explicit BasicCubeComp(Vector3D size, Colors cubeCol = Red, Colors wireCol = RayWhite, const Vector3D& offset = Vector3D::Zero());
+    explicit BasicCubeComp(Vector3D size,Colors cubeCol = Red, Colors wireCol = RayWhite, const Vector3D& offset = Vector3D::Zero());
     explicit BasicCubeComp(int size, Colors cubeCol = Red, Colors wireCol = RayWhite, const Vector3D& offset = Vector3D::Zero());
     explicit BasicCubeComp(float size, Colors cubeCol = Red, Colors wireCol = RayWhite, const Vector3D& offset = Vector3D::Zero());
     ~BasicCubeComp();

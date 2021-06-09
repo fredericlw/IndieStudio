@@ -37,9 +37,10 @@ void BombComp::init()
     _transform = &entity->getComponent<TransformComp>();
     if (!_transform)
         _transform = &entity->addComponent<TransformComp>();
+    auto &assets = entity->_mgr.getEntByName(
+        "gamelogic")->getComponent<AssetLoader>();
     model =
-        &entity->addComponent<ModelComp>("./rsc/Models/bomb/Bombout.obj", Blue,
-            6);
+        &entity->addComponent<ModelComp>(assets.BombModel, _owner->getColor());
     collider.setPos(_transform->position);
     collider.setSize(Vector3D::One().Multiply(2));
 }

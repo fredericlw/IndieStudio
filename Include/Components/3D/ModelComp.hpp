@@ -17,6 +17,10 @@ public:
     ModelComp(std::string modelPath, std::string texturePath, float scale);
     ModelComp(std::string modelPath, Colors colors, float scale);
     ModelComp(std::string modelPath, float scale);
+
+    ModelComp(const EModel &model);
+    ModelComp(const EModel &model, Colors color);
+
     void update() override;
     void rotate(const Vector3D &vec);
     void draw() override;
@@ -27,6 +31,8 @@ private:
     EModel model;
     TransformComp *transform;
     float _baseScale;
+    Colors _color;
+    bool shouldDrawColor;
 };
 
 #endif //MODELCOMP_HPP

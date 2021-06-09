@@ -11,8 +11,9 @@
 void Manager::loadGameScene()
 {
     //warning : Keep this order !
-    GenerateMap();
     auto myEnt = getEntByName("gamelogic");
+    myEnt->addComponent<AssetLoader>();
+    GenerateMap();
     myEnt->addComponent<GameLogicComp>();
 
     //TODO PUT VECTOR3D::ROTATE() IN TRANSFORM

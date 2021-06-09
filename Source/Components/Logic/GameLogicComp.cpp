@@ -15,6 +15,7 @@
 #include "Manager.hpp"
 #include "Components/Character/Player.hpp"
 #include "Components/GUI/PlayerHUD.hpp"
+#include "Components/AssetLoader.hpp"
 
 void GameLogicComp::init()
 {
