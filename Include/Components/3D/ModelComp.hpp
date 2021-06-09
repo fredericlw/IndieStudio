@@ -22,6 +22,7 @@ public:
     void draw() override;
     void init() override;
     void SetVisibility(bool state);
+    Mesh getMesh();
 private:
     EModel model;
     TransformComp *transform;

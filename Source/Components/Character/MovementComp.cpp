@@ -6,6 +6,7 @@
 */
 #include <raylib_encap/Input/EKeyboardInputModule.hpp>
 #include <raylib_encap/Input/EGamepadInputModule.hpp>
+#include <Logic/BombComp.hpp>
 #include "Components/Character/MovementComp.hpp"
 #include "ECS/Entity.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
@@ -29,10 +30,10 @@ void MovementComp::init()
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>();
-    cube = &entity->getComponent<BasicCubeComp>();
-    if (!cube) {
+    feet_cube = &entity->getComponent<BasicCubeComp>();
+    if (!feet_cube) {
         std::cerr << "CUBE WAS NOT FOUND" << std::endl;
-        cube =
+        feet_cube =
             &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     }
 }
@@ -54,17 +55,25 @@ void MovementComp::update()
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Walls)) {
         BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
         if (cast && CubeCollider::CheckBoxOverLap(
-            cube->getCube(), nextPos, cast->getCube())) {
-            cube->stickCube(nextPos, cast->getCube());
+            feet_cube->getCube(), nextPos, cast->getCube())) {
+            feet_cube->stickCube(nextPos, cast->getCube());
         }
     }
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles)) {
         BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
         if (cast && CubeCollider::CheckBoxOverLap(
-            cube->getCube(), nextPos, cast->getCube())) {
-            cube->stickCube(nextPos, cast->getCube());
+            feet_cube->getCube(), nextPos, cast->getCube())) {
+            feet_cube->stickCube(nextPos, cast->getCube());
         }
     }
+    //TODO : Fix player bumped around when dropping a bomb bc of this collision code
+//    for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Bombs)) {
+//        BombComp *cast = &i->getComponent<BombComp>();
+//        if (cast && CubeCollider::CheckBoxOverLap(
+//            feet_cube->getCube(), nextPos, cast->getCube())) {
+//            feet_cube->stickCube(nextPos, cast->getCube());
+//        }
+//    }
     transform->position = nextPos;
     if (Velocity != Vector3D::Zero()) {
         //        std::cout << "Player pos : " << transform->position << std::endl;

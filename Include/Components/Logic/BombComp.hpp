@@ -44,6 +44,9 @@ private:
     bool checkWall(Vector3D pos);
     bool checkObstacle(Vector3D pos);
     void spreadExplosion(Way way);
+    ECube collider;
+public:
+    const ECube &getCube() const;
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP

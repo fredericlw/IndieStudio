@@ -36,6 +36,8 @@ void BombComp::init()
     model =
         &entity->addComponent<ModelComp>("./rsc/Models/bomb/Bombout.obj", Blue,
             6);
+    collider.setPos(_transform->position);
+    collider.setSize(Vector3D::One().Multiply(2));
 }
 
 void BombComp::update()
@@ -88,7 +90,8 @@ bool BombComp::SpawnParticle(Vector3D &pos)
     auto &particleEnt = entity->_mgr.addEntity("boom_particle");
     particleEnt.addComponent<TransformComp>(pos);
     //todo: if on obstacle, change color
-    particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
+//    particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
+    particleEnt.addComponent<AnimatedSprite>("./rsc/explosion.png", Vector2D{5, 5});
     particleEnt.addGroup(Particles);
     particles.emplace_back(&particleEnt);
     if (checkObstacle(pos))
@@ -170,6 +173,11 @@ void BombComp::checkPlayer(Vector3D pos)
             //            playerComp.takeDamage();
         }
     }
+}
+
+const ECube &BombComp::getCube() const
+{
+    return collider;
 }
 
 

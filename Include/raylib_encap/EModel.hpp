@@ -24,6 +24,7 @@ public:
     void transpose(const Vector3D &vec);
     virtual ~EModel();
     float scale;
+    Mesh &getMesh();
 private:
     Texture texture;
     Model model;

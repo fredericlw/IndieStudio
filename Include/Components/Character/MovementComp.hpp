@@ -21,7 +21,7 @@ public:
     void init() override;
 private:
     TransformComp *transform;
-    BasicCubeComp *cube;
+    BasicCubeComp *feet_cube;
     AInputModule *_inputMod;
     void GenerateInputModule(EInputType type, PlayerNum num);
     Vector3D Velocity;

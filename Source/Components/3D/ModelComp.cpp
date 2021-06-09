@@ -67,3 +67,8 @@ void ModelComp::SetVisibility(bool state)
     else
         model.scale = 0;
 }
+
+Mesh ModelComp::getMesh()
+{
+    return model.getMesh();
+}

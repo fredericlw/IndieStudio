@@ -57,3 +57,8 @@ void EModel::rotate(const Vector3D &vec)
 {
     model.transform = MatrixRotateXYZ(vec);
 }
+
+Mesh &EModel::getMesh()
+{
+    return model.meshes[0];
+}

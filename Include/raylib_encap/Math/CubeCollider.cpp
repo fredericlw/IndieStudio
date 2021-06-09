@@ -62,3 +62,19 @@ bool CubeCollider::CheckBoxOverLap(const ECube &A, const ECube &B)
     };
     return CheckCollisionBoxes(a, b);
 }
+
+bool CubeCollider::CheckBoxOverLap(const ECube &A, ModelComp &B)
+{
+    BoundingBox a = {{
+        A.getPos().x - A.getSize().x / 2,
+        A.getPos().y - A.getSize().y / 2,
+        A.getPos().z - A.getSize().z / 2
+    }, {
+        A.getPos().x + A.getSize().x / 2,
+        A.getPos().y + A.getSize().y / 2,
+        A.getPos().z + A.getSize().z / 2
+    }
+    };
+    BoundingBox b = GetMeshBoundingBox(B.getMesh());
+    return false;
+}

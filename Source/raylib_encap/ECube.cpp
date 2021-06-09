@@ -46,10 +46,26 @@ const Vector3D &ECube::getSize() const
     return _size;
 }
 
-ECube::ECube(const Vector3D& pos, const Vector3D &size):
+ECube::ECube(const Vector3D &pos, const Vector3D &size)
+    :
     _pos(pos),
     _size(size)
 {
+}
+
+ECube::ECube(BoundingBox box)
+    : _pos(box.min.x, box.min.y, box.min.z),
+      _size(
+          box.max.x - box.min.x,
+          box.max.y - box.min.y,
+          box.max.z - box.min.z
+      )
+{
+}
+
+void ECube::setSize(const Vector3D &size)
+{
+    _size = size;
 }
 
 //endregion

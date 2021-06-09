@@ -14,7 +14,9 @@
 
 class BasicCubeComp : public Component {
 public:
-    BasicCubeComp(Vector3D size, Colors cubeCol = Red, Colors wireCol = RayWhite, Vector3D offset = Vector3D::Zero());
+    explicit BasicCubeComp(Vector3D size, Colors cubeCol = Red, Colors wireCol = RayWhite, const Vector3D& offset = Vector3D::Zero());
+    explicit BasicCubeComp(int size, Colors cubeCol = Red, Colors wireCol = RayWhite, const Vector3D& offset = Vector3D::Zero());
+    explicit BasicCubeComp(float size, Colors cubeCol = Red, Colors wireCol = RayWhite, const Vector3D& offset = Vector3D::Zero());
     ~BasicCubeComp();
     void init() override;
     void update() override;
@@ -24,10 +26,12 @@ public:
     Vector3D _size;
     Colors _cubeCol;
     Colors _wireCol;
+    bool shouldDraw;
 private:
     TransformComp *transform;
     ECube _cube;
     Vector3D _offset;
+    void stickCube(Vector3D &nextpos, const Mesh &colisionMesh);
 };
 
 #endif //BASICCUBECOMP_HPP

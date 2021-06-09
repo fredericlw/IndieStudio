@@ -14,6 +14,7 @@ class ECube {
 public:
     ECube();
     ECube(const Vector3D& pos, const Vector3D& size);
+    ECube(BoundingBox box);
     ~ECube();
     void draw(
         const Vector3D& pos, const Vector3D& size, Colors cubeColor, Colors wiresColor
@@ -26,6 +27,8 @@ public:
     void setPos(const Vector3D &pos);
 private:
     Vector3D _size;
+public:
+    void setSize(const Vector3D &size);
 };
 
 #endif //ECUBE_HPP
