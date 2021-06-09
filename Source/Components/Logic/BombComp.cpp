@@ -87,16 +87,17 @@ bool BombComp::SpawnParticle(Vector3D &pos)
     checkPlayer(pos);
     if (checkWall(pos))
         return true;
+    bool onObstacle = checkObstacle(pos);
     auto &particleEnt = entity->_mgr.addEntity("boom_particle");
     particleEnt.addComponent<TransformComp>(pos);
     //todo: if on obstacle, change color
-//    particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
-    particleEnt.addComponent<AnimatedSprite>("./rsc/explosion.png", Vector2D{5, 5});
+    auto &cube =
+        particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2), onObstacle?Green:Red);
+    cube.ScaleCentered(.5f);
+//    particleEnt.addComponent<AnimatedSprite>("./rsc/explosion.png", Vector2D{5, 5});
     particleEnt.addGroup(Particles);
     particles.emplace_back(&particleEnt);
-    if (checkObstacle(pos))
-        return true;
-    return false;
+    return onObstacle;
 }
 
 void BombComp::spreadExplosion(Way way)

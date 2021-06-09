@@ -27,6 +27,7 @@ public:
     Colors _cubeCol;
     Colors _wireCol;
     bool shouldDraw;
+    void ScaleCentered(float d);
 private:
     TransformComp *transform;
     ECube _cube;

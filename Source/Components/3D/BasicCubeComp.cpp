@@ -60,6 +60,8 @@ void BasicCubeComp::init()
 void BasicCubeComp::update()
 {
     Component::update();
+    _cube.setPos(transform->position);
+    _cube.setSize(_size);
 }
 
 const ECube &BasicCubeComp::getCube() const
@@ -72,7 +74,8 @@ void BasicCubeComp::draw()
     Component::draw();
     if (!shouldDraw) return;
     entity->_mgr.MainCam.Begin3D();
-    _cube.draw(transform->position.Add(_offset), _size, _cubeCol, _wireCol);
+    Vector3D pos(transform->position);
+    _cube.draw(pos.Add(_offset), _size, _cubeCol, _wireCol);
     entity->_mgr.MainCam.End3D();
 }
 
@@ -121,5 +124,10 @@ void BasicCubeComp::stickCube(Vector3D &nextpos, const Mesh &colisionMesh)
             nextpos.z =
                 colisionPos.z - (colisionCube.getSize().z / 2) - _size.z / 2;
     }
+}
+
+void BasicCubeComp::ScaleCentered(float d)
+{
+
 }
 
