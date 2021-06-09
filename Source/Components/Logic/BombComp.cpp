@@ -62,7 +62,6 @@ void BombComp::update()
             item->destroy();
         }
         entity->destroy();
-        _owner->droppedBombs--;
     }
 }
 
@@ -74,6 +73,7 @@ void BombComp::draw()
 void BombComp::explode()
 {
     hasExploded = true;
+    _owner->droppedBombs--;
     model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
     _explosion_sound->playSound();
