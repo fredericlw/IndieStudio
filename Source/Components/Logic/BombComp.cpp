@@ -9,6 +9,7 @@
 #include <GUI/AnimatedSprite.hpp>
 #include <Logic/MapComponent.hpp>
 #include <raylib_encap/Math/Random.hpp>
+#include <raylib_encap/Easing.hpp>
 #include "Components/Logic/BombComp.hpp"
 #include "Manager.hpp"
 #include "raylib_encap/ECube.hpp"
@@ -23,8 +24,10 @@ BombComp::BombComp(Colors color, Player *owner)
       hasExploded(false),
       particlesCleared(false),
       _owner(owner),
-      _curParticleScale(1)
+      _baseParticleSize(2.f),
+      _particleStartTime(0)
 {
+    _curParticleScale = _baseParticleSize;
     _explosion_sound = new ESound("rsc/sounds/explosion.wav");
 }
 
@@ -49,9 +52,15 @@ void BombComp::update()
         explode();
     }
     if (hasExploded && _curParticleScale > 0.f) {
-        _curParticleScale -= 0.005;
+        std::cout << "SHOULD FADE OUT" << std::endl;
+//        _curParticleScale -= 0.001f;
+        clock_t current_clock = clock() - _particleStartTime;
+        float current_time = (float)current_clock / CLOCKS_PER_SEC;
+        _curParticleScale =
+                    Easing::LinearOut(current_time, _baseParticleSize, 0, .3f);
+        std::cout << "cur scale "<< _curParticleScale << std::endl;
         for (auto& particle : particles) {
-            particle->getComponent<BasicCubeComp>().ScaleCentered(
+            particle->getComponent<BasicCubeComp>().SetSizeCentered(
                 _curParticleScale);
         }
     }
@@ -78,6 +87,7 @@ void BombComp::explode()
     std::cout << "BOOM !" << std::endl;
     _explosion_sound->playSound();
     GenerateParticles();
+    _particleStartTime = clock();
 }
 
 void BombComp::GenerateParticles()
@@ -100,7 +110,6 @@ bool BombComp::SpawnParticle(Vector3D &pos)
     particleEnt.addComponent<TransformComp>(pos);
     auto &cube =
         particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2), onObstacle?Green:Red);
-    cube.ScaleCentered(.5f);
 //    particleEnt.addComponent<AnimatedSprite>("./rsc/explosion.png", Vector2D{5, 5});
     particleEnt.addGroup(Particles);
     particles.emplace_back(&particleEnt);

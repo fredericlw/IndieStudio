@@ -136,3 +136,13 @@ void BasicCubeComp::ScaleCentered(float d)
     _offset.z *= d;
 }
 
+void BasicCubeComp::SetSizeCentered(float d)
+{
+    _size.x = d;
+    _size.y = d;
+    _size.z = d;
+    _offset.x *= d;
+    _offset.y *= d;
+    _offset.z *= d;
+}
+

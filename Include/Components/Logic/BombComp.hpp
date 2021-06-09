@@ -31,7 +31,7 @@ private:
     std::vector<Entity *> particles;
     Player *_owner;
     ESound *_explosion_sound;
-    enum Way{Left, Down, Up, Right};
+    enum Way {Left, Down, Up, Right};
     void GenerateParticles();
     bool SpawnParticle(Vector3D &pos);
     bool hasExploded;
@@ -48,6 +48,8 @@ private:
 public:
     const ECube &getCube() const;
     float _curParticleScale;
+    float _baseParticleSize;
+    clock_t _particleStartTime;
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP
