@@ -47,6 +47,7 @@ private:
     ECube collider;
 public:
     const ECube &getCube() const;
+    float _curParticleScale;
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP

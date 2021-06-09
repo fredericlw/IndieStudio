@@ -22,7 +22,8 @@ BombComp::BombComp(Colors color, Player *owner)
       spawnTime(std::time(nullptr)),
       hasExploded(false),
       particlesCleared(false),
-      _owner(owner)
+      _owner(owner),
+      _curParticleScale(1)
 {
     _explosion_sound = new ESound("rsc/sounds/explosion.wav");
 }
@@ -47,8 +48,15 @@ void BombComp::update()
     if (timeAlive > 3 && !hasExploded) {
         explode();
     }
-    if (timeAlive > 4 && !particlesCleared) {
-        std::cout << "coucou" << std::endl;
+    if (hasExploded && _curParticleScale > 0.f) {
+        _curParticleScale -= 0.005;
+        for (auto& particle : particles) {
+            particle->getComponent<BasicCubeComp>().ScaleCentered(
+                _curParticleScale);
+        }
+    }
+    if (hasExploded && _curParticleScale <= 0.f && !particlesCleared) {
+        std::cout << "clearing particles." << std::endl;
         particlesCleared = true;
         for (auto &item : particles) {
             item->destroy();
