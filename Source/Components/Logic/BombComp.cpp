@@ -116,6 +116,7 @@ bool BombComp::SpawnParticle(Vector3D &pos)
     auto &modelComp = particleEnt.addComponent<ModelComp>(assets.ExplosionModel);
     auto &animComp =
         particleEnt.addComponent<AnimatedModel>(assets.ExplosionAnim);
+    animComp.reset();
     particleEnt.addGroup(Particles);
     particles.emplace_back(&particleEnt);
     return isOnObstacle;

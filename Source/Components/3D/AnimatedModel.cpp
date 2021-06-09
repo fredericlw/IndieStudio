@@ -37,3 +37,8 @@ void AnimatedModel::draw()
     _model->draw(transform->position);
     entity->_mgr.MainCam.End3D();
 }
+
+void AnimatedModel::reset()
+{
+    _model->animFrameCounter = 0;
+}

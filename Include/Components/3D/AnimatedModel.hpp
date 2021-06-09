@@ -17,6 +17,7 @@ public:
     void init() override;
     void update() override;
     void draw() override;
+    void reset();
 private:
     EAnimatedModel *_model;
     TransformComp *transform;
