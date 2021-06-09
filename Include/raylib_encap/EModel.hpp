@@ -27,8 +27,8 @@ public:
     Mesh &getMesh();
     void Unload();
     Model model;
-private:
     Texture texture;
+private:
     Texture2D GenTex();
 };
 

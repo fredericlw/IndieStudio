@@ -28,8 +28,8 @@ public:
     void SetVisibility(bool state);
     Mesh getMesh();
     Material getMat();
-private:
     EModel model;
+private:
     TransformComp *transform;
     float _baseScale;
     Colors _color;

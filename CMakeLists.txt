@@ -121,6 +121,7 @@ add_executable(bomberman
         Source/raylib_encap/EAudio.cpp
         Source/raylib_encap/EMusic.cpp
         Source/raylib_encap/ESound.cpp
+        Source/raylib_encap/EAnimatedModel.cpp
         Source/raylib_encap/Input/AInputModule.cpp
         Source/raylib_encap/Input/EGamepadInputModule.cpp
         Source/raylib_encap/Input/EKeyboardInputModule.cpp

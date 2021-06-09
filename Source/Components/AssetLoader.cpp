@@ -7,7 +7,7 @@
 #include "AssetLoader.hpp"
 
 AssetLoader::AssetLoader()
-    : PlayerModel("./Assets/Models/Bomberman/Bomberman.glb", 1),
+    : PlayerModel("./Assets/Models/cus/player.gltf",  .5),
       StoneCubeModel("./Assets/Models/StoneCube/StoneCube.glb", 1),
       BombModel("./Assets/Models/bomb/Bombout.obj", 6),
       ObstacleModel("./Assets/Models/Obstacle/Obstacle.glb", 1),

@@ -61,7 +61,7 @@ void EKeyboardInputModule::SetP3Buttons()
     KeyMap[Right] = KEY_H;
     KeyMap[Up] = KEY_T;
     KeyMap[Down] = KEY_G;
-    KeyMap[DropBomb] = KEY_U;
+    KeyMap[DropBomb] = KEY_Y;
 }
 
 void EKeyboardInputModule::SetP4Buttons()

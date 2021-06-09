@@ -35,14 +35,10 @@ void Player::init()
 {
     Component::init();
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
-    //    _model =
-    //        &entity->addComponent<ModelComp>("./Assets/Models/mrfixit.iqm",
-    //            _color, .5);
-    auto& assets = entity->_mgr.getEntByName(
-        "gamelogic")->getComponent<AssetLoader>();
-    _model =
-        &entity->addComponent<ModelComp>(assets.PlayerModel, White);
-    _model->rotate({-90, 0, 0});
+    auto &assets = entity->_mgr.getEntByName("gamelogic")
+        ->getComponent<AssetLoader>();
+    _model = &entity
+        ->addComponent<ModelComp>(assets.PlayerModel, _color);
 }
 
 void Player::update()

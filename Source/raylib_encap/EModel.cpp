@@ -17,6 +17,8 @@ EModel::EModel(
       scale(scale)
 {
     model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
+    model.materials[1].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
+    std::cerr << "mat count : " << model.materialCount << std::endl;
 }
 
 //for .OBJs that link to a .mat file (== material is provided)
@@ -48,7 +50,7 @@ EModel::EModel(const std::string &modpath, Colors colors, float scale)
 
 EModel::~EModel()
 {
-    UnloadTexture(texture);     // Unload texture
+//    UnloadTexture(texture);     // Unload texture
 //    UnloadModel(model); //this produces segfault when using assetLoader
 }
 
