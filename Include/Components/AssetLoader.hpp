@@ -9,6 +9,7 @@
 
 #include <raylib_encap/EModel.hpp>
 #include <Component.hpp>
+#include "../../Source/raylib_encap/EAnimatedModel.hpp"
 
 class AssetLoader : public Component {
 public:
@@ -20,6 +21,7 @@ public:
     EModel BombModel;
     EModel ObstacleModel;
     EModel ExplosionModel;
+    EAnimatedModel ExplosionAnim;
 };
 
 #endif //ASSETLOADER_HPP

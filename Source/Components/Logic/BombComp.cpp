@@ -15,6 +15,7 @@
 #include "raylib_encap/ECube.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
 #include "Entity.hpp"
+#include "Components/3D/AnimatedModel.hpp"
 
 BombComp::BombComp(Colors color, Player *owner)
     : _color(color),
@@ -108,11 +109,13 @@ bool BombComp::SpawnParticle(Vector3D &pos)
     particleEnt.addComponent<TransformComp>(pos);
     auto &cube =
         particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2),
-            isOnObstacle ? Green : Red)/*.shouldDraw= false*/;
+            isOnObstacle ? Green : Red).shouldDraw= false;
 //    particleEnt.addComponent<AnimatedSprite>("./rsc/explosion.png", Vector2D{5, 5});
     auto &assets = entity->_mgr.getEntByName(
         "gamelogic")->getComponent<AssetLoader>();
-//    particleEnt.addComponent<ModelComp>(assets.ExplosionModel);
+    auto &modelComp = particleEnt.addComponent<ModelComp>(assets.ExplosionModel);
+    auto &animComp =
+        particleEnt.addComponent<AnimatedModel>(assets.ExplosionAnim);
     particleEnt.addGroup(Particles);
     particles.emplace_back(&particleEnt);
     return isOnObstacle;

@@ -27,6 +27,7 @@ public:
     void init() override;
     void SetVisibility(bool state);
     Mesh getMesh();
+    void RunAnimation();
 private:
     EModel model;
     TransformComp *transform;

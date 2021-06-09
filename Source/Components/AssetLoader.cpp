@@ -11,7 +11,10 @@ AssetLoader::AssetLoader()
       StoneCubeModel("./rsc/Models/StoneCube/StoneCube.glb", 1),
       BombModel("./rsc/Models/bomb/Bombout.obj", 6),
       ObstacleModel("./rsc/Models/Obstacle/Obstacle.glb", 1),
-      ExplosionModel("./rsc/Models/Explosion/Explosion.glb", 1)
+      ExplosionModel("./rsc/Models/Explosion/Explosion.glb", 1),
+      ExplosionAnim("./rsc/Models/Explosion/Explosion.glb", ExplosionModel)
+//      ExplosionModel("./rsc/Models/Explosion/Explosionout.iqm", 1),
+//      ExplosionAnim("./rsc/Models/Explosion/Explosionout.iqm", ExplosionModel)
 {
 }
 

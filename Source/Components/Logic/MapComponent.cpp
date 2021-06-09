@@ -51,8 +51,6 @@ void MapComponent::gen_obstacles()
             pos.z = transform->position.z +
                 (Random::Range(0, _size.y - 1) * cubesize);
         } while (positionAlreadyExists(pos) || positionIsInCorner(pos));
-        std::cout << "pos : " << pos << std::endl;
-        std::cout << "map pos : " << transform->position << std::endl;
         auto newEnt = &entity->_mgr.addEntity("Obstacle:" +
             std::to_string(pos.x) + ":" + std::to_string(pos.z));
         newEnt->addGroup(GroupLabel::Obstacles);

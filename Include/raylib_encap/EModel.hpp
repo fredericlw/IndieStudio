@@ -26,9 +26,9 @@ public:
     float scale;
     Mesh &getMesh();
     void Unload();
+    Model model;
 private:
     Texture texture;
-    Model model;
     Texture2D GenTex();
 };
 
