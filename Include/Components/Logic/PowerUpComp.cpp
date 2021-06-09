@@ -6,13 +6,14 @@
 */
 #include <raylib_encap/Math/Random.hpp>
 #include <AssetLoader.hpp>
+#include <raylib_encap/Easing.hpp>
 #include "PowerUpComp.hpp"
 #include "Entity.hpp"
 #include "Manager.hpp"
 
 PowerUpComp::PowerUpComp()
-    : type(FIRE)
-//    : type((PowerUpType)Random::Range(NONE+1, ENUM_END-1))
+//    : type(FIREUP)
+    : type((PowerUpType)Random::Range(NONE+1, ENUM_END-1))
 {
     std::cout << "POWERUP CTOR ========================================" << std::endl;
 
@@ -26,6 +27,7 @@ void PowerUpComp::init()
 {
     Component::init();
     entity->addGroup(GroupLabel::PowerUps);
+
     collider = &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     collider->shouldDraw = false;
 
@@ -37,8 +39,8 @@ void PowerUpComp::init()
     case ENUM_END:
         std::cerr << "POWERUP ERR : BAD POWERUP TYPE" << std::endl;
         break;
-    case FIRE:
-        model = &entity->addComponent<ModelComp>(assets.FireupModel);
+    case FIREUP:
+        model = &entity->addComponent<ModelComp>(assets.FullFireModel);
         break;
     case SKATE:
         model = &entity->addComponent<ModelComp>(assets.SkateModel);
@@ -49,8 +51,26 @@ void PowerUpComp::init()
     case SOFT_BLOCK_PASS:
         model = &entity->addComponent<ModelComp>(assets.SoftBlockPassModel);
         break;
+    case FULLFIRE:
+        model = &entity->addComponent<ModelComp>(assets.FullFireModel);
     }
     model->setOffset({0, 1, 1});
+}
+
+void PowerUpComp::update()
+{
+    Component::update();
+    //Ease floating mid-air model offset.y
+    Vector3D offset = model->getOffset();
+    clock_t curClock = clock() - _startTime;
+    float curTime = (float) curClock / CLOCKS_PER_SEC;
+    float loopDuration = .3f;
+    offset.y = Easing::SineInOut(curTime, 1, 0, loopDuration);
+    model->setOffset(offset);
+//    if (curTime >= loopDuration) {
+//        _startTime = clock();
+//    }
+
 }
 
 void PowerUpComp::draw()

@@ -18,6 +18,15 @@ public:
     static float LinearOut(
         double currentTime, float start, float target, double duration
     );
+    static float SineIn(
+        double currentTime, float start, float target, double duration
+    );
+    static float SineOut(
+        double currentTime, float start, float target, double duration
+    );
+    static float SineInOut(
+        double currentTime, float start, float target, double duration
+    );
 };
 
 #endif //EASING_HPP

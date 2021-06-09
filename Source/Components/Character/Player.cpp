@@ -24,7 +24,7 @@ Player::Player(
       health(1)
 {
     _powerUpFilename[NONE] = "";
-    _powerUpFilename[FIRE] = "Assets/Models/powerups/Fire.png";
+    _powerUpFilename[FIREUP] = "Assets/Models/powerups/Fire.png";
     _powerUpFilename[SKATE] = "Assets/Models/powerups/Skate.png";
     _powerUpFilename[BOMB_UP] = "Assets/Models/powerups/Bomb_Up.png";
     _powerUpFilename[SOFT_BLOCK_PASS] =

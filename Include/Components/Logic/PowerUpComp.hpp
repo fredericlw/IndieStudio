@@ -20,9 +20,12 @@ public:
     void draw() override;
     PowerUpComp();
     ~PowerUpComp();
+    void update() override;
     ModelComp *model;
     BasicCubeComp *collider;
+    TransformComp *transform;
 private:
+    clock_t _startTime;
 };
 
 #endif //POWERUPCOMP_HPP

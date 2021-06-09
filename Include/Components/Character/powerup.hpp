@@ -9,7 +9,8 @@
 
 enum PowerUpType {
     NONE,
-    FIRE,
+    FIREUP,
+    FULLFIRE,
     SKATE,
     BOMB_UP,
     SOFT_BLOCK_PASS,

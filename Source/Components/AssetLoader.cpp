@@ -14,10 +14,11 @@ AssetLoader::AssetLoader()
       ExplosionModel("./Assets/Models/Explosion/Explosion.glb", 1.5),
       ExplosionAnim("./Assets/Models/Explosion/Explosion.glb", ExplosionModel),
       FloorModel("./Assets/Models/Floor/floorUnit.glb", 1),
-      FireupModel("./Assets/Models/powerups/FireUp.gltf", 1.5),
+      FullFireModel("./Assets/Models/powerups/FullFire.gltf", 1.5),
       BombupModel("./Assets/Models/powerups/BombUp.gltf", 1.5),
       SkateModel("./Assets/Models/powerups/Skate.gltf", 1.5),
-      SoftBlockPassModel("./Assets/Models/powerups/SoftBlockPass.gltf", 1.5)
+      SoftBlockPassModel("./Assets/Models/powerups/SoftBlockThrough.gltf", 1.5),
+      FireUpModel("./Assets/Models/powerups/FireUp.gltf", 1.5)
 {
 }
 

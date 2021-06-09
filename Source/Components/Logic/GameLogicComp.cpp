@@ -32,7 +32,7 @@ void GameLogicComp::SpawnPlayers()
     std::cout << "MAP POSITION IS " << spawnPos<< std::endl;
     p1 = SpawnPlayer(std::string("Player 1"), spawnPos,
         entity->getComponent<LobbyComp>().sel1, PlayerOne, Blue);
-    p1->setPowerUp(FIRE);
+    p1->setPowerUp(FIREUP);
     spawnPos.x += 24;
     p2 = SpawnPlayer(std::string("Player 2"), spawnPos,
         entity->getComponent<LobbyComp>().sel2, PlayerTwo, Green);

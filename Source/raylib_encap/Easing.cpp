@@ -19,3 +19,25 @@ float Easing::LinearOut(
 {
     return EaseLinearOut(currentTime, start, target-start, duration);
 }
+
+float Easing::SineIn(
+    double currentTime, float start, float target, double duration
+)
+{
+    return EaseSineIn(currentTime, start, target-start, duration);
+}
+
+
+float Easing::SineOut(
+    double currentTime, float start, float target, double duration
+)
+{
+    return EaseSineOut(currentTime, start, target-start, duration);
+}
+
+float Easing::SineInOut(
+    double currentTime, float start, float target, double duration
+)
+{
+    return EaseSineInOut(currentTime, start, target-start, duration);
+}
