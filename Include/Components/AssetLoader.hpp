@@ -22,6 +22,7 @@ public:
     EModel ObstacleModel;
     EModel ExplosionModel;
     EAnimatedModel ExplosionAnim;
+    EModel FloorModel;
 };
 
 #endif //ASSETLOADER_HPP

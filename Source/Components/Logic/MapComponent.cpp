@@ -127,7 +127,7 @@ void MapComponent::gen_walls()
 
 void MapComponent::gen_floor()
 {
-    for (int x = 0;
+    /*for (int x = 0;
         x < (_size.x) * cubesize;
         x += static_cast<int>(cubesize)) {
         for (int z = 0;
@@ -143,7 +143,18 @@ void MapComponent::gen_floor()
             newEnt->addComponent<BasicCubeComp>(
                 Vector3D::One().Multiply(cubesize), Black, Black);
         }
-    }
+    }*/
+    Vector3D pos(transform->position);
+    pos.y -= 1;
+    pos.x += (_size.x / 2) + 6;// * cubesize;
+    pos.z += (_size.y / 2) + 3;// * cubesize;
+    auto &assets = entity->_mgr.getEntByName(
+        "gamelogic")->getComponent<AssetLoader>();
+    auto newEnt = &entity->_mgr.addEntity("floor");
+    newEnt->addGroup(GroupLabel::Floor);
+    newEnt->addComponent<TransformComp>(pos);
+    newEnt->addComponent<ModelComp>(assets.FloorModel);
+
 }
 
 void MapComponent::place_root_visualizer()

@@ -12,7 +12,8 @@ AssetLoader::AssetLoader()
       BombModel("./rsc/Models/bomb/Bombout.obj", 6),
       ObstacleModel("./rsc/Models/Obstacle/Obstacle.glb", 1),
       ExplosionModel("./rsc/Models/Explosion/Explosion.glb", 1.5),
-      ExplosionAnim("./rsc/Models/Explosion/Explosion.glb", ExplosionModel)
+      ExplosionAnim("./rsc/Models/Explosion/Explosion.glb", ExplosionModel),
+      FloorModel("./rsc/Models/Floor/floor.glb", 1)
 //      ExplosionModel("./rsc/Models/Explosion/Explosionout.iqm", 1),
 //      ExplosionAnim("./rsc/Models/Explosion/Explosionout.iqm", ExplosionModel)
 {
