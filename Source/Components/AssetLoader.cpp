@@ -10,7 +10,8 @@ AssetLoader::AssetLoader()
     : PlayerModel("./rsc/Models/mrfixit.iqm", .5),
       StoneCubeModel("./rsc/Models/StoneCube/StoneCube.glb", 1),
       BombModel("./rsc/Models/bomb/Bombout.obj", 6),
-      ObstacleModel("./rsc/Models/Obstacle/Obstacle.glb", 1)
+      ObstacleModel("./rsc/Models/Obstacle/Obstacle.glb", 1),
+      ExplosionModel("./rsc/Models/Explosion/Explosion.glb", 2.5)
 {
 }
 

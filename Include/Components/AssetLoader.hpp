@@ -19,6 +19,7 @@ public:
     EModel StoneCubeModel;
     EModel BombModel;
     EModel ObstacleModel;
+    EModel ExplosionModel;
 };
 
 #endif //ASSETLOADER_HPP
