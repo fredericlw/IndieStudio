@@ -59,7 +59,7 @@ void BombComp::update()
         _curParticleScale =
                     Easing::LinearOut(current_time, _baseParticleSize, 0, .3f);
         for (auto& particle : particles) {
-            particle->getComponent<BasicCubeComp>().SetSizeCentered(
+            particle->getComponent<AnimatedModel>().setScale(
                 _curParticleScale);
         }
     }

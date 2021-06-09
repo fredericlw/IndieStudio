@@ -42,3 +42,8 @@ void AnimatedModel::reset()
 {
     _model->animFrameCounter = 0;
 }
+
+void AnimatedModel::setScale(float scale)
+{
+    _model->model->scale = scale;
+}
