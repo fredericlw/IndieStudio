@@ -34,3 +34,8 @@ Vector2D ECamera::WorldToScreen(Vector3D pos)
 {
     return Vector2D(GetWorldToScreen(position, *this));
 }
+
+void ECamera::Update()
+{
+    UpdateCamera(this);
+}

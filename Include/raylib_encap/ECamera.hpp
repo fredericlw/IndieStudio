@@ -18,6 +18,7 @@ public:
     void End3D();
     Matrix getMatrix();
     Vector2D WorldToScreen(Vector3D pos);
+    void Update();
 };
 
 #endif //ECAMERA_HPP

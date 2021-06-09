@@ -6,6 +6,9 @@
 */
 #include "Components/3D/AnimatedModel.hpp"
 #include "Entity.hpp"
+
+#include "Manager.hpp"
+
 AnimatedModel::AnimatedModel(EAnimatedModel& model)
 : _model(&model)
 {
@@ -26,7 +29,6 @@ void AnimatedModel::update()
     Component::update();
     _model->update();
 }
-#include "Manager.hpp"
 
 void AnimatedModel::draw()
 {

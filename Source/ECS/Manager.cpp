@@ -15,6 +15,7 @@ void Manager::update()
 {
     for (auto &e : entities)
         e->update();
+    MainCam.Update();
 }
 
 void Manager::draw()
