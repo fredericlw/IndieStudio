@@ -128,6 +128,11 @@ void BasicCubeComp::stickCube(Vector3D &nextpos, const Mesh &colisionMesh)
 
 void BasicCubeComp::ScaleCentered(float d)
 {
-
+    _size.x *= d;
+    _size.y *= d;
+    _size.z *= d;
+    _offset.x *= d;
+    _offset.y *= d;
+    _offset.z *= d;
 }
 
