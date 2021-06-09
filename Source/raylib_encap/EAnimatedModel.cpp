@@ -25,8 +25,8 @@ void EAnimatedModel::update()
 {
     animFrameCounter++;
     std::cout << "coucou anim frame " << animFrameCounter << std::endl;
-    UpdateModelAnimation(model->model, animations[2], animFrameCounter);
-    if (animFrameCounter >= animations[2].frameCount) animFrameCounter = 0;
+    UpdateModelAnimation(model->model, animations[0], animFrameCounter / 10);
+    if (animFrameCounter / 10 >= animations[0].frameCount) animFrameCounter = 0;
 }
 
 EAnimatedModel::~EAnimatedModel()
