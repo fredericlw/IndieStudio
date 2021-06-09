@@ -28,8 +28,8 @@ void MapComponent::init()
     Component::init();
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
-        transform = &entity->addComponent<TransformComp>(-13, -28, -26);
-    place_root_visualizer();
+        transform = &entity->addComponent<TransformComp>(-12, -28, -20);
+//    place_root_visualizer();
     gen_floor();
     gen_walls();
     gen_obstacles();

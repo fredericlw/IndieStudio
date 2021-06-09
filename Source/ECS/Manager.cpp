@@ -85,9 +85,9 @@ void Manager::destroyOnLoad()
 Manager::Manager()
 {
     MainCam.position = Vector3{0.0f, 10.0f, 14.0f};
-    MainCam.target = Vector3{0.0f, 0.0f, 5.0f};
+    MainCam.target = Vector3{0.0f, 0.0f, 8.0f};
     MainCam.up = Vector3{0.0f, 1.0f, 0.0f};
-    MainCam.fovy = 30.0f;
+    MainCam.fovy = 35.0f;
     MainCam.projection = CAMERA_PERSPECTIVE;
     nextSceneToLoad = None;
 }
