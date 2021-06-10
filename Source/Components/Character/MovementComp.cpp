@@ -8,6 +8,7 @@
 #include <raylib_encap/Input/EGamepadInputModule.hpp>
 #include <Logic/BombComp.hpp>
 #include <Logic/PowerUpComp.hpp>
+#include <BaseValues.h>
 #include "Components/Character/MovementComp.hpp"
 #include "ECS/Entity.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
@@ -98,19 +99,16 @@ void MovementComp::update()
         entity->assets()->WalkingSound.playMusic(entity->assets()->Volume);
     }
     for (const auto &item : entity->_mgr.getEntitiesInGroup(PowerUps)) {
-        BasicCubeComp *cast = &item->getComponent<BasicCubeComp>();
-        if (cast && CubeCollider::CheckBoxOverLap(
-            collider->getCube(), nextPos, cast->getCube())) {
-            auto &powerup = cast->entity->getComponent<PowerUpComp>();
-            collider->stickCube(nextPos, cast->getCube());
-            //set player's PU to item.pucomp.type
+        TransformComp *PUTransform = &item->getComponent<TransformComp>();
+        if (PUTransform &&
+            Vector3D::getNearestBlockPos(PUTransform->position) ==
+                Vector3D::getNearestBlockPos(transform->position)) {
+            auto &powerup = PUTransform->entity->getComponent<PowerUpComp>();
             auto &playerComp = entity->getComponent<Player>();
             playerComp.setPowerUp(powerup.type);
-            //destroy PU
             powerup.entity->destroy();
         }
     }
-
     transform->position = nextPos;
 }
 

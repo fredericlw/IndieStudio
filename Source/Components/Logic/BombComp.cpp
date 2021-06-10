@@ -49,16 +49,19 @@ void BombComp::update()
 {
     Component::update();
     auto timeAlive = std::difftime(std::time(nullptr), spawnTime);
+    //explode after 3sec (might promote 3 to variable)
     if (timeAlive > 3 && !hasExploded) {
         explode();
     }
 
-    if (timeAlive < 3) {
+    //bomb shrink
+    if (timeAlive < 3 && !hasExploded) {
         clock_t current_clock = clock() - _bombSpawnTime;
         float current_time = (float)current_clock / CLOCKS_PER_SEC;
         model->setModelScale(Easing::LinearOut(current_time, model->getBaseScale(), 0, 3.f));
     }
 
+    //particle scale ease out
     if (hasExploded && _curParticleScale > 0.f) {
         clock_t current_clock = clock() - _particleStartTime;
         float current_time = (float)current_clock / CLOCKS_PER_SEC;
@@ -69,6 +72,8 @@ void BombComp::update()
                 _curParticleScale);
         }
     }
+
+    //destroy particles when invisible
     if (hasExploded && _curParticleScale <= 0.f && !particlesCleared) {
         std::cout << "clearing particles." << std::endl;
         particlesCleared = true;
@@ -87,7 +92,7 @@ void BombComp::draw()
 void BombComp::explode()
 {
     hasExploded = true;
-    _owner->droppedBombs--;
+    _owner->activeBombs--;
     model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
     entity->assets()->ExplosionSound.playSound(entity->assets()->Volume);
@@ -107,6 +112,7 @@ void BombComp::GenerateParticles()
 bool BombComp::SpawnParticle(Vector3D &pos)
 {
     //will return true if hit a wall or an obstacle (hurting players and destroying obstacle)
+    checkBomb(pos);
     checkPlayer(pos);
     checkPowerup(pos);
     if (checkWall(pos))
@@ -157,8 +163,8 @@ bool BombComp::checkObstacle(Vector3D pos)
         if (obstaclePos == pos) {
             obstacle->destroy();
             if (Random::Range(0, 1) == 1) {
-                //TODO : Spawn a random powerup here
                 std::cout << "Spawning powerup !" << std::endl;
+                //todo : play powerup sound here
                 auto &puEnt = entity->_mgr.addEntity("powerup");
                 puEnt.addComponent<TransformComp>(pos);
                 puEnt.addComponent<PowerUpComp>();
@@ -211,6 +217,17 @@ void BombComp::checkPowerup(Vector3D &pos)
             std::cout << "Hit Pickup !" << std::endl;
             _owner->setPowerUp(puComp.type);
             puComp.entity->destroy();
+        }
+    }
+}
+
+void BombComp::checkBomb(Vector3D &pos)
+{
+    for (const auto &item : entity->_mgr.getEntitiesInGroup(Bombs)) {
+        auto &bombComp = item->getComponent<BombComp>();
+        auto &bombPos = item->getComponent<TransformComp>().position;
+        if (pos == bombPos) {
+            bombComp.explode();
         }
     }
 }

@@ -27,7 +27,7 @@ public:
     Colors getColor() const;
     [[nodiscard]] PowerUpType getPowerUp() const;
     std::map<PowerUpType, std::string> _powerUpFilename;
-    int droppedBombs;
+    int activeBombs;
 private:
     EInputType _eType;
     PlayerNum _playerNum;
@@ -38,10 +38,16 @@ private:
     void DoDropBomb();
 public:
     Vector3D getNearestBlockPos(Vector3D pos);
-    void setPowerUp(PowerUpType power_up);
     void takeDamage();
     int health;
     void Die();
+public:
+    void setPowerUp(PowerUpType power_up);
+private:
+    int _maxBombs;
+    void StopPowerup(PowerUpType type);
+
+    void StartPowerup(PowerUpType type);
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

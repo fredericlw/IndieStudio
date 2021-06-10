@@ -9,14 +9,14 @@
 #include "Entity.hpp"
 #include "Manager.hpp"
 
-void LobbyComp::AddListSelector()
+void LobbyComp::AddListSelectors()
 {
-    float distance = 3.5;
-    auto pos = Vector3D(-5.25, -2.5, 7);
+    float modelDistance = 3.5;
+    auto modelPos = Vector3D(-5.25, -2.5, 7);
     std::vector<std::string> list = {"Keyboard", "Gamepad", "IA"};
-    auto *ent = &entity->_mgr.addEntity("modelDisp");
+    auto *ent = &entity->_mgr.addEntity("modelDisp1");
     ent->addGroup(GroupLabel::Players);
-    ent->addComponent<TransformComp>(pos);
+    ent->addComponent<TransformComp>(modelPos);
     ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Blue);
     ListSelector1 = addSel(
         list, "First PLayer", Blue,
@@ -24,16 +24,16 @@ void LobbyComp::AddListSelector()
 
     ent = &entity->_mgr.addEntity("modelDisp2");
     ent->addGroup(GroupLabel::Players);
-    pos.x += distance;
-    ent->addComponent<TransformComp>(pos);
+    modelPos.x += modelDistance;
+    ent->addComponent<TransformComp>(modelPos);
     ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Green);
     ListSelector2 = addSel(
         list, "Second PLayer", Green,
         Vector2D::ScreenCenter().Subtract({150, -200}), "Player 2");
 
     ent = &entity->_mgr.addEntity("modelDisp3");
-    pos.x += distance;
-    ent->addComponent<TransformComp>(pos);
+    modelPos.x += modelDistance;
+    ent->addComponent<TransformComp>(modelPos);
     ent->addGroup(GroupLabel::Players);
     ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Red);
     ListSelector3 = addSel(
@@ -41,8 +41,8 @@ void LobbyComp::AddListSelector()
         Vector2D::ScreenCenter().Subtract({-150, -200}), "Player 3");
 
     ent = &entity->_mgr.addEntity("modelDisp4");
-    pos.x += distance;
-    ent->addComponent<TransformComp>(pos);
+    modelPos.x += modelDistance;
+    ent->addComponent<TransformComp>(modelPos);
     ent->addGroup(GroupLabel::Players);
     ent->addComponent<ModelComp>(entity->assets()->PlayerModel, LightGray);
     ListSelector4 = addSel(
@@ -69,7 +69,7 @@ void LobbyComp::init()
 {
     Component::init();
     entity->SetDontDestroyOnLoad(true);
-    AddListSelector();
+    AddListSelectors();
 }
 
 void LobbyComp::update()
@@ -77,7 +77,7 @@ void LobbyComp::update()
     Component::update();
 }
 
-void LobbyComp::getSelection()
+void LobbyComp::refreshSelections()
 {
     sel1 = ListSelector1->getSelInputType();
     sel2 = ListSelector2->getSelInputType();

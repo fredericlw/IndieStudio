@@ -24,12 +24,12 @@ public:
     ListSelectorComp *ListSelector2;
     ListSelectorComp *ListSelector3;
     ListSelectorComp *ListSelector4;
-    void AddListSelector();
+    void AddListSelectors();
     ListSelectorComp * addSel(
         std::vector<std::string> &list, const std::string &entityName,
         Colors colors, Vector2D pos, const std::string &printedText
     );
-    void getSelection();
+    void refreshSelections();
     EInputType sel1;
     EInputType sel2;
     EInputType sel3;
