@@ -34,7 +34,7 @@ void Manager::addBackToGameOptionBtn()
     auto size = Vector2D{350, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
     auto winSize = Window::GetWinSize();
-    auto pos = Vector2D{winSize.x - size.x, winSize.y - size.y};
+    auto pos = Vector2D{0, winSize.y - size.y};
     auto &BackToGameBtnEnt = addEntity("BackToGameButton");
     BackToGameBtnEnt.addComponent<TransformComp>(pos);
     BackToGameBtnEnt.addComponent<OptionComp>();
