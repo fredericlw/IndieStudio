@@ -18,6 +18,7 @@ EMusic::~EMusic()
 
 void EMusic::playMusic()
 {
+    UpdateMusicStream(_music);
     PlayMusicStream(_music);
 }
 
@@ -39,4 +40,9 @@ void EMusic::resumeMusic()
 bool EMusic::checkIfMusicIsPlaying()
 {
     return IsMusicStreamPlaying(_music);
+}
+
+void EMusic::setMusicVolume(float volume)
+{
+    SetMusicVolume(_music, volume);
 }

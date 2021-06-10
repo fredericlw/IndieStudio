@@ -20,6 +20,7 @@ public :
     void pauseMusic();
     void resumeMusic();
     bool checkIfMusicIsPlaying();
+    void setMusicVolume(float volume);
 private:
     Music _music;
 };

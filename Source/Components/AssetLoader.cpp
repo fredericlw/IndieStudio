@@ -19,7 +19,8 @@ AssetLoader::AssetLoader()
       SkateModel("./Assets/Models/powerups/Skate.gltf", 1.5),
       SoftBlockPassModel("./Assets/Models/powerups/SoftBlockThrough.gltf", 1.5),
       FireUpModel("./Assets/Models/powerups/FireUp.gltf", 1.5),
-      ExplosionSound("Assets/sounds/explosion.wav")
+      ExplosionSound("Assets/sounds/explosion.wav"),
+      WalkingSound("Assets/sounds/walking.mp3")
 {
 
 }

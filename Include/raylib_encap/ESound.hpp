@@ -19,6 +19,7 @@ public:
     void stopSound();
     void pauseSound();
     void resumeSound();
+    void setSoundVolume(float volume);
 private:
     Sound _sound;
 };

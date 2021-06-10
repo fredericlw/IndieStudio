@@ -93,6 +93,9 @@ void MovementComp::update()
 //            collider->stickCube(nextPos, cast->getCube());
 //        }
 //    }
+    if (nextPos != transform->position) {
+        entity->assets()->WalkingSound.playMusic();
+    }
     transform->position = nextPos;
 }
 
