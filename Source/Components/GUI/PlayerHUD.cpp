@@ -36,6 +36,11 @@ void PlayerHUD::init()
 
 void PlayerHUD::update()
 {
+    Component::update();
+    if (!_player) {
+        //TODO : show player dead sprite instead of powerup sprite
+        return;
+    }
     auto powerUp = _player->getPowerUp();
     Vector2D pos(0, 0);
 
@@ -48,7 +53,7 @@ void PlayerHUD::update()
         _PowerUpDisplay->addComponent<Sprite2D>(_player->_powerUpFilename[_player->getPowerUp()]);
         _lastPowerup = powerUp;
     }
-    Component::update();
+    //TODO : Show _player->score
 }
 
 void PlayerHUD::draw()

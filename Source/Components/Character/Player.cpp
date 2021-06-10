@@ -23,7 +23,9 @@ Player::Player(
       _powerUp(NONE),
       activeBombs(0),
       health(1),
-      _maxBombs(1)
+      _maxBombs(1),
+      _currentBombFire(BASE_BOMB_FIRE),
+      points(0)
 {
     _powerUpFilename[NONE] = "";
     _powerUpFilename[FIREUP] = "Assets/Models/powerups/Fire.png";
@@ -60,7 +62,8 @@ void Player::DoDropBomb()
     activeBombs++;
     auto curPos = entity->getComponent<TransformComp>().position;
     auto &bombEnt = entity->_mgr.addEntity("bomb");
-    bombEnt.addComponent<TransformComp>(getNearestBlockPos(curPos.Add({1, 0, 1})));
+    bombEnt.addComponent<TransformComp>(
+        getNearestBlockPos(curPos.Add({1, 0, 1})));
     bombEnt.addComponent<BombComp>(_color, this);
     bombEnt.addGroup(Bombs);
 }
@@ -118,12 +121,15 @@ void Player::takeDamage()
     std::cout << "Player hurt" << std::endl;
     if (health <= 0) {
         Die();
+        return;
     }
+    //todo : play player hurt sound HERE
 }
 
 void Player::Die()
 {
     std::cout << "PLAYER DED :)" << std::endl;
+    //todo : play player died sound HERE
     entity->destroy();
 }
 
@@ -132,18 +138,20 @@ void Player::StopPowerup(PowerUpType type)
     switch (type) {
     case NONE:
     case ENUM_END:
+    case SOFT_BLOCK_PASS:
         return;
     case FIREUP:
+        if (_powerUp == FULLFIRE) return;
+        _currentBombFire++;
         return;
     case FULLFIRE:
+        _currentBombFire = BASE_BOMB_FIRE;
         return;
     case SKATE:
         _mc->setSpeed(BASESPEED);
         return;
     case BOMB_UP:
         _maxBombs--;
-        return;
-    case SOFT_BLOCK_PASS:
         return;
     }
 }
@@ -153,6 +161,7 @@ void Player::StartPowerup(PowerUpType type)
     switch (type) {
     case NONE:
     case ENUM_END:
+    case SOFT_BLOCK_PASS:
         return;
     case FIREUP:
         return;
@@ -163,8 +172,6 @@ void Player::StartPowerup(PowerUpType type)
         return;
     case BOMB_UP:
         _maxBombs++;
-        return;
-    case SOFT_BLOCK_PASS:
         return;
     }
 }

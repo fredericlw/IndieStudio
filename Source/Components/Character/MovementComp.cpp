@@ -80,11 +80,13 @@ void MovementComp::update()
             collider->stickCube(nextPos, cast->getCube());
         }
     }
-    for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles)) {
-        BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
-        if (cast && CubeCollider::CheckBoxOverLap(
-            collider->getCube(), nextPos, cast->getCube())) {
-            collider->stickCube(nextPos, cast->getCube());
+    if (entity->getComponent<Player>().getPowerUp() != SOFT_BLOCK_PASS) {
+        for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles)) {
+            BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
+            if (cast && CubeCollider::CheckBoxOverLap(
+                collider->getCube(), nextPos, cast->getCube())) {
+                collider->stickCube(nextPos, cast->getCube());
+            }
         }
     }
     //TODO : Fix player bumped around when dropping a bomb bc of this collision code

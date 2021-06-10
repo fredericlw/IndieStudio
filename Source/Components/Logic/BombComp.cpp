@@ -27,7 +27,8 @@ BombComp::BombComp(Colors color, Player *owner)
       particlesCleared(false),
       _owner(owner),
       _baseParticleSize(2.f),
-      _particleStartTime(0)
+      _particleStartTime(0),
+      spread(owner->_currentBombFire)
 {
     _curParticleScale = _baseParticleSize;
 }
@@ -136,7 +137,7 @@ bool BombComp::SpawnParticle(Vector3D &pos)
 void BombComp::spreadExplosion(Way way)
 {
     Vector3D pos(_transform->position);
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < spread; i++) {
         switch (way) {
         case Left:
             pos.x -= 2;
@@ -227,6 +228,7 @@ void BombComp::checkBomb(Vector3D &pos)
         auto &bombComp = item->getComponent<BombComp>();
         auto &bombPos = item->getComponent<TransformComp>().position;
         if (pos == bombPos && !bombComp.hasExploded) {
+            bombComp.spread += 2;
             bombComp.explode();
         }
     }

@@ -38,15 +38,16 @@ private:
     void DoDropBomb();
 public:
     Vector3D getNearestBlockPos(Vector3D pos);
+    int points;
     void takeDamage();
     int health;
     void Die();
 public:
     void setPowerUp(PowerUpType power_up);
+    int _currentBombFire;
 private:
     int _maxBombs;
     void StopPowerup(PowerUpType type);
-
     void StartPowerup(PowerUpType type);
 };
 

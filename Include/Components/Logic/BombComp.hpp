@@ -45,6 +45,7 @@ private:
     bool checkObstacle(Vector3D pos);
     void spreadExplosion(Way way);
 public:
+    int spread;
     bool hasExploded;
     const ECube &getCube() const;
     float _curParticleScale;
