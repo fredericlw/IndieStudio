@@ -35,6 +35,7 @@ BombComp::BombComp(Colors color, Player *owner)
 void BombComp::init()
 {
     Component::init();
+    _bombSpawnTime = clock();
     _transform = &entity->getComponent<TransformComp>();
     if (!_transform)
         _transform = &entity->addComponent<TransformComp>();
@@ -51,6 +52,13 @@ void BombComp::update()
     if (timeAlive > 3 && !hasExploded) {
         explode();
     }
+
+    if (timeAlive < 3) {
+        clock_t current_clock = clock() - _bombSpawnTime;
+        float current_time = (float)current_clock / CLOCKS_PER_SEC;
+        model->setModelScale(Easing::LinearOut(current_time, model->getBaseScale(), 0, 3.f));
+    }
+
     if (hasExploded && _curParticleScale > 0.f) {
         clock_t current_clock = clock() - _particleStartTime;
         float current_time = (float)current_clock / CLOCKS_PER_SEC;

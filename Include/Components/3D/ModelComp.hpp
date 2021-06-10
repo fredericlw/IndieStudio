@@ -32,12 +32,17 @@ public:
 private:
     TransformComp *transform;
     float _baseScale;
+public:
+    float getBaseScale() const;
+private:
     Colors _color;
+private:
     bool shouldDrawColor;
     Vector3D Offset;
 public:
     const Vector3D &getOffset() const;
     void setOffset(const Vector3D &offset);
+    void setModelScale(const float &scale);
 };
 
 #endif //MODELCOMP_HPP

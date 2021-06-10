@@ -35,3 +35,8 @@ void ESound::resumeSound()
 {
     ResumeSound(_sound);
 }
+
+void ESound::setSoundVolume(float volume)
+{
+    SetSoundVolume(_sound, volume);
+}
