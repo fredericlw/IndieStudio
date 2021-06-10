@@ -15,6 +15,7 @@
 
 void Manager::loadOptionScene()
 {
+    std::cout << getEntByName("gamelogic") << std::endl;
     addBackToGameOptionBtn();
     AddOptionName();
 }
@@ -24,6 +25,8 @@ void Manager::AddOptionName() {
     OptionName.addComponent<TransformComp>(Vector2D::ScreenCenter().x, 0);
     OptionName.addComponent<TextComp>("Settings", Black);
     OptionName.addGroup(GUI);
+
+    std::cout << OptionName.assets()->Volume << std::endl;
 }
 
 void Manager::addBackToGameOptionBtn()

@@ -23,7 +23,10 @@ void OptionComp::AddOptionSelector()
         (winSize.y / 2) - (size.y / 2)};
 
     ListSelector1 = addSel(listA, "Volume", Blue, posA, "Volume");
-
+    ListSelector1->addEventFun([this](std::string selection) {
+        auto value = std::stof(selection) / 100;
+        entity->assets()->Volume = value;
+    });
     ListSelector2 = addSel(listB, "Viewmode", Green, posB, "View mode");
     ListSelector2->addEventFun([](std::string selection) {
         Window::ToogleFullscreen();

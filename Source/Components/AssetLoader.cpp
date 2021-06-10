@@ -4,6 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
+#include "Entity.hpp"
 #include "AssetLoader.hpp"
 
 AssetLoader::AssetLoader()
@@ -23,7 +24,6 @@ AssetLoader::AssetLoader()
       WalkingSound("Assets/sounds/walking.mp3"),
       Volume(1)
 {
-
 }
 
 AssetLoader::~AssetLoader()
@@ -36,4 +36,5 @@ AssetLoader::~AssetLoader()
 void AssetLoader::init()
 {
     Component::init();
+    entity->SetDontDestroyOnLoad(true);
 }

@@ -12,6 +12,8 @@
 
 void Manager::loadMenuScene()
 {
+    auto &gl = addEntity("gamelogic");
+    gl.addComponent<AssetLoader>();
     AddMenuLogo();
     AddPlayButton();
     addBackToGameBtn();
