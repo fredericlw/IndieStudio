@@ -35,9 +35,11 @@ void ButtonComp::update()
 {
     if (RectCollider::CheckMouseInRect(_rect)) {
         hovering = true;
-        if (EMouseInputModule::GetButtonReleased(LeftClick))
+        if (EMouseInputModule::GetButtonReleased(LeftClick)) {
+            entity->assets()->ButtonClick.playSound(entity->assets()->Volume);
             for (const auto &func : EventFuncs)
                 func();
+        }
     } else {
         hovering = false;
     }
