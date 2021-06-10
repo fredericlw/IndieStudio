@@ -15,6 +15,7 @@
 class Sprite2D : public Component, public ESprite {
 public:
     explicit Sprite2D(const std::string &path);
+    Sprite2D(ESprite &sprite);
     void init() override;
     void update() override;
     void draw() override;

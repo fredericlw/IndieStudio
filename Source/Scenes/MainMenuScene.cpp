@@ -8,10 +8,16 @@
 #include <Components/3D/BasicCubeComp.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
 #include <GUI/AnimatedSprite.hpp>
+#include <raylib_encap/Window.hpp>
 #include "Components/Components.h"
 
 void Manager::loadMenuScene()
 {
+    Entity *gl = getEntByName("gamelogic").get();
+    if (!gl) {
+        gl = &addEntity("gamelogic");
+        gl->addComponent<AssetLoader>();
+    }
     AddMenuLogo();
     AddPlayButton();
     addBackToGameBtn();
@@ -89,11 +95,12 @@ void Manager::AddMenuLogo()
     //Create an entity
     auto &logoEntity = addEntity("MainMenuLogo");
     //Add Components to it
-    logoEntity.addComponent<TransformComp>(50, 0);
-    logoEntity.addComponent<Sprite2D>("Assets/mainlogo.png");
+    auto transformComp = logoEntity.addComponent<TransformComp>();
+    auto spriteComp = logoEntity.addComponent<Sprite2D>("Assets/Textures/mainlogo.png");
+    auto size = Vector2D{static_cast<float>(spriteComp.width), static_cast<float>(spriteComp.height)};
+    Vector2D pos(Vector2D::ScreenCenter().Subtract(Vector2D(size.x / 2, size.y / 2)));
+    transformComp.position = pos;
+
     //Modify some components
-    int ypos = GetScreenHeight() -
-        logoEntity.getComponent<Sprite2D>().height - 430;
-    logoEntity.getComponent<TransformComp>().position.y = (float) ypos;
     logoEntity.addGroup(GUI);
 }

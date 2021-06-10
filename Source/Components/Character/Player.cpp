@@ -10,6 +10,7 @@
 #include <cmath>
 #include <cfenv>
 #include <Logic/GameLogicComp.hpp>
+#include <BaseValues.h>
 
 Player::Player(
     EInputType e_type, PlayerNum player_num, Colors color
@@ -20,15 +21,12 @@ Player::Player(
       _mc(nullptr),
       _model(nullptr),
       _powerUp(NONE),
-      droppedBombs(0),
-      health(1)
+      activeBombs(0),
+      health(1),
+      _maxBombs(1),
+      _currentBombFire(BASE_BOMB_FIRE),
+      score(0)
 {
-    _powerUpFilename[NONE] = "";
-    _powerUpFilename[FIREUP] = "Assets/Models/powerups/Fire.png";
-    _powerUpFilename[SKATE] = "Assets/Models/powerups/Skate.png";
-    _powerUpFilename[BOMB_UP] = "Assets/Models/powerups/Bomb_Up.png";
-    _powerUpFilename[SOFT_BLOCK_PASS] =
-        "Assets/Models/powerups/Soft_Block_Pass.png";
 }
 
 void Player::init()
@@ -43,7 +41,7 @@ void Player::update()
 {
     Component::update();
     if (_mc->getInputModule()->GetButtonPressed(DropBomb)
-        && (droppedBombs == 0)) {
+        && (activeBombs < _maxBombs)) {
         DoDropBomb();
     }
 }
@@ -55,10 +53,11 @@ void Player::draw()
 
 void Player::DoDropBomb()
 {
-    droppedBombs++;
+    activeBombs++;
     auto curPos = entity->getComponent<TransformComp>().position;
     auto &bombEnt = entity->_mgr.addEntity("bomb");
-    bombEnt.addComponent<TransformComp>(getNearestBlockPos(curPos.Add({1, 0, 1})));
+    bombEnt.addComponent<TransformComp>(
+        getNearestBlockPos(curPos.Add({1, 0, 1})));
     bombEnt.addComponent<BombComp>(_color, this);
     bombEnt.addGroup(Bombs);
 }
@@ -104,7 +103,10 @@ PowerUpType Player::getPowerUp() const
 
 void Player::setPowerUp(PowerUpType power_up)
 {
+    entity->assets()->PowerupPickUp.playSound(entity->assets()->Volume);
+    StopPowerup(_powerUp);
     _powerUp = power_up;
+    StartPowerup(power_up);
 }
 
 void Player::takeDamage()
@@ -113,11 +115,57 @@ void Player::takeDamage()
     std::cout << "Player hurt" << std::endl;
     if (health <= 0) {
         Die();
+        return;
     }
+    entity->assets()->PlayerHurt.playSound(entity->assets()->Volume);
 }
 
 void Player::Die()
 {
     std::cout << "PLAYER DED :)" << std::endl;
+    entity->assets()->PlayerDead.playSound(entity->assets()->Volume);
     entity->destroy();
+}
+
+void Player::StopPowerup(PowerUpType type)
+{
+    switch (type) {
+    case NONE:
+    case ENUM_END:
+    case SOFT_BLOCK_PASS:
+        return;
+    case FIREUP:
+        if (_powerUp == FULLFIRE) return;
+        _currentBombFire++;
+        return;
+    case FULLFIRE:
+        _currentBombFire = BASE_BOMB_FIRE;
+        return;
+    case SKATE:
+        _mc->setSpeed(BASESPEED);
+        return;
+    case BOMB_UP:
+        _maxBombs--;
+        return;
+    }
+}
+
+void Player::StartPowerup(PowerUpType type)
+{
+    switch (type) {
+    case NONE:
+    case ENUM_END:
+    case SOFT_BLOCK_PASS:
+        return;
+    case FIREUP:
+        return;
+    case FULLFIRE:
+        return;
+    case SKATE:
+        _mc->setSpeed(_mc->getSpeed() * SPEED_MULTIPLIER);
+        return;
+    case BOMB_UP:
+        _maxBombs++;
+        return;
+    }
 }

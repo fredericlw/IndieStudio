@@ -13,6 +13,7 @@
 #include <raylib_encap/ERect.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
 #include <Character/Player.hpp>
+#include "TextComp.hpp"
 
 class PlayerHUD : public Component {
     public:
@@ -24,10 +25,12 @@ class PlayerHUD : public Component {
     Player *_player;
     bool hovering;
     Vector2D size;
-    ERect _rect;
+    ERect _backgroundRect;
     PowerUpType _lastPowerup;
     TransformComp *transform;
     Entity *_PowerUpDisplay;
+    TextComp *_ScoreDisplay;
     std::vector<std::function<void()>> EventFuncs;
+    ESprite *getPowerupSprite(PowerUpType type);
 };
 #endif

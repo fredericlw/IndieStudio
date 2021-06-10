@@ -15,10 +15,12 @@ class ESound {
 public:
     ESound(std::string filename);
     ~ESound();
-    void playSound();
+    void playSound(float volume);
     void stopSound();
     void pauseSound();
     void resumeSound();
+    void setSoundVolume(float volume);
+    void Unload();
 private:
     Sound _sound;
 };

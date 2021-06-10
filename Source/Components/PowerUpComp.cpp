@@ -43,7 +43,7 @@ void PowerUpComp::init()
         model = &entity->addComponent<ModelComp>(entity->assets()->SkateModel);
         break;
     case BOMB_UP:
-        model = &entity->addComponent<ModelComp>(entity->assets()->BombupModel);
+        model = &entity->addComponent<ModelComp>(entity->assets()->BombUpModel);
         break;
     case SOFT_BLOCK_PASS:
         model = &entity->addComponent<ModelComp>(entity->assets()->SoftBlockPassModel);

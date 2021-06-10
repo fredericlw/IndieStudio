@@ -11,8 +11,6 @@
 #include <3D/TransformComp.hpp>
 #include <3D/BasicCubeComp.hpp>
 
-#define BASESPEED .25f
-
 class MovementComp : public Component {
 public:
     MovementComp(EInputType input_type, PlayerNum num);

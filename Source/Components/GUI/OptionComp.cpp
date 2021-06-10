@@ -11,8 +11,8 @@
 
 void OptionComp::AddOptionSelector()
 {
-    std::vector<std::string> listA = {"10", "20", "30", "40", "50", "60", "70",
-        "80", "90", "100"};
+    std::vector<std::string> listA = {"100", "90", "80", "70", "60", "50", "40",
+        "30", "20", "10", "0"};
     std::vector<std::string> listB = {"Windowed", "FullScreen"};
     auto winSize = Window::GetWinSize();
     Vector2D size = Vector2D(50, 50);
@@ -23,8 +23,18 @@ void OptionComp::AddOptionSelector()
         (winSize.y / 2) - (size.y / 2)};
 
     ListSelector1 = addSel(listA, "Volume", Blue, posA, "Volume");
-
+    ListSelector1->addEventFun([this](std::string selection) {
+        auto value = std::stof(selection) / 100;
+        entity->assets()->Volume = value;
+    });
     ListSelector2 = addSel(listB, "Viewmode", Green, posB, "View mode");
+    ListSelector2->addEventFun([](std::string selection) {
+        Window::ToogleFullscreen();
+    });
+    if (Window::isFullScreen())
+        ListSelector2->set_sel_index(1);
+    else
+        ListSelector2->set_sel_index(0);
 }
 
 ListSelectorComp *OptionComp::addSel(std::vector<std::string> &list,
@@ -39,10 +49,10 @@ ListSelectorComp *OptionComp::addSel(std::vector<std::string> &list,
 
 void OptionComp::getSelection()
 {
-    sel1 = ListSelector1->getSel();
-    sel2 = ListSelector2->getSel();
-    sel3 = ListSelector3->getSel();
-    sel4 = ListSelector4->getSel();
+    sel1 = ListSelector1->getSelInputType();
+    sel2 = ListSelector2->getSelInputType();
+    sel3 = ListSelector3->getSelInputType();
+    sel4 = ListSelector4->getSelInputType();
 }
 
 OptionComp::OptionComp()

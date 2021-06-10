@@ -16,8 +16,10 @@ EMusic::~EMusic()
     UnloadMusicStream(_music);
 }
 
-void EMusic::playMusic()
+void EMusic::playMusic(float volume)
 {
+    SetMusicVolume(_music, volume);
+    UpdateMusicStream(_music);
     PlayMusicStream(_music);
 }
 
@@ -39,4 +41,14 @@ void EMusic::resumeMusic()
 bool EMusic::checkIfMusicIsPlaying()
 {
     return IsMusicStreamPlaying(_music);
+}
+
+void EMusic::setMusicVolume(float volume)
+{
+    SetMusicVolume(_music, volume);
+}
+
+void EMusic::Unload()
+{
+    UnloadMusicStream(_music);
 }

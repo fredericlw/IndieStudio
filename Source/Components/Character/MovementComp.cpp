@@ -7,6 +7,8 @@
 #include <raylib_encap/Input/EKeyboardInputModule.hpp>
 #include <raylib_encap/Input/EGamepadInputModule.hpp>
 #include <Logic/BombComp.hpp>
+#include <Logic/PowerUpComp.hpp>
+#include <BaseValues.h>
 #include "Components/Character/MovementComp.hpp"
 #include "ECS/Entity.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
@@ -78,11 +80,13 @@ void MovementComp::update()
             collider->stickCube(nextPos, cast->getCube());
         }
     }
-    for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles)) {
-        BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
-        if (cast && CubeCollider::CheckBoxOverLap(
-            collider->getCube(), nextPos, cast->getCube())) {
-            collider->stickCube(nextPos, cast->getCube());
+    if (entity->getComponent<Player>().getPowerUp() != SOFT_BLOCK_PASS) {
+        for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles)) {
+            BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
+            if (cast && CubeCollider::CheckBoxOverLap(
+                collider->getCube(), nextPos, cast->getCube())) {
+                collider->stickCube(nextPos, cast->getCube());
+            }
         }
     }
     //TODO : Fix player bumped around when dropping a bomb bc of this collision code
@@ -93,6 +97,20 @@ void MovementComp::update()
 //            collider->stickCube(nextPos, cast->getCube());
 //        }
 //    }
+    if (nextPos != transform->position) {
+        entity->assets()->WalkingSound.playMusic(entity->assets()->Volume);
+    }
+    for (const auto &item : entity->_mgr.getEntitiesInGroup(PowerUps)) {
+        TransformComp *PUTransform = &item->getComponent<TransformComp>();
+        if (PUTransform &&
+            Vector3D::getNearestBlockPos(PUTransform->position) ==
+                Vector3D::getNearestBlockPos(transform->position)) {
+            auto &powerup = PUTransform->entity->getComponent<PowerUpComp>();
+            auto &playerComp = entity->getComponent<Player>();
+            playerComp.setPowerUp(powerup.type);
+            powerup.entity->destroy();
+        }
+    }
     transform->position = nextPos;
 }
 

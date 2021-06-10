@@ -4,6 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
+#include "Entity.hpp"
 #include "AssetLoader.hpp"
 
 AssetLoader::AssetLoader()
@@ -15,13 +16,24 @@ AssetLoader::AssetLoader()
       ExplosionAnim("./Assets/Models/Explosion/Explosion.glb", ExplosionModel),
       FloorModel("./Assets/Models/Floor/floorUnit.glb", 1),
       FullFireModel("./Assets/Models/powerups/FullFire.gltf", 1.5),
-      BombupModel("./Assets/Models/powerups/BombUp.gltf", 1.5),
+      BombUpModel("./Assets/Models/powerups/BombUp.gltf", 1.5),
       SkateModel("./Assets/Models/powerups/Skate.gltf", 1.5),
       SoftBlockPassModel("./Assets/Models/powerups/SoftBlockThrough.gltf", 1.5),
       FireUpModel("./Assets/Models/powerups/FireUp.gltf", 1.5),
-      ExplosionSound("Assets/sounds/explosion.wav")
+      ExplosionSound("Assets/sounds/explosion.wav"),
+      WalkingSound("Assets/sounds/walking.mp3"),
+      PowerupPickUp("Assets/sounds/powerup_pick_up.wav"),
+      PowerupGenerated("Assets/sounds/powerup_generated.wav"),
+      PlayerHurt("Assets/sounds/player_hurt.wav"),
+      PlayerDead("Assets/sounds/player_dead.wav"),
+      ButtonClick("Assets/sounds/button_click.wav"),
+      Volume(1),
+      FullFireSprite("./Assets/Textures/FullFire.png", White),
+      BombUpSprite("./Assets/Textures/BombUp.png", White),
+      SkateSprite("./Assets/Textures/Skate.png", White),
+      SoftBlockPassSprite("./Assets/Textures/SoftBlockPass.png", White),
+      FireUpSprite("./Assets/Textures/FireUp.png", White)
 {
-
 }
 
 AssetLoader::~AssetLoader()
@@ -29,9 +41,31 @@ AssetLoader::~AssetLoader()
     PlayerModel.Unload();
     StoneCubeModel.Unload();
     BombModel.Unload();
+    ObstacleModel.Unload();
+    ExplosionModel.Unload();
+    ExplosionAnim.model->Unload();
+    FloorModel.Unload();
+    FullFireModel.Unload();
+    BombUpModel.Unload();
+    SkateModel.Unload();
+    SoftBlockPassModel.Unload();
+    FireUpModel.Unload();
+    ExplosionSound.Unload();
+    WalkingSound.Unload();
+    PowerupPickUp.Unload();
+    PowerupGenerated.Unload();
+    PlayerHurt.Unload();
+    PlayerDead.Unload();
+    ButtonClick.Unload();
+    FullFireSprite.Unload();
+    BombUpSprite.Unload();
+    SkateSprite.Unload();
+    SoftBlockPassSprite.Unload();
+    FireUpSprite.Unload();
 }
 
 void AssetLoader::init()
 {
     Component::init();
+    entity->SetDontDestroyOnLoad(true);
 }

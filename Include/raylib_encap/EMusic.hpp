@@ -15,11 +15,13 @@ class EMusic {
 public :
     EMusic(std::string filename);
     ~EMusic();
-    void playMusic();
+    void playMusic(float volume);
     void stopMusic();
     void pauseMusic();
     void resumeMusic();
     bool checkIfMusicIsPlaying();
+    void setMusicVolume(float volume);
+    void Unload();
 private:
     Music _music;
 };

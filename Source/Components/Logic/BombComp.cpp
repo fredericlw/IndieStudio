@@ -27,7 +27,8 @@ BombComp::BombComp(Colors color, Player *owner)
       particlesCleared(false),
       _owner(owner),
       _baseParticleSize(2.f),
-      _particleStartTime(0)
+      _particleStartTime(0),
+      spread(owner->_currentBombFire)
 {
     _curParticleScale = _baseParticleSize;
 }
@@ -49,16 +50,19 @@ void BombComp::update()
 {
     Component::update();
     auto timeAlive = std::difftime(std::time(nullptr), spawnTime);
+    //explode after 3sec (might promote 3 to variable)
     if (timeAlive > 3 && !hasExploded) {
         explode();
     }
 
-    if (timeAlive < 3) {
+    //bomb shrink
+    if (timeAlive < 3 && !hasExploded) {
         clock_t current_clock = clock() - _bombSpawnTime;
         float current_time = (float)current_clock / CLOCKS_PER_SEC;
         model->setModelScale(Easing::LinearOut(current_time, model->getBaseScale(), 0, 3.f));
     }
 
+    //particle scale ease out
     if (hasExploded && _curParticleScale > 0.f) {
         clock_t current_clock = clock() - _particleStartTime;
         float current_time = (float)current_clock / CLOCKS_PER_SEC;
@@ -69,6 +73,8 @@ void BombComp::update()
                 _curParticleScale);
         }
     }
+
+    //destroy particles when invisible
     if (hasExploded && _curParticleScale <= 0.f && !particlesCleared) {
         std::cout << "clearing particles." << std::endl;
         particlesCleared = true;
@@ -87,26 +93,28 @@ void BombComp::draw()
 void BombComp::explode()
 {
     hasExploded = true;
-    _owner->droppedBombs--;
+    _owner->activeBombs--;
     model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
-    entity->assets()->ExplosionSound.playSound();
-    GenerateParticles();
+    entity->assets()->ExplosionSound.playSound(entity->assets()->Volume);
+    GenerateParticles(spread);
     _particleStartTime = clock();
 }
 
-void BombComp::GenerateParticles()
+//definitive_spread because spread can change while spreading
+void BombComp::GenerateParticles(int definitive_spread)
 {
     SpawnParticle(_transform->position);
-    spreadExplosion(Right);
-    spreadExplosion(Left);
-    spreadExplosion(Up);
-    spreadExplosion(Down);
+    spreadExplosion(Right, definitive_spread);
+    spreadExplosion(Left, definitive_spread);
+    spreadExplosion(Up, definitive_spread);
+    spreadExplosion(Down, definitive_spread);
 }
 
 bool BombComp::SpawnParticle(Vector3D &pos)
 {
     //will return true if hit a wall or an obstacle (hurting players and destroying obstacle)
+    checkBomb(pos);
     checkPlayer(pos);
     checkPowerup(pos);
     if (checkWall(pos))
@@ -127,10 +135,10 @@ bool BombComp::SpawnParticle(Vector3D &pos)
     return isOnObstacle;
 }
 
-void BombComp::spreadExplosion(Way way)
+void BombComp::spreadExplosion(Way way, int _spread)
 {
     Vector3D pos(_transform->position);
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < _spread; i++) {
         switch (way) {
         case Left:
             pos.x -= 2;
@@ -157,8 +165,8 @@ bool BombComp::checkObstacle(Vector3D pos)
         if (obstaclePos == pos) {
             obstacle->destroy();
             if (Random::Range(0, 1) == 1) {
-                //TODO : Spawn a random powerup here
                 std::cout << "Spawning powerup !" << std::endl;
+                entity->assets()->PowerupGenerated.playSound(entity->assets()->Volume);
                 auto &puEnt = entity->_mgr.addEntity("powerup");
                 puEnt.addComponent<TransformComp>(pos);
                 puEnt.addComponent<PowerUpComp>();
@@ -211,6 +219,18 @@ void BombComp::checkPowerup(Vector3D &pos)
             std::cout << "Hit Pickup !" << std::endl;
             _owner->setPowerUp(puComp.type);
             puComp.entity->destroy();
+        }
+    }
+}
+
+void BombComp::checkBomb(Vector3D &pos)
+{
+    for (const auto &item : entity->_mgr.getEntitiesInGroup(Bombs)) {
+        auto &bombComp = item->getComponent<BombComp>();
+        auto &bombPos = item->getComponent<TransformComp>().position;
+        if (pos == bombPos && !bombComp.hasExploded) {
+            bombComp.spread += 2;
+            bombComp.explode();
         }
     }
 }

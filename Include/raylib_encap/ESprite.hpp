@@ -30,6 +30,7 @@ public:
         Colors tint = White
     );
     void setTex(const std::string &path, Colors color = White);
+    void Unload();
 protected:
     Rectangle _spriteRect;
     Colors _tintColor;

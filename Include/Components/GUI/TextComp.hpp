@@ -11,7 +11,6 @@
 #include <Component.hpp>
 #include <raylib_encap/EText.hpp>
 #include <3D/TransformComp.hpp>
-#include "Components.h"
 
 class TextComp : public Component, public EText{
 public:

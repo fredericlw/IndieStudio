@@ -14,7 +14,6 @@
 #include "Entity.hpp"
 #include "Manager.hpp"
 #include <ctime>
-
 #include "powerup.hpp"
 
 class Player : public Component {
@@ -28,7 +27,7 @@ public:
     Colors getColor() const;
     [[nodiscard]] PowerUpType getPowerUp() const;
     std::map<PowerUpType, std::string> _powerUpFilename;
-    int droppedBombs;
+    int activeBombs;
 private:
     EInputType _eType;
     PlayerNum _playerNum;
@@ -39,10 +38,17 @@ private:
     void DoDropBomb();
 public:
     Vector3D getNearestBlockPos(Vector3D pos);
-    void setPowerUp(PowerUpType power_up);
+    int score;
     void takeDamage();
     int health;
     void Die();
+public:
+    void setPowerUp(PowerUpType power_up);
+    int _currentBombFire;
+private:
+    int _maxBombs;
+    void StopPowerup(PowerUpType type);
+    void StartPowerup(PowerUpType type);
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

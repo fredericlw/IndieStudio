@@ -33,9 +33,8 @@ private:
     ECube collider;
     enum Way {Left, Down, Up, Right};
 private:
-    void GenerateParticles();
+    void GenerateParticles(int definitive_spread);
     bool SpawnParticle(Vector3D &pos);
-    bool hasExploded;
     bool particlesCleared;
     bool checkCol(
         const Vector3D &mapPos, const ECube &flameCube, ECube &wallCube,
@@ -44,14 +43,17 @@ private:
     void checkPlayer(Vector3D pos);
     bool checkWall(Vector3D pos);
     bool checkObstacle(Vector3D pos);
-    void spreadExplosion(Way way);
+    void spreadExplosion(Way way, int i);
 public:
+    int spread;
+    bool hasExploded;
     const ECube &getCube() const;
     float _curParticleScale;
     float _baseParticleSize;
     clock_t _particleStartTime;
     clock_t _bombSpawnTime;
     void checkPowerup(Vector3D &pos);
+    void checkBomb(Vector3D &pos);
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP

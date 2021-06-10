@@ -30,17 +30,17 @@ void GameLogicComp::SpawnPlayers()
         "mapRoot")->getComponent<TransformComp>().position;
     //get upper right spawnpos offset from map root entity po
     std::cout << "MAP POSITION IS " << spawnPos<< std::endl;
-    p1 = SpawnPlayer(std::string("Player 1"), spawnPos,
+    p1 = SpawnPlayer("Player1", spawnPos,
         entity->getComponent<LobbyComp>().sel1, PlayerOne, Blue);
     p1->setPowerUp(FIREUP);
     spawnPos.x += 24;
-    p2 = SpawnPlayer(std::string("Player 2"), spawnPos,
+    p2 = SpawnPlayer("Player2", spawnPos,
         entity->getComponent<LobbyComp>().sel2, PlayerTwo, Green);
     spawnPos.z += 20;
-    p3 =SpawnPlayer(std::string("Player 3"), spawnPos,
+    p3 =SpawnPlayer("Player3", spawnPos,
         entity->getComponent<LobbyComp>().sel3, PlayerThree, Red);
     spawnPos.x -= 24;
-    p4 =SpawnPlayer(std::string("Player 4"), spawnPos,
+    p4 =SpawnPlayer("Player4", spawnPos,
         entity->getComponent<LobbyComp>().sel4, PlayerFour, LightGray);
 }
 
