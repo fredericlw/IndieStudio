@@ -16,7 +16,7 @@ AssetLoader::AssetLoader()
       ExplosionAnim("./Assets/Models/Explosion/Explosion.glb", ExplosionModel),
       FloorModel("./Assets/Models/Floor/floorUnit.glb", 1),
       FullFireModel("./Assets/Models/powerups/FullFire.gltf", 1.5),
-      BombupModel("./Assets/Models/powerups/BombUp.gltf", 1.5),
+      BombUpModel("./Assets/Models/powerups/BombUp.gltf", 1.5),
       SkateModel("./Assets/Models/powerups/Skate.gltf", 1.5),
       SoftBlockPassModel("./Assets/Models/powerups/SoftBlockThrough.gltf", 1.5),
       FireUpModel("./Assets/Models/powerups/FireUp.gltf", 1.5),
@@ -26,7 +26,12 @@ AssetLoader::AssetLoader()
       PowerupGenerated("Assets/sounds/powerup_generated.wav"),
       PlayerHurt("Assets/sounds/player_hurt.wav"),
       PlayerDead("Assets/sounds/player_dead.wav"),
-      Volume(1)
+      Volume(1),
+      FullFireSprite("./Assets/Textures/FullFire.png", White),
+      BombUpSprite("./Assets/Textures/BombUp.png", White),
+      SkateSprite("./Assets/Textures/Skate.png", White),
+      SoftBlockPassSprite("./Assets/Textures/SoftBlockPass.png", White),
+      FireUpSprite("./Assets/Textures/FireUp.png", White)
 {
 }
 

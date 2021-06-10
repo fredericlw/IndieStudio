@@ -31,5 +31,6 @@ class PlayerHUD : public Component {
     Entity *_PowerUpDisplay;
     TextComp *_ScoreDisplay;
     std::vector<std::function<void()>> EventFuncs;
+    template<typename... TArgs> TArgs &&... getPowerupSprite(PowerUpType type);
 };
 #endif

@@ -57,7 +57,7 @@ void PlayerHUD::update()
         _PowerUpDisplay = &entity->_mgr.addEntity("PowerUpDisplay");
         _PowerUpDisplay->addGroup(GUI);
         _PowerUpDisplay->addComponent<TransformComp>(transform->position);
-        _PowerUpDisplay->addComponent<Sprite2D>(_player->_powerUpFilename[_player->getPowerUp()]);
+        _PowerUpDisplay->addComponent<Sprite2D>(getPowerupSprite(_player->getPowerUp()));
         _lastPowerup = powerUp;
     }
     _ScoreDisplay->_text = std::to_string(_player->score);
@@ -67,4 +67,11 @@ void PlayerHUD::draw()
 {
     Component::draw();
     _backgroundRect.draw(true, true, _player->getColor(), Gray);
+}
+
+ESprite *PlayerHUD::getPowerupSprite(PowerUpType type)
+{
+    switch (type) {
+
+    }
 }

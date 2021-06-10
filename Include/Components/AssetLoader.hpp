@@ -25,18 +25,26 @@ public:
     EModel ExplosionModel;
     EAnimatedModel ExplosionAnim;
     EModel FloorModel;
+    //Powerups
     EModel FullFireModel;
-    EModel BombupModel;
+    EModel BombUpModel;
     EModel SkateModel;
     EModel SoftBlockPassModel;
     EModel FireUpModel;
+    //Sound
     ESound ExplosionSound;
     EMusic WalkingSound;
     ESound PowerupPickUp;
     ESound PowerupGenerated;
     ESound PlayerHurt;
-    ESound PlayerDead;
     float Volume;
+    ESound PlayerDead;
+    //Textures
+    ESprite FullFireSprite;
+    ESprite BombUpSprite;
+    ESprite SkateSprite;
+    ESprite SoftBlockPassSprite;
+    ESprite FireUpSprite;
 };
 
 #endif //ASSETLOADER_HPP
