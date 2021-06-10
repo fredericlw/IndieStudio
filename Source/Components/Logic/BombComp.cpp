@@ -101,13 +101,14 @@ void BombComp::explode()
     _particleStartTime = clock();
 }
 
-void BombComp::GenerateParticles(int i)
+//definitive_spread because spread can change while spreading
+void BombComp::GenerateParticles(int definitive_spread)
 {
     SpawnParticle(_transform->position);
-    spreadExplosion(Right, i);
-    spreadExplosion(Left, i);
-    spreadExplosion(Up, i);
-    spreadExplosion(Down, i);
+    spreadExplosion(Right, definitive_spread);
+    spreadExplosion(Left, definitive_spread);
+    spreadExplosion(Up, definitive_spread);
+    spreadExplosion(Down, definitive_spread);
 }
 
 bool BombComp::SpawnParticle(Vector3D &pos)
