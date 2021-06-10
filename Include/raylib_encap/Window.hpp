@@ -14,6 +14,8 @@ class Window {
 public:
     static Vector2D GetWinSize();
     Window(bool fullscreen);
+    static void ToogleFullscreen();
+    static bool isFullScreen();
     ~Window();
     bool ShouldClose();
 private:

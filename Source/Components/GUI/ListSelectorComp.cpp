@@ -39,16 +39,22 @@ void ListSelectorComp::init()
 void ListSelectorComp::update()
 {
     Component::update();
+    bool clicked = false;
+
     if (RectCollider::CheckMouseInRect(_prevRect)) {
         _prevHover = true;
-        if (EMouseInputModule::GetButtonReleased(LeftClick))
+        if (EMouseInputModule::GetButtonReleased(LeftClick)) {
             selIndex--;
+            clicked = true;
+        }
     } else
         _prevHover = false;
     if (RectCollider::CheckMouseInRect(_nextRect)) {
         _nextHover = true;
-        if (EMouseInputModule::GetButtonReleased(LeftClick))
+        if (EMouseInputModule::GetButtonReleased(LeftClick)) {
             selIndex++;
+            clicked = true;
+        }
     } else
         _nextHover = false;
     if (selIndex < 0)
@@ -57,6 +63,10 @@ void ListSelectorComp::update()
         selIndex = 0;
     if (_Select._text != _options[selIndex])
         _Select._text = _options[selIndex];
+    if (!clicked)
+        return;
+    for (auto &fun : _eventFuns)
+        fun(_options[selIndex]);
 }
 
 void ListSelectorComp::draw()
@@ -74,7 +84,22 @@ void ListSelectorComp::draw()
         _color);
 }
 
-EInputType ListSelectorComp::getSel() const
+EInputType ListSelectorComp::getSelInputType() const
 {
     return (EInputType) selIndex;
+}
+
+std::string ListSelectorComp::getSelStr() const
+{
+    return _options[selIndex];
+}
+
+void ListSelectorComp::addEventFun(const std::function<void(std::string)>& fun)
+{
+    _eventFuns.emplace_back(fun);
+}
+
+void ListSelectorComp::set_sel_index(int sel_index)
+{
+    selIndex = sel_index;
 }

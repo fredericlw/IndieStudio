@@ -33,3 +33,13 @@ Vector2D Window::GetWinSize()
 {
     return Vector2D(GetScreenWidth(), GetScreenHeight());
 }
+
+void Window::ToogleFullscreen()
+{
+    ToggleFullscreen();
+}
+
+bool Window::isFullScreen()
+{
+    return IsWindowFullscreen();
+}

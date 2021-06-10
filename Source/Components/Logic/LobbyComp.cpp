@@ -79,10 +79,10 @@ void LobbyComp::update()
 
 void LobbyComp::getSelection()
 {
-    sel1 = ListSelector1->getSel();
-    sel2 = ListSelector2->getSel();
-    sel3 = ListSelector3->getSel();
-    sel4 = ListSelector4->getSel();
+    sel1 = ListSelector1->getSelInputType();
+    sel2 = ListSelector2->getSelInputType();
+    sel3 = ListSelector3->getSelInputType();
+    sel4 = ListSelector4->getSelInputType();
 }
 
 void LobbyComp::draw()

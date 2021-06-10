@@ -5,12 +5,15 @@
 ** Created by Leo Fabre
 */
 #include <iostream>
+#include <memory>
+#include "raylib_encap/Window.hpp"
 //#include <unistd.h>
 #include <Components/3D/TransformComp.hpp>
 #include <Components/GUI/Sprite2D.hpp>
 #include <Components/3D/BasicCubeComp.hpp>
 #include "Bomberman.hpp"
 #include <raylib_encap/EAudio.hpp>
+
 
 Bomberman::Bomberman(bool fullscreen)
     : mainWindow(std::make_unique<Window>(fullscreen)),

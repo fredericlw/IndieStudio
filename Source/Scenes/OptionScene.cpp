@@ -20,7 +20,7 @@ void Manager::loadOptionScene()
 }
 
 void Manager::AddOptionName() {
-    auto &OptionName = addEntity("HowToPlayName");
+    auto &OptionName = addEntity("SettingsName");
     OptionName.addComponent<TransformComp>(Vector2D::ScreenCenter().x, 0);
     OptionName.addComponent<TextComp>("Settings", Black);
     OptionName.addGroup(GUI);
