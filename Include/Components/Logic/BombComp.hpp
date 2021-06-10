@@ -50,6 +50,7 @@ public:
     float _curParticleScale;
     float _baseParticleSize;
     clock_t _particleStartTime;
+    clock_t _bombSpawnTime;
     void checkPowerup(Vector3D &pos);
 };
 

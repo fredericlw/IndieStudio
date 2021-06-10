@@ -117,6 +117,16 @@ Material ModelComp::getMat()
     return model.model.materials[0];
 }
 
+void ModelComp::setModelScale(const float &scale)
+{
+    ModelComp::model.scale = scale;
+}
+
+float ModelComp::getBaseScale() const
+{
+    return _baseScale;
+}
+
 //endregion
 
 
