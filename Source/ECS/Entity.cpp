@@ -43,3 +43,34 @@ void Entity::addGroup(Group grp)
     groupBitSet[grp] = true;
     _mgr.addEntityToGroup(this, grp);
 }
+
+void Entity::delGroup(Group grp)
+{
+    groupBitSet[grp] = false;
+}
+
+bool Entity::hasGroup(Group grp)
+{
+    return groupBitSet[grp];
+}
+
+void Entity::SetDontDestroyOnLoad(bool state)
+{
+    _dontDesOnLoad = state;
+}
+
+bool Entity::GetDontDestroyOnLoad() const
+{
+    return _dontDesOnLoad;
+}
+
+bool Entity::isActive() const
+{
+    return _active;
+}
+
+AssetLoader *Entity::assets()
+{
+    return &_mgr.getEntByName("gameLogic")
+        ->getComponent<AssetLoader>();
+}

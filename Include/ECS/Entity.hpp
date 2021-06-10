@@ -8,7 +8,9 @@
 #define ENTITY_HPP
 
 #include <raylib.h>
+#include <AssetLoader.hpp>
 #include "Component.hpp"
+//#include "Manager.hpp"
 
 class Entity {
 protected:
@@ -26,43 +28,23 @@ public:
 
     const std::string &getName() const;
     Manager &_mgr;
+    AssetLoader *assets();
 private:
     ComponentArray componentArray;
     ComponentBitSet componentBitSet;
     GroupBitSet groupBitSet;
+
 public:
     void update();
-
     void draw();
-
-    bool isActive() const
-    {
-        return _active;
-    }
-
-    bool GetDontDestroyOnLoad()
-    {
-        return _dontDesOnLoad;
-    }
-
-    void SetDontDestroyOnLoad(bool state)
-    {
-        _dontDesOnLoad = state;
-    }
-
+    bool isActive() const;
     void destroy();
+    bool GetDontDestroyOnLoad() const;
+    void SetDontDestroyOnLoad(bool state);
 
-    bool hasGroup(Group grp)
-    {
-        return groupBitSet[grp];
-    }
-
+    bool hasGroup(Group grp);
     void addGroup(Group grp);
-
-    void delGroup(Group grp)
-    {
-        groupBitSet[grp] = false;
-    }
+    void delGroup(Group grp);
 
     template<typename T> bool hasComponent() const;
 
@@ -71,8 +53,7 @@ public:
     {
         T *comp(new T(std::forward<TArgs>(mArgs)...));
         comp->entity = this;
-        std::unique_ptr<Component> uPtr
-            (comp);
+        std::unique_ptr<Component> uPtr(comp);
         components.emplace_back(std::move(uPtr));
         componentArray[getComponentTypeID<T>()] = comp;
         componentBitSet[getComponentTypeID<T>()] = true;
@@ -84,15 +65,6 @@ public:
     {
         auto ptr(componentArray[getComponentTypeID<T>()]);
         return *static_cast<T *>(ptr);
-    }
-
-    template<typename T> T &requireComponent() const
-    {
-        auto ptr(componentArray[getComponentTypeID<T>()]);
-        auto cast = *static_cast<T *>(ptr);
-        if (!cast)
-            cast = addComponent<T>();
-        return cast;
     }
 };
 

@@ -5,3 +5,6 @@
 ** Created by Leo Fabre
 */
 #include "ECS/Component.hpp"
+#include "Entity.hpp"
+#include "Manager.hpp"
+

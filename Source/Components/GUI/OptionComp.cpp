@@ -7,6 +7,7 @@
 
 #include <raylib_encap/Window.hpp>
 #include "Components/GUI/OptionComp.hpp"
+#include "Entity.hpp"
 
 void OptionComp::AddOptionSelector()
 {

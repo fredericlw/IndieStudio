@@ -8,8 +8,8 @@
 #define ASSETLOADER_HPP
 
 #include <raylib_encap/EModel.hpp>
+#include <raylib_encap/EAnimatedModel.hpp>
 #include <Component.hpp>
-#include "../../Source/raylib_encap/EAnimatedModel.hpp"
 
 class AssetLoader : public Component {
 public:

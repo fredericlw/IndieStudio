@@ -7,10 +7,8 @@
 #ifndef MANAGER_HPP
 #define MANAGER_HPP
 
-#include <Scene.hpp>
 #include <raylib_encap/ECamera.hpp>
-#include <Components/Character/Player.hpp>
-#include "Entity.hpp"
+#include <Ecs.hpp>
 
 enum GroupLabel{
     Floor,
@@ -22,6 +20,7 @@ enum GroupLabel{
     GUI,
     PowerUps
 };
+class Entity;
 
 class Manager {
 public:
@@ -44,22 +43,12 @@ public:
     void loadScene(SceneType scene);
     void Quit();
     ECamera MainCam;
-private:
 public:
     bool isAlive() const;
 private:
     bool alive = true;
     std::vector<std::shared_ptr<Entity>> entities;
     std::array<std::vector<Entity *>, maxGroups> groupedEntities;
-    void loadGameScene();
-    void loadMenuScene();
-    void addBackToGameBtn();
-    void addBackToGameOptionBtn();
-    void addBackToHowToPlayButton();
-    void AddMenuLogo();
-    void AddPlayButton();
-    void AddCubeZER();
-    void GenerateMap();
 public:
     std::shared_ptr<Entity> getEntByName(const std::string &name);
     void setAlive(bool alive);
@@ -69,6 +58,14 @@ public:
     SceneType getNextSceneToLoad() const;
     void setNextSceneToLoad(SceneType next_scene_to_load);
 
+    void loadGameScene();
+    void loadMenuScene();
+    void addBackToGameBtn();
+    void addBackToGameOptionBtn();
+    void addBackToHowToPlayButton();
+    void AddMenuLogo();
+    void AddPlayButton();
+    void GenerateMap();
     void loadLobbyScene();
     void AddMenuButton();
     void AddGameButton();
@@ -76,9 +73,7 @@ public:
     void AddOptionName();
     void AddHowToPlayName();
     void AddHowToPlayRules();
-
     void loadHowToPlayScene();
-    void AddListSelector();
     void loadOptionScene();
     void AddSettingsButton();
     void AddHowToPlayButton();

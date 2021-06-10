@@ -9,7 +9,7 @@
 
 #include <Component.hpp>
 #include <3D/TransformComp.hpp>
-#include "../../../Source/raylib_encap/EAnimatedModel.hpp"
+#include "raylib_encap/EAnimatedModel.hpp"
 
 class AnimatedModel : public Component {
 public:

@@ -35,10 +35,8 @@ void Player::init()
 {
     Component::init();
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
-    auto &assets = entity->_mgr.getEntByName("gamelogic")
-        ->getComponent<AssetLoader>();
     _model = &entity
-        ->addComponent<ModelComp>(assets.PlayerModel, _color);
+        ->addComponent<ModelComp>(entity->assets()->PlayerModel, _color);
 }
 
 void Player::update()

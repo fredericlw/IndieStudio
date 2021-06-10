@@ -37,8 +37,6 @@ void MapComponent::init()
 
 void MapComponent::gen_obstacles()
 {
-    auto &assets = entity->_mgr.getEntByName(
-        "gamelogic")->getComponent<AssetLoader>();
     Vector3D maxPos(transform->position.x + (_size.x * cubesize) - cubesize,
         transform->position.y,
         transform->position.z + (_size.y * cubesize) - cubesize);
@@ -58,7 +56,7 @@ void MapComponent::gen_obstacles()
         newEnt->addComponent<BasicCubeComp>(
                 Vector3D::One().Multiply(2), Gray, Black)
             .shouldDraw = false;
-        newEnt->addComponent<ModelComp>(assets.ObstacleModel);
+        newEnt->addComponent<ModelComp>(entity->assets()->ObstacleModel);
         Obstacles.emplace_back(newEnt);
     }
 }
@@ -80,8 +78,6 @@ bool MapComponent::positionAlreadyExists(const Vector3D &pos)
 
 void MapComponent::gen_walls()
 {
-    auto &assets = entity->_mgr.getEntByName(
-        "gamelogic")->getComponent<AssetLoader>();
     //    newEnt->addComponent<ModelComp>(assets.StoneCubeModel);
     for (int x = cubesize;
         x < (_size.x - 1) * cubesize; x += static_cast<int>(cubesize * 2)) {
@@ -95,7 +91,7 @@ void MapComponent::gen_walls()
             newEnt->addComponent<BasicCubeComp>(
                     Vector3D::One().Multiply(cubesize), RayWhite, Black)
                 .shouldDraw = false;
-            newEnt->addComponent<ModelComp>(assets.StoneCubeModel);
+            newEnt->addComponent<ModelComp>(entity->assets()->StoneCubeModel);
             Walls.emplace_back(newEnt);
         }
     }
@@ -120,7 +116,7 @@ void MapComponent::gen_walls()
             newEnt->addComponent<BasicCubeComp>(
                     Vector3D::One().Multiply(cubesize), RayWhite, Black)
                 .shouldDraw = false;
-            newEnt->addComponent<ModelComp>(assets.StoneCubeModel);
+            newEnt->addComponent<ModelComp>(entity->assets()->StoneCubeModel);
         }
     }
 }
@@ -143,9 +139,7 @@ void MapComponent::gen_floor()
             newEnt->addComponent<TransformComp>(pos);
             //            newEnt->addComponent<BasicCubeComp>(
             //                Vector3D::One().Multiply(cubesize), Black, Black);
-            auto &assets = entity->_mgr.getEntByName(
-                "gamelogic")->getComponent<AssetLoader>();
-            newEnt->addComponent<ModelComp>(assets.FloorModel,
+            newEnt->addComponent<ModelComp>(entity->assets()->FloorModel,
                 (count % 2) ? White : Gray);
             count++;
         }

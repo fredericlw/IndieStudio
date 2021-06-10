@@ -14,12 +14,10 @@ void LobbyComp::AddListSelector()
     float distance = 3.5;
     auto pos = Vector3D(-5.25, -2.5, 7);
     std::vector<std::string> list = {"Keyboard", "Gamepad", "IA"};
-    auto &assets = entity->_mgr.getEntByName("gamelogic")
-        ->getComponent<AssetLoader>();
     auto *ent = &entity->_mgr.addEntity("modelDisp");
     ent->addGroup(GroupLabel::Players);
     ent->addComponent<TransformComp>(pos);
-    ent->addComponent<ModelComp>(assets.PlayerModel, Blue);
+    ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Blue);
     ListSelector1 = addSel(
         list, "First PLayer", Blue,
         Vector2D::ScreenCenter().Subtract({450, -200}), "Player 1");
@@ -28,7 +26,7 @@ void LobbyComp::AddListSelector()
     ent->addGroup(GroupLabel::Players);
     pos.x += distance;
     ent->addComponent<TransformComp>(pos);
-    ent->addComponent<ModelComp>(assets.PlayerModel, Green);
+    ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Green);
     ListSelector2 = addSel(
         list, "Second PLayer", Green,
         Vector2D::ScreenCenter().Subtract({150, -200}), "Player 2");
@@ -37,7 +35,7 @@ void LobbyComp::AddListSelector()
     pos.x += distance;
     ent->addComponent<TransformComp>(pos);
     ent->addGroup(GroupLabel::Players);
-    ent->addComponent<ModelComp>(assets.PlayerModel, Red);
+    ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Red);
     ListSelector3 = addSel(
         list, "Third PLayer", Red,
         Vector2D::ScreenCenter().Subtract({-150, -200}), "Player 3");
@@ -46,7 +44,7 @@ void LobbyComp::AddListSelector()
     pos.x += distance;
     ent->addComponent<TransformComp>(pos);
     ent->addGroup(GroupLabel::Players);
-    ent->addComponent<ModelComp>(assets.PlayerModel, LightGray);
+    ent->addComponent<ModelComp>(entity->assets()->PlayerModel, LightGray);
     ListSelector4 = addSel(
         list, "Fourth PLayer", LightGray,
         Vector2D::ScreenCenter().Subtract({-450, -200}), "Player 4");

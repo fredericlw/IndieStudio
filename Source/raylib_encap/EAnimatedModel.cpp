@@ -4,7 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
-#include "EAnimatedModel.hpp"
+#include "raylib_encap/EAnimatedModel.hpp"
 
 EAnimatedModel::EAnimatedModel(
     const std::string &path, EModel &model

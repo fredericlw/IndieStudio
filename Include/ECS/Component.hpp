@@ -8,7 +8,7 @@
 #define COMPONENT_HPP
 
 #include "Ecs.hpp"
-
+class AssetLoader;
 class Component {
 public:
     Entity *entity;

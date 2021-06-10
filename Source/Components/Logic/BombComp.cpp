@@ -39,10 +39,8 @@ void BombComp::init()
     _transform = &entity->getComponent<TransformComp>();
     if (!_transform)
         _transform = &entity->addComponent<TransformComp>();
-    auto &assets = entity->_mgr.getEntByName(
-        "gamelogic")->getComponent<AssetLoader>();
     model =
-        &entity->addComponent<ModelComp>(assets.BombModel, _owner->getColor());
+        &entity->addComponent<ModelComp>(entity->assets()->BombModel, _owner->getColor());
     collider.setPos(_transform->position);
     collider.setSize(Vector3D::One().Multiply(2));
 }
@@ -112,11 +110,9 @@ bool BombComp::SpawnParticle(Vector3D &pos)
         particleEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2),
             isOnObstacle ? Green : Red).shouldDraw= false;
 //    particleEnt.addComponent<AnimatedSprite>("./Assets/explosion.png", Vector2D{5, 5});
-    auto &assets = entity->_mgr.getEntByName(
-        "gamelogic")->getComponent<AssetLoader>();
-    auto &modelComp = particleEnt.addComponent<ModelComp>(assets.ExplosionModel);
+    auto &modelComp = particleEnt.addComponent<ModelComp>(entity->assets()->ExplosionModel);
     auto &animComp =
-        particleEnt.addComponent<AnimatedModel>(assets.ExplosionAnim);
+        particleEnt.addComponent<AnimatedModel>(entity->assets()->ExplosionAnim);
     animComp.reset();
     particleEnt.addGroup(Particles);
     particles.emplace_back(&particleEnt);
