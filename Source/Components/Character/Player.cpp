@@ -25,7 +25,7 @@ Player::Player(
       health(1),
       _maxBombs(1),
       _currentBombFire(BASE_BOMB_FIRE),
-      points(0)
+      score(0)
 {
     _powerUpFilename[NONE] = "";
     _powerUpFilename[FIREUP] = "Assets/Models/powerups/Fire.png";

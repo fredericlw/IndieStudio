@@ -38,7 +38,7 @@ private:
     void DoDropBomb();
 public:
     Vector3D getNearestBlockPos(Vector3D pos);
-    int points;
+    int score;
     void takeDamage();
     int health;
     void Die();

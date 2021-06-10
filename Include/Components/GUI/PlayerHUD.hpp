@@ -28,6 +28,7 @@ class PlayerHUD : public Component {
     PowerUpType _lastPowerup;
     TransformComp *transform;
     Entity *_PowerUpDisplay;
+    TextComp *_ScoreDisplay;
     std::vector<std::function<void()>> EventFuncs;
 };
 #endif

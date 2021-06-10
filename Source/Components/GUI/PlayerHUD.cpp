@@ -5,6 +5,7 @@
 ** Created by Achille Bourgault
 */
 
+#include "Entity.hpp"
 #include <ECS/Manager.hpp>
 #include <Components/3D/BasicCubeComp.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
@@ -14,7 +15,8 @@
 
 PlayerHUD::PlayerHUD(Player *player, Vector2D size)
     : _backgroundRect(ERect{size,{0, 0}}),
-    _player(player), _lastPowerup(player->getPowerUp()), _PowerUpDisplay(nullptr)
+    _player(player), _lastPowerup(player->getPowerUp()), _PowerUpDisplay(nullptr), _ScoreDisplay(
+        nullptr)
 {
 //    std::cout << "file : " << _player->_powerUpFilename[_player->getPowerUp()] << std::endl;
 
@@ -32,6 +34,11 @@ void PlayerHUD::init()
         transform = &entity->addComponent<TransformComp>();
     _backgroundRect.x = transform->position.x;
     _backgroundRect.y = transform->position.y;
+    Vector3D position = transform->position;
+    position.x += _backgroundRect.width / 2;
+    auto textEntity = &entity->_mgr.addEntity("textEntity");
+    textEntity->addComponent<TransformComp>(position);
+    _ScoreDisplay = &textEntity->addComponent<TextComp>(std::to_string(_player->score), Black);
 }
 
 void PlayerHUD::update()
@@ -52,7 +59,7 @@ void PlayerHUD::update()
         _PowerUpDisplay->addComponent<Sprite2D>(_player->_powerUpFilename[_player->getPowerUp()]);
         _lastPowerup = powerUp;
     }
-    //TODO : Show _player->score
+    _ScoreDisplay->_text = std::to_string(_player->score);
 }
 
 void PlayerHUD::draw()

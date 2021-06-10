@@ -91,11 +91,11 @@ void Manager::AddMenuLogo()
     //Create an entity
     auto &logoEntity = addEntity("MainMenuLogo");
     //Add Components to it
-    logoEntity.addComponent<TransformComp>(50, 0);
+    logoEntity.addComponent<TransformComp>(350, 0);
     logoEntity.addComponent<Sprite2D>("Assets/mainlogo.png");
     //Modify some components
     int ypos = GetScreenHeight() -
-        logoEntity.getComponent<Sprite2D>().height - 430;
+        logoEntity.getComponent<Sprite2D>().height - 630;
     logoEntity.getComponent<TransformComp>().position.y = (float) ypos;
     logoEntity.addGroup(GUI);
 }
