@@ -14,7 +14,6 @@
 #include "Entity.hpp"
 #include "Manager.hpp"
 #include <ctime>
-
 #include "powerup.hpp"
 
 class Player : public Component {

@@ -7,6 +7,7 @@
 #include <raylib_encap/Input/EKeyboardInputModule.hpp>
 #include <raylib_encap/Input/EGamepadInputModule.hpp>
 #include <Logic/BombComp.hpp>
+#include <Logic/PowerUpComp.hpp>
 #include "Components/Character/MovementComp.hpp"
 #include "ECS/Entity.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
@@ -96,6 +97,20 @@ void MovementComp::update()
     if (nextPos != transform->position) {
         entity->assets()->WalkingSound.playMusic(entity->assets()->Volume);
     }
+    for (const auto &item : entity->_mgr.getEntitiesInGroup(PowerUps)) {
+        BasicCubeComp *cast = &item->getComponent<BasicCubeComp>();
+        if (cast && CubeCollider::CheckBoxOverLap(
+            collider->getCube(), nextPos, cast->getCube())) {
+            auto &powerup = cast->entity->getComponent<PowerUpComp>();
+            collider->stickCube(nextPos, cast->getCube());
+            //set player's PU to item.pucomp.type
+            auto &playerComp = entity->getComponent<Player>();
+            playerComp.setPowerUp(powerup.type);
+            //destroy PU
+            powerup.entity->destroy();
+        }
+    }
+
     transform->position = nextPos;
 }
 
