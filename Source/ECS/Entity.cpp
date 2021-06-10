@@ -71,6 +71,6 @@ bool Entity::isActive() const
 
 AssetLoader *Entity::assets()
 {
-    return &_mgr.getEntByName("gameLogic")
+    return &_mgr.getEntByName("gamelogic")
         ->getComponent<AssetLoader>();
 }
