@@ -26,7 +26,8 @@ AssetLoader::AssetLoader()
       PowerupGenerated("Assets/sounds/powerup_generated.wav"),
       PlayerHurt("Assets/sounds/player_hurt.wav"),
       PlayerDead("Assets/sounds/player_dead.wav"),
-      Volume(1),
+      ButtonClick("Assets/sounds/button_click.wav"),
+      Volume(1)
       FullFireSprite("./Assets/Textures/FullFire.png", White),
       BombUpSprite("./Assets/Textures/BombUp.png", White),
       SkateSprite("./Assets/Textures/Skate.png", White),

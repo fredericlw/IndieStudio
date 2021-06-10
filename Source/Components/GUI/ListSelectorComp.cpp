@@ -44,6 +44,7 @@ void ListSelectorComp::update()
     if (RectCollider::CheckMouseInRect(_prevRect)) {
         _prevHover = true;
         if (EMouseInputModule::GetButtonReleased(LeftClick)) {
+            entity->assets()->ButtonClick.playSound(entity->assets()->Volume);
             selIndex--;
             clicked = true;
         }
@@ -52,6 +53,7 @@ void ListSelectorComp::update()
     if (RectCollider::CheckMouseInRect(_nextRect)) {
         _nextHover = true;
         if (EMouseInputModule::GetButtonReleased(LeftClick)) {
+            entity->assets()->ButtonClick.playSound(entity->assets()->Volume);
             selIndex++;
             clicked = true;
         }
