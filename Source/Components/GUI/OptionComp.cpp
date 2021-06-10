@@ -12,7 +12,7 @@
 void OptionComp::AddOptionSelector()
 {
     std::vector<std::string> listA = {"100", "90", "80", "70", "60", "50", "40",
-        "30", "20", "10"};
+        "30", "20", "10", "0"};
     std::vector<std::string> listB = {"Windowed", "FullScreen"};
     auto winSize = Window::GetWinSize();
     Vector2D size = Vector2D(50, 50);
