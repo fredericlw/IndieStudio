@@ -16,8 +16,9 @@ ESound::~ESound()
     UnloadSound(_sound);
 }
 
-void ESound::playSound()
+void ESound::playSound(float volume)
 {
+    SetSoundVolume(_sound, volume);
     PlaySound(_sound);
 }
 

@@ -16,8 +16,9 @@ EMusic::~EMusic()
     UnloadMusicStream(_music);
 }
 
-void EMusic::playMusic()
+void EMusic::playMusic(float volume)
 {
+    SetMusicVolume(_music, volume);
     UpdateMusicStream(_music);
     PlayMusicStream(_music);
 }

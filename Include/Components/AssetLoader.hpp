@@ -32,6 +32,7 @@ public:
     EModel FireUpModel;
     ESound ExplosionSound;
     EMusic WalkingSound;
+    float Volume;
 };
 
 #endif //ASSETLOADER_HPP

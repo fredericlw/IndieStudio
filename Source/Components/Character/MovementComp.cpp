@@ -94,7 +94,7 @@ void MovementComp::update()
 //        }
 //    }
     if (nextPos != transform->position) {
-        entity->assets()->WalkingSound.playMusic();
+        entity->assets()->WalkingSound.playMusic(entity->assets()->Volume);
     }
     transform->position = nextPos;
 }

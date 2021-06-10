@@ -20,7 +20,7 @@ void SoundEffectComp::update()
 void SoundEffectComp::draw()
 {
     Component::draw();
-    ESound::playSound();
+    ESound::playSound(0);
 }
 
 SoundEffectComp::SoundEffectComp(std::string filepath) : ESound(filepath)

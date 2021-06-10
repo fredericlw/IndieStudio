@@ -90,7 +90,7 @@ void BombComp::explode()
     _owner->droppedBombs--;
     model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
-    entity->assets()->ExplosionSound.playSound();
+    entity->assets()->ExplosionSound.playSound(entity->assets()->Volume);
     GenerateParticles();
     _particleStartTime = clock();
 }
