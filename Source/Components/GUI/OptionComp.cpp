@@ -11,8 +11,8 @@
 
 void OptionComp::AddOptionSelector()
 {
-    std::vector<std::string> listA = {"10", "20", "30", "40", "50", "60", "70",
-        "80", "90", "100"};
+    std::vector<std::string> listA = {"100", "90", "80", "70", "60", "50", "40",
+        "30", "20", "10"};
     std::vector<std::string> listB = {"Windowed", "FullScreen"};
     auto winSize = Window::GetWinSize();
     Vector2D size = Vector2D(50, 50);
