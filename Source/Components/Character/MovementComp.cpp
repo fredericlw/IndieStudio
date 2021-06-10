@@ -14,6 +14,7 @@
 
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)
     : Velocity(Vector3D::Zero()),
+      LastVelocity(Vector3D::Zero()),
       _speed(BASESPEED)
 {
     GenerateInputModule(input_type, num);
@@ -50,6 +51,24 @@ void MovementComp::update()
     else Velocity.z = 0;
 
     bool collides = false;
+
+    if (!(Velocity == LastVelocity))
+    {
+        if (Velocity.x == 1) {
+            entity->getComponent<ModelComp>().rotate({0, -1.5707963268 , 0});
+        }
+        if (Velocity.x == -1) {
+            entity->getComponent<ModelComp>().rotate({0, 1.5707963268, 0});
+        }
+        if (Velocity.z == -1) {
+            entity->getComponent<ModelComp>().rotate({0, 3.1415926536, 0});
+        }
+        if (Velocity.z== 1) {
+            entity->getComponent<ModelComp>().rotate({0, 0, 0});
+        }
+    }
+    LastVelocity = Velocity;
+
     Vector3D nextPos = transform->position;
     nextPos.Add(Velocity.Clamp(1).Multiply(_speed));
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Walls)) {
@@ -75,9 +94,6 @@ void MovementComp::update()
 //        }
 //    }
     transform->position = nextPos;
-    if (Velocity != Vector3D::Zero()) {
-        //        std::cout << "Player pos : " << transform->position << std::endl;
-    }
 }
 
 void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)

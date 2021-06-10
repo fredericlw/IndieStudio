@@ -25,6 +25,7 @@ private:
     AInputModule *_inputMod;
     void GenerateInputModule(EInputType type, PlayerNum num);
     Vector3D Velocity;
+    Vector3D LastVelocity;
     float _speed;
 public:
     float getSpeed() const;
