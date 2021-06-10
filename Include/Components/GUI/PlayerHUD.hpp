@@ -24,7 +24,7 @@ class PlayerHUD : public Component {
     Player *_player;
     bool hovering;
     Vector2D size;
-    ERect _rect;
+    ERect _backgroundRect;
     PowerUpType _lastPowerup;
     TransformComp *transform;
     Entity *_PowerUpDisplay;
