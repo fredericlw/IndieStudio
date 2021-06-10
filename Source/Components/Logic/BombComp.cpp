@@ -30,7 +30,6 @@ BombComp::BombComp(Colors color, Player *owner)
       _particleStartTime(0)
 {
     _curParticleScale = _baseParticleSize;
-    _explosion_sound = new ESound("Assets/sounds/explosion.wav");
 }
 
 void BombComp::init()
@@ -83,7 +82,7 @@ void BombComp::explode()
     _owner->droppedBombs--;
     model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
-    _explosion_sound->playSound();
+    entity->assets()->ExplosionSound.playSound();
     GenerateParticles();
     _particleStartTime = clock();
 }

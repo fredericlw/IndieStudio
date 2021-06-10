@@ -30,8 +30,9 @@ private:
     Colors _color;
     std::vector<Entity *> particles;
     Player *_owner;
-    ESound *_explosion_sound;
+    ECube collider;
     enum Way {Left, Down, Up, Right};
+private:
     void GenerateParticles();
     bool SpawnParticle(Vector3D &pos);
     bool hasExploded;
@@ -44,7 +45,6 @@ private:
     bool checkWall(Vector3D pos);
     bool checkObstacle(Vector3D pos);
     void spreadExplosion(Way way);
-    ECube collider;
 public:
     const ECube &getCube() const;
     float _curParticleScale;

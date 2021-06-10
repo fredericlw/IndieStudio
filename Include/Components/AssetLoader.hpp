@@ -10,6 +10,7 @@
 #include <raylib_encap/EModel.hpp>
 #include <raylib_encap/EAnimatedModel.hpp>
 #include <Component.hpp>
+#include <raylib_encap/ESound.hpp>
 
 class AssetLoader : public Component {
 public:
@@ -28,6 +29,7 @@ public:
     EModel SkateModel;
     EModel SoftBlockPassModel;
     EModel FireUpModel;
+    ESound ExplosionSound;
 };
 
 #endif //ASSETLOADER_HPP
