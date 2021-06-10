@@ -27,12 +27,6 @@ Player::Player(
       _currentBombFire(BASE_BOMB_FIRE),
       score(0)
 {
-    _powerUpFilename[NONE] = "";
-    _powerUpFilename[FIREUP] = "Assets/Models/powerups/Fire.png";
-    _powerUpFilename[SKATE] = "Assets/Models/powerups/Skate.png";
-    _powerUpFilename[BOMB_UP] = "Assets/Models/powerups/Bomb_Up.png";
-    _powerUpFilename[SOFT_BLOCK_PASS] =
-        "Assets/Models/powerups/Soft_Block_Pass.png";
 }
 
 void Player::init()

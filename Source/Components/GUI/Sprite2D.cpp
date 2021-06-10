@@ -34,3 +34,8 @@ void Sprite2D::draw()
     Component::draw();
     ESprite::draw(transform->position);
 }
+
+Sprite2D::Sprite2D(ESprite &sprite) : ESprite(sprite)
+{
+
+}
