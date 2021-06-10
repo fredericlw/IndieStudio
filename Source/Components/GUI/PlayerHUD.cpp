@@ -39,6 +39,7 @@ void PlayerHUD::init()
     auto textEntity = &entity->_mgr.addEntity("textEntity");
     textEntity->addComponent<TransformComp>(position);
     _ScoreDisplay = &textEntity->addComponent<TextComp>(std::to_string(_player->score), Black);
+    textEntity->addGroup(GUI_TOP);
 }
 
 void PlayerHUD::update()

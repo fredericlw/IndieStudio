@@ -18,6 +18,7 @@ enum GroupLabel{
     Players,
     Particles,
     GUI,
+    GUI_TOP,
     PowerUps
 };
 class Entity;

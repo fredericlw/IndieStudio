@@ -28,6 +28,7 @@ void Manager::draw()
     auto &players(getEntitiesInGroup(Players));
     auto &particles(getEntitiesInGroup(Particles));
     auto &guiEnts(getEntitiesInGroup(GUI));
+    auto &guiEnts2(getEntitiesInGroup(GUI_TOP));
 
     ClearBackground(DARKPURPLE);
     BeginDrawing();
@@ -48,6 +49,8 @@ void Manager::draw()
         ent->draw();
     MainCam.End3D();
     for (auto &ent : guiEnts)
+        ent->draw();
+    for (auto &ent : guiEnts2)
         ent->draw();
     EndDrawing();
 }
