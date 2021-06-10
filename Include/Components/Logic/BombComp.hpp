@@ -33,7 +33,7 @@ private:
     ECube collider;
     enum Way {Left, Down, Up, Right};
 private:
-    void GenerateParticles(int i);
+    void GenerateParticles(int definitive_spread);
     bool SpawnParticle(Vector3D &pos);
     bool particlesCleared;
     bool checkCol(
