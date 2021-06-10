@@ -226,7 +226,7 @@ void BombComp::checkBomb(Vector3D &pos)
     for (const auto &item : entity->_mgr.getEntitiesInGroup(Bombs)) {
         auto &bombComp = item->getComponent<BombComp>();
         auto &bombPos = item->getComponent<TransformComp>().position;
-        if (pos == bombPos) {
+        if (pos == bombPos && !bombComp.hasExploded) {
             bombComp.explode();
         }
     }

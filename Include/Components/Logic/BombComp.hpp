@@ -35,7 +35,6 @@ private:
 private:
     void GenerateParticles();
     bool SpawnParticle(Vector3D &pos);
-    bool hasExploded;
     bool particlesCleared;
     bool checkCol(
         const Vector3D &mapPos, const ECube &flameCube, ECube &wallCube,
@@ -46,6 +45,7 @@ private:
     bool checkObstacle(Vector3D pos);
     void spreadExplosion(Way way);
 public:
+    bool hasExploded;
     const ECube &getCube() const;
     float _curParticleScale;
     float _baseParticleSize;
