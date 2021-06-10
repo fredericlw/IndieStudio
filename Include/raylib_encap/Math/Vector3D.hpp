@@ -70,6 +70,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Vector3D &d);
     //endregion
     Vector3D &Multiply(float factor);
+    static Vector3D getNearestBlockPos(Vector3D pos);
 };
 
 #endif //VECTOR3D_HPP

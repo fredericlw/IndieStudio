@@ -100,6 +100,7 @@ bool BombComp::SpawnParticle(Vector3D &pos)
 {
     //will return true if hit a wall or an obstacle (hurting players and destroying obstacle)
     checkPlayer(pos);
+    checkPowerup(pos);
     if (checkWall(pos))
         return true;
     bool isOnObstacle = checkObstacle(pos);
@@ -190,6 +191,20 @@ void BombComp::checkPlayer(Vector3D pos)
 const ECube &BombComp::getCube() const
 {
     return collider;
+}
+
+void BombComp::checkPowerup(Vector3D &pos)
+{
+    //for each powerup :
+    for (const auto &pu : entity->_mgr.getEntitiesInGroup(PowerUps)) {
+        auto &puComp = pu->getComponent<PowerUpComp>();
+        auto &puPos = pu->getComponent<TransformComp>().position;
+        if (pos == Vector3D::getNearestBlockPos(puPos)) {
+            std::cout << "Hit Pickup !" << std::endl;
+            _owner->setPowerUp(puComp.type);
+            entity->destroy();
+        }
+    }
 }
 
 

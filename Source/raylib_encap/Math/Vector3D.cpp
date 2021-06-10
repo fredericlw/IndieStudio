@@ -4,6 +4,8 @@
 ** File description:
 ** Created by Leo Fabre
 */
+#include <cfenv>
+#include <cmath>
 #include "raylib_encap/Math/Vector3D.hpp"
 #include "raylib_encap/Math/Vector2D.hpp"
 
@@ -132,5 +134,34 @@ bool Vector3D::operator==(Vector3D other)
 bool Vector3D::operator!=(Vector3D other)
 {
     return x != other.x || y != other.y || z != other.z;
+}
+
+Vector3D Vector3D::getNearestBlockPos(Vector3D pos)
+{
+    Vector3D res(pos);
+    res.Add(Vector3D::One());
+    res.y -= 1;
+    std::fesetround(FE_TONEAREST);
+    res.x = std::nearbyint(pos.x);
+    res.z = std::nearbyint(pos.z);
+
+    if (static_cast<int>(res.x) % 2 == 0) {
+        if (res.x > pos.x) {
+            res.x -= 1;
+        } else {
+            res.x += 1;
+        }
+    }
+    if (static_cast<int>(res.z) % 2 == 0) {
+        if (res.z > pos.z) {
+            res.z -= 1;
+        } else {
+            res.z += 1;
+        }
+    }
+    //todo : this is a quick and ugly (and not working) fix
+    res.x -= 1;
+    res.z -= 1;
+    return res;
 }
 

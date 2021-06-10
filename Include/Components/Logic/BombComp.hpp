@@ -50,6 +50,7 @@ public:
     float _curParticleScale;
     float _baseParticleSize;
     clock_t _particleStartTime;
+    void checkPowerup(Vector3D &pos);
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP
