@@ -16,11 +16,11 @@ public:
     void update() override;
     void draw() override;
 private:
-    Player *p1;
-    Player *p2;
-    Player *p3;
-    Player *p4;
-    Player * SpawnPlayer(
+    PlayerComp *p1;
+    PlayerComp *p2;
+    PlayerComp *p3;
+    PlayerComp *p4;
+    PlayerComp * SpawnPlayer(
         std::string entityName, const Vector3D& pos, EInputType inputType,
         PlayerNum num,
         Colors color

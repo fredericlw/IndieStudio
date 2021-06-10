@@ -18,7 +18,7 @@
 #include "Entity.hpp"
 #include "Components/3D/AnimatedModel.hpp"
 
-BombComp::BombComp(Colors color, Player *owner)
+BombComp::BombComp(Colors color, PlayerComp *owner)
     : _color(color),
       _transform(nullptr),
       model(nullptr),
@@ -195,7 +195,7 @@ void BombComp::checkPlayer(Vector3D pos)
 {
     //for each players :
     for (const auto &player : entity->_mgr.getEntitiesInGroup(Players)) {
-        auto &playerComp = player->getComponent<Player>();
+        auto &playerComp = player->getComponent<PlayerComp>();
         auto &playerPos = player->getComponent<TransformComp>().position;
         if (pos == playerComp.getNearestBlockPos(playerPos)) {
             std::cout << "Hit player !" << std::endl;

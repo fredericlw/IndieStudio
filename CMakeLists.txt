@@ -30,7 +30,7 @@ add_executable(bomberman
         Include/Components/3D/TransformComp.hpp
 
         Include/Components/Character/MovementComp.hpp
-        Include/Components/Character/Player.hpp
+        Include/Components/Character/PlayerComp.hpp
 
         Include/Components/GUI/AnimatedSprite.hpp
         Include/Components/GUI/ButtonComp.hpp
@@ -89,7 +89,7 @@ add_executable(bomberman
         Source/Components/3D/ModelComp.cpp
         Source/Components/3D/TransformComp.cpp
         Source/Components/Character/MovementComp.cpp
-        Source/Components/Character/Player.cpp
+        Source/Components/Character/PlayerComp.cpp
         Source/Components/GUI/ButtonComp.cpp
         Source/Components/GUI/ListSelectorComp.cpp
         Source/Components/GUI/OptionComp.cpp

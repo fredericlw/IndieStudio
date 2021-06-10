@@ -6,13 +6,13 @@
 */
 
 #include <Components/Logic/BombComp.hpp>
-#include "Components/Character/Player.hpp"
+#include "Components/Character/PlayerComp.hpp"
 #include <cmath>
 #include <cfenv>
 #include <Logic/GameLogicComp.hpp>
 #include <BaseValues.h>
 
-Player::Player(
+PlayerComp::PlayerComp(
     EInputType e_type, PlayerNum player_num, Colors color
 )
     : _eType(e_type),
@@ -29,7 +29,7 @@ Player::Player(
 {
 }
 
-void Player::init()
+void PlayerComp::init()
 {
     Component::init();
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
@@ -37,7 +37,7 @@ void Player::init()
         ->addComponent<ModelComp>(entity->assets()->PlayerModel, _color);
 }
 
-void Player::update()
+void PlayerComp::update()
 {
     Component::update();
     if (_mc->getInputModule()->GetButtonPressed(DropBomb)
@@ -46,12 +46,12 @@ void Player::update()
     }
 }
 
-void Player::draw()
+void PlayerComp::draw()
 {
     Component::draw();
 }
 
-void Player::DoDropBomb()
+void PlayerComp::DoDropBomb()
 {
     activeBombs++;
     auto curPos = entity->getComponent<TransformComp>().position;
@@ -62,12 +62,12 @@ void Player::DoDropBomb()
     bombEnt.addGroup(Bombs);
 }
 
-Colors Player::getColor() const
+Colors PlayerComp::getColor() const
 {
     return _color;
 }
 
-Vector3D Player::getNearestBlockPos(Vector3D pos)
+Vector3D PlayerComp::getNearestBlockPos(Vector3D pos)
 {
     Vector3D res(pos);
     res.Add(Vector3D::One());
@@ -96,12 +96,12 @@ Vector3D Player::getNearestBlockPos(Vector3D pos)
     return res;
 }
 
-PowerUpType Player::getPowerUp() const
+PowerUpType PlayerComp::getPowerUp() const
 {
     return _powerUp;
 }
 
-void Player::setPowerUp(PowerUpType power_up)
+void PlayerComp::setPowerUp(PowerUpType power_up)
 {
     entity->assets()->PowerupPickUp.playSound(entity->assets()->Volume);
     StopPowerup(_powerUp);
@@ -109,10 +109,10 @@ void Player::setPowerUp(PowerUpType power_up)
     StartPowerup(power_up);
 }
 
-void Player::takeDamage()
+void PlayerComp::takeDamage()
 {
     health--;
-    std::cout << "Player hurt" << std::endl;
+    std::cout << "PlayerComp hurt" << std::endl;
     if (health <= 0) {
         Die();
         return;
@@ -120,14 +120,14 @@ void Player::takeDamage()
     entity->assets()->PlayerHurt.playSound(entity->assets()->Volume);
 }
 
-void Player::Die()
+void PlayerComp::Die()
 {
     std::cout << "PLAYER DED :)" << std::endl;
     entity->assets()->PlayerDead.playSound(entity->assets()->Volume);
     entity->destroy();
 }
 
-void Player::StopPowerup(PowerUpType type)
+void PlayerComp::StopPowerup(PowerUpType type)
 {
     switch (type) {
     case NONE:
@@ -150,7 +150,7 @@ void Player::StopPowerup(PowerUpType type)
     }
 }
 
-void Player::StartPowerup(PowerUpType type)
+void PlayerComp::StartPowerup(PowerUpType type)
 {
     switch (type) {
     case NONE:

@@ -80,7 +80,7 @@ void MovementComp::update()
             collider->stickCube(nextPos, cast->getCube());
         }
     }
-    if (entity->getComponent<Player>().getPowerUp() != SOFT_BLOCK_PASS) {
+    if (entity->getComponent<PlayerComp>().getPowerUp() != SOFT_BLOCK_PASS) {
         for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles)) {
             BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
             if (cast && CubeCollider::CheckBoxOverLap(
@@ -106,7 +106,7 @@ void MovementComp::update()
             Vector3D::getNearestBlockPos(PUTransform->position) ==
                 Vector3D::getNearestBlockPos(transform->position)) {
             auto &powerup = PUTransform->entity->getComponent<PowerUpComp>();
-            auto &playerComp = entity->getComponent<Player>();
+            auto &playerComp = entity->getComponent<PlayerComp>();
             playerComp.setPowerUp(powerup.type);
             powerup.entity->destroy();
         }

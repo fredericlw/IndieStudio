@@ -16,9 +16,9 @@
 #include <ctime>
 #include "powerup.hpp"
 
-class Player : public Component {
+class PlayerComp : public Component {
 public:
-    Player(
+    PlayerComp(
         EInputType e_type, PlayerNum player_num, Colors color
     );
     void init() override;

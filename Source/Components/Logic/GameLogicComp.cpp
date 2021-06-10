@@ -13,7 +13,7 @@
 #include <raylib_encap/Window.hpp>
 #include "Components/Logic/GameLogicComp.hpp"
 #include "Manager.hpp"
-#include "Components/Character/Player.hpp"
+#include "Components/Character/PlayerComp.hpp"
 #include "Components/GUI/PlayerHUD.hpp"
 #include "Components/AssetLoader.hpp"
 
@@ -44,7 +44,7 @@ void GameLogicComp::SpawnPlayers()
         entity->getComponent<LobbyComp>().sel4, PlayerFour, LightGray);
 }
 
-Player *GameLogicComp::SpawnPlayer(
+PlayerComp *GameLogicComp::SpawnPlayer(
     std::string entityName, const Vector3D &pos, EInputType inputType,
     PlayerNum num,
     Colors color
@@ -55,7 +55,7 @@ Player *GameLogicComp::SpawnPlayer(
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2)).shouldDraw=
         false;
     myEnt.addGroup(Players);
-    return &myEnt.addComponent<Player>(inputType, num, color);
+    return &myEnt.addComponent<PlayerComp>(inputType, num, color);
 }
 
 void GameLogicComp::update()
