@@ -18,7 +18,6 @@ EModel::EModel(
 {
     model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
     model.materials[1].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
-    std::cerr << "mat count : " << model.materialCount << std::endl;
 }
 
 //for .OBJs that link to a .mat file (== material is provided)
@@ -26,7 +25,6 @@ EModel::EModel(const std::string& modpath, float scale)
     : model(LoadModel(modpath.c_str())),
       scale(scale)
 {
-
     Image image = GenImageColor(1, 1, GetRaylibColor(LightGray));
     texture = LoadTextureFromImage(image);
     UnloadImage(image);

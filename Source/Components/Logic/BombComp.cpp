@@ -202,7 +202,7 @@ void BombComp::checkPowerup(Vector3D &pos)
         if (pos == Vector3D::getNearestBlockPos(puPos)) {
             std::cout << "Hit Pickup !" << std::endl;
             _owner->setPowerUp(puComp.type);
-            entity->destroy();
+            puComp.entity->destroy();
         }
     }
 }
