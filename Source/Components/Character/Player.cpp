@@ -109,7 +109,7 @@ PowerUpType Player::getPowerUp() const
 
 void Player::setPowerUp(PowerUpType power_up)
 {
-    //todo : play powerup activated sound here
+    entity->assets()->PowerupPickUp.playSound(entity->assets()->Volume);
     StopPowerup(_powerUp);
     _powerUp = power_up;
     StartPowerup(power_up);
@@ -123,13 +123,13 @@ void Player::takeDamage()
         Die();
         return;
     }
-    //todo : play player hurt sound HERE
+    entity->assets()->PlayerHurt.playSound(entity->assets()->Volume);
 }
 
 void Player::Die()
 {
     std::cout << "PLAYER DED :)" << std::endl;
-    //todo : play player died sound HERE
+    entity->assets()->PlayerDead.playSound(entity->assets()->Volume);
     entity->destroy();
 }
 

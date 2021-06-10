@@ -32,6 +32,10 @@ public:
     EModel FireUpModel;
     ESound ExplosionSound;
     EMusic WalkingSound;
+    ESound PowerupPickUp;
+    ESound PowerupGenerated;
+    ESound PlayerHurt;
+    ESound PlayerDead;
     float Volume;
 };
 

@@ -166,7 +166,7 @@ bool BombComp::checkObstacle(Vector3D pos)
             obstacle->destroy();
             if (Random::Range(0, 1) == 1) {
                 std::cout << "Spawning powerup !" << std::endl;
-                //todo : play powerup sound here
+                entity->assets()->PowerupGenerated.playSound(entity->assets()->Volume);
                 auto &puEnt = entity->_mgr.addEntity("powerup");
                 puEnt.addComponent<TransformComp>(pos);
                 puEnt.addComponent<PowerUpComp>();

@@ -22,6 +22,10 @@ AssetLoader::AssetLoader()
       FireUpModel("./Assets/Models/powerups/FireUp.gltf", 1.5),
       ExplosionSound("Assets/sounds/explosion.wav"),
       WalkingSound("Assets/sounds/walking.mp3"),
+      PowerupPickUp("Assets/sounds/powerup_pick_up.wav"),
+      PowerupGenerated("Assets/sounds/powerup_generated.wav"),
+      PlayerHurt("Assets/sounds/player_hurt.wav"),
+      PlayerDead("Assets/sounds/player_dead.wav"),
       Volume(1)
 {
 }
