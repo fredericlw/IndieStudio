@@ -33,7 +33,7 @@ private:
     ECube collider;
     enum Way {Left, Down, Up, Right};
 private:
-    void GenerateParticles();
+    void GenerateParticles(int i);
     bool SpawnParticle(Vector3D &pos);
     bool particlesCleared;
     bool checkCol(
@@ -43,7 +43,7 @@ private:
     void checkPlayer(Vector3D pos);
     bool checkWall(Vector3D pos);
     bool checkObstacle(Vector3D pos);
-    void spreadExplosion(Way way);
+    void spreadExplosion(Way way, int i);
 public:
     int spread;
     bool hasExploded;

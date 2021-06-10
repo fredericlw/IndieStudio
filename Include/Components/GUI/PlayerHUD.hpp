@@ -13,6 +13,7 @@
 #include <raylib_encap/ERect.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
 #include <Character/Player.hpp>
+#include "TextComp.hpp"
 
 class PlayerHUD : public Component {
     public:

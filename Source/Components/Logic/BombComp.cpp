@@ -97,17 +97,17 @@ void BombComp::explode()
     model->SetVisibility(false);
     std::cout << "BOOM !" << std::endl;
     entity->assets()->ExplosionSound.playSound(entity->assets()->Volume);
-    GenerateParticles();
+    GenerateParticles(spread);
     _particleStartTime = clock();
 }
 
-void BombComp::GenerateParticles()
+void BombComp::GenerateParticles(int i)
 {
     SpawnParticle(_transform->position);
-    spreadExplosion(Right);
-    spreadExplosion(Left);
-    spreadExplosion(Up);
-    spreadExplosion(Down);
+    spreadExplosion(Right, i);
+    spreadExplosion(Left, i);
+    spreadExplosion(Up, i);
+    spreadExplosion(Down, i);
 }
 
 bool BombComp::SpawnParticle(Vector3D &pos)
@@ -134,10 +134,10 @@ bool BombComp::SpawnParticle(Vector3D &pos)
     return isOnObstacle;
 }
 
-void BombComp::spreadExplosion(Way way)
+void BombComp::spreadExplosion(Way way, int _spread)
 {
     Vector3D pos(_transform->position);
-    for (int i = 0; i < spread; i++) {
+    for (int i = 0; i < _spread; i++) {
         switch (way) {
         case Left:
             pos.x -= 2;
