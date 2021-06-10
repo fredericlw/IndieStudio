@@ -48,8 +48,6 @@ void ESprite::setColor(const Colors &color)
 
 ESprite::~ESprite()
 {
-    std::cerr << "UNLOADING TEXTURE (" << path << ")" << std::endl;
-    UnloadTexture(*this);
 }
 
 ESprite::ESprite(Texture2D texture)
@@ -68,4 +66,9 @@ void ESprite::drawBillboardRect(Camera camera, Rectangle rect,
     Vector3 position, Vector2 size, Colors tint)
 {
     DrawBillboardRec(camera, *this, rect, position, size, GetRaylibColor(tint));
+}
+
+void ESprite::Unload()
+{
+    UnloadTexture(*this);
 }

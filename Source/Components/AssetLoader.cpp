@@ -41,6 +41,27 @@ AssetLoader::~AssetLoader()
     PlayerModel.Unload();
     StoneCubeModel.Unload();
     BombModel.Unload();
+    ObstacleModel.Unload();
+    ExplosionModel.Unload();
+    ExplosionAnim.model->Unload();
+    FloorModel.Unload();
+    FullFireModel.Unload();
+    BombUpModel.Unload();
+    SkateModel.Unload();
+    SoftBlockPassModel.Unload();
+    FireUpModel.Unload();
+    ExplosionSound.Unload();
+    WalkingSound.Unload();
+    PowerupPickUp.Unload();
+    PowerupGenerated.Unload();
+    PlayerHurt.Unload();
+    PlayerDead.Unload();
+    ButtonClick.Unload();
+    FullFireSprite.Unload();
+    BombUpSprite.Unload();
+    SkateSprite.Unload();
+    SoftBlockPassSprite.Unload();
+    FireUpSprite.Unload();
 }
 
 void AssetLoader::init()

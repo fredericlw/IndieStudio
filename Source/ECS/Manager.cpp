@@ -101,6 +101,7 @@ Manager::Manager()
 
 void Manager::loadScene(Manager::SceneType scene)
 {
+    std::cerr << "LOADING SCENE ! :)" << std::endl;
     destroyOnLoad();
     switch (scene) {
     case MainMenu:

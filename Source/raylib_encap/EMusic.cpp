@@ -47,3 +47,8 @@ void EMusic::setMusicVolume(float volume)
 {
     SetMusicVolume(_music, volume);
 }
+
+void EMusic::Unload()
+{
+    UnloadMusicStream(_music);
+}

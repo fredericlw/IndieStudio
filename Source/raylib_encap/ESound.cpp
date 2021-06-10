@@ -41,3 +41,8 @@ void ESound::setSoundVolume(float volume)
 {
     SetSoundVolume(_sound, volume);
 }
+
+void ESound::Unload()
+{
+    UnloadSound(_sound);
+}

@@ -20,6 +20,7 @@ public:
     void pauseSound();
     void resumeSound();
     void setSoundVolume(float volume);
+    void Unload();
 private:
     Sound _sound;
 };
