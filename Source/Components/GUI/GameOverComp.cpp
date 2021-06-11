@@ -1,5 +1,10 @@
-//
-// Created by jupi on 11/06/2021.
-//
+/*
+** EPITECH PROJECT, 2024
+** bomberman
+** File description:
+** Created by Achille Bourgault
+*/
 
 #include "Components/GUI/GameOverComp.hpp"
+
+

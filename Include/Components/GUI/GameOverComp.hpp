@@ -7,7 +7,11 @@
 
 
 class GameOverComp {
-
+    public:
+    GameOverComp();
+    void update() override;
+    void draw() override;
+    void init() override;
 };
 
 

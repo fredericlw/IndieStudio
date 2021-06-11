@@ -1,6 +1,9 @@
-//
-// Created by thoma on 11/06/2021.
-//
+/*
+** EPITECH PROJECT, 2021
+** bomberman
+** File description:
+** Created by daniyel gouasmi
+*/
 
 #include "Manager.hpp"
 

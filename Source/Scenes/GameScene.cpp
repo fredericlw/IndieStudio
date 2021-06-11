@@ -4,6 +4,7 @@
 ** File description:
 ** Created by Adrien Courbebaisse
 */
+
 #include <GUI/PauseMenuComp.hpp>
 #include "ECS/Manager.hpp"
 #include "Components/Components.h"
