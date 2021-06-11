@@ -38,7 +38,7 @@ void PlayerHUD::init()
     position.x += _backgroundRect.width / 2;
     auto textEntity = &entity->_mgr.addEntity("textEntity");
     textEntity->addComponent<TransformComp>(position.Add(Vector2D {0, 10}));
-    _ScoreDisplay = &textEntity->addComponent<TextComp>(std::to_string(_player->score), Black);
+    _ScoreDisplay = &textEntity->addComponent<TextComp>(std::to_string(_player->getScore()), Black);
     textEntity->addGroup(GUI_TOP);
 }
 
@@ -60,7 +60,7 @@ void PlayerHUD::update()
         _PowerUpDisplay->addComponent<Sprite2D>(*getPowerupSprite(_player->getPowerUp()));
         _lastPowerup = powerUp;
     }
-    _ScoreDisplay->_text = std::to_string(_player->score);
+    _ScoreDisplay->_text = std::to_string(_player->getScore());
 }
 
 void PlayerHUD::draw()

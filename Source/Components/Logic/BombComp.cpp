@@ -10,6 +10,7 @@
 #include <Logic/MapComponent.hpp>
 #include <raylib_encap/Math/Random.hpp>
 #include <raylib_encap/Easing.hpp>
+#include <BaseValues.h>
 #include "Components/Logic/BombComp.hpp"
 #include "Components/Logic/PowerUpComp.hpp"
 #include "Manager.hpp"
@@ -172,6 +173,7 @@ bool BombComp::checkObstacle(Vector3D pos)
                 puEnt.addComponent<PowerUpComp>();
             }
             std::cout << "hit obstacle !" << std::endl;
+            _owner->addScore(HIT_OBSTACLE_SCORE);
             return true;
         }
     }
@@ -197,9 +199,12 @@ void BombComp::checkPlayer(Vector3D pos)
     for (const auto &player : entity->_mgr.getEntitiesInGroup(Players)) {
         auto &playerComp = player->getComponent<PlayerComp>();
         auto &playerPos = player->getComponent<TransformComp>().position;
-        if (pos == playerComp.getNearestBlockPos(playerPos)) {
+        if (pos == playerComp.getNearestBlockPos(playerPos)
+            && playerComp.isAlive()) {
             std::cout << "Hit player !" << std::endl;
             playerComp.takeDamage();
+            if (&playerComp != _owner)
+                _owner->addScore(HIT_PLAYER_SCORE);
         }
     }
 }
@@ -219,6 +224,7 @@ void BombComp::checkPowerup(Vector3D &pos)
             std::cout << "Hit Pickup !" << std::endl;
             _owner->setPowerUp(puComp.type);
             puComp.entity->destroy();
+            _owner->addScore(HIT_POWER_UP_SCORE);
         }
     }
 }
