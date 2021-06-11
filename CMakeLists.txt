@@ -141,9 +141,21 @@ add_executable(bomberman
         Source/Scenes/HowToPlay.cpp
         Include/Components/Character/powerup.hpp Include/raylib_encap/Easing.hpp Source/raylib_encap/Easing.cpp Source/Components/AssetLoader.cpp Include/Components/AssetLoader.hpp Source/raylib_encap/EAnimatedModel.cpp Include/raylib_encap/EAnimatedModel.hpp Source/Components/3D/AnimatedModel.cpp Include/Components/3D/AnimatedModel.hpp Source/Components/PowerUpComp.cpp Include/Components/Logic/PowerUpComp.hpp Include/BaseValues.h Source/Components/GUI/MainMenuComponent.cpp Include/Components/GUI/MainMenuComponent.hpp Source/Components/GUI/BackgroundComponent.cpp Include/Components/GUI/BackgroundComponent.hpp Include/Components/GUI/PauseMenuComp.cpp Include/Components/GUI/PauseMenuComp.hpp)
 
-
+#raylib
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
 set(OpenGL_GL_PREFERENCE LEGACY)
 find_package(raylib REQUIRED QUIET)
+
+#boost
+#set(Boost_USE_STATIC_LIBS OFF)
+#set(Boost_USE_MULTITHREADED ON)
+#set(Boost_USE_STATIC_RUNTIME OFF)
+#find_package(Boost 1.76.0 COMPONENTS filesystem)
+#
+#if(Boost_FOUND)
+#    include_directories(${Boost_INCLUDE_DIRS})
+#    add_executable(progname file1.cxx file2.cxx)
+#    target_link_libraries(progname ${Boost_LIBRARIES})
+#endif()
 
 target_link_libraries(bomberman raylib)
