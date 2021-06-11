@@ -18,6 +18,7 @@ void BackgroundComponent::init()
     scrollC = 0.0f;
     scrollD = 0.0f;
     scrollE = 0.0f;
+    entity->SetDontDestroyOnLoad(true);
 }
 
 void BackgroundComponent::update()
