@@ -69,7 +69,7 @@ void GameLogicComp::draw()
 void GameLogicComp::SpawnPlayerHUD()
 {
     auto winSize = Window::GetWinSize();
-    auto size = Vector2D{300, 100};
+    auto size = Vector2D{225, 64};
     auto pos = Vector2D{0, 0};
     auto &hud1 = entity->_mgr.addEntity("P1 hud");
     hud1.addComponent<TransformComp>(pos);

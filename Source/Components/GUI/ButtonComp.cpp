@@ -55,10 +55,14 @@ void ButtonComp::draw()
     Component::draw();
     if (!Visible)
         return;
-    _rect.draw(true, true, (hovering) ? Green : LightGray,
-        (hovering) ? Green : Gray);
+    if (!hovering) {
+        _rect.draw(true, true, LightGray, Gray);
+    } else {
+        _rect.draw(true, false, (hovering) ? DarkGray : LightGray,
+            (hovering) ? White : Gray);
+    }
 
-    _text.drawInRectCenter(_rect, 40, (hovering) ? DarkBlue : DarkGray);
+    _text.drawInRectCenter(_rect, 40, (hovering) ? White : DarkGray);
 }
 
 void ButtonComp::AddEventFunc(const std::function<void()> &function)

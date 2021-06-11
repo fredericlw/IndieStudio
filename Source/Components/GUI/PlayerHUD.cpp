@@ -37,7 +37,7 @@ void PlayerHUD::init()
     Vector3D position = transform->position;
     position.x += _backgroundRect.width / 2;
     auto textEntity = &entity->_mgr.addEntity("textEntity");
-    textEntity->addComponent<TransformComp>(position);
+    textEntity->addComponent<TransformComp>(position.Add(Vector2D {0, 10}));
     _ScoreDisplay = &textEntity->addComponent<TextComp>(std::to_string(_player->score), Black);
     textEntity->addGroup(GUI_TOP);
 }

@@ -74,11 +74,11 @@ void ListSelectorComp::update()
 void ListSelectorComp::draw()
 {
     Component::draw();
-    _prevRect.draw(true, true, (_prevHover) ? Green : LightGray,
-        (_prevHover) ? Green : Gray);
+    _prevRect.draw(true, true, (_prevHover) ? DarkBlue : LightGray,
+        (_prevHover) ? DarkBlue : Gray);
     _prevText.drawInRectCenter(_prevRect, 30, Black);
-    _nextRect.draw(true, true, (_nextHover) ? Green : LightGray,
-        (_prevHover) ? Green : Gray);
+    _nextRect.draw(true, true, (_nextHover) ? DarkBlue : LightGray,
+        (_prevHover) ? DarkBlue : Gray);
     _nextText.drawInRectCenter(_nextRect, 30, Black);
     _Select.drawCentered(_transform->position.x, _transform->position.y, 30,
         _color);

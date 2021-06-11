@@ -5,6 +5,7 @@
 ** Created by Leo Fabre
 */
 #include <ECS/Manager.hpp>
+#include "raylib_encap/Window.hpp"
 #include <Components/3D/BasicCubeComp.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
 #include <GUI/AnimatedSprite.hpp>
@@ -100,10 +101,11 @@ void Manager::AddMenuLogo()
     //Create an entity
     auto &logoEntity = addEntity("MainMenuLogo");
     //Add Components to it
-    auto transformComp = logoEntity.addComponent<TransformComp>();
+    auto& transformComp = logoEntity.addComponent<TransformComp>();
     auto spriteComp = logoEntity.addComponent<Sprite2D>("Assets/Textures/mainlogo.png");
     auto size = Vector2D{static_cast<float>(spriteComp.width), static_cast<float>(spriteComp.height)};
-    Vector2D pos(Vector2D::ScreenCenter().Subtract(Vector2D(size.x / 2, size.y / 2)));
+    auto halfsize = Vector2D{size.x / 2, size.y / 2};
+    auto pos = Window::GetWinSize().Subtract(Vector2D(Window::GetWinSize().x / 2, Window::GetWinSize().y / 1.25)).Subtract(halfsize);
     transformComp.position = pos;
 
     //Modify some components

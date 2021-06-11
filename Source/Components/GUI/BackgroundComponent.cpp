@@ -23,10 +23,10 @@ void BackgroundComponent::init()
 
 void BackgroundComponent::update()
 {
-    scrollA -= 0.1f;
-    scrollB -= 0.5f;
-    scrollC -= 1.0f;
-    scrollD -= 1.0f;
+    scrollA -= 0.12f;
+    scrollB -= 0.23f;
+    scrollC -= 0.6f;
+    scrollD -= 1.2f;
     scrollE -= 1.0f;
 
     if (scrollA <= -entity->assets()->MenuASprite.width*scale) scrollA = 0;
@@ -49,9 +49,9 @@ void BackgroundComponent::draw()
     entity->assets()->MenuCSprite.drawEx(Vector2D {scrollC, 80}, 0.0f, scale);
     entity->assets()->MenuCSprite.drawEx(Vector2D {entity->assets()->MenuCSprite.width * scale + scrollC, 80}, 0.0f, scale);
 
-    entity->assets()->MenuDSprite.drawEx(Vector2D {scrollD, 200}, 0.0f, scale);
-    entity->assets()->MenuDSprite.drawEx(Vector2D {entity->assets()->MenuDSprite.width * scale + scrollD, 200}, 0.0f, scale);
+    entity->assets()->MenuDSprite.drawEx(Vector2D {scrollD, 230}, 0.0f, scale);
+    entity->assets()->MenuDSprite.drawEx(Vector2D {entity->assets()->MenuDSprite.width * scale + scrollD, 230}, 0.0f, scale);
 
-    entity->assets()->MenuESprite.drawEx(Vector2D {scrollE, 220}, 0.0f, scale);
-    entity->assets()->MenuESprite.drawEx(Vector2D {entity->assets()->MenuESprite.width * scale + scrollE, 220}, 0.0f, scale);
+    entity->assets()->MenuESprite.drawEx(Vector2D {scrollE, 250}, 0.0f, scale);
+    entity->assets()->MenuESprite.drawEx(Vector2D {entity->assets()->MenuESprite.width * scale + scrollE, 250}, 0.0f, scale);
 }
