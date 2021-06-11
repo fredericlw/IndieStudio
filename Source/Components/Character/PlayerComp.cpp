@@ -187,3 +187,8 @@ void PlayerComp::StartPowerup(PowerUpType type)
         return;
     }
 }
+
+PlayerNum PlayerComp::getPlayerNum() const
+{
+    return _playerNum;
+}

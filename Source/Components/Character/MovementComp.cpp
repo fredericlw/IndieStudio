@@ -75,6 +75,21 @@ void MovementComp::update()
 
     Vector3D nextPos = transform->position;
     nextPos.Add(Velocity.Clamp(1).Multiply(_speed));
+
+
+    Vector3D theoNextPos = nextPos;
+    for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Bombs)) {
+        BombComp *cast = &i->getComponent<BombComp>();
+        collider->stickCube(theoNextPos, cast->getCube());
+        if ( entity->getComponent<PlayerComp>().getPlayerNum() == PlayerOne && cast && CubeCollider::CheckBoxOverLap(
+            collider->getCube(), transform->position, cast->getCube()) && theoNextPos != transform->position) {
+            std::cout << "bomb touch old pos" << std::endl;
+        } else if (CubeCollider::CheckBoxOverLap(collider->getCube(), nextPos, cast->getCube())) {
+                    std::cout << "allread on cube" << std::endl;
+                    collider->stickCube(nextPos, cast->getCube());
+                }
+        }
+
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Walls)) {
         BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
         if (cast && CubeCollider::CheckBoxOverLap(
@@ -82,6 +97,7 @@ void MovementComp::update()
             collider->stickCube(nextPos, cast->getCube());
         }
     }
+
     if (entity->getComponent<PlayerComp>().getPowerUp() != SOFT_BLOCK_PASS) {
         for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles)) {
             BasicCubeComp *cast = &i->getComponent<BasicCubeComp>();
@@ -89,16 +105,10 @@ void MovementComp::update()
                 collider->getCube(), nextPos, cast->getCube())) {
                 collider->stickCube(nextPos, cast->getCube());
             }
+
         }
     }
-    //TODO : Fix player bumped around when dropping a bomb bc of this collision code
-//    for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Bombs)) {
-//        BombComp *cast = &i->getComponent<BombComp>();
-//        if (cast && CubeCollider::CheckBoxOverLap(
-//            collider->getCube(), nextPos, cast->getCube())) {
-//            collider->stickCube(nextPos, cast->getCube());
-//        }
-//    }
+
     if (nextPos != transform->position) {
         entity->assets()->WalkingSound.playMusic(entity->assets()->Volume);
     }

@@ -45,6 +45,7 @@ public:
 public:
     void setPowerUp(PowerUpType power_up);
     bool isAlive() const;
+    PlayerNum getPlayerNum() const;
     int _currentBombFire;
 private:
     int _maxBombs;
