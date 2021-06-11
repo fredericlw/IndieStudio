@@ -20,6 +20,7 @@ void Manager::update()
 
 void Manager::draw()
 {
+    auto &bg(getEntitiesInGroup(Background));
     auto &floorEnts(getEntitiesInGroup(Floor));
     auto &walls(getEntitiesInGroup(Walls));
     auto &obstacles(getEntitiesInGroup(Obstacles));
@@ -32,6 +33,9 @@ void Manager::draw()
 
     ClearBackground(DARKPURPLE);
     BeginDrawing();
+    MainCam.End3D();
+    for (const auto &ent : bg)
+        ent->draw();
     MainCam.Begin3D();
     for (auto &ent : floorEnts)
         ent->draw();

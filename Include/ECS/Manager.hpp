@@ -11,6 +11,7 @@
 #include <Ecs.hpp>
 
 enum GroupLabel{
+    Background,
     Floor,
     Walls,
     Obstacles,

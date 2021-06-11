@@ -10,12 +10,14 @@
 #include <raylib.h>
 #include <raylib_encap/Math/Vector2D.hpp>
 
-class ECamera : public Camera3D {
+class ECamera : public Camera {
 public:
     ECamera();
     ~ECamera();
     void Begin3D();
     void End3D();
+    void Begin2D();
+    void End2D();
     Matrix getMatrix();
     Vector2D WorldToScreen(Vector3D pos);
     void Update();

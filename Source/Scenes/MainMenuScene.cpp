@@ -20,7 +20,7 @@ void Manager::loadMenuScene()
         gl->addComponent<AssetLoader>();
     }
     auto &ent = addEntity("test");
-    ent.addGroup(GUI);
+    ent.addGroup(Background);
     ent.addComponent<BackgroundComponent>();
 
     AddMenuLogo();
