@@ -46,6 +46,7 @@ public:
     ESprite SkateSprite;
     ESprite SoftBlockPassSprite;
     ESprite FireUpSprite;
+    ESprite MainLogo;
 };
 
 #endif //ASSETLOADER_HPP

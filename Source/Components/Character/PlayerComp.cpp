@@ -158,8 +158,11 @@ void PlayerComp::StartPowerup(PowerUpType type)
     case SOFT_BLOCK_PASS:
         return;
     case FIREUP:
+        _currentBombFire++;
+        if (_currentBombFire > MAX_BOMB_FIRE) _currentBombFire = MAX_BOMB_FIRE;
         return;
     case FULLFIRE:
+        _currentBombFire = MAX_BOMB_FIRE;
         return;
     case SKATE:
         _mc->setSpeed(_mc->getSpeed() * SPEED_MULTIPLIER);

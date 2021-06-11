@@ -8,7 +8,7 @@
 #include "AssetLoader.hpp"
 
 AssetLoader::AssetLoader()
-    : PlayerModel("./Assets/Models/cus/player.gltf",  .5),
+    : PlayerModel("./Assets/Models/cus/player.gltf", .5),
       StoneCubeModel("./Assets/Models/StoneCube/StoneCube.glb", 1),
       BombModel("./Assets/Models/bomb/Bombout.obj", 6),
       ObstacleModel("./Assets/Models/Obstacle/Obstacle.glb", 1),
@@ -28,11 +28,12 @@ AssetLoader::AssetLoader()
       PlayerDead("Assets/sounds/player_dead.wav"),
       ButtonClick("Assets/sounds/button_click.wav"),
       Volume(1),
-      FullFireSprite("./Assets/Textures/FullFire.png", White),
-      BombUpSprite("./Assets/Textures/BombUp.png", White),
-      SkateSprite("./Assets/Textures/Skate.png", White),
-      SoftBlockPassSprite("./Assets/Textures/SoftBlockPass.png", White),
-      FireUpSprite("./Assets/Textures/FireUp.png", White)
+      FullFireSprite("./Assets/Textures/FullFire.png"),
+      BombUpSprite("./Assets/Textures/BombUp.png"),
+      SkateSprite("./Assets/Textures/Skate.png"),
+      SoftBlockPassSprite("./Assets/Textures/SoftBlockPass.png"),
+      FireUpSprite("./Assets/Textures/FireUp.png"),
+      MainLogo("./Assets/Textures/mainlogo.png")
 {
 }
 
@@ -62,6 +63,7 @@ AssetLoader::~AssetLoader()
     SkateSprite.Unload();
     SoftBlockPassSprite.Unload();
     FireUpSprite.Unload();
+    MainLogo.Unload();
 }
 
 void AssetLoader::init()
