@@ -12,10 +12,13 @@
 #include "ECS/Entity.hpp"
 #include "Components/Components.h"
 
-ButtonComp::ButtonComp(const std::string &text, Vector2D size)
+ButtonComp::ButtonComp(
+    const std::string &text, Vector2D size, bool visible
+)
     : _text(text),
       size(size),
-      _rect(size, Vector2D::Zero())
+      _rect(size, Vector2D::Zero()),
+      Visible(visible)
 {
 }
 
@@ -33,6 +36,8 @@ void ButtonComp::init()
 
 void ButtonComp::update()
 {
+    if (!Visible)
+        return;
     if (RectCollider::CheckMouseInRect(_rect)) {
         hovering = true;
         if (EMouseInputModule::GetButtonReleased(LeftClick)) {
@@ -48,6 +53,8 @@ void ButtonComp::update()
 void ButtonComp::draw()
 {
     Component::draw();
+    if (!Visible)
+        return;
     _rect.draw(true, true, (hovering) ? Green : LightGray,
         (hovering) ? Green : Gray);
 
@@ -57,4 +64,14 @@ void ButtonComp::draw()
 void ButtonComp::AddEventFunc(const std::function<void()> &function)
 {
     EventFuncs.emplace_back(function);
+}
+
+bool ButtonComp::isVisible() const
+{
+    return Visible;
+}
+
+void ButtonComp::setVisible(bool visible)
+{
+    Visible = visible;
 }

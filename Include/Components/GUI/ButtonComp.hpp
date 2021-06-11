@@ -16,8 +16,9 @@
 
 class ButtonComp : public Component {
 public:
-    ButtonComp(const std::string &text,
-        Vector2D size);
+    ButtonComp(
+        const std::string &text, Vector2D size, bool visible = true
+    );
 public:
     void update() override;
     void draw() override;
@@ -26,6 +27,11 @@ public:
         const std::function<void()> &function);
 private:
     bool hovering;
+    bool Visible;
+public:
+    bool isVisible() const;
+    void setVisible(bool visible);
+private:
     EText _text;
     Vector2D size;
     ERect _rect;

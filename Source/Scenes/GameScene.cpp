@@ -4,6 +4,7 @@
 ** File description:
 ** Created by Adrien Courbebaisse
 */
+#include <GUI/PauseMenuComp.hpp>
 #include "ECS/Manager.hpp"
 #include "Components/Components.h"
 #include "Components/Logic/MapComponent.hpp"
@@ -14,6 +15,7 @@ void Manager::loadGameScene()
     auto gl = getEntByName("gamelogic");
     GenerateMap();
     gl->addComponent<GameLogicComp>();
+    gl->addComponent<PauseMenuComp>();
 }
 
 void Manager::GenerateMap()

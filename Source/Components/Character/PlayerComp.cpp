@@ -11,6 +11,7 @@
 #include <cfenv>
 #include <Logic/GameLogicComp.hpp>
 #include <BaseValues.h>
+#include <GUI/PauseMenuComp.hpp>
 
 PlayerComp::PlayerComp(
     EInputType e_type, PlayerNum player_num, Colors color
@@ -45,6 +46,10 @@ void PlayerComp::update()
         && (activeBombs < _maxBombs)
         && health > 0) {
         DoDropBomb();
+    }
+    if (_mc->getInputModule()->GetButtonPressed(Button::Cancel)) {
+        auto gamelogic = entity->_mgr.getEntByName("gamelogic");
+        gamelogic->getComponent<PauseMenuComp>().setIsPaused(true);
     }
 }
 
