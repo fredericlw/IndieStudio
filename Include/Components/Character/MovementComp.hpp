@@ -29,6 +29,8 @@ public:
     float getSpeed() const;
     void setSpeed(float speed);
     AInputModule *getInputModule();
+    void SetActive(bool state);
+    bool _active;
 };
 
 #endif //MOVEMENTCOMP_HPP

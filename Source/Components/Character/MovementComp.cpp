@@ -17,7 +17,8 @@
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)
     : Velocity(Vector3D::Zero()),
       LastVelocity(Vector3D::Zero()),
-      _speed(BASESPEED)
+      _speed(BASESPEED),
+      _active(true)
 {
     GenerateInputModule(input_type, num);
 }
@@ -43,6 +44,7 @@ void MovementComp::init()
 
 void MovementComp::update()
 {
+    if (!_active) return;
     Component::update();
     if (_inputMod->GetButtonDown(Right)) Velocity.x = 1;
     else if (_inputMod->GetButtonDown(Left)) Velocity.x = -1;
@@ -145,4 +147,9 @@ void MovementComp::setSpeed(float speed)
 AInputModule *MovementComp::getInputModule()
 {
     return _inputMod;
+}
+
+void MovementComp::SetActive(bool state)
+{
+    _active = state;
 }

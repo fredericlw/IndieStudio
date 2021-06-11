@@ -82,5 +82,9 @@ ESprite *PlayerHUD::getPowerupSprite(PowerUpType type)
         return &entity->assets()->BombUpSprite;
     case SOFT_BLOCK_PASS:
         return &entity->assets()->SoftBlockPassSprite;
+    default:
+        std::cerr << "BAD POWERUP, SPRITE WILL BE NULL" << std::endl;
+        ESprite *res = nullptr;
+        return res;
     }
 }
