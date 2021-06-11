@@ -85,6 +85,7 @@ void BasicCubeComp::stickCube(Vector3D &nextpos, const ECube &colisionCube)
     float diffx = colisionPos.x - nextpos.x;
     float diffz = colisionPos.z - nextpos.z;
 
+
     if (std::abs(diffx) > std::abs(diffz)) {
         if (diffx < 0)
             nextpos.x =
@@ -92,8 +93,8 @@ void BasicCubeComp::stickCube(Vector3D &nextpos, const ECube &colisionCube)
         else
             nextpos.x =
                 colisionPos.x - (colisionCube.getSize().x / 2) - _size.x / 2;
-    } else if  (std::abs(diffx) < std::abs(diffz)) {
-        if (diffz < 0)
+    } else if  (std::abs(diffx) <= std::abs(diffz)) {
+        if (diffz <= 0)
             nextpos.z =
                 colisionPos.z + (colisionCube.getSize().z / 2) + _size.z / 2;
         else
@@ -109,16 +110,15 @@ void BasicCubeComp::stickCube(Vector3D &nextpos, const Mesh &colisionMesh)
     float diffx = colisionPos.x - nextpos.x;
     float diffz = colisionPos.z - nextpos.z;
 
-
     if (std::abs(diffx) > std::abs(diffz)) {
-        if (diffx <= 0)
+        if (diffx < 0)
             nextpos.x =
                 colisionPos.x + (colisionCube.getSize().x / 2) + _size.x / 2;
         else
             nextpos.x =
                 colisionPos.x - (colisionCube.getSize().x / 2) - _size.x / 2;
-    } else if (std::abs(diffx) < std::abs(diffz)){
-        if (diffz <= 0)
+    } else {
+        if (diffz < 0)
             nextpos.z =
                 colisionPos.z + (colisionCube.getSize().z / 2) + _size.z / 2;
         else

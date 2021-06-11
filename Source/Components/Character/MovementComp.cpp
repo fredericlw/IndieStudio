@@ -81,7 +81,7 @@ void MovementComp::update()
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Bombs)) {
         BombComp *cast = &i->getComponent<BombComp>();
         collider->stickCube(theoNextPos, cast->getCube());
-        if ( entity->getComponent<PlayerComp>().getPlayerNum() == PlayerOne && cast && CubeCollider::CheckBoxOverLap(
+        if (CubeCollider::CheckBoxOverLap(
             collider->getCube(), transform->position, cast->getCube()) && theoNextPos != transform->position) {
             std::cout << "bomb touch old pos" << std::endl;
         } else if (CubeCollider::CheckBoxOverLap(collider->getCube(), nextPos, cast->getCube())) {
