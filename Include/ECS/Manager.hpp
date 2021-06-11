@@ -81,6 +81,7 @@ public:
     void AddSettingsButton();
     void AddHowToPlayButton();
     void loadGameOverScene();
+    void QuitGameOverSceneButton();
 };
 
 #endif //MANAGER_HPP
