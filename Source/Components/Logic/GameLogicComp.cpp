@@ -51,12 +51,27 @@ PlayerComp *GameLogicComp::SpawnPlayer(
     auto &myEnt = entity->_mgr.addEntity(std::move(entityName));
     myEnt.addComponent<TransformComp>(pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2)).shouldDraw=
-        true;
+        false;
     myEnt.addGroup(Players);
     return &myEnt.addComponent<PlayerComp>(inputType, num, color);
 }
 
 void GameLogicComp::update()
+{
+    switch (gameState) {
+
+    case Game:
+        update_game();
+        break;
+    case GameOver:
+        update_gameOver();
+        break;
+    }
+
+    Component::update();
+}
+
+void GameLogicComp::update_game()
 {
     int nb_death = 0;
 
@@ -65,9 +80,14 @@ void GameLogicComp::update()
     if (!p3->isAlive()) nb_death++;
     if (!p4->isAlive()) nb_death++;
     if (nb_death >= 3) {
+        //get player points
+        playerScores[0] = p1->getScore();
+        playerScores[1] = p2->getScore();
+        playerScores[2] = p3->getScore();
+        playerScores[3] = p4->getScore();
         entity->_mgr.loadScene(Manager::GameOverScene);
+        gameState = GameOver;
     }
-    Component::update();
 }
 
 void GameLogicComp::draw()
@@ -103,4 +123,9 @@ void GameLogicComp::SpawnPlayerHUD()
     hud4.addComponent<TransformComp>(pos);
     hud4.addComponent<PlayerHUD>(p4, size);
     hud4.addGroup(GUI);
+}
+
+void GameLogicComp::update_gameOver()
+{
+    //this function may be useless
 }
