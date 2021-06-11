@@ -12,6 +12,7 @@ class GameOverComp {
     void update() override;
     void draw() override;
     void init() override;
+    void addBackGameOverSceneButton();
 };
 
 

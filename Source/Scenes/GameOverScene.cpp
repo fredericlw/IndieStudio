@@ -11,3 +11,4 @@ void Manager::loadGameOverScene() {
     std::cout << "Game Over" << std::endl;
     //TODO : use PLAYER SCORE THEN DESTROY
 }
+
