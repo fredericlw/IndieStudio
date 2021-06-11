@@ -32,6 +32,7 @@ public:
         Lobby,
         Settings,
         HowToPlay,
+        GameOverScene,
         None
     };
     explicit Manager();
@@ -79,6 +80,7 @@ public:
     void loadOptionScene();
     void AddSettingsButton();
     void AddHowToPlayButton();
+    void loadGameOverScene();
 };
 
 #endif //MANAGER_HPP

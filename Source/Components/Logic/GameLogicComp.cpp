@@ -14,6 +14,7 @@
 #include "Manager.hpp"
 #include "Components/Character/PlayerComp.hpp"
 #include "Components/GUI/PlayerHUD.hpp"
+#include <ECS/Manager.hpp>
 
 void GameLogicComp::init()
 {
@@ -57,6 +58,15 @@ PlayerComp *GameLogicComp::SpawnPlayer(
 
 void GameLogicComp::update()
 {
+    int nb_death = 0;
+
+    if (!p1->isAlive()) nb_death++;
+    if (!p2->isAlive()) nb_death++;
+    if (!p3->isAlive()) nb_death++;
+    if (!p4->isAlive()) nb_death++;
+    if (nb_death >= 3) {
+        entity->_mgr.loadScene(Manager::GameOverScene);
+    }
     Component::update();
 }
 

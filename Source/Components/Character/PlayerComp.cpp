@@ -37,6 +37,7 @@ void PlayerComp::init()
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
     _model = &entity
         ->addComponent<ModelComp>(entity->assets()->PlayerModel, _color);
+    entity->SetDontDestroyOnLoad(true);
 }
 
 void PlayerComp::update()
