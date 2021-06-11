@@ -13,12 +13,12 @@
 #include "Component.hpp"
 #include <ctime>
 #include <3D/ModelComp.hpp>
-#include <Character/Player.hpp>
+#include <Character/PlayerComp.hpp>
 #include "raylib_encap/ESound.hpp"
 
 class BombComp : public Component {
 public:
-    BombComp(Colors color, Player *owner);
+    BombComp(Colors color, PlayerComp *owner);
     void init() override;
     void update() override;
     void draw() override;
@@ -29,7 +29,7 @@ private:
     ModelComp *model;
     Colors _color;
     std::vector<Entity *> particles;
-    Player *_owner;
+    PlayerComp *_owner;
     ECube collider;
     enum Way {Left, Down, Up, Right};
 private:

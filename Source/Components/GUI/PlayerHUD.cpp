@@ -13,7 +13,7 @@
 #include "Components/Components.h"
 #include "Components/GUI/PlayerHUD.hpp"
 
-PlayerHUD::PlayerHUD(Player *player, Vector2D size)
+PlayerHUD::PlayerHUD(PlayerComp *player, Vector2D size)
     : _backgroundRect(ERect{size,{0, 0}}),
     _player(player), _lastPowerup(player->getPowerUp()), _PowerUpDisplay(nullptr), _ScoreDisplay(
         nullptr)

@@ -12,17 +12,17 @@
 #include <functional>
 #include <raylib_encap/ERect.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>
-#include <Character/Player.hpp>
+#include <Character/PlayerComp.hpp>
 #include "TextComp.hpp"
 
 class PlayerHUD : public Component {
     public:
-    PlayerHUD(Player *player, Vector2D size);
+    PlayerHUD(PlayerComp *player, Vector2D size);
     void init() override;
     void update() override;
     void draw() override;
     private:
-    Player *_player;
+    PlayerComp *_player;
     bool hovering;
     Vector2D size;
     ERect _backgroundRect;
