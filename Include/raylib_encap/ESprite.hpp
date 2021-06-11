@@ -23,6 +23,7 @@ public:
     [[nodiscard]] const Colors &getColor() const;
     [[nodiscard]] const Rectangle &getRect() const;
     void draw(Vector3 pos);
+    void drawEx(Vector2D pos, float rotation, float scale);
     void drawInRect(Vector2D pos, ERect frameRect);
     [[nodiscard]] const Texture2D &getTex() const;
     void drawBillboardRect(

@@ -47,6 +47,13 @@ public:
     ESprite SoftBlockPassSprite;
     ESprite FireUpSprite;
     ESprite MainLogo;
+
+    //Menu
+    ESprite MenuASprite;
+    ESprite MenuBSprite;
+    ESprite MenuCSprite;
+    ESprite MenuDSprite;
+    ESprite MenuESprite;
 };
 
 #endif //ASSETLOADER_HPP

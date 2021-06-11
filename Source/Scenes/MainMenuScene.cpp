@@ -9,6 +9,7 @@
 #include <raylib_encap/Math/Vector2D.hpp>
 #include <GUI/AnimatedSprite.hpp>
 #include <raylib_encap/Window.hpp>
+#include <GUI/BackgroundComponent.hpp>
 #include "Components/Components.h"
 
 void Manager::loadMenuScene()
@@ -18,6 +19,10 @@ void Manager::loadMenuScene()
         gl = &addEntity("gamelogic");
         gl->addComponent<AssetLoader>();
     }
+    auto &ent = addEntity("test");
+    ent.addGroup(GUI);
+    ent.addComponent<BackgroundComponent>();
+
     AddMenuLogo();
     AddPlayButton();
     addBackToGameBtn();

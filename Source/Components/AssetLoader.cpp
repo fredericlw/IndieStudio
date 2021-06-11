@@ -33,7 +33,12 @@ AssetLoader::AssetLoader()
       SkateSprite("./Assets/Textures/Skate.png"),
       SoftBlockPassSprite("./Assets/Textures/SoftBlockPass.png"),
       FireUpSprite("./Assets/Textures/FireUp.png"),
-      MainLogo("./Assets/Textures/mainlogo.png")
+      MainLogo("./Assets/Textures/mainlogo.png"),
+      MenuASprite("./Assets/Textures/menu/sky.png"),
+      MenuBSprite("./Assets/Textures/menu/cloud.png"),
+    MenuCSprite("./Assets/Textures/menu/mountain.png"),
+    MenuDSprite("./Assets/Textures/menu/pine1.png"),
+    MenuESprite("./Assets/Textures/menu/pine2.png")
 {
 }
 
@@ -64,6 +69,11 @@ AssetLoader::~AssetLoader()
     SoftBlockPassSprite.Unload();
     FireUpSprite.Unload();
     MainLogo.Unload();
+    MenuASprite.Unload();
+    MenuBSprite.Unload();
+    MenuCSprite.Unload();
+    MenuDSprite.Unload();
+    MenuESprite.Unload();
 }
 
 void AssetLoader::init()

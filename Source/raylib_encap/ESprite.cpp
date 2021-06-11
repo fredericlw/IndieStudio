@@ -72,3 +72,8 @@ void ESprite::Unload()
 {
     UnloadTexture(*this);
 }
+
+void ESprite::drawEx(Vector2D pos, float rotation, float scale)
+{
+    DrawTextureEx(*this, pos, rotation, scale, GetRaylibColor(White));
+}
