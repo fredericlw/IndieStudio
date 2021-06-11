@@ -12,6 +12,7 @@
 
 class GameLogicComp : public Component{
 public:
+    enum GameState{Game, GameOver};
     void init() override;
     void update() override;
     void draw() override;
@@ -25,9 +26,13 @@ private:
         PlayerNum num,
         Colors color
     );
+    GameState gameState = Game;
     void SpawnPlayers();
     void SpawnPlayerHUD();
-
+    std::array<PlayerComp *, 4> players;
+    std::array<int, 4> playerScores;
+    void update_game();
+    void update_gameOver();
 };
 
 #endif //GAMELOGICCOMP_HPP
