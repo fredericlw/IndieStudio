@@ -113,6 +113,7 @@ void PlayerComp::setPowerUp(PowerUpType power_up)
     entity->assets()->PowerupPickUp.playSound(entity->assets()->Volume);
     StopPowerup(_powerUp);
     _powerUp = power_up;
+    addScore(HIT_POWER_UP_SCORE);
     StartPowerup(power_up);
 }
 
@@ -191,4 +192,15 @@ void PlayerComp::StartPowerup(PowerUpType type)
 PlayerNum PlayerComp::getPlayerNum() const
 {
     return _playerNum;
+}
+
+int PlayerComp::getScore() const
+{
+    return score;
+}
+
+void PlayerComp::addScore(int score)
+{
+    //TODO: if not playing, play score sound here
+    PlayerComp::score += score;
 }

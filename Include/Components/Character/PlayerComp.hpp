@@ -38,7 +38,8 @@ private:
     void DoDropBomb();
 public:
     Vector3D getNearestBlockPos(Vector3D pos);
-    int score;
+    int getScore() const;
+    void addScore(int score);
     void takeDamage();
     int health;
     void Die();
@@ -48,6 +49,7 @@ public:
     PlayerNum getPlayerNum() const;
     int _currentBombFire;
 private:
+    int score;
     int _maxBombs;
     void StopPowerup(PowerUpType type);
     void StartPowerup(PowerUpType type);
