@@ -5,7 +5,6 @@
 ** Created by Achille Bourgault
 */
 
-
 #include <ECS/Manager.hpp>
 #include <Components/3D/BasicCubeComp.hpp>
 #include <raylib_encap/Math/Vector2D.hpp>

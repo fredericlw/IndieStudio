@@ -4,6 +4,7 @@
 ** File description:
 ** Created by Leo Fabre
 */
+
 #include <ECS/Manager.hpp>
 #include "raylib_encap/Window.hpp"
 #include <Components/3D/BasicCubeComp.hpp>
