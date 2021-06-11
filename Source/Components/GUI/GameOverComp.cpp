@@ -7,4 +7,22 @@
 
 #include "Components/GUI/GameOverComp.hpp"
 
+GameOverComp::GameOverComp()
+{
 
+}
+
+void GameOverComp::init()
+{
+    Component::init();
+}
+
+void GameOverComp::update()
+{
+    Component::update();
+}
+
+void GameOverComp::draw()
+{
+    Component::draw();
+}
