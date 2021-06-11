@@ -5,7 +5,6 @@
 ** Created by Adrien Courbebaisse
 */
 #include <3D/TransformComp.hpp>
-#include <3D/ModelComp.hpp>
 #include <3D/BasicCubeComp.hpp>
 #include <Character/MovementComp.hpp>
 #include <GUI/LobbyComp.hpp>
@@ -15,7 +14,6 @@
 #include "Manager.hpp"
 #include "Components/Character/PlayerComp.hpp"
 #include "Components/GUI/PlayerHUD.hpp"
-#include "Components/AssetLoader.hpp"
 
 void GameLogicComp::init()
 {
@@ -29,7 +27,7 @@ void GameLogicComp::SpawnPlayers()
     auto spawnPos = entity->_mgr.getEntByName(
         "mapRoot")->getComponent<TransformComp>().position;
     //get upper right spawnpos offset from map root entity po
-    std::cout << "MAP POSITION IS " << spawnPos<< std::endl;
+    std::cout << "MAP POSITION IS " << spawnPos << std::endl;
     p1 = SpawnPlayer("Player1", spawnPos,
         entity->getComponent<LobbyComp>().sel1, PlayerOne, Blue);
     p1->setPowerUp(FIREUP);
@@ -37,10 +35,10 @@ void GameLogicComp::SpawnPlayers()
     p2 = SpawnPlayer("Player2", spawnPos,
         entity->getComponent<LobbyComp>().sel2, PlayerTwo, Green);
     spawnPos.z += 20;
-    p3 =SpawnPlayer("Player3", spawnPos,
+    p3 = SpawnPlayer("Player3", spawnPos,
         entity->getComponent<LobbyComp>().sel3, PlayerThree, Red);
     spawnPos.x -= 24;
-    p4 =SpawnPlayer("Player4", spawnPos,
+    p4 = SpawnPlayer("Player4", spawnPos,
         entity->getComponent<LobbyComp>().sel4, PlayerFour, LightGray);
 }
 
@@ -72,7 +70,7 @@ void GameLogicComp::SpawnPlayerHUD()
 {
     auto winSize = Window::GetWinSize();
     auto size = Vector2D{300, 100};
-    auto pos = Vector2D{0,0};
+    auto pos = Vector2D{0, 0};
     auto &hud1 = entity->_mgr.addEntity("P1 hud");
     hud1.addComponent<TransformComp>(pos);
     hud1.addComponent<PlayerHUD>(p1, size);

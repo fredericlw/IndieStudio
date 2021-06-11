@@ -7,15 +7,22 @@
 
 #include "PauseMenuComp.hpp"
 
-
 void PauseMenuComp::init()
 {
     Component::init();
     auto &ent = entity->_mgr.addEntity("ResumeBtn");
     auto pos = Vector2D(Vector2D::ScreenCenter().x - 135, Vector2D::ScreenCenter().y - 25);
     ent.addComponent<TransformComp>(pos);
-    resume_btn = &ent.addComponent<ButtonComp>("Resume", Vector2D(270, 50), false);
-    resume_btn->AddEventFunc([this](){setIsPaused(false);});
+    resume_btn =
+        &ent.addComponent<ButtonComp>("Resume", Vector2D(270, 50), false);
+    resume_btn->AddEventFunc([this]() {setIsPaused(false);});
+    resume_btn->entity->addGroup(GUI);
+
+    auto &save = entity->_mgr.addEntity("ResumeBtn");
+    save.addComponent<TransformComp>(Vector2D::ScreenCenter());
+    resume_btn =
+        &save.addComponent<ButtonComp>("Resume", Vector2D(270, 50), false);
+    resume_btn->AddEventFunc([this]() {setIsPaused(false);});
     resume_btn->entity->addGroup(GUI);
 }
 

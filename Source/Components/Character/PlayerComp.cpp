@@ -151,7 +151,7 @@ void PlayerComp::StopPowerup(PowerUpType type)
         return;
     case FIREUP:
         if (_powerUp == FULLFIRE) return;
-        _currentBombFire++;
+        _currentBombFire--;
         return;
     case FULLFIRE:
         _currentBombFire = BASE_BOMB_FIRE;
