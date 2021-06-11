@@ -30,7 +30,6 @@ class PlayerHUD : public Component {
     TransformComp *transform;
     Entity *_PowerUpDisplay;
     TextComp *_ScoreDisplay;
-    std::vector<std::function<void()>> EventFuncs;
     ESprite *getPowerupSprite(PowerUpType type);
 };
 #endif

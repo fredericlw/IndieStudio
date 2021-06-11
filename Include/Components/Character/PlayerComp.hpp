@@ -44,11 +44,13 @@ public:
     void Die();
 public:
     void setPowerUp(PowerUpType power_up);
+    bool isAlive() const;
     int _currentBombFire;
 private:
     int _maxBombs;
     void StopPowerup(PowerUpType type);
     void StartPowerup(PowerUpType type);
+    bool _alive;
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

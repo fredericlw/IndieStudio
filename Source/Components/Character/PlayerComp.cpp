@@ -25,7 +25,8 @@ PlayerComp::PlayerComp(
       health(1),
       _maxBombs(1),
       _currentBombFire(BASE_BOMB_FIRE),
-      score(0)
+      score(0),
+      _alive(true)
 {
 }
 
@@ -41,7 +42,8 @@ void PlayerComp::update()
 {
     Component::update();
     if (_mc->getInputModule()->GetButtonPressed(DropBomb)
-        && (activeBombs < _maxBombs)) {
+        && (activeBombs < _maxBombs)
+        && health > 0) {
         DoDropBomb();
     }
 }
@@ -123,8 +125,16 @@ void PlayerComp::takeDamage()
 void PlayerComp::Die()
 {
     std::cout << "PLAYER DED :)" << std::endl;
+    _alive = false;
     entity->assets()->PlayerDead.playSound(entity->assets()->Volume);
-    entity->destroy();
+    entity->getComponent<ModelComp>().SetVisibility(false);
+    _maxBombs = 0;
+    _mc->SetActive(false);
+}
+
+bool PlayerComp::isAlive() const
+{
+    return _alive;
 }
 
 void PlayerComp::StopPowerup(PowerUpType type)
