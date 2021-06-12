@@ -152,6 +152,8 @@ add_executable(bomberman
         Include/Components/Logic/PowerUpComp.hpp
         Include/BaseValues.h
         Source/Components/GUI/MainMenuComponent.cpp
+        Source/Components/GUI/GameOverComp.cpp
+        Include/Components/GUI/GameOverComp.hpp
         Include/Components/GUI/MainMenuComponent.hpp
         Source/Components/GUI/BackgroundComponent.cpp
         Include/Components/GUI/BackgroundComponent.hpp

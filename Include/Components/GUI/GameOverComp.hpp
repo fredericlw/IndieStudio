@@ -5,7 +5,9 @@
 #ifndef BOMBERMAN_GAMEOVERCOMP_H
 #define BOMBERMAN_GAMEOVERCOMP_H
 
-class GameOverComp {
+#include <Component.hpp>
+
+class GameOverComp : public Component {
     public:
     GameOverComp();
     void update() override;
