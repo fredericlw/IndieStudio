@@ -5,7 +5,7 @@
 ** Created by Frédéric Lawecki--Walkowiak
 */
 
-#include "PauseMenuComp.hpp"
+#include "Components/GUI/PauseMenuComp.hpp"
 
 void PauseMenuComp::init()
 {
