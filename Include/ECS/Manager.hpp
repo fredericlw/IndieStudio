@@ -33,6 +33,7 @@ public:
         Settings,
         HowToPlay,
         GameOverScene,
+        Controls,
         None
     };
     explicit Manager();
@@ -82,6 +83,14 @@ public:
     void AddHowToPlayButton();
     void loadGameOverScene();
     void QuitGameOverSceneButton();
+    void addControlsHowToPlayButton();
+    void loadControlsScene();
+    void addControlsRulesButton();
+    void addFirstPlayerControls();
+    void addSecondPlayerControls();
+    void addThirdPlayerControls();
+    void addFourthPlayerControls();
+    void addControlsSceneTitle();
 };
 
 #endif //MANAGER_HPP

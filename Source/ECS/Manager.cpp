@@ -126,6 +126,9 @@ void Manager::loadScene(Manager::SceneType scene)
     case GameOverScene:
         loadGameOverScene();
         break;
+    case Controls:
+        loadControlsScene();
+        break;
     case None:
         break;
     }
