@@ -8,22 +8,29 @@
 #include "Components/GUI/TextComp.hpp"
 #include "Entity.hpp"
 
-void TextComp::init() {
+void TextComp::init()
+{
     Component::init();
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>();
 }
 
-void TextComp::update() {
+void TextComp::update()
+{
     Component::update();
 }
 
-void TextComp::draw() {
+void TextComp::draw()
+{
     Component::draw();
-    EText::drawCentered(transform->position.x, transform->position.y, 40, TextColor);
+    EText::drawCentered(transform->position.x, transform->position.y, _size,
+        TextColor);
 }
 
-TextComp::TextComp(const std::string &text, Colors color) : EText(text), TextColor(color){
-
+TextComp::TextComp(const std::string &text, Colors color, int size)
+    : EText(text),
+      TextColor(color),
+      _size(size)
+{
 }

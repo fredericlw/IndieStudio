@@ -16,6 +16,7 @@ public:
     void init() override;
     void update() override;
     void draw() override;
+    std::array<int, 4> playerScores;
 private:
     PlayerComp *p1;
     PlayerComp *p2;
@@ -29,8 +30,6 @@ private:
     GameState gameState = Game;
     void SpawnPlayers();
     void SpawnPlayerHUD();
-    std::array<PlayerComp *, 4> players;
-    std::array<int, 4> playerScores;
     void update_game();
     void update_gameOver();
 };

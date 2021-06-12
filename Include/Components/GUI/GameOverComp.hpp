@@ -13,6 +13,8 @@ class GameOverComp : public Component {
     void update() override;
     void draw() override;
     void init() override;
+    void addQuitBtn();
+    void addTitle();
 };
 
 #endif //BOMBERMAN_GAMEOVERCOMP_H

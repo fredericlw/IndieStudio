@@ -21,7 +21,7 @@ void Manager::loadMenuScene()
         gl = &addEntity("gamelogic");
         gl->addComponent<AssetLoader>();
     }
-    auto &ent = addEntity("test");
+    auto &ent = addEntity("Background");
     ent.addGroup(Background);
     ent.addComponent<BackgroundComponent>();
 
