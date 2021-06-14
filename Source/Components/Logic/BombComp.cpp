@@ -11,6 +11,7 @@
 #include <raylib_encap/Math/Random.hpp>
 #include <raylib_encap/Easing.hpp>
 #include <BaseValues.h>
+#include <raylib_encap/ETime.hpp>
 #include "Components/Logic/BombComp.hpp"
 #include "Components/Logic/PowerUpComp.hpp"
 #include "Manager.hpp"
@@ -29,7 +30,8 @@ BombComp::BombComp(Colors color, PlayerComp *owner)
       _owner(owner),
       _baseParticleSize(2.f),
       _particleStartTime(0),
-      spread(owner->_currentBombFire)
+      spread(owner->_currentBombFire),
+      timeAlive(0)
 {
     _curParticleScale = _baseParticleSize;
 }
@@ -45,13 +47,19 @@ void BombComp::init()
         &entity->addComponent<ModelComp>(entity->assets()->BombModel, _owner->getColor());
     collider.setPos(_transform->position);
     collider.setSize(Vector3D::One().Multiply(2));
+    _pmc =
+        &entity->_mgr.getEntByName("gamelogic")->getComponent<PauseMenuComp>();
 }
 
 void BombComp::update()
 {
     //TODO use ctime clock() instead, will be more precise (ms vs seconds)
     Component::update();
-    auto timeAlive = std::difftime(std::time(nullptr), spawnTime);
+    if (_pmc->isPaused()) {
+        return;
+    }
+//    auto timeAlive = std::difftime(std::time(nullptr), spawnTime);
+    timeAlive += ETime::DeltaTime();
     //explode after 3sec (might promote 3 to variable)
     if (timeAlive > 3 && !hasExploded) {
         explode();

@@ -162,7 +162,7 @@ add_executable(bomberman
         Source/Scenes/GameOverScene.cpp
         Sources/Components/GUI/ResizableTextComp.cpp
         Include/Components/GUI/ResizableTextComp.hpp
-        Source/Scenes/ControlsScene.cpp)
+        Source/Scenes/ControlsScene.cpp Include/raylib_encap/ETime.cpp Include/raylib_encap/ETime.hpp)
 
 #raylib
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

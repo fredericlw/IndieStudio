@@ -18,6 +18,9 @@ public:
     static float LinearOut(
         double currentTime, float start, float target, double duration
     );
+    static float LinearInOut(
+        double currentTime, float start, float target, double duration
+    );
     static float SineIn(
         double currentTime, float start, float target, double duration
     );

@@ -16,7 +16,7 @@ public:
     void init() override;
     void update() override;
     void draw() override;
-    std::array<bool, 4> playerScores;
+    std::array<bool, 4> playerStates;
 private:
     PlayerComp *p1;
     PlayerComp *p2;

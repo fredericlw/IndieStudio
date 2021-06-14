@@ -54,6 +54,8 @@ public:
     clock_t _bombSpawnTime;
     void checkPowerup(Vector3D &pos);
     void checkBomb(Vector3D &pos);
+    float timeAlive;
+    PauseMenuComp *_pmc;
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP

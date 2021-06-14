@@ -61,7 +61,6 @@ PlayerComp *GameLogicComp::SpawnPlayer(
 void GameLogicComp::update()
 {
     switch (gameState) {
-
     case Game:
         update_game();
         break;
@@ -82,13 +81,13 @@ void GameLogicComp::update_game()
     if (!p4->isAlive()) nb_death++;
     if (nb_death >= 3) {
         //get player points
-        playerScores[0] = p1->isAlive();
-        playerScores[1] = p2->isAlive();
-        playerScores[2] = p3->isAlive();
-        playerScores[3] = p4->isAlive();
+        playerStates[0] = p1->isAlive();
+        playerStates[1] = p2->isAlive();
+        playerStates[2] = p3->isAlive();
+        playerStates[3] = p4->isAlive();
         gameState = GameOver;
         auto &ent = entity->_mgr.addEntity("gameoverEnt");
-        auto &comp = ent.addComponent<GameOverComp>(playerScores);
+        auto &comp = ent.addComponent<GameOverComp>(playerStates);
         comp.DoGameOver();
     }
 }
