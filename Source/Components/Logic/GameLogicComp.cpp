@@ -69,7 +69,6 @@ void GameLogicComp::update()
         update_gameOver();
         break;
     }
-
     Component::update();
 }
 
@@ -87,8 +86,9 @@ void GameLogicComp::update_game()
         playerScores[1] = p2->getScore();
         playerScores[2] = p3->getScore();
         playerScores[3] = p4->getScore();
-        entity->_mgr.loadScene(Manager::GameOverScene);
         gameState = GameOver;
+        auto &ref = entity->_mgr.getEntByName("gamelogic")->addComponent<GameOverComp>();
+        ref.DoGameOver();
     }
 }
 

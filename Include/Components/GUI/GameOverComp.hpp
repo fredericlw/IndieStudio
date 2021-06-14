@@ -6,6 +6,8 @@
 #define BOMBERMAN_GAMEOVERCOMP_H
 
 #include <Component.hpp>
+#include "GUI/ButtonComp.hpp"
+#include "GUI/TextComp.hpp"
 
 class GameOverComp : public Component {
     public:
@@ -15,6 +17,11 @@ class GameOverComp : public Component {
     void init() override;
     void addQuitBtn();
     void addTitle();
+    void DoGameOver();
+
+private:
+    TextComp *GoText;
+    ButtonComp *GoButton;
 };
 
 #endif //BOMBERMAN_GAMEOVERCOMP_H

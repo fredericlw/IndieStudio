@@ -21,6 +21,7 @@ GameOverComp::GameOverComp()
 void GameOverComp::init()
 {
     Component::init();
+    auto &text = entity->_mgr.addEntity("Game over");
     addTitle();
     addQuitBtn();
 }
@@ -32,11 +33,12 @@ void GameOverComp::addQuitBtn()
     auto pos = Vector2D{winCenter.x - (size.x/2), winCenter.y + 50};
     auto &BackToGameBtnEnt = entity->_mgr.addEntity("BackToGameButton");
     BackToGameBtnEnt.addComponent<TransformComp>(pos);
-    BackToGameBtnEnt.addComponent<ButtonComp>("QUIT", size);
+    GoButton = &BackToGameBtnEnt.addComponent<ButtonComp>("QUIT", size);
     BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {entity->_mgr.Quit();}
     );
     BackToGameBtnEnt.addGroup(GUI);
+    BackToGameBtnEnt.getComponent<ButtonComp>().setVisible(false);
 }
 
 void GameOverComp::update()
@@ -54,5 +56,10 @@ void GameOverComp::addTitle()
     auto &title = entity->_mgr.addEntity("GOTitle");
     title.addGroup(GUI);
     title.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0,70}));
-    title.addComponent<TextComp>("GAME OVER", RayWhite, 120);
+    GoText = &title.addComponent<TextComp>("GAME OVER", RayWhite, 120, false);
+}
+
+void GameOverComp::DoGameOver() {
+    GoText->setVisible(true);
+    GoButton->setVisible(true);
 }
