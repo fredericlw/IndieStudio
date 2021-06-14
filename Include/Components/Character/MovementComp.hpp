@@ -10,6 +10,7 @@
 #include <raylib_encap/Input/AInputModule.hpp>
 #include <3D/TransformComp.hpp>
 #include <3D/BasicCubeComp.hpp>
+#include <GUI/PauseMenuComp.hpp>
 
 class MovementComp : public Component {
 public:
@@ -31,6 +32,7 @@ public:
     AInputModule *getInputModule();
     void SetActive(bool state);
     bool _active;
+    PauseMenuComp *_pmc;
 };
 
 #endif //MOVEMENTCOMP_HPP

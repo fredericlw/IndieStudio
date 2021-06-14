@@ -36,15 +36,17 @@ void MovementComp::init()
         transform = &entity->addComponent<TransformComp>();
     collider = &entity->getComponent<BasicCubeComp>();
     if (!collider) {
-        std::cerr << "CUBE WAS NOT FOUND" << std::endl;
+        std::cerr << "CUBE WAS NOT FOUND, adding new..." << std::endl;
         collider =
             &entity->addComponent<BasicCubeComp>(Vector3D::One().Multiply(2));
     }
+    _pmc =
+        &entity->_mgr.getEntByName("gamelogic")->getComponent<PauseMenuComp>();
 }
 
 void MovementComp::update()
 {
-    if (!_active) return;
+    if (!_active || _pmc->isPaused()) return;
     Component::update();
     if (_inputMod->GetButtonDown(Right)) Velocity.x = 1;
     else if (_inputMod->GetButtonDown(Left)) Velocity.x = -1;
