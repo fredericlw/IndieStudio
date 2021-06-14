@@ -57,23 +57,23 @@ AssetLoader::~AssetLoader()
     SoftBlockPassModel.Unload();
     FireUpModel.Unload();
     ExplosionSound.Unload();
-//            WalkingSound.Unload();
-            PowerupPickUp.Unload();
-            PowerupGenerated.Unload();
-            PlayerHurt.Unload();
-            PlayerDead.Unload();
-//            ButtonClick.Unload();
-            FullFireSprite.Unload();
-            BombUpSprite.Unload();
-            SkateSprite.Unload();
-            SoftBlockPassSprite.Unload();
-            FireUpSprite.Unload();
-            MainLogo.Unload();
-            MenuASprite.Unload();
-            MenuBSprite.Unload();
-            MenuCSprite.Unload();
-            MenuDSprite.Unload();
-            MenuESprite.Unload();
+    //            WalkingSound.Unload();
+    PowerupPickUp.Unload();
+    PowerupGenerated.Unload();
+    PlayerHurt.Unload();
+    PlayerDead.Unload();
+    //            ButtonClick.Unload();
+    FullFireSprite.Unload();
+    BombUpSprite.Unload();
+    SkateSprite.Unload();
+    SoftBlockPassSprite.Unload();
+    FireUpSprite.Unload();
+    MainLogo.Unload();
+    MenuASprite.Unload();
+    MenuBSprite.Unload();
+    MenuCSprite.Unload();
+    MenuDSprite.Unload();
+    MenuESprite.Unload();
 }
 
 void AssetLoader::init()
