@@ -19,10 +19,12 @@ public:
     void setIsPaused(bool is_paused);
     bool isIsPaused() const;
     void MenuButton();
+    void ExitButton();
 private:
     bool _isPaused;
     ButtonComp *resume_btn;
     ButtonComp *Menu_btn;
+    ButtonComp *Exit_Btn;
 };
 
 #endif //PAUSEMENUCOMP_HPP

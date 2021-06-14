@@ -18,6 +18,7 @@ void PauseMenuComp::init()
     resume_btn->AddEventFunc([this]() {setIsPaused(false);});
     resume_btn->entity->addGroup(GUI);
     MenuButton();
+    ExitButton();
 }
 
 void PauseMenuComp::update()
@@ -41,6 +42,7 @@ void PauseMenuComp::setIsPaused(bool is_paused)
     _isPaused = is_paused;
     resume_btn->setVisible(is_paused);
     Menu_btn->setVisible(is_paused);
+    Exit_Btn->setVisible(is_paused);
 }
 
 PauseMenuComp::PauseMenuComp()
@@ -62,4 +64,17 @@ void PauseMenuComp::MenuButton() {
     );
     BackToMenuBtnEnt.addGroup(GUI);
     BackToMenuBtnEnt.getComponent<ButtonComp>().setVisible(false);
+}
+
+void PauseMenuComp::ExitButton() {
+    auto winCenter = Vector2D::ScreenCenter();
+    auto pos = Vector2D(Vector2D::ScreenCenter().x - 135, Vector2D::ScreenCenter().y - 20);
+    auto &BackToGameBtnEnt = entity->_mgr.addEntity("BackToGameButton");
+    BackToGameBtnEnt.addComponent<TransformComp>(pos);
+    Exit_Btn = &BackToGameBtnEnt.addComponent<ButtonComp>("Quit", Vector2D(270, 50));
+    BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
+            [this]() {entity->_mgr.Quit();}
+    );
+    BackToGameBtnEnt.addGroup(GUI);
+    BackToGameBtnEnt.getComponent<ButtonComp>().setVisible(false);
 }
