@@ -18,6 +18,6 @@ void Manager::loadGameOverScene() {
     std::cout << "Game Over" << std::endl;
 //    QuitGameOverSceneButton();
     auto &ent = addEntity("gameOver");
-      ent.addComponent<GameOverComp>();
+      ent.addComponent<GameOverComp>(getEntByName("gamelogic")->getComponent<GameLogicComp>().playerScores);
     //TODO : use PLAYER SCORE THEN DESTROY
 }
