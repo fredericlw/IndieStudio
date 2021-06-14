@@ -57,12 +57,12 @@ AssetLoader::~AssetLoader()
     SoftBlockPassModel.Unload();
     FireUpModel.Unload();
     ExplosionSound.Unload();
-    //            WalkingSound.Unload();
+    WalkingSound.Unload();
     PowerupPickUp.Unload();
     PowerupGenerated.Unload();
     PlayerHurt.Unload();
     PlayerDead.Unload();
-    //            ButtonClick.Unload();
+    ButtonClick.Unload();
     FullFireSprite.Unload();
     BombUpSprite.Unload();
     SkateSprite.Unload();
