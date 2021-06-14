@@ -11,17 +11,20 @@
 
 class GameOverComp : public Component {
     public:
-    GameOverComp();
+    GameOverComp(std::array<bool, 4> playersAlive);
     void update() override;
     void draw() override;
     void init() override;
     void addQuitBtn();
     void addTitle();
     void DoGameOver();
-
+    void DisplayScores();
 private:
     TextComp *GoText;
+    TextComp *GoPlayerWin;
+    TextComp *GoWinner;
     ButtonComp *GoButton;
+    std::array<bool, 4> _alive;
 };
 
 #endif //BOMBERMAN_GAMEOVERCOMP_H
