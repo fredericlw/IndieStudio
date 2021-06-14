@@ -15,8 +15,8 @@ void Manager::loadGameScene()
     //warning : Keep this order !
     auto gl = getEntByName("gamelogic");
     GenerateMap();
-    gl->addComponent<GameLogicComp>();
     gl->addComponent<PauseMenuComp>();
+    gl->addComponent<GameLogicComp>();
 }
 
 void Manager::GenerateMap()

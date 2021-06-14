@@ -6,6 +6,8 @@
 */
 
 #include "Components/GUI/PauseMenuComp.hpp"
+#include "Entity.hpp"
+#include "Manager.hpp"
 
 void PauseMenuComp::init()
 {

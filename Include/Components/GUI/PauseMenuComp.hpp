@@ -8,7 +8,8 @@
 #ifndef PAUSEMENUCOMP_HPP
 #define PAUSEMENUCOMP_HPP
 
-#include "Components.h"
+#include "Component.hpp"
+#include "ButtonComp.hpp"
 
 class PauseMenuComp : public Component{
 public:

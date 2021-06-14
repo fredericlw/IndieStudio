@@ -49,6 +49,7 @@ void BombComp::init()
 
 void BombComp::update()
 {
+    //TODO use ctime clock() instead, will be more precise (ms vs seconds)
     Component::update();
     auto timeAlive = std::difftime(std::time(nullptr), spawnTime);
     //explode after 3sec (might promote 3 to variable)

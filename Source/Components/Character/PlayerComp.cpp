@@ -37,6 +37,8 @@ void PlayerComp::init()
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
     _model = &entity
         ->addComponent<ModelComp>(entity->assets()->PlayerModel, _color);
+    auto gamelogic = entity->_mgr.getEntByName("gamelogic");
+    _pmc = &gamelogic->getComponent<PauseMenuComp>();
 }
 
 void PlayerComp::update()
@@ -48,8 +50,7 @@ void PlayerComp::update()
         DoDropBomb();
     }
     if (_mc->getInputModule()->GetButtonPressed(Button::Cancel)) {
-        auto gamelogic = entity->_mgr.getEntByName("gamelogic");
-        gamelogic->getComponent<PauseMenuComp>().setIsPaused(true);
+        _pmc->setIsPaused(true);
     }
 }
 

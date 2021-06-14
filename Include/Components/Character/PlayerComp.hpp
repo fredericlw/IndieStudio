@@ -14,6 +14,7 @@
 #include "Entity.hpp"
 #include "Manager.hpp"
 #include <ctime>
+#include <GUI/PauseMenuComp.hpp>
 #include "powerup.hpp"
 
 class PlayerComp : public Component {
@@ -54,6 +55,7 @@ private:
     void StopPowerup(PowerUpType type);
     void StartPowerup(PowerUpType type);
     bool _alive;
+    PauseMenuComp *_pmc;
 };
 
 #endif //BOMBERMAN_PLAYER_HPP
