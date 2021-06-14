@@ -14,11 +14,13 @@
 
 class TextComp : public Component, public EText{
 public:
-    TextComp(const std::string &text, Colors color, int size = 40);
+    TextComp(const std::string &text, Colors color, int size = 40, bool visible = true);
     void init() override;
     void update() override;
     void draw() override;
+    void setVisible(bool visible);
 private:
+    bool visible;
     Colors TextColor;
     TransformComp *transform;
     int _size;

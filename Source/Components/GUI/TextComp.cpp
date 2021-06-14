@@ -24,13 +24,22 @@ void TextComp::update()
 void TextComp::draw()
 {
     Component::draw();
+    if (!visible) return;
     EText::drawCentered(transform->position.x, transform->position.y, _size,
         TextColor);
 }
 
-TextComp::TextComp(const std::string &text, Colors color, int size)
+void TextComp::setVisible(bool visible)
+{
+    TextComp::visible = visible;
+}
+
+TextComp::TextComp(
+    const std::string &text, Colors color, int size, bool visible
+)
     : EText(text),
       TextColor(color),
-      _size(size)
+      _size(size),
+      visible(visible)
 {
 }
