@@ -13,7 +13,7 @@ ESound::ESound(std::string filename) : _sound(LoadSound(filename.c_str()))
 
 ESound::~ESound()
 {
-    UnloadSound(_sound);
+    //UnloadSound(_sound);
 }
 
 void ESound::playSound(float volume)
