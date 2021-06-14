@@ -46,7 +46,8 @@ void PlayerComp::update()
     Component::update();
     if (_mc->getInputModule()->GetButtonPressed(DropBomb)
         && (activeBombs < _maxBombs)
-        && health > 0) {
+        && health > 0
+        && !_pmc->isPaused()) {
         DoDropBomb();
     }
     if (_mc->getInputModule()->GetButtonPressed(Button::Cancel)) {

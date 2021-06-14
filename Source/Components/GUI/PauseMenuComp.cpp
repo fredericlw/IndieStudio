@@ -33,7 +33,7 @@ void PauseMenuComp::draw()
     Component::draw();
 }
 
-bool PauseMenuComp::isIsPaused() const
+bool PauseMenuComp::isPaused() const
 {
     return _isPaused;
 }

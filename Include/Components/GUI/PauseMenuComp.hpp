@@ -18,7 +18,7 @@ public:
     void update() override;
     void draw() override;
     void setIsPaused(bool is_paused);
-    bool isIsPaused() const;
+    bool isPaused() const;
     void MenuButton();
     void ExitButton();
 private:
