@@ -16,6 +16,7 @@ class GameOverComp : public Component {
     void draw() override;
     void init() override;
     void addQuitBtn();
+    void addMenuBtn();
     void addTitle();
     void DoGameOver();
     void DisplayScores();
@@ -24,6 +25,7 @@ private:
     TextComp *GoPlayerWin;
     TextComp *GoWinner;
     ButtonComp *GoButton;
+    ButtonComp *GoMenu;
     std::array<bool, 4> _alive;
 };
 

@@ -25,6 +25,7 @@ void GameOverComp::init()
     auto &text = entity->_mgr.addEntity("Game over");
     addTitle();
     addQuitBtn();
+    addMenuBtn();
     DisplayScores();
 }
 
@@ -32,7 +33,7 @@ void GameOverComp::addQuitBtn()
 {
     auto size = Vector2D{350, 50};
     auto winCenter = Vector2D::ScreenCenter();
-    auto pos = Vector2D{winCenter.x - (size.x/2), winCenter.y + 130};
+    auto pos = Vector2D{winCenter.x - (size.x/2), winCenter.y + 180};
     auto &BackToGameBtnEnt = entity->_mgr.addEntity("BackToGameButton");
     BackToGameBtnEnt.addComponent<TransformComp>(pos);
     GoButton = &BackToGameBtnEnt.addComponent<ButtonComp>("QUIT", size);
@@ -66,6 +67,7 @@ void GameOverComp::DoGameOver() {
     GoButton->setVisible(true);
     GoPlayerWin->setVisible(true);
     GoWinner->setVisible(true);
+    GoMenu->setVisible(true);
 }
 
 void GameOverComp::DisplayScores() {
@@ -95,4 +97,21 @@ void GameOverComp::DisplayScores() {
     winner.addGroup(GUI);
     winner.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0,30}));
     GoWinner = &winner.addComponent<TextComp>(name, RayWhite, 84, false);
+}
+
+void GameOverComp::addMenuBtn()
+{
+    auto size = Vector2D{350, 50};
+    auto winCenter = Vector2D::ScreenCenter();
+    auto pos = Vector2D{winCenter.x - (size.x/2), winCenter.y + 100};
+    auto &BackToMenuBtnEnt = entity->_mgr.addEntity("BackToMenuButton");
+    BackToMenuBtnEnt.addComponent<TransformComp>(pos);
+    GoMenu = &BackToMenuBtnEnt.addComponent<ButtonComp>("MENU", size);
+    BackToMenuBtnEnt.getComponent<ButtonComp>().AddEventFunc(
+            [this]() {
+                entity->_mgr.loadScene(Manager::SceneType::MainMenu);
+            }
+    );
+    BackToMenuBtnEnt.addGroup(GUI);
+    BackToMenuBtnEnt.getComponent<ButtonComp>().setVisible(false);
 }
