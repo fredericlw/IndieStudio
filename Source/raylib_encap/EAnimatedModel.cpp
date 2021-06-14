@@ -38,3 +38,8 @@ void EAnimatedModel::draw(Vector3D pos)
         Vector3D::One().Multiply(model->scale), WHITE);
     GetFrameTime();
 }
+
+void EAnimatedModel::Unload()
+{
+    UnloadModelAnimations(animations, animCount);
+}
