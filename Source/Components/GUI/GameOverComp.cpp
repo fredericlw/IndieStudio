@@ -73,6 +73,7 @@ void GameOverComp::DisplayScores() {
     int nb = -1;
     for (int i = 0; _alive[i] < 4; i++) {
         if (_alive[i] == true) {
+            nb++;
             if (i == 0) {
                 name = "Player 1";
             } else if (i == 1) {
@@ -84,6 +85,8 @@ void GameOverComp::DisplayScores() {
             }
         }
     }
+    if (nb == -1)
+        name = "You Lose";
     auto &Scores1 = entity->_mgr.addEntity("GOWinnerIs");
     Scores1.addGroup(GUI);
     Scores1.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0,100}));
