@@ -90,7 +90,6 @@ void GameLogicComp::update_game()
         auto &ent = entity->_mgr.addEntity("gameoverEnt");
         auto &comp = ent.addComponent<GameOverComp>();
         comp.DoGameOver();
-//        ref.DoGameOver();
     }
 }
 
