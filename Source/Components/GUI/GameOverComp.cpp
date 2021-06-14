@@ -109,7 +109,8 @@ void GameOverComp::addMenuBtn()
     GoMenu = &BackToMenuBtnEnt.addComponent<ButtonComp>("MENU", size);
     BackToMenuBtnEnt.getComponent<ButtonComp>().AddEventFunc(
             [this]() {
-                entity->_mgr.loadScene(Manager::SceneType::MainMenu);
+                entity->_mgr.setNextSceneToLoad(Manager::SceneType::MainMenu);
+                entity->_mgr.setAlive(false);
             }
     );
     BackToMenuBtnEnt.addGroup(GUI);
