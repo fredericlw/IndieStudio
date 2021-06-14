@@ -24,7 +24,7 @@ class OptionComp : public Component {
     ListSelectorComp *ListSelector2;
     ListSelectorComp *ListSelector3;
     ListSelectorComp *ListSelector4;
-    ListSelectorComp * addSel(
+    ListSelectorComp *addSel(
         std::vector<std::string> &list, const std::string &entittyName,
         Colors colors, Vector2D pos, const std::string &printedText
     );

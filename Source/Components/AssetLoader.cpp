@@ -36,9 +36,9 @@ AssetLoader::AssetLoader()
       MainLogo("./Assets/Textures/mainlogo.png"),
       MenuASprite("./Assets/Textures/menu/sky.png"),
       MenuBSprite("./Assets/Textures/menu/cloud.png"),
-    MenuCSprite("./Assets/Textures/menu/mountain.png"),
-    MenuDSprite("./Assets/Textures/menu/pine1.png"),
-    MenuESprite("./Assets/Textures/menu/pine2.png")
+      MenuCSprite("./Assets/Textures/menu/mountain.png"),
+      MenuDSprite("./Assets/Textures/menu/pine1.png"),
+      MenuESprite("./Assets/Textures/menu/pine2.png")
 {
 }
 
@@ -49,7 +49,7 @@ AssetLoader::~AssetLoader()
     BombModel.Unload();
     ObstacleModel.Unload();
     ExplosionModel.Unload();
-    ExplosionAnim.model->Unload();
+    ExplosionAnim.Unload();
     FloorModel.Unload();
     FullFireModel.Unload();
     BombUpModel.Unload();
@@ -57,23 +57,23 @@ AssetLoader::~AssetLoader()
     SoftBlockPassModel.Unload();
     FireUpModel.Unload();
     ExplosionSound.Unload();
-    WalkingSound.Unload();
-    PowerupPickUp.Unload();
-    PowerupGenerated.Unload();
-    PlayerHurt.Unload();
-    PlayerDead.Unload();
-    ButtonClick.Unload();
-    FullFireSprite.Unload();
-    BombUpSprite.Unload();
-    SkateSprite.Unload();
-    SoftBlockPassSprite.Unload();
-    FireUpSprite.Unload();
-    MainLogo.Unload();
-    MenuASprite.Unload();
-    MenuBSprite.Unload();
-    MenuCSprite.Unload();
-    MenuDSprite.Unload();
-    MenuESprite.Unload();
+//            WalkingSound.Unload();
+            PowerupPickUp.Unload();
+            PowerupGenerated.Unload();
+            PlayerHurt.Unload();
+            PlayerDead.Unload();
+//            ButtonClick.Unload();
+            FullFireSprite.Unload();
+            BombUpSprite.Unload();
+            SkateSprite.Unload();
+            SoftBlockPassSprite.Unload();
+            FireUpSprite.Unload();
+            MainLogo.Unload();
+            MenuASprite.Unload();
+            MenuBSprite.Unload();
+            MenuCSprite.Unload();
+            MenuDSprite.Unload();
+            MenuESprite.Unload();
 }
 
 void AssetLoader::init()

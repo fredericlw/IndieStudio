@@ -13,7 +13,7 @@ EMusic::EMusic(std::string filename) : _music(LoadMusicStream(filename.c_str()))
 
 EMusic::~EMusic()
 {
-    UnloadMusicStream(_music);
+    //UnloadMusicStream(_music);
 }
 
 void EMusic::playMusic(float volume)

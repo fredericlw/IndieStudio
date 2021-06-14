@@ -23,6 +23,7 @@ public:
     void update();
     void draw(Vector3D pos);
     int animCount;
+    void Unload();
 };
 
 #endif //EANIMATEDMODEL_HPP
