@@ -18,9 +18,11 @@ public:
     void draw() override;
     void setIsPaused(bool is_paused);
     bool isIsPaused() const;
+    void MenuButton();
 private:
     bool _isPaused;
     ButtonComp *resume_btn;
+    ButtonComp *Menu_btn;
 };
 
 #endif //PAUSEMENUCOMP_HPP
