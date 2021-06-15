@@ -15,6 +15,7 @@ class Vector3D : public Vector3 {
 public:
     Vector3D(float x, float y, float z);
     Vector3D(const Vector2D &Vec);
+    Vector3D();
     ~Vector3D();
 
     //region Static values

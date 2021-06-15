@@ -122,6 +122,10 @@ std::ostream &operator<<(std::ostream &os, const Vector3D &vec)
     return os;
 }
 
+Vector3D::Vector3D() : Vector3({0, 0, 0})
+{
+}
+
 Vector3D::Vector3D(const Vector2D& Vec) : Vector3({Vec.x, Vec.y, 0})
 {
 }

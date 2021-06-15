@@ -162,7 +162,7 @@ add_executable(bomberman
         Source/Scenes/GameOverScene.cpp
         Sources/Components/GUI/ResizableTextComp.cpp
         Include/Components/GUI/ResizableTextComp.hpp
-        Source/Scenes/ControlsScene.cpp Include/raylib_encap/ETime.cpp Include/raylib_encap/ETime.hpp Include/GameSave.cpp Include/GameSave.hpp)
+        Source/Scenes/ControlsScene.cpp Include/raylib_encap/ETime.cpp Include/raylib_encap/ETime.hpp Include/GameSaveLoad.cpp Include/GameSaveLoad.hpp)
 
 #raylib
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
@@ -170,15 +170,14 @@ set(OpenGL_GL_PREFERENCE LEGACY)
 find_package(raylib REQUIRED QUIET)
 
 #boost
-#set(Boost_USE_STATIC_LIBS OFF)
-#set(Boost_USE_MULTITHREADED ON)
-#set(Boost_USE_STATIC_RUNTIME OFF)
-#find_package(Boost 1.76.0 COMPONENTS filesystem)
-#
-#if(Boost_FOUND)
-#    include_directories(${Boost_INCLUDE_DIRS})
-#    add_executable(progname file1.cxx file2.cxx)
-#    target_link_libraries(progname ${Boost_LIBRARIES})
-#endif()
+set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+find_package(Boost 1.71.0 COMPONENTS filesystem archive)
+
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    target_link_libraries(bomberman ${Boost_LIBRARIES})
+endif()
 
 target_link_libraries(bomberman raylib)

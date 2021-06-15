@@ -17,11 +17,11 @@ public:
     void update() override;
     void draw() override;
     std::array<bool, 4> playerStates;
-private:
     PlayerComp *p1;
     PlayerComp *p2;
     PlayerComp *p3;
     PlayerComp *p4;
+private:
     PlayerComp * SpawnPlayer(
         std::string entityName, const Vector3D& pos, EInputType inputType,
         PlayerNum num,

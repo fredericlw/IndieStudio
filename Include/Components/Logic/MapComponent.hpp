@@ -19,11 +19,11 @@ public:
     void init() override;
     void update() override;
     void draw() override;
+    std::vector<Entity *> Walls;
+    std::vector<Entity *> Obstacles;
 private:
     Vector2D _size;
-    std::vector<Entity *> Walls;
 private:
-    std::vector<Entity *> Obstacles;
     int numWalls;
     int numObstacles;
     float cubesize;
