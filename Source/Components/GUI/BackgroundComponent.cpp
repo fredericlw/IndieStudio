@@ -27,7 +27,7 @@ void BackgroundComponent::update()
     scrollB -= 0.23f;
     scrollC -= 0.6f;
     scrollD -= 1.2f;
-    scrollE -= 1.0f;
+    scrollE -= 1.55f;
 
     if (scrollA <= -entity->assets()->MenuASprite.width*scale) scrollA = 0;
     if (scrollB <= -entity->assets()->MenuBSprite.width*scale) scrollB = 0;
