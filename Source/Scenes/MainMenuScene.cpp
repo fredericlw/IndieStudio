@@ -13,6 +13,7 @@
 #include <raylib_encap/Window.hpp>
 #include <GUI/BackgroundComponent.hpp>
 #include "Components/Components.h"
+#include <boost/filesystem.hpp>
 
 void Manager::loadMenuScene()
 {
@@ -38,7 +39,7 @@ void Manager::AddPlayButton()
     auto &PlayBtnEnt = addEntity("PlayButton");
     auto size = Vector2D{270, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
-    auto pos = Vector2D::ScreenCenter().Subtract(halfsize).Add({0, - 70});
+    auto pos = Vector2D::ScreenCenter().Subtract(halfsize).Add({0, -70});
     PlayBtnEnt.addComponent<TransformComp>(pos);
     PlayBtnEnt.addComponent<ButtonComp>("Play", size);
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
@@ -50,7 +51,8 @@ void Manager::AddPlayButton()
     PlayBtnEnt.addGroup(GUI);
 }
 
-void Manager::AddLoadGameButton() {
+void Manager::AddLoadGameButton()
+{
     auto &LoadBtnEnt = addEntity("LoadGame");
     auto size = Vector2D{270, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
@@ -59,6 +61,11 @@ void Manager::AddLoadGameButton() {
     LoadBtnEnt.addComponent<ButtonComp>("Load Game", size);
     LoadBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
+            if (!boost::filesystem::exists("./savedGame")) {
+                std::cerr << "SaveGame file not found, ignoring..."
+                    << std::endl;
+                return;
+            }
             setNextSceneToLoad(Lobby);
             curSceneAlive = false;
             auto gl = getEntByName("gamelogic");
@@ -121,11 +128,17 @@ void Manager::AddMenuLogo()
     //Create an entity
     auto &logoEntity = addEntity("MainMenuLogo");
     //Add Components to it
-    auto& transformComp = logoEntity.addComponent<TransformComp>();
-    auto spriteComp = logoEntity.addComponent<Sprite2D>("Assets/Textures/mainlogo.png");
-    auto size = Vector2D{static_cast<float>(spriteComp.width), static_cast<float>(spriteComp.height)};
+    auto &transformComp = logoEntity.addComponent<TransformComp>();
+    auto spriteComp =
+        logoEntity.addComponent<Sprite2D>("Assets/Textures/mainlogo.png");
+    auto size = Vector2D{
+        static_cast<float>(spriteComp.width),
+        static_cast<float>(spriteComp.height)
+    };
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
-    auto pos = Window::GetWinSize().Subtract(Vector2D(Window::GetWinSize().x / 2, Window::GetWinSize().y / 1.25)).Subtract(halfsize);
+    auto pos = Window::GetWinSize().Subtract(
+        Vector2D(Window::GetWinSize().x / 2,
+            Window::GetWinSize().y / 1.25)).Subtract(halfsize);
     transformComp.position = pos;
 
     //Modify some components

@@ -103,9 +103,9 @@ void MovementComp::update()
         collider->stickCube(theoNextPos, cast->getCube());
         if (CubeCollider::CheckBoxOverLap(
             collider->getCube(), transform->position, cast->getCube()) && theoNextPos != transform->position) {
-            std::cout << "bomb touch old pos" << std::endl;
+//            std::cout << "bomb touch old pos" << std::endl;
         } else if (CubeCollider::CheckBoxOverLap(collider->getCube(), nextPos, cast->getCube())) {
-            std::cout << "allread on cube" << std::endl;
+//            std::cout << "already on cube" << std::endl;
             collider->stickCube(nextPos, cast->getCube());
         }
     }
