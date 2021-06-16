@@ -83,6 +83,7 @@ public:
     void AddHowToPlayButton();
     void loadGameOverScene();
     void QuitGameOverSceneButton();
+    void AddLoadGameButton();
     void addControlsHowToPlayButton();
     void loadControlsScene();
     void addControlsRulesButton();

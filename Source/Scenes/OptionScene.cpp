@@ -46,3 +46,5 @@ void Manager::addBackToGameOptionBtn()
     );
     BackToGameBtnEnt.addGroup(GUI);
 }
+
+

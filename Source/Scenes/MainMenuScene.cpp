@@ -27,6 +27,7 @@ void Manager::loadMenuScene()
 
     AddMenuLogo();
     AddPlayButton();
+    AddLoadGameButton();
     addBackToGameBtn();
     AddSettingsButton();
     AddHowToPlayButton();
@@ -37,7 +38,7 @@ void Manager::AddPlayButton()
     auto &PlayBtnEnt = addEntity("PlayButton");
     auto size = Vector2D{270, 50};
     auto halfsize = Vector2D{size.x / 2, size.y / 2};
-    auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
+    auto pos = Vector2D::ScreenCenter().Subtract(halfsize).Add({0, - 70});
     PlayBtnEnt.addComponent<TransformComp>(pos);
     PlayBtnEnt.addComponent<ButtonComp>("Play", size);
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
@@ -111,4 +112,20 @@ void Manager::AddMenuLogo()
 
     //Modify some components
     logoEntity.addGroup(GUI);
+}
+
+void Manager::AddLoadGameButton() {
+    auto &LoadBtnEnt = addEntity("LoadGame");
+    auto size = Vector2D{270, 50};
+    auto halfsize = Vector2D{size.x / 2, size.y / 2};
+    auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
+    LoadBtnEnt.addComponent<TransformComp>(pos);
+    LoadBtnEnt.addComponent<ButtonComp>("Load Game", size);
+    LoadBtnEnt.getComponent<ButtonComp>().AddEventFunc(
+            [this]() {
+                setNextSceneToLoad(Settings);
+                alive = false;
+            }
+    );
+    LoadBtnEnt.addGroup(GUI);
 }
