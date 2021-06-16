@@ -14,7 +14,6 @@
 #include "Manager.hpp"
 #include "Components/Character/PlayerComp.hpp"
 #include "Components/GUI/PlayerHUD.hpp"
-#include <ECS/Manager.hpp>
 #include <GUI/GameOverComp.hpp>
 
 void GameLogicComp::init()

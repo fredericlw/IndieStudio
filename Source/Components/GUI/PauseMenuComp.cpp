@@ -5,6 +5,7 @@
 ** Created by Frédéric Lawecki--Walkowiak
 */
 
+#include <GameSaveLoad.hpp>
 #include "Components/GUI/PauseMenuComp.hpp"
 #include "Entity.hpp"
 #include "Manager.hpp"
@@ -90,7 +91,10 @@ void PauseMenuComp::SaveButton() {
     SaveBtnEnt.addComponent<TransformComp>(pos);
     Save_btn = &SaveBtnEnt.addComponent<ButtonComp>("Save", Vector2D(270, 50));
     SaveBtnEnt.getComponent<ButtonComp>().AddEventFunc(
-            [this]() {entity->_mgr.Quit();}
+            [this](){
+                GameSaveLoad::SaveGameToFile(
+                    entity->getComponent<GameLogicComp>());
+            }
     );
     SaveBtnEnt.addGroup(GUI);
     SaveBtnEnt.getComponent<ButtonComp>().setVisible(false);

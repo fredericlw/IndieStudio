@@ -14,7 +14,7 @@
 
 GameSaveLoad::GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
 {
-    auto mapEnt = gamelogic.entity->_mgr.getEntByName("maproot");
+    auto mapEnt = gamelogic.entity->_mgr.getEntByName("mapRoot");
     auto &mapComp = mapEnt->getComponent<MapComponent>();
 
     std::vector<Vector3D> obstacles = getObstacles(mapComp);

@@ -16,6 +16,7 @@
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/array.hpp>
 #include <Logic/GameLogicComp.hpp>
+#include "Logic/MapComponent.hpp"
 
 class GameSaveLoad {
 public:
