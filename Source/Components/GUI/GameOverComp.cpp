@@ -88,7 +88,7 @@ void GameOverComp::DisplayScores() {
         }
     }
     if (nb == -1)
-        name = "You Lose";
+        name = "Tie";
     if (nb != -1) {
         auto &Scores1 = entity->_mgr.addEntity("GOWinnerIs");
         Scores1.addGroup(GUI);
