@@ -46,7 +46,7 @@ void BombComp::init()
     model =
         &entity->addComponent<ModelComp>(entity->assets()->BombModel, _owner->getColor());
     collider.setPos(_transform->position);
-    collider.setSize(Vector3D::One().Multiply(2));
+    collider.setSize(Vector3D::One().Multiply(1.75));
     _pmc =
         &entity->_mgr.getEntByName("gamelogic")->getComponent<PauseMenuComp>();
 }

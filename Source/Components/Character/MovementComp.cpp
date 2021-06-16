@@ -97,7 +97,6 @@ void MovementComp::update()
         }
     }
 
-
     Vector3D theoNextPos = nextPos;
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Bombs)) {
         BombComp *cast = &i->getComponent<BombComp>();

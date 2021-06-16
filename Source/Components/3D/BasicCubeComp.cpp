@@ -86,7 +86,7 @@ void BasicCubeComp::stickCube(Vector3D &nextpos, const ECube &colisionCube)
     float diffz = colisionPos.z - nextpos.z;
 
 
-    if (std::abs(diffx) > std::abs(diffz)) {
+    if (std::abs(diffx) >= std::abs(diffz)) {
         if (diffx < 0)
             nextpos.x =
                 colisionPos.x + (colisionCube.getSize().x / 2) + _size.x / 2;
