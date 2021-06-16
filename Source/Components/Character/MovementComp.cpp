@@ -78,7 +78,6 @@ void MovementComp::update()
     Vector3D nextPos = transform->position;
     nextPos.Add(Velocity.Clamp(1).Multiply(_speed));
 
-
     Vector3D theoNextPos = nextPos;
     for (auto &i : entity->_mgr.getEntitiesInGroup(GroupLabel::Bombs)) {
         BombComp *cast = &i->getComponent<BombComp>();
@@ -138,6 +137,7 @@ void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)
         _inputMod = new EGamepadInputModule(num);
         break;
     case AI:
+        _inputMod = new EGamepadInputModule(num);
         break;
     }
 }

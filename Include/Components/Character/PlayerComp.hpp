@@ -56,6 +56,7 @@ private:
     void StartPowerup(PowerUpType type);
     bool _alive;
     PauseMenuComp *_pmc;
+    void IAupdate();
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

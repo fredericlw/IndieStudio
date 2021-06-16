@@ -44,14 +44,21 @@ void PlayerComp::init()
 void PlayerComp::update()
 {
     Component::update();
-    if (_mc->getInputModule()->GetButtonPressed(DropBomb)
-        && (activeBombs < _maxBombs)
-        && health > 0
-        && !_pmc->isPaused()) {
-        DoDropBomb();
+    if (_eType != AI)
+    {
+        if (_mc->getInputModule()->GetButtonPressed(DropBomb)
+            && (activeBombs < _maxBombs)
+            && health > 0
+            && !_pmc->isPaused()) {
+            DoDropBomb();
+        }
+        if (_mc->getInputModule()->GetButtonPressed(Button::Cancel)) {
+            _pmc->setIsPaused(true);
+        }
     }
-    if (_mc->getInputModule()->GetButtonPressed(Button::Cancel)) {
-        _pmc->setIsPaused(true);
+    else
+    {
+        IAupdate();
     }
 }
 
@@ -205,4 +212,22 @@ void PlayerComp::addScore(int score)
 {
     //TODO: if not playing, play score sound here
     PlayerComp::score += score;
+}
+
+void PlayerComp::IAupdate()
+{
+    /*std::vector<std::vector<char>> map;
+    for (int i = 0; i < 13; i++)
+    {
+        for (int j = 0; j < 11; ++j) {
+            map[i][j] = '0';
+        }
+    }
+    auto mapEnt = entity->_mgr.getEntByName("mapRoot");
+    auto mapComp = mapEnt->getComponent<
+    MapComponent>();
+    for (auto i : entity->_mgr.getEntByName("mapRoot")->)
+    {
+
+    }*/
 }
