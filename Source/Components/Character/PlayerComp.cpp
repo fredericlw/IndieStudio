@@ -238,6 +238,8 @@ void PlayerComp::setScore(int value)
 }
 
 void PlayerComp::killSilently()
-{
-    _alive = false;
+{    _alive = false;
+    entity->getComponent<ModelComp>().SetVisibility(false);
+    _maxBombs = 0;
+    _mc->SetActive(false);
 }

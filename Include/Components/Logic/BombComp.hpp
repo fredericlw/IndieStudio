@@ -36,10 +36,6 @@ private:
     void GenerateParticles(int definitive_spread);
     bool SpawnParticle(Vector3D &pos);
     bool particlesCleared;
-    bool checkCol(
-        const Vector3D &mapPos, const ECube &flameCube, ECube &wallCube,
-        Vector3D &wallCubePos, std::vector<Entity *> walls
-    ) const;
     void checkPlayer(Vector3D pos);
     bool checkWall(Vector3D pos);
     bool checkObstacle(Vector3D pos);
