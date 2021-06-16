@@ -25,10 +25,11 @@ public:
         template<class Archive>
         void serialize(Archive &ar, const unsigned int version)
         {
-            ar & pos & powerUp & isAlive;
+            ar & pos & powerUp & score & isAlive;
         }
         Vector3D pos;
         PowerUpType powerUp;
+        int score;
         bool isAlive;
     };
     struct GameSaveData {

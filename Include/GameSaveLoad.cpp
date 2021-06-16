@@ -40,21 +40,25 @@ std::array<GameSaveLoad::PlayerData, 4> GameSaveLoad::getPlayersData(
     res[0] = {
         .pos = comp.p1->entity->getComponent<TransformComp>().position,
         .powerUp = comp.p1->getPowerUp(),
+        .score = comp.p1->getScore(),
         .isAlive = comp.p1->isAlive()
     };
     res[1] = {
         .pos = comp.p2->entity->getComponent<TransformComp>().position,
         .powerUp = comp.p2->getPowerUp(),
+        .score = comp.p2->getScore(),
         .isAlive = comp.p2->isAlive()
     };
     res[2] = {
         .pos = comp.p3->entity->getComponent<TransformComp>().position,
         .powerUp = comp.p3->getPowerUp(),
+        .score = comp.p3->getScore(),
         .isAlive = comp.p3->isAlive()
     };
     res[3] = {
         .pos = comp.p4->entity->getComponent<TransformComp>().position,
         .powerUp = comp.p4->getPowerUp(),
+        .score = comp.p4->getScore(),
         .isAlive = comp.p4->isAlive()
     };
 
