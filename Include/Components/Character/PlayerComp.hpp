@@ -29,6 +29,7 @@ public:
     [[nodiscard]] PowerUpType getPowerUp() const;
     std::map<PowerUpType, std::string> _powerUpFilename;
     int activeBombs;
+    void setScore(int value);
 private:
     EInputType _eType;
     PlayerNum _playerNum;
@@ -40,13 +41,14 @@ private:
 public:
     Vector3D getNearestBlockPos(Vector3D pos);
     int getScore() const;
-    void addScore(int score);
+    void addScore(int value);
     void takeDamage();
     int health;
     void Die();
 public:
     void setPowerUp(PowerUpType power_up);
     bool isAlive() const;
+    void killSilently();
     PlayerNum getPlayerNum() const;
     int _currentBombFire;
 private:

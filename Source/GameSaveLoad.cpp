@@ -25,8 +25,10 @@ GameSaveLoad::GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
 
 std::vector<Vector3D> GameSaveLoad::getObstacles(MapComponent &mapComp)
 {
+    auto &obstacles = mapComp.entity->_mgr.getEntitiesInGroup(Obstacles);
     std::vector<Vector3D> res;
-    for (const auto &obstacle : mapComp.Obstacles) {
+    res.reserve(obstacles.size());
+    for (const auto &obstacle : obstacles) {
         res.emplace_back(obstacle->getComponent<TransformComp>().position);
     }
     return res;

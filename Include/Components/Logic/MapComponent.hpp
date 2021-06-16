@@ -28,12 +28,14 @@ private:
     int numObstacles;
     float cubesize;
     TransformComp *transform;
+    GameLogicComp *gl;
     void place_root_visualizer();
     void gen_walls();
     void gen_obstacles();
     void gen_floor();
     bool positionAlreadyExists(const Vector3D &pos);
     bool positionIsInCorner(Vector3D pos);
+    void load_obstacles();
 };
 
 #endif //MAPCOMPONENT_HPP

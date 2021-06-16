@@ -32,6 +32,7 @@ private:
     void SpawnPlayerHUD();
     void update_game();
     void update_gameOver();
+    void LoadPlayers();
 };
 
 #endif //GAMELOGICCOMP_HPP

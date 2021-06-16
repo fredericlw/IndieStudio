@@ -77,7 +77,7 @@ void Manager::addControlsRulesButton()
     BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
             setNextSceneToLoad(HowToPlay);
-            alive = false;
+            curSceneAlive = false;
         }
     );
     BackToGameBtnEnt.addGroup(GUI);

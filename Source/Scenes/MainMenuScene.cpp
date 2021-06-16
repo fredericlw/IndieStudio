@@ -44,10 +44,28 @@ void Manager::AddPlayButton()
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
             setNextSceneToLoad(Lobby);
-            alive = false;
+            curSceneAlive = false;
         }
     );
     PlayBtnEnt.addGroup(GUI);
+}
+
+void Manager::AddLoadGameButton() {
+    auto &LoadBtnEnt = addEntity("LoadGame");
+    auto size = Vector2D{270, 50};
+    auto halfsize = Vector2D{size.x / 2, size.y / 2};
+    auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
+    LoadBtnEnt.addComponent<TransformComp>(pos);
+    LoadBtnEnt.addComponent<ButtonComp>("Load Game", size);
+    LoadBtnEnt.getComponent<ButtonComp>().AddEventFunc(
+        [this]() {
+            setNextSceneToLoad(Lobby);
+            curSceneAlive = false;
+            auto gl = getEntByName("gamelogic");
+            gl->getComponent<AssetLoader>().loadGame = true;
+        }
+    );
+    LoadBtnEnt.addGroup(GUI);
 }
 
 void Manager::AddSettingsButton()
@@ -61,7 +79,7 @@ void Manager::AddSettingsButton()
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
             setNextSceneToLoad(Settings);
-            alive = false;
+            curSceneAlive = false;
         }
     );
     PlayBtnEnt.addGroup(GUI);
@@ -78,7 +96,7 @@ void Manager::AddHowToPlayButton()
     PlayBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
             setNextSceneToLoad(HowToPlay);
-            alive = false;
+            curSceneAlive = false;
         }
     );
     PlayBtnEnt.addGroup(GUI);
@@ -112,20 +130,4 @@ void Manager::AddMenuLogo()
 
     //Modify some components
     logoEntity.addGroup(GUI);
-}
-
-void Manager::AddLoadGameButton() {
-    auto &LoadBtnEnt = addEntity("LoadGame");
-    auto size = Vector2D{270, 50};
-    auto halfsize = Vector2D{size.x / 2, size.y / 2};
-    auto pos = Vector2D::ScreenCenter().Subtract(halfsize);
-    LoadBtnEnt.addComponent<TransformComp>(pos);
-    LoadBtnEnt.addComponent<ButtonComp>("Load Game", size);
-    LoadBtnEnt.getComponent<ButtonComp>().AddEventFunc(
-            [this]() {
-                setNextSceneToLoad(Settings);
-                alive = false;
-            }
-    );
-    LoadBtnEnt.addGroup(GUI);
 }

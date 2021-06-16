@@ -38,7 +38,8 @@ AssetLoader::AssetLoader()
       MenuBSprite("./Assets/Textures/menu/cloud.png"),
       MenuCSprite("./Assets/Textures/menu/mountain.png"),
       MenuDSprite("./Assets/Textures/menu/pine1.png"),
-      MenuESprite("./Assets/Textures/menu/pine2.png")
+      MenuESprite("./Assets/Textures/menu/pine2.png"),
+      loadGame(false)
 {
 }
 

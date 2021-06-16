@@ -41,7 +41,7 @@ void Manager::addBackToGameOptionBtn()
     BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
             setNextSceneToLoad(MainMenu);
-            alive = false;
+            curSceneAlive = false;
         }
     );
     BackToGameBtnEnt.addGroup(GUI);

@@ -50,7 +50,7 @@ public:
 public:
     bool isAlive() const;
 private:
-    bool alive = true;
+    bool curSceneAlive = true;
     std::vector<std::shared_ptr<Entity>> entities;
     std::array<std::vector<Entity *>, maxGroups> groupedEntities;
 public:

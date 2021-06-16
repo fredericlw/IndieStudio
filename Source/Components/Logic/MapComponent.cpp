@@ -5,6 +5,7 @@
 ** Created by Leo Fabre
 */
 #include <raylib_encap/Math/Random.hpp>
+#include <GameSaveLoad.hpp>
 #include "Components/Logic/MapComponent.hpp"
 #include "ECS/Entity.hpp"
 #include "ECS/Manager.hpp"
@@ -29,10 +30,31 @@ void MapComponent::init()
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>(-12, -28, -20);
-    //    place_root_visualizer();
+    gl = &entity->_mgr.getEntByName("gamelogic")->getComponent<GameLogicComp>();
     gen_floor();
     gen_walls();
-    gen_obstacles();
+
+    //if did not press Load game, generate obstacle, else
+    if (entity->assets()->loadGame) {
+        load_obstacles();
+    } else {
+        gen_obstacles();
+    }
+}
+
+void MapComponent::load_obstacles()
+{
+    for (const auto &obsPos : GameSaveLoad::loadDataFromSaveFile()->obstacles) {
+        auto newEnt = &entity->_mgr.addEntity("Obstacle:" +
+            std::to_string(obsPos.x) + ":" + std::to_string(obsPos.z));
+        newEnt->addGroup(GroupLabel::Obstacles);
+        newEnt->addComponent<TransformComp>(obsPos);
+        newEnt->addComponent<BasicCubeComp>(
+                Vector3D::One().Multiply(2), Gray, Black)
+            .shouldDraw = false;
+        newEnt->addComponent<ModelComp>(entity->assets()->ObstacleModel);
+        Obstacles.emplace_back(newEnt);
+    }
 }
 
 void MapComponent::gen_obstacles()

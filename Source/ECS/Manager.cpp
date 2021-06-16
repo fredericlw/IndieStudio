@@ -136,12 +136,12 @@ void Manager::loadScene(Manager::SceneType scene)
 
 void Manager::Quit()
 {
-    alive = false;
+    curSceneAlive = false;
 }
 
 bool Manager::isAlive() const
 {
-    return alive;
+    return curSceneAlive;
 }
 
 void Manager::addEntityToGroup(Entity *entity, Group group)
@@ -166,7 +166,7 @@ void Manager::setNextSceneToLoad(Manager::SceneType next_scene_to_load)
 
 void Manager::setAlive(bool alive)
 {
-    Manager::alive = alive;
+    Manager::curSceneAlive = alive;
 }
 
 std::shared_ptr<Entity> Manager::getEntByName(const std::string &name)

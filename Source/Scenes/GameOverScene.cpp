@@ -16,8 +16,7 @@
 
 void Manager::loadGameOverScene() {
     std::cout << "Game Over" << std::endl;
-//    QuitGameOverSceneButton();
     auto &ent = addEntity("gameOver");
-      ent.addComponent<GameOverComp>(getEntByName("gamelogic")->getComponent<GameLogicComp>().playerStates);
-    //TODO : use PLAYER SCORE THEN DESTROY
+      ent.addComponent<GameOverComp>(getEntByName("gamelogic")
+        ->getComponent<GameLogicComp>().playerStates);
 }

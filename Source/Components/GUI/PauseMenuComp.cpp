@@ -94,6 +94,8 @@ void PauseMenuComp::SaveButton() {
             [this](){
                 GameSaveLoad::SaveGameToFile(
                     entity->getComponent<GameLogicComp>());
+                std::cout << "Saved game !" << std::endl;
+                setIsPaused(false);
             }
     );
     SaveBtnEnt.addGroup(GUI);

@@ -54,6 +54,7 @@ public:
     ESprite MenuCSprite;
     ESprite MenuDSprite;
     ESprite MenuESprite;
+    bool loadGame;
 };
 
 #endif //ASSETLOADER_HPP

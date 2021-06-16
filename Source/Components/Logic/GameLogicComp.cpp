@@ -15,12 +15,17 @@
 #include "Components/Character/PlayerComp.hpp"
 #include "Components/GUI/PlayerHUD.hpp"
 #include <GUI/GameOverComp.hpp>
+#include <GameSaveLoad.hpp>
 
 void GameLogicComp::init()
 {
     entity->SetDontDestroyOnLoad(true);
     Component::init();
-    SpawnPlayers();
+    if (entity->assets()->loadGame) {
+        LoadPlayers();
+    } else {
+        SpawnPlayers();
+    }
     SpawnPlayerHUD();
 }
 
@@ -41,6 +46,34 @@ void GameLogicComp::SpawnPlayers()
     spawnPos.x -= 24;
     p4 = SpawnPlayer("Player4", spawnPos,
         entity->getComponent<LobbyComp>().sel4, PlayerFour, LightGray);
+}
+
+void GameLogicComp::LoadPlayers()
+{
+    auto &players = GameSaveLoad::loadDataFromSaveFile()->players;
+    p1 = SpawnPlayer("Player1", players[0].pos,
+        entity->getComponent<LobbyComp>().sel1, PlayerOne, Blue);
+    p1->setScore(players[0].score);
+    if (!players[0].isAlive) p1->killSilently();
+    p1->setPowerUp(players[0].powerUp);
+
+    p2 = SpawnPlayer("Player2", players[1].pos,
+        entity->getComponent<LobbyComp>().sel2, PlayerTwo, Green);
+    p2->setScore(players[1].score);
+    if (!players[1].isAlive) p2->killSilently();
+    p2->setPowerUp(players[1].powerUp);
+
+    p3 = SpawnPlayer("Player3", players[2].pos,
+        entity->getComponent<LobbyComp>().sel3, PlayerThree, Red);
+    p3->setScore(players[2].score);
+    if (!players[2].isAlive) p3->killSilently();
+    p3->setPowerUp(players[2].powerUp);
+
+    p4 = SpawnPlayer("Player4", players[3].pos,
+        entity->getComponent<LobbyComp>().sel4, PlayerFour, LightGray);
+    p4->setScore(players[3].score);
+    if (!players[3].isAlive) p4->killSilently();
+    p4->setPowerUp(players[3].powerUp);
 }
 
 PlayerComp *GameLogicComp::SpawnPlayer(

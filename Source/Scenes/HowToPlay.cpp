@@ -37,7 +37,7 @@ void Manager::AddHowToPlayRules() {
                                           "The game revolves around the idea of using these bomb blasts to destroy\n"
                                           "walls and enemies.\n"
                                           "If the flame from any bomb hits any character it will injure or kill them.\n\n"
-                                          "The goal of this game is to be the last alive.", DarkBlue, 30);
+                                          "The goal of this game is to be the last curSceneAlive.", DarkBlue, 30);
     HowToPlayRules.addGroup(GUI);
 }
 
@@ -52,7 +52,7 @@ void Manager::addBackToHowToPlayButton()
     BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
             [this]() {
                 setNextSceneToLoad(MainMenu);
-                alive = false;
+                curSceneAlive = false;
             }
     );
     BackToGameBtnEnt.addGroup(GUI);
@@ -70,7 +70,7 @@ void Manager::addControlsHowToPlayButton()
     BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
             setNextSceneToLoad(Controls);
-            alive = false;
+            curSceneAlive = false;
         }
     );
     BackToGameBtnEnt.addGroup(GUI);

@@ -208,10 +208,10 @@ int PlayerComp::getScore() const
     return score;
 }
 
-void PlayerComp::addScore(int score)
+void PlayerComp::addScore(int value)
 {
-    //TODO: if not playing, play score sound here
-    PlayerComp::score += score;
+    //TODO: if not playing, play value sound here
+    score += value;
 }
 
 void PlayerComp::IAupdate()
@@ -230,4 +230,14 @@ void PlayerComp::IAupdate()
     {
 
     }*/
+}
+
+void PlayerComp::setScore(int value)
+{
+    score = value;
+}
+
+void PlayerComp::killSilently()
+{
+    _alive = false;
 }

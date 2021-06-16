@@ -36,7 +36,7 @@ void Manager::AddMenuButton() {
     backMenu.getComponent<ButtonComp>().AddEventFunc(
             [this]() {
                 setNextSceneToLoad(MainMenu);
-                alive = false;
+                curSceneAlive = false;
             }
     );
     backMenu.addGroup(GUI);
@@ -55,7 +55,7 @@ void Manager::AddGameButton() {
                 getEntByName(
                     "gamelogic")->getComponent<LobbyComp>().refreshSelections();
                 setNextSceneToLoad(Game);
-                alive = false;
+                curSceneAlive = false;
             }
     );
     backMenu.addGroup(GUI);
