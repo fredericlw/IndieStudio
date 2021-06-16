@@ -14,7 +14,7 @@
 
 GameSaveLoad::GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
 {
-    auto mapEnt = gamelogic.entity->_mgr.getEntByName("maproot");
+    auto mapEnt = gamelogic.entity->_mgr.getEntByName("mapRoot");
     auto &mapComp = mapEnt->getComponent<MapComponent>();
 
     std::vector<Vector3D> obstacles = getObstacles(mapComp);
@@ -83,6 +83,7 @@ void GameSaveLoad::SaveGameToFile(GameLogicComp &gamelogic)
     std::ofstream ofs("./savedGame", std::ios_base::trunc);
     if (!ofs.good()) {
         std::cerr << "COULDN'T CREATE OR OVERWRITE SAVE FILE" << std::endl;
+        return;
     }
     boost::archive::text_oarchive outAr(ofs);
     outAr << getSaveData(gamelogic);

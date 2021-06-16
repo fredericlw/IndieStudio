@@ -9,7 +9,7 @@
 
 #include <Component.hpp>
 #include <AssetLoader.hpp>
-
+#include "Character/PlayerComp.hpp"
 class GameLogicComp : public Component{
 public:
     enum GameState{Game, GameOver};

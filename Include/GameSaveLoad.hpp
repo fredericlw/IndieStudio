@@ -16,11 +16,12 @@
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/array.hpp>
 #include <Logic/GameLogicComp.hpp>
+#include "Logic/MapComponent.hpp"
 
 class GameSaveLoad {
 public:
     //region Data saving structures
-    //todo save bombs ???
+    //todo save bombs ??? powerups ???
     struct PlayerData {
         template<class Archive>
         void serialize(Archive &ar, const unsigned int version)

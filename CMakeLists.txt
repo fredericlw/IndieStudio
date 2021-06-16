@@ -160,9 +160,9 @@ add_executable(bomberman
         Source/Components/GUI/PauseMenuComp.cpp
         Include/Components/GUI/PauseMenuComp.hpp
         Source/Scenes/GameOverScene.cpp
-        Sources/Components/GUI/ResizableTextComp.cpp
+        Source/Components/GUI/ResizableTextComp.cpp
         Include/Components/GUI/ResizableTextComp.hpp
-        Source/Scenes/ControlsScene.cpp Include/raylib_encap/ETime.cpp Include/raylib_encap/ETime.hpp Include/GameSaveLoad.cpp Include/GameSaveLoad.hpp)
+        Source/Scenes/ControlsScene.cpp Include/raylib_encap/ETime.cpp Include/raylib_encap/ETime.hpp Source/GameSaveLoad.cpp Include/GameSaveLoad.hpp)
 
 #raylib
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)
