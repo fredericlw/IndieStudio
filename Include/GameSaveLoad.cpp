@@ -83,6 +83,7 @@ void GameSaveLoad::SaveGameToFile(GameLogicComp &gamelogic)
     std::ofstream ofs("./savedGame", std::ios_base::trunc);
     if (!ofs.good()) {
         std::cerr << "COULDN'T CREATE OR OVERWRITE SAVE FILE" << std::endl;
+        return;
     }
     boost::archive::text_oarchive outAr(ofs);
     outAr << getSaveData(gamelogic);

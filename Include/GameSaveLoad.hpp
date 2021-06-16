@@ -20,7 +20,7 @@
 class GameSaveLoad {
 public:
     //region Data saving structures
-    //todo save bombs ???
+    //todo save bombs ??? powerups ???
     struct PlayerData {
         template<class Archive>
         void serialize(Archive &ar, const unsigned int version)
