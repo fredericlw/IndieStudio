@@ -73,7 +73,7 @@ void GameOverComp::DoGameOver() {
 void GameOverComp::DisplayScores() {
     std::string name;
     int nb = -1;
-    for (int i = 0; _alive[i] < 4; i++) {
+    for (int i = 0; i < _alive.size(); i++) {
         if (_alive[i] == true) {
             nb++;
             if (i == 0) {
@@ -89,10 +89,12 @@ void GameOverComp::DisplayScores() {
     }
     if (nb == -1)
         name = "You Lose";
-    auto &Scores1 = entity->_mgr.addEntity("GOWinnerIs");
-    Scores1.addGroup(GUI);
-    Scores1.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0,100}));
-    GoPlayerWin = &Scores1.addComponent<TextComp>("Winner is:", RayWhite, 84, false);
+    if (nb != -1) {
+        auto &Scores1 = entity->_mgr.addEntity("GOWinnerIs");
+        Scores1.addGroup(GUI);
+        Scores1.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0, 100}));
+        GoPlayerWin = &Scores1.addComponent<TextComp>("Winner is:", RayWhite, 84, false);
+    }
     auto &winner = entity->_mgr.addEntity("GOWinner");
     winner.addGroup(GUI);
     winner.addComponent<TransformComp>(Vector2D::ScreenCenter().Subtract({0,30}));
