@@ -70,7 +70,7 @@ std::shared_ptr<GameSaveLoad::GameSaveData> GameSaveLoad::loadDataFromSaveFile()
         return nullptr;
     }
     boost::archive::text_iarchive iar(ifs);
-    iar >> res;
+    iar >> *res;
     return res;
 }
 

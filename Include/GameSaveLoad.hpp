@@ -13,6 +13,8 @@
 #include <Character/powerup.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/array.hpp>
 #include <Logic/GameLogicComp.hpp>
 
 class GameSaveLoad {
@@ -20,6 +22,11 @@ public:
     //region Data saving structures
     //todo save bombs ???
     struct PlayerData {
+        template<class Archive>
+        void serialize(Archive &ar, const unsigned int version)
+        {
+            ar & pos & powerUp & isAlive;
+        }
         Vector3D pos;
         PowerUpType powerUp;
         bool isAlive;

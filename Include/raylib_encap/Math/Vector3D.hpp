@@ -18,6 +18,12 @@ public:
     Vector3D();
     ~Vector3D();
 
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & x & y & z;
+    }
+
     //region Static values
     static Vector3D Zero()
     {
