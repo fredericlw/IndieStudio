@@ -1,15 +1,16 @@
 /*
 ** EPITECH PROJECT, 2024
-    std::vector<Vector3D> obstacles;
-    std::array<PlayerData, 4> players;
 ** GameSaveLoad.cpp
 ** File description:
 ** Created by Leo Fabre
 */
 #include <Logic/MapComponent.hpp>
+#include <fstream>
 #include "GameSaveLoad.hpp"
 #include "Entity.hpp"
 #include "Manager.hpp"
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 
 GameSaveLoad::GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
 {
@@ -58,4 +59,27 @@ std::array<GameSaveLoad::PlayerData, 4> GameSaveLoad::getPlayersData(
     };
 
     return res;
+}
+
+std::shared_ptr<GameSaveLoad::GameSaveData> GameSaveLoad::loadDataFromSaveFile()
+{
+    auto res = std::make_shared<GameSaveData>();
+    std::ifstream ifs("./savedGame");
+    if (!ifs.good()) {
+        std::cerr << "NO SAVE FILE FOUND !!!" << std::endl;
+        return nullptr;
+    }
+    boost::archive::text_iarchive iar(ifs);
+    iar >> res;
+    return res;
+}
+
+void GameSaveLoad::SaveGameToFile(GameLogicComp &gamelogic)
+{
+    std::ofstream ofs("./savedGame", std::ios_base::trunc);
+    if (!ofs.good()) {
+        std::cerr << "COULDN'T CREATE OR OVERWRITE SAVE FILE" << std::endl;
+    }
+    boost::archive::text_oarchive outAr(ofs);
+    outAr << getSaveData(gamelogic);
 }
