@@ -44,8 +44,7 @@ void PlayerComp::init()
 void PlayerComp::update()
 {
     Component::update();
-    if (_eType != AI)
-    {
+    if (_eType != AI) {
         if (_mc->getInputModule()->GetButtonPressed(DropBomb)
             && (activeBombs < _maxBombs)
             && health > 0
@@ -55,9 +54,7 @@ void PlayerComp::update()
         if (_mc->getInputModule()->GetButtonPressed(Button::Cancel)) {
             _pmc->setIsPaused(true);
         }
-    }
-    else
-    {
+    } else {
         IAupdate();
     }
 }
@@ -117,12 +114,12 @@ PowerUpType PlayerComp::getPowerUp() const
     return _powerUp;
 }
 
-void PlayerComp::setPowerUp(PowerUpType power_up)
+void PlayerComp::setPowerUp(PowerUpType power_up, bool doAddScore)
 {
     entity->assets()->PowerupPickUp.playSound(entity->assets()->Volume);
     StopPowerup(_powerUp);
     _powerUp = power_up;
-    addScore(HIT_POWER_UP_SCORE);
+    if (doAddScore) addScore(HIT_POWER_UP_SCORE);
     StartPowerup(power_up);
 }
 
@@ -237,8 +234,9 @@ void PlayerComp::setScore(int value)
     score = value;
 }
 
-void PlayerComp::killSilently()
-{    _alive = false;
+void PlayerComp::killOnLoad()
+{
+    _alive = false;
     entity->getComponent<ModelComp>().SetVisibility(false);
     _maxBombs = 0;
     _mc->SetActive(false);

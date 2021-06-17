@@ -7,7 +7,6 @@
 
 #include <Component.hpp>
 #include <GUI/AnimatedSprite.hpp>
-#include <Logic/MapComponent.hpp>
 #include <raylib_encap/Math/Random.hpp>
 #include <raylib_encap/Easing.hpp>
 #include <BaseValues.h>
@@ -18,6 +17,8 @@
 #include "raylib_encap/ECube.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
 #include "Entity.hpp"
+#include <Logic/MapComponent.hpp>
+
 #include "Components/3D/AnimatedModel.hpp"
 
 BombComp::BombComp(Colors color, PlayerComp *owner)

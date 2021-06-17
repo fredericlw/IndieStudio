@@ -8,7 +8,7 @@
 #define MAPCOMPONENT_HPP
 
 #include "ECS/Component.hpp"
-#include "Components/Components.h"
+#include "GameLogicComp.hpp"
 
 class MapComponent : public Component {
 public:

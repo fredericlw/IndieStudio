@@ -12,7 +12,7 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 
-GameSaveLoad::GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
+GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
 {
     auto mapEnt = gamelogic.entity->_mgr.getEntByName("mapRoot");
     auto &mapComp = mapEnt->getComponent<MapComponent>();
@@ -36,7 +36,7 @@ std::vector<Vector3D> GameSaveLoad::getObstacles(MapComponent &mapComp)
     return res;
 }
 
-std::array<GameSaveLoad::PlayerData, 4> GameSaveLoad::getPlayersData(
+std::array<PlayerData, 4> GameSaveLoad::getPlayersData(
     GameLogicComp &comp
 )
 {
@@ -69,16 +69,15 @@ std::array<GameSaveLoad::PlayerData, 4> GameSaveLoad::getPlayersData(
     return res;
 }
 
-std::shared_ptr<GameSaveLoad::GameSaveData> GameSaveLoad::loadDataFromSaveFile()
+GameSaveData GameSaveLoad::loadDataFromSaveFile()
 {
-    auto res = std::make_shared<GameSaveData>();
+    GameSaveData res;
     std::ifstream ifs("./savedGame");
     if (!ifs.good()) {
         std::cerr << "NO SAVE FILE FOUND !!!" << std::endl;
-        return nullptr;
     }
     boost::archive::text_iarchive iar(ifs);
-    iar >> *res;
+    iar >> res;
     return res;
 }
 

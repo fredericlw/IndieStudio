@@ -46,9 +46,9 @@ public:
     int health;
     void Die();
 public:
-    void setPowerUp(PowerUpType power_up);
+    void setPowerUp(PowerUpType power_up, bool doAddScore = true);
     bool isAlive() const;
-    void killSilently();
+    void killOnLoad();
     PlayerNum getPlayerNum() const;
     int _currentBombFire;
 private:

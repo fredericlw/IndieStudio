@@ -50,30 +50,19 @@ void GameLogicComp::SpawnPlayers()
 
 void GameLogicComp::LoadPlayers()
 {
-    auto &players = GameSaveLoad::loadDataFromSaveFile()->players;
-    p1 = SpawnPlayer("Player1", players[0].pos,
+    auto players = GameSaveLoad::loadDataFromSaveFile().players;
+
+    p1 = loadPlayer("Player1", players[0],
         entity->getComponent<LobbyComp>().sel1, PlayerOne, Blue);
-    p1->setScore(players[0].score);
-    if (!players[0].isAlive) p1->killSilently();
-    p1->setPowerUp(players[0].powerUp);
 
-    p2 = SpawnPlayer("Player2", players[1].pos,
+    p2 = loadPlayer("Player1", players[1],
         entity->getComponent<LobbyComp>().sel2, PlayerTwo, Green);
-    p2->setScore(players[1].score);
-    if (!players[1].isAlive) p2->killSilently();
-    p2->setPowerUp(players[1].powerUp);
 
-    p3 = SpawnPlayer("Player3", players[2].pos,
+    p3 = loadPlayer("Player3", players[2],
         entity->getComponent<LobbyComp>().sel3, PlayerThree, Red);
-    p3->setScore(players[2].score);
-    if (!players[2].isAlive) p3->killSilently();
-    p3->setPowerUp(players[2].powerUp);
 
-    p4 = SpawnPlayer("Player4", players[3].pos,
+    p4 = loadPlayer("Player4", players[3],
         entity->getComponent<LobbyComp>().sel4, PlayerFour, LightGray);
-    p4->setScore(players[3].score);
-    if (!players[3].isAlive) p4->killSilently();
-    p4->setPowerUp(players[3].powerUp);
 }
 
 PlayerComp *GameLogicComp::SpawnPlayer(
@@ -162,4 +151,23 @@ void GameLogicComp::SpawnPlayerHUD()
 void GameLogicComp::update_gameOver()
 {
     //this function may be useless
+}
+
+PlayerComp *GameLogicComp::loadPlayer(
+    const char *entName, PlayerData &data, EInputType InputType,
+    PlayerNum num, Colors color
+)
+{
+    auto &myEnt = entity->_mgr.addEntity(std::move(entName));
+    myEnt.addComponent<TransformComp>(data.pos);
+    myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2)).shouldDraw =
+        false;
+    myEnt.addGroup(Players);
+    auto playerComp = &myEnt.addComponent<PlayerComp>(InputType, num, color);
+    playerComp->setScore(data.score);
+    playerComp->setPowerUp(data.powerUp);
+    if (!data.isAlive) {
+        playerComp->killOnLoad();
+    }
+    return playerComp;
 }

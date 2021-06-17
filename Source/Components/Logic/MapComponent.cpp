@@ -44,7 +44,7 @@ void MapComponent::init()
 
 void MapComponent::load_obstacles()
 {
-    for (const auto &obsPos : GameSaveLoad::loadDataFromSaveFile()->obstacles) {
+    for (const auto &obsPos : GameSaveLoad::loadDataFromSaveFile().obstacles) {
         auto newEnt = &entity->_mgr.addEntity("Obstacle:" +
             std::to_string(obsPos.x) + ":" + std::to_string(obsPos.z));
         newEnt->addGroup(GroupLabel::Obstacles);

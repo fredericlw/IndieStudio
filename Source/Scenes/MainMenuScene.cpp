@@ -46,6 +46,8 @@ void Manager::AddPlayButton()
         [this]() {
             setNextSceneToLoad(Lobby);
             curSceneAlive = false;
+            auto gl = getEntByName("gamelogic");
+            gl->getComponent<AssetLoader>().loadGame = false;
         }
     );
     PlayBtnEnt.addGroup(GUI);
