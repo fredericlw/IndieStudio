@@ -251,4 +251,9 @@ void BombComp::checkBomb(Vector3D &pos)
     }
 }
 
+PlayerComp *BombComp::getOwner() const
+{
+    return _owner;
+}
+
 

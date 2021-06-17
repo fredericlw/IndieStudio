@@ -40,6 +40,8 @@ private:
         EInputType InputType,
         PlayerNum num, Colors color
     );
+    void LoadBombs();
+    PlayerComp * getPlayerByNum(PlayerNum num) const;
 };
 
 #endif //GAMELOGICCOMP_HPP

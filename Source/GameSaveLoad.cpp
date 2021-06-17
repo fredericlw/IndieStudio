@@ -11,17 +11,18 @@
 #include "Manager.hpp"
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
+#include <Logic/BombComp.hpp>
 
 GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
 {
     auto mapEnt = gamelogic.entity->_mgr.getEntByName("mapRoot");
     auto &mapComp = mapEnt->getComponent<MapComponent>();
 
-    std::vector<Vector3D> obstacles = getObstacles(mapComp);
-    std::array<PlayerData, 4> players = getPlayersData(gamelogic);
-    GameSaveData save;
-    save.obstacles = obstacles;
-    save.players = players;
+    GameSaveData save{
+        getObstacles(mapComp),
+        getPlayersData(gamelogic),
+        getBombsData(gamelogic)
+    };
     return save;
 }
 
@@ -45,25 +46,29 @@ std::array<PlayerData, 4> GameSaveLoad::getPlayersData(
         comp.p1->entity->getComponent<TransformComp>().position,
         comp.p1->getPowerUp(),
         comp.p1->getScore(),
-        comp.p1->isAlive()
+        comp.p1->isAlive(),
+        comp.p1->activeBombs
     };
     res[1] = {
         comp.p2->entity->getComponent<TransformComp>().position,
         comp.p2->getPowerUp(),
         comp.p2->getScore(),
-        comp.p2->isAlive()
+        comp.p2->isAlive(),
+        comp.p4->activeBombs
     };
     res[2] = {
         comp.p3->entity->getComponent<TransformComp>().position,
         comp.p3->getPowerUp(),
         comp.p3->getScore(),
-        comp.p3->isAlive()
+        comp.p3->isAlive(),
+        comp.p4->activeBombs
     };
     res[3] = {
         comp.p4->entity->getComponent<TransformComp>().position,
         comp.p4->getPowerUp(),
         comp.p4->getScore(),
-        comp.p4->isAlive()
+        comp.p4->isAlive(),
+        comp.p4->activeBombs
     };
 
     return res;
@@ -90,4 +95,18 @@ void GameSaveLoad::SaveGameToFile(GameLogicComp &gamelogic)
     }
     boost::archive::text_oarchive outAr(ofs);
     outAr << getSaveData(gamelogic);
+}
+
+std::vector<BombData> GameSaveLoad::getBombsData(GameLogicComp &gl)
+{
+    std::vector<BombData> res;
+    auto &bombs = gl.entity->_mgr.getEntitiesInGroup(Bombs);
+    res.reserve(bombs.size());
+    for (const auto &bombEnt : bombs) {
+        auto &bomb = bombEnt->getComponent<BombComp>();
+        auto &pos = bombEnt->getComponent<TransformComp>().position;
+        res.emplace_back(
+            BombData{bomb.timeAlive, pos, bomb.getOwner()->getPlayerNum()});
+    }
+    return res;
 }

@@ -16,6 +16,7 @@
 #include "Components/GUI/PlayerHUD.hpp"
 #include <GUI/GameOverComp.hpp>
 #include <GameSaveLoad.hpp>
+#include <Logic/BombComp.hpp>
 
 void GameLogicComp::init()
 {
@@ -23,6 +24,7 @@ void GameLogicComp::init()
     Component::init();
     if (entity->assets()->loadGame) {
         LoadPlayers();
+        LoadBombs();
     } else {
         SpawnPlayers();
     }
@@ -158,7 +160,7 @@ PlayerComp *GameLogicComp::loadPlayer(
     PlayerNum num, Colors color
 )
 {
-    auto &myEnt = entity->_mgr.addEntity(std::move(entName));
+    auto &myEnt = entity->_mgr.addEntity(entName);
     myEnt.addComponent<TransformComp>(data.pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2)).shouldDraw =
         false;
@@ -170,4 +172,35 @@ PlayerComp *GameLogicComp::loadPlayer(
         playerComp->killOnLoad();
     }
     return playerComp;
+}
+
+void GameLogicComp::LoadBombs()
+{
+    auto bombs = GameSaveLoad::loadDataFromSaveFile().bombs;
+    for (const auto &bomb : bombs) {
+        std::cout << "bomb data : " << bomb << std::endl;
+        auto player = getPlayerByNum(bomb.owner);
+        auto &bombEnt = entity->_mgr.addEntity("bomb");
+        bombEnt.addComponent<TransformComp>(bomb.pos);
+        auto &bc = bombEnt.addComponent<BombComp>(player->getColor(), player);
+        bc.timeAlive = bomb.timeAlive;
+        bombEnt.addGroup(Bombs);
+    }
+}
+
+PlayerComp *GameLogicComp::getPlayerByNum(PlayerNum num) const
+{
+    switch (num) {
+    case PlayerOne:
+        return p1;
+    case PlayerTwo:
+        return p2;
+    case PlayerThree:
+        return p3;
+    case PlayerFour:
+        return p4;
+    default:
+        std::cerr << "ERROR : BAD PLAYERNUM !" << std::endl;
+        return nullptr;
+    }
 }

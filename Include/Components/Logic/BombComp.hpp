@@ -30,6 +30,9 @@ private:
     Colors _color;
     std::vector<Entity *> particles;
     PlayerComp *_owner;
+public:
+    PlayerComp *getOwner() const;
+private:
     ECube collider;
     enum Way {Left, Down, Up, Right};
 private:

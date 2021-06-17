@@ -28,6 +28,7 @@ public:
 private:
     static std::vector<Vector3D> getObstacles(MapComponent &mapComp);
     static std::array<PlayerData, 4> getPlayersData(GameLogicComp &comp);
+    static std::vector<BombData> getBombsData(GameLogicComp &gl);
 };
 
 #endif //GAMESAVELOAD_HPP
