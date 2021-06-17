@@ -112,7 +112,7 @@ Mesh ModelComp::getMesh()
     return model.getMesh();
 }
 
-Material ModelComp::getMat()
+Material ModelComp::getMat() const
 {
     return model.model.materials[0];
 }

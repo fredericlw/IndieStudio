@@ -18,7 +18,7 @@ public:
         std::string modpath, std::string textpath, float scale
     );
     EModel(const std::string& modpath, Colors colors, float scale);
-    EModel(const std::string& modpath, float scale);
+    EModel(const std::string& modpath, float scale, bool loadDefaultMat = false);
     void rotate(const Vector3D &vec);
     void draw(const Vector3D &pos, Colors color = White);
     void transpose(const Vector3D &vec);

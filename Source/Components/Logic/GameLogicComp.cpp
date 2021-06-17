@@ -16,6 +16,7 @@
 #include "Components/GUI/PlayerHUD.hpp"
 #include <GUI/GameOverComp.hpp>
 #include <GameSaveLoad.hpp>
+#include <3D/AnimatedModel.hpp>
 
 void GameLogicComp::init()
 {
@@ -87,7 +88,8 @@ PlayerComp *GameLogicComp::SpawnPlayer(
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2)).shouldDraw =
         false;
     myEnt.addGroup(Players);
-    return &myEnt.addComponent<PlayerComp>(inputType, num, color);
+    auto pc = &myEnt.addComponent<PlayerComp>(inputType, num, color);
+    return pc;
 }
 
 void GameLogicComp::update()

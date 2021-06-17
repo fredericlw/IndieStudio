@@ -27,7 +27,7 @@ public:
     void init() override;
     void SetVisibility(bool state);
     Mesh getMesh();
-    Material getMat();
+    Material getMat() const;
     EModel model;
 private:
     TransformComp *transform;

@@ -21,13 +21,18 @@ EModel::EModel(
 }
 
 //for .OBJs that link to a .mat file (== material is provided)
-EModel::EModel(const std::string& modpath, float scale)
+EModel::EModel(const std::string& modpath, float scale, bool loadDefaultMat)
     : model(LoadModel(modpath.c_str())),
       scale(scale)
 {
     Image image = GenImageColor(1, 1, GetRaylibColor(LightGray));
     texture = LoadTextureFromImage(image);
     UnloadImage(image);
+    if (loadDefaultMat) {
+        for (int i = 0; i < model.materialCount; ++i) {
+            model.materials[i] = LoadMaterialDefault();
+        }
+    }
 //    model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
 }
 
