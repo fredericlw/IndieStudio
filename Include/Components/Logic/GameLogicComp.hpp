@@ -9,7 +9,9 @@
 
 #include <Component.hpp>
 #include <AssetLoader.hpp>
+#include <SaveData.h>
 #include "Character/PlayerComp.hpp"
+
 class GameLogicComp : public Component{
 public:
     enum GameState{Game, GameOver};
@@ -33,6 +35,14 @@ private:
     void update_game();
     void update_gameOver();
     void LoadPlayers();
+    PlayerComp *loadPlayer(
+        const char *entName, PlayerData &data,
+        EInputType InputType,
+        PlayerNum num, Colors color
+    );
+    void LoadBombs();
+    PlayerComp * getPlayerByNum(PlayerNum num) const;
+    void LoadPowerups();
 };
 
 #endif //GAMELOGICCOMP_HPP

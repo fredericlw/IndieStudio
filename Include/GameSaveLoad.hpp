@@ -15,44 +15,21 @@
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/array.hpp>
+#include <ostream>
 #include <Logic/GameLogicComp.hpp>
 #include "Logic/MapComponent.hpp"
+#include "SaveData.h"
 
 class GameSaveLoad {
 public:
-    //region Data saving structures
-    //todo save bombs ??? powerups ???
-    struct PlayerData {
-        template<class Archive>
-        void serialize(Archive &ar, const unsigned int version)
-        {
-            ar & pos & powerUp & score & isAlive;
-        }
-        Vector3D pos;
-        PowerUpType powerUp;
-        int score;
-        bool isAlive;
-    };
-    struct GameSaveData {
-        //boost serialization code
-        friend class boost::serialization::access;
-        template<class Archive>
-        void serialize(Archive &ar, const unsigned int version)
-        {
-            ar & obstacles & players;
-        }
-        //actual game data
-        std::vector<Vector3D> obstacles;
-        std::array<PlayerData, 4> players;
-    };
-    //endregion
-
-    static std::shared_ptr<GameSaveLoad::GameSaveData> loadDataFromSaveFile();
+    static GameSaveData loadDataFromSaveFile();
     static void SaveGameToFile(GameLogicComp &gamelogic);
     static GameSaveData getSaveData(GameLogicComp &gamelogic);
 private:
     static std::vector<Vector3D> getObstacles(MapComponent &mapComp);
     static std::array<PlayerData, 4> getPlayersData(GameLogicComp &comp);
+    static std::vector<BombData> getBombsData(GameLogicComp &gl);
+    static std::vector<PowerUpData> getPowerUpsData(GameLogicComp &comp);
 };
 
 #endif //GAMESAVELOAD_HPP

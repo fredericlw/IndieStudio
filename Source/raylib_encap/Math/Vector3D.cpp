@@ -168,4 +168,3 @@ Vector3D Vector3D::getNearestBlockPos(Vector3D pos)
     res.z -= 1;
     return res;
 }
-

@@ -46,9 +46,9 @@ public:
     int health;
     void Die();
 public:
-    void setPowerUp(PowerUpType power_up);
+    void setPowerUp(PowerUpType power_up, bool doAddScore = true);
     bool isAlive() const;
-    void killSilently();
+    void killOnLoad();
     PlayerNum getPlayerNum() const;
     int _currentBombFire;
 private:
@@ -58,7 +58,11 @@ private:
     void StartPowerup(PowerUpType type);
     bool _alive;
     PauseMenuComp *_pmc;
+
+    //todo: refactor IA stuff
     void IAupdate();
+    std::vector<std::vector<char>> map;
+
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

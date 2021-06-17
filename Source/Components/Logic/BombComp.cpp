@@ -7,7 +7,6 @@
 
 #include <Component.hpp>
 #include <GUI/AnimatedSprite.hpp>
-#include <Logic/MapComponent.hpp>
 #include <raylib_encap/Math/Random.hpp>
 #include <raylib_encap/Easing.hpp>
 #include <BaseValues.h>
@@ -18,6 +17,8 @@
 #include "raylib_encap/ECube.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
 #include "Entity.hpp"
+#include <Logic/MapComponent.hpp>
+
 #include "Components/3D/AnimatedModel.hpp"
 
 BombComp::BombComp(Colors color, PlayerComp *owner)
@@ -176,10 +177,7 @@ bool BombComp::checkObstacle(Vector3D pos)
             obstacle->destroy();
             if (Random::Range(0, 1) == 1) {
                 std::cout << "Spawning powerup !" << std::endl;
-                entity->assets()->PowerupGenerated.playSound(entity->assets()->Volume);
-                auto &puEnt = entity->_mgr.addEntity("powerup");
-                puEnt.addComponent<TransformComp>(pos);
-                puEnt.addComponent<PowerUpComp>();
+                spawnRandomPowerup(pos);
             }
             std::cout << "hit obstacle !" << std::endl;
             _owner->addScore(HIT_OBSTACLE_SCORE);
@@ -187,6 +185,14 @@ bool BombComp::checkObstacle(Vector3D pos)
         }
     }
     return false;
+}
+
+void BombComp::spawnRandomPowerup(Vector3D &pos)
+{
+    entity->assets()->PowerupGenerated.playSound(entity->assets()->Volume);
+    auto &puEnt = entity->_mgr.addEntity("powerup");
+    puEnt.addComponent<TransformComp>(pos);
+    puEnt.addComponent<PowerUpComp>();
 }
 
 bool BombComp::checkWall(Vector3D pos)
@@ -248,6 +254,11 @@ void BombComp::checkBomb(Vector3D &pos)
             bombComp.explode();
         }
     }
+}
+
+PlayerComp *BombComp::getOwner() const
+{
+    return _owner;
 }
 
 

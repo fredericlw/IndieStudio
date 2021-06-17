@@ -30,6 +30,9 @@ private:
     Colors _color;
     std::vector<Entity *> particles;
     PlayerComp *_owner;
+public:
+    PlayerComp *getOwner() const;
+private:
     ECube collider;
     enum Way {Left, Down, Up, Right};
 private:
@@ -52,6 +55,7 @@ public:
     void checkBomb(Vector3D &pos);
     float timeAlive;
     PauseMenuComp *_pmc;
+    void spawnRandomPowerup(Vector3D &pos);
 };
 
 #endif //BOMBERMAN_BOMBCOMP_HPP
