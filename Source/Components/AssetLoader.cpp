@@ -7,6 +7,7 @@
 #include "Entity.hpp"
 #include "AssetLoader.hpp"
 
+//todo: if an asset is not found, exit(0)
 AssetLoader::AssetLoader()
     : PlayerModel("./Assets/Models/cus/player.gltf", .5),
       StoneCubeModel("./Assets/Models/StoneCube/StoneCube.glb", 1),
