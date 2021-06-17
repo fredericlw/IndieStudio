@@ -42,6 +42,7 @@ private:
     );
     void LoadBombs();
     PlayerComp * getPlayerByNum(PlayerNum num) const;
+    void LoadPowerups();
 };
 
 #endif //GAMELOGICCOMP_HPP

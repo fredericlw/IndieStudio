@@ -17,7 +17,12 @@
 
 //region Data saving structures
 //todo save bombs ??? powerups ???
-struct PowerupData {
+struct PowerUpData {
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & pos & type;
+    }
     Vector3D pos;
     PowerUpType type;
 };
@@ -68,12 +73,13 @@ struct GameSaveData {
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version)
     {
-        ar & obstacles & players & bombs;
+        ar & obstacles & players & bombs & powerUps;
     }
     //actual game data
     std::vector<Vector3D> obstacles;
     std::array<PlayerData, 4> players;
     std::vector<BombData> bombs;
+    std::vector<PowerUpData> powerUps;
 };
 //endregion
 

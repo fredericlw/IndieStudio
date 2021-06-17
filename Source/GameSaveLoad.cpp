@@ -12,6 +12,7 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include <Logic/BombComp.hpp>
+#include <Logic/PowerUpComp.hpp>
 
 GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
 {
@@ -21,7 +22,8 @@ GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
     GameSaveData save{
         getObstacles(mapComp),
         getPlayersData(gamelogic),
-        getBombsData(gamelogic)
+        getBombsData(gamelogic),
+        getPowerUpsData(gamelogic)
     };
     return save;
 }
@@ -107,6 +109,20 @@ std::vector<BombData> GameSaveLoad::getBombsData(GameLogicComp &gl)
         auto &pos = bombEnt->getComponent<TransformComp>().position;
         res.emplace_back(
             BombData{bomb.timeAlive, pos, bomb.getOwner()->getPlayerNum()});
+    }
+    return res;
+}
+
+std::vector<PowerUpData> GameSaveLoad::getPowerUpsData(GameLogicComp &comp)
+{
+
+    std::vector<PowerUpData> res;
+    auto &PUs = comp.entity->_mgr.getEntitiesInGroup(PowerUps);
+    res.reserve(PUs.size());
+    for (const auto &puEnt : PUs) {
+        auto &puComp = puEnt->getComponent<PowerUpComp>();
+        auto &pos = puEnt->getComponent<TransformComp>().position;
+        res.emplace_back(PowerUpData{pos, puComp.type});
     }
     return res;
 }

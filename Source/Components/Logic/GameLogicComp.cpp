@@ -17,6 +17,7 @@
 #include <GUI/GameOverComp.hpp>
 #include <GameSaveLoad.hpp>
 #include <Logic/BombComp.hpp>
+#include <Logic/PowerUpComp.hpp>
 
 void GameLogicComp::init()
 {
@@ -25,6 +26,7 @@ void GameLogicComp::init()
     if (entity->assets()->loadGame) {
         LoadPlayers();
         LoadBombs();
+        LoadPowerups();
     } else {
         SpawnPlayers();
     }
@@ -177,6 +179,7 @@ PlayerComp *GameLogicComp::loadPlayer(
 void GameLogicComp::LoadBombs()
 {
     auto bombs = GameSaveLoad::loadDataFromSaveFile().bombs;
+    if (bombs.empty()) return;
     for (const auto &bomb : bombs) {
         std::cout << "bomb data : " << bomb << std::endl;
         auto player = getPlayerByNum(bomb.owner);
@@ -185,6 +188,17 @@ void GameLogicComp::LoadBombs()
         auto &bc = bombEnt.addComponent<BombComp>(player->getColor(), player);
         bc.timeAlive = bomb.timeAlive;
         bombEnt.addGroup(Bombs);
+    }
+}
+
+void GameLogicComp::LoadPowerups()
+{
+    auto powerups = GameSaveLoad::loadDataFromSaveFile().powerUps;
+    if (powerups.empty()) return;
+    for (const auto &powerup : powerups) {
+        auto &puEnt = entity->_mgr.addEntity("powerup");
+        puEnt.addComponent<TransformComp>(powerup.pos);
+        puEnt.addComponent<PowerUpComp>(powerup.type);
     }
 }
 

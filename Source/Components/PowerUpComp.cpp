@@ -70,3 +70,7 @@ void PowerUpComp::draw()
 {
     Component::draw();
 }
+
+PowerUpComp::PowerUpComp(PowerUpType type) : type(type)
+{
+}

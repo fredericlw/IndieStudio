@@ -1,4 +1,4 @@
-/*
+/*BombComp
 ** EPITECH PROJECT, 2024
 ** PowerUpComp.hpp
 ** File description:
@@ -19,6 +19,7 @@ public:
     void init() override;
     void draw() override;
     PowerUpComp();
+    explicit PowerUpComp(PowerUpType type);
     ~PowerUpComp();
     void update() override;
     ModelComp *model;
