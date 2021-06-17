@@ -13,7 +13,7 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     message(msvc)
 endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 include_directories(Include Include/Components Include/ECS)
 
@@ -175,14 +175,10 @@ set(OpenGL_GL_PREFERENCE LEGACY)
 find_package(raylib REQUIRED QUIET)
 
 #boost
-set(Boost_USE_STATIC_LIBS OFF)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.71.0 REQUIRED COMPONENTS filesystem serialization)
+#set(Boost_USE_STATIC_LIBS OFF)
+#set(Boost_USE_MULTITHREADED ON)
+#set(Boost_USE_STATIC_RUNTIME OFF)
+add_subdirectory(boost-cmake)
 
-if(Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS})
-    target_link_libraries(bomberman ${Boost_LIBRARIES})
-endif()
-
-target_link_libraries(bomberman raylib)
+include_directories(${Boost_INCLUDE_DIRS})
+target_link_libraries(bomberman PUBLIC raylib Boost::filesystem Boost::serialization)

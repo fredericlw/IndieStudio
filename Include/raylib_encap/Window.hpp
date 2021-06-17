@@ -19,7 +19,7 @@ public:
     ~Window();
     bool ShouldClose();
 private:
-    std::tuple<int,int> screenSize;
+    Vector2D screenSize;
 };
 
 #endif //WINDOW_HPP

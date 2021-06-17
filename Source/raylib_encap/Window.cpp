@@ -7,12 +7,11 @@
 #include "raylib_encap/Window.hpp"
 
 Window::Window(bool fullscreen)
-    : screenSize(
-    std::make_tuple(GetScreenWidth(), GetScreenHeight()))
+    : screenSize(GetScreenWidth(), GetScreenHeight())
 {
     SetTargetFPS(60);
     if (fullscreen) {
-        InitWindow(get<0>(screenSize), get<1>(screenSize), "Bomberman");
+        InitWindow((int)screenSize.x, (int)screenSize.y, "Bomberman");
         ToggleFullscreen();
     } else {
         InitWindow(1280, 720, "Bomberman");

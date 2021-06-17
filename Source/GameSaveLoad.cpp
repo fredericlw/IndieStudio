@@ -19,7 +19,9 @@ GameSaveLoad::GameSaveData GameSaveLoad::getSaveData(GameLogicComp &gamelogic)
 
     std::vector<Vector3D> obstacles = getObstacles(mapComp);
     std::array<PlayerData, 4> players = getPlayersData(gamelogic);
-    GameSaveData save{.obstacles = obstacles, .players = players};
+    GameSaveData save;
+    save.obstacles = obstacles;
+    save.players = players;
     return save;
 }
 
@@ -40,28 +42,28 @@ std::array<GameSaveLoad::PlayerData, 4> GameSaveLoad::getPlayersData(
 {
     std::array<PlayerData, 4> res;
     res[0] = {
-        .pos = comp.p1->entity->getComponent<TransformComp>().position,
-        .powerUp = comp.p1->getPowerUp(),
-        .score = comp.p1->getScore(),
-        .isAlive = comp.p1->isAlive()
+        comp.p1->entity->getComponent<TransformComp>().position,
+        comp.p1->getPowerUp(),
+        comp.p1->getScore(),
+        comp.p1->isAlive()
     };
     res[1] = {
-        .pos = comp.p2->entity->getComponent<TransformComp>().position,
-        .powerUp = comp.p2->getPowerUp(),
-        .score = comp.p2->getScore(),
-        .isAlive = comp.p2->isAlive()
+        comp.p2->entity->getComponent<TransformComp>().position,
+        comp.p2->getPowerUp(),
+        comp.p2->getScore(),
+        comp.p2->isAlive()
     };
     res[2] = {
-        .pos = comp.p3->entity->getComponent<TransformComp>().position,
-        .powerUp = comp.p3->getPowerUp(),
-        .score = comp.p3->getScore(),
-        .isAlive = comp.p3->isAlive()
+        comp.p3->entity->getComponent<TransformComp>().position,
+        comp.p3->getPowerUp(),
+        comp.p3->getScore(),
+        comp.p3->isAlive()
     };
     res[3] = {
-        .pos = comp.p4->entity->getComponent<TransformComp>().position,
-        .powerUp = comp.p4->getPowerUp(),
-        .score = comp.p4->getScore(),
-        .isAlive = comp.p4->isAlive()
+        comp.p4->entity->getComponent<TransformComp>().position,
+        comp.p4->getPowerUp(),
+        comp.p4->getScore(),
+        comp.p4->isAlive()
     };
 
     return res;
