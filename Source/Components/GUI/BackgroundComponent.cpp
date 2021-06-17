@@ -18,6 +18,8 @@ void BackgroundComponent::init()
     scrollC = 0.0f;
     scrollD = 0.0f;
     scrollE = 0.0f;
+    if (Window::isFullScreen())
+        scale = 5.25;
     entity->SetDontDestroyOnLoad(true);
 }
 
