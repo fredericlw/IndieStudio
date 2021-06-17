@@ -58,7 +58,11 @@ private:
     void StartPowerup(PowerUpType type);
     bool _alive;
     PauseMenuComp *_pmc;
+
+    //todo: refactor IA stuff
     void IAupdate();
+    std::vector<std::vector<char>> map;
+
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

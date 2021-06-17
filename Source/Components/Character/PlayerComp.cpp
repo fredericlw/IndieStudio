@@ -39,6 +39,19 @@ void PlayerComp::init()
         ->addComponent<ModelComp>(entity->assets()->PlayerModel, _color);
     auto gamelogic = entity->_mgr.getEntByName("gamelogic");
     _pmc = &gamelogic->getComponent<PauseMenuComp>();
+
+    //TODO: refactor to in IA move comp
+    for (int i = 0; i < 11 + 2; i++)
+    {
+        std::vector<char> line;
+        line.reserve(13 + 2);
+        for (int j = 0; j < 13 + 2; ++j) {
+            line.push_back('0');
+        }
+        map.push_back(line);
+
+    }
+
 }
 
 void PlayerComp::update()
@@ -211,19 +224,47 @@ void PlayerComp::addScore(int value)
     score += value;
 }
 
+std::size_t tposx_Tom_posx(float tposx)
+{
+    return ((tposx + 12) / 2) + 1;
+
+}
+
+std::size_t tposz_To_mposy(float tposz)
+{
+    return ((tposz + 20) / 2)  + 1;
+
+}
+
 void PlayerComp::IAupdate()
 {
-    /*std::vector<std::vector<char>> map;
-    for (int i = 0; i < 13; i++)
-    {
-        for (int j = 0; j < 11; ++j) {
-            map[i][j] = '0';
+    static bool first = true;
+    if (first) {
+        auto obstacles = entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles);
+        for (auto &i : obstacles) {
+            auto cast = &i->getComponent<BasicCubeComp>();
+            map[tposz_To_mposy(cast->getCube().getPos().z)][
+                tposx_Tom_posx(cast->getCube().getPos().x)] = 'o';
         }
+
+        auto walls = entity->_mgr.getEntitiesInGroup(GroupLabel::Walls);
+        for (auto &i : walls) {
+            auto cast = &i->getComponent<BasicCubeComp>();
+            map[tposz_To_mposy(cast->getCube().getPos().z)][
+                tposx_Tom_posx(cast->getCube().getPos().x)] = 'W';
+        }
+
+        for (auto i : map) {
+            for (auto j : i)
+                std::cout << j;
+            std::cout << std::endl;
+        }
+        first = false;
     }
-    auto mapEnt = entity->_mgr.getEntByName("mapRoot");
+    /*auto mapEnt = entity->_mgr.getEntByName("mapRoot");
     auto mapComp = mapEnt->getComponent<
     MapComponent>();
-    for (auto i : entity->_mgr.getEntByName("mapRoot")->)
+    for (auto i : entity->_mgr.getEntitiesInGroup(GroupLabel::Walls))
     {
 
     }*/
