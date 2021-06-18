@@ -47,9 +47,8 @@ There is a "how to play" button available on the main menu.
 
 ## 💣 Authors 💣
 
-👤 **Leo Fabre, Adrien Courbebaisse, Achille Bourgault, Fréderic Lawecki-Walkowiak, Thomas Meurice, Daniyel Gouasmi**
+👤 **Leo Fabre (leader), Adrien Courbebaisse, Achille Bourgault, Fréderic Lawecki-Walkowiak, Thomas Meurice, Daniyel Gouasmi**
 
-* Website: https://www.linkedin.com/in/leo-fabre/
 * Github: [@LeoFabre](https://github.com/LeoFabre)
 * LinkedIn: [@leo-fabre](https://linkedin.com/in/leo-fabre)
 
