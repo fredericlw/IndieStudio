@@ -30,9 +30,10 @@ void MapComponent::init()
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>(-12, -28, -20);
+    transform->position.y -= 30;
     gl = &entity->_mgr.getEntByName("gamelogic")->getComponent<GameLogicComp>();
 
-//    return;
+    return;
     gen_floor();
     gen_walls();
     if (entity->assets()->loadGame) {

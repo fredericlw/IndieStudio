@@ -2,6 +2,7 @@
 // Created by leofa on 18/06/2021.
 //
 
+#include <raylib_encap/ETime.hpp>
 #include "FramesModel.hpp"
 #include "Entity.hpp"
 
@@ -21,13 +22,18 @@ void FramesModel::update()
 void FramesModel::draw()
 {
     Component::draw();
+    if (!visible) {return;}
     _curModel.draw(transform->position, color);
+    if (entity->getName() == "Player 1") {
+        std::cout << "DRAWING " << ETime::DeltaTime() << std::endl;
+    }
 }
 
 FramesModel::FramesModel(EFramesModel &firstModel, Colors color)
     : _curModel(EFramesModel(firstModel)),
       color(color),
-      transform(nullptr)
+      transform(nullptr),
+      visible(true)
 {
 }
 
@@ -44,4 +50,10 @@ void FramesModel::SetSpeed(float Speed)
 void FramesModel::rotate(const Vector3D &vec)
 {
     _curModel.rotate(vec);
+}
+
+void FramesModel::SetVisibility(bool state)
+{
+    visible = state;
+    std::cout << "SET VISIBLE TO " << state << std::endl;
 }

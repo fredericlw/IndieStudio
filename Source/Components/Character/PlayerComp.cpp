@@ -39,6 +39,7 @@ void PlayerComp::init()
 //        ->addComponent<ModelComp>(entity->assets()->PlayerModel, _color);
     _model = &entity->addComponent<FramesModel>(
         entity->assets()->playerWalking, _color);
+    entity->addGroup(Players);
     auto gamelogic = entity->_mgr.getEntByName("gamelogic");
     _pmc = &gamelogic->getComponent<PauseMenuComp>();
 
@@ -151,7 +152,7 @@ void PlayerComp::Die()
     std::cout << "PLAYER DED :)" << std::endl;
     _alive = false;
     entity->assets()->PlayerDead.playSound(entity->assets()->Volume);
-    entity->getComponent<ModelComp>().SetVisibility(false);
+    entity->getComponent<FramesModel>().SetVisibility(false);
     _maxBombs = 0;
     _mc->SetActive(false);
 }
@@ -277,7 +278,7 @@ void PlayerComp::setScore(int value)
 void PlayerComp::killOnLoad()
 {
     _alive = false;
-    entity->getComponent<ModelComp>().SetVisibility(false);
+    entity->getComponent<FramesModel>().SetVisibility(false);
     _maxBombs = 0;
     _mc->SetActive(false);
 }

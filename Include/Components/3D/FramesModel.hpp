@@ -19,10 +19,12 @@ public:
     void SetSpeed(float Speed);
     void rotate(const Vector3D &vec);
 
+    void SetVisibility(bool state);
 private:
     EFramesModel _curModel;
     TransformComp *transform;
     Colors color;
+    bool visible;
 };
 
 #endif //FRAMESMODEL_HPP
