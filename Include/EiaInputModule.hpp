@@ -41,9 +41,14 @@ private:
     size_t tposz_To_mposy(float tposz);
     void setDirection();
     Button directionPressed;
+    Button lastDirection;
     bool wantToMove;
+    bool wantPlaceBomb;
     bool isInWall(int x, int y);
     Pos nextPos;
+    bool IsStuck(Vector2D d, Button button);
+    bool isWarningByBomb();
+    bool isWarningByBomb();
 };
 
 #endif //EIAINPUTMODULE_HPP
