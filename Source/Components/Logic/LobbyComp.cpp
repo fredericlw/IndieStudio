@@ -65,7 +65,6 @@ ListSelectorComp *LobbyComp::addSel(
     auto &entitity = entity->_mgr.addEntity(entityName);
     entitity.addComponent<TransformComp>(pos);
     entitity.addGroup(GUI);
-    //todo : Show player model on top of selector (in a new entity >> new modelcomp)
     return &entitity
         .addComponent<ListSelectorComp>(
             list, printedText, colors);

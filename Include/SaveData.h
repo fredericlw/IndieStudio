@@ -16,7 +16,6 @@
 #include "Keys.h"
 
 //region Data saving structures
-//todo save bombs ??? powerups ???
 struct PowerUpData {
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version)
