@@ -23,7 +23,7 @@ mkdir build && cd build && cmake --build . && cd ..
 
 Windows:
 ```sh
-.\\bomberman.exe [-f : start fullscreen (default=windowed)]
+.\bomberman.exe [-f : start fullscreen (default=windowed)]
 ```
 Linux:
 ```sh
