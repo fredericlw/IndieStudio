@@ -13,7 +13,7 @@
 class EIAInputModule : public AInputModule {
 public:
     EIAInputModule(
-        int gamepad_nbr, Entity *entity
+        int gamepad_nbr, Entity *entity1
     );
     ~EIAInputModule();
     bool GetButtonDown(Button btn) override;
@@ -23,6 +23,9 @@ public:
 private:
     size_t _playerNum;
     std::vector<std::shared_ptr<Entity>> otherPLayers;
+    std::vector<std::vector<char>> map;
+    Entity *entity;
+
 };
 
 #endif //EIAINPUTMODULE_HPP

@@ -13,6 +13,7 @@
 #include "ECS/Entity.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
 #include "Manager.hpp"
+#include "EiaInputModule.hpp"
 
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)
     : Velocity(Vector3D::Zero()),
@@ -145,7 +146,7 @@ void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)
         _inputMod = new EGamepadInputModule(num);
         break;
     case AI:
-        _inputMod = new EGamepadInputModule(num);
+        _inputMod = new EIAInputModule(num, entity);
         break;
     }
 }
