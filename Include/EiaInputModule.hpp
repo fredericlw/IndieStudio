@@ -11,6 +11,14 @@
 #include "Entity.hpp"
 #include "Manager.hpp"
 
+struct Pos
+{
+    size_t x;
+    size_t y;
+};
+
+
+
 
 class EIAInputModule : public AInputModule {
 public:
@@ -35,6 +43,7 @@ private:
     Button directionPressed;
     bool wantToMove;
     bool isInWall(int x, int y);
+    Pos nextPos;
 };
 
 #endif //EIAINPUTMODULE_HPP
