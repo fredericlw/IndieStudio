@@ -17,10 +17,10 @@ public:
     explicit Bomberman(bool fullscreen);
     ~Bomberman();
 private:
-    std::unique_ptr<Window> mainWindow;
+    std::shared_ptr<Window> mainWindow;
     std::time_t startTime;
     std::shared_ptr<Manager> mgr;
-    void GameLoop();
+    void SceneLoop();
 };
 
 #endif //BOMBERMAN_HPP

@@ -1,7 +1,7 @@
 <h1 align="center">💣 Welcome to Indie Studio (Bomberman clone) 💣</h1>
-<img src="./screenshot.png">
+<img align="center" alt="Screenshot" src="./screenshot.png">
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-release-blue.svg?cacheSeconds=2592000" />
+  <img align="center" alt="Version" src="https://img.shields.io/badge/version-release-blue.svg?cacheSeconds=2592000" />
 </p>
 
 > A clone of Bomberman made in C++, using Raylib, Boost, featuring custom Raylib encapsulation, a flexible Entity-Component System, AI, controller support.
@@ -42,6 +42,8 @@ There is a "how to play" button available on the main menu.
 
 * While in the pause menu, you can click the "Save Game" button. This will create or overwrite the existing saveGame file.
 * While in the main menu, you can click the "Load Game" button. This will make you able to select input methods and then start the game from the point you saved it.
+
+## 💣 [About the code](./about.md) 💣
 
 ## 💣 Authors 💣
 
