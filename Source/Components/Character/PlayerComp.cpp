@@ -106,7 +106,6 @@ Vector3D PlayerComp::getNearestBlockPos(Vector3D pos)
             res.z += 1;
         }
     }
-    //todo : this is a quick and ugly (and not working) fix
     res.x -= 1;
     res.z -= 1;
     return res;

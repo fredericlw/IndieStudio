@@ -56,12 +56,6 @@ void MovementComp::update()
     else if (_inputMod->GetButtonDown(Left)) Velocity.x = -1;
     else Velocity.x = 0;
 
-    //todo this is just a test
-//    if (_inputMod->GetButtonPressed(Accept)) {
-//        transform->position.y += 1;
-//        std::cout << "pos Y " << transform->position.y <<std::endl;
-//    }
-
     if (_inputMod->GetButtonDown(Up)) Velocity.z = -1;
     else if (_inputMod->GetButtonDown(Down)) Velocity.z = 1;
     else Velocity.z = 0;

@@ -54,7 +54,6 @@ void BombComp::init()
 
 void BombComp::update()
 {
-    //TODO use ctime clock() instead, will be more precise (ms vs seconds)
     Component::update();
     if (_pmc->isPaused()) {
         return;
