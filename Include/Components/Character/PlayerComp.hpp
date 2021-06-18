@@ -53,6 +53,7 @@ public:
     void killOnLoad();
     PlayerNum getPlayerNum() const;
     int _currentBombFire;
+    void disableInput();
 private:
     int score;
     int _maxBombs;

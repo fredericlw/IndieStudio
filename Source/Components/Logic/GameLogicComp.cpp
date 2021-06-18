@@ -110,6 +110,10 @@ void GameLogicComp::update_game()
         playerStates[1] = p2->isAlive();
         playerStates[2] = p3->isAlive();
         playerStates[3] = p4->isAlive();
+        p1->disableInput();
+        p2->disableInput();
+        p3->disableInput();
+        p4->disableInput();
         gameState = GameOver;
         auto &ent = entity->_mgr.addEntity("gameoverEnt");
         auto &comp = ent.addComponent<GameOverComp>(playerStates);
@@ -217,4 +221,9 @@ PlayerComp *GameLogicComp::getPlayerByNum(PlayerNum num) const
         std::cerr << "ERROR : BAD PLAYERNUM !" << std::endl;
         return nullptr;
     }
+}
+
+void PlayerComp::disableInput()
+{
+    _mc->SetActive(false);
 }
