@@ -25,13 +25,21 @@ bool EGamepadInputModule::GetButtonDown(Button btn)
     case Right:
         return (
             IsGamepadButtonDown(_gamepadNbr, GAMEPAD_BUTTON_LEFT_FACE_RIGHT)
+            || GetGamepadAxisMovement(_gamepadNbr, GAMEPAD_AXIS_LEFT_X) > 0.5f
             );
     case Left:
-        return (IsGamepadButtonDown(_gamepadNbr, GAMEPAD_BUTTON_LEFT_FACE_LEFT));
+        return (IsGamepadButtonDown(_gamepadNbr, GAMEPAD_BUTTON_LEFT_FACE_LEFT)
+            || GetGamepadAxisMovement(_gamepadNbr, GAMEPAD_AXIS_LEFT_X) < -0.5f
+        );
     case Up:
-        return (IsGamepadButtonDown(_gamepadNbr, GAMEPAD_BUTTON_LEFT_FACE_UP));
+        return (IsGamepadButtonDown(_gamepadNbr, GAMEPAD_BUTTON_LEFT_FACE_UP)
+            || GetGamepadAxisMovement(_gamepadNbr, GAMEPAD_AXIS_LEFT_Y) < -0.5f
+        );
     case Down:
-        return (IsGamepadButtonDown(_gamepadNbr, GAMEPAD_BUTTON_LEFT_FACE_DOWN));
+        return (IsGamepadButtonDown(_gamepadNbr, GAMEPAD_BUTTON_LEFT_FACE_DOWN)
+            || GetGamepadAxisMovement(_gamepadNbr, GAMEPAD_AXIS_LEFT_Y) > 0.5f
+
+        );
     default:
         return IsGamepadButtonDown(_gamepadNbr, KeyMap[btn]);
     }
