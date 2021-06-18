@@ -81,7 +81,6 @@ void BasicCubeComp::draw()
 
 void BasicCubeComp::stickCube(Vector3D &nextpos, const ECube &colisionCube)
 {
-    return;
     const Vector3D &colisionPos = colisionCube.getPos();
     float diffx = colisionPos.x - nextpos.x;
     float diffz = colisionPos.z - nextpos.z;

@@ -78,7 +78,7 @@ PlayerComp *GameLogicComp::SpawnPlayer(
     auto &myEnt = entity->_mgr.addEntity(std::move(entityName));
     myEnt.addComponent<TransformComp>(pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2)).shouldDraw =
-        true;
+        false;
     myEnt.addGroup(Players);
     return &myEnt.addComponent<PlayerComp>(inputType, num, color);
 }
