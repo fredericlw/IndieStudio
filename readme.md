@@ -34,7 +34,7 @@ There is a "how to play" button available on the main menu.
 
 ## 🎮 Controller support notes 🎮
 
-* If a player N choses "Controller" as input module, the game will look for the Nth controller.  
+* If player N choses "Controller" as input module, the game will look for the Nth controller.  
 * Left joystick and D-pad have the same behavior (move player).
 * Right trigger to drop bombs.
 
