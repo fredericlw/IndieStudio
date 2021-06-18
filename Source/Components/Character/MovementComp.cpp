@@ -52,27 +52,16 @@ void MovementComp::update()
     else if (_inputMod->GetButtonDown(Left)) Velocity.x = -1;
     else Velocity.x = 0;
 
+    //todo this is just a test
+//    if (_inputMod->GetButtonPressed(Up)) transform->position.y+=1;
+
     if (_inputMod->GetButtonDown(Up)) Velocity.z = -1;
     else if (_inputMod->GetButtonDown(Down)) Velocity.z = 1;
     else Velocity.z = 0;
 
-    bool collides = false;
-
     if (!(Velocity == LastVelocity))
-    {
-        if (Velocity.x == 1) {
-            entity->getComponent<ModelComp>().rotate({0, -1.5707963268 , 0});
-        }
-        if (Velocity.x == -1) {
-            entity->getComponent<ModelComp>().rotate({0, 1.5707963268, 0});
-        }
-        if (Velocity.z == -1) {
-            entity->getComponent<ModelComp>().rotate({0, 3.1415926536, 0});
-        }
-        if (Velocity.z== 1) {
-            entity->getComponent<ModelComp>().rotate({0, 0, 0});
-        }
-    }
+        rotateTowardsDirection();
+
     LastVelocity = Velocity;
 
     Vector3D nextPos = transform->position;
@@ -125,6 +114,22 @@ void MovementComp::update()
         }
     }
     transform->position = nextPos;
+}
+
+void MovementComp::rotateTowardsDirection() const
+{
+    if (Velocity.x == 1) {
+        entity->getComponent<FramesModel>().rotate({0, -1.5707963268 , 0});
+    }
+    if (Velocity.x == -1) {
+        entity->getComponent<FramesModel>().rotate({0, 1.5707963268, 0});
+    }
+    if (Velocity.z == -1) {
+        entity->getComponent<FramesModel>().rotate({0, 3.1415926536, 0});
+    }
+    if (Velocity.z== 1) {
+        entity->getComponent<FramesModel>().rotate({0, 0, 0});
+    }
 }
 
 void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)

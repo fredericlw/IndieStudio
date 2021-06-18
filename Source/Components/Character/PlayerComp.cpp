@@ -35,8 +35,10 @@ void PlayerComp::init()
 {
     Component::init();
     _mc = &entity->addComponent<MovementComp>(_eType, _playerNum);
-    _model = &entity
-        ->addComponent<ModelComp>(entity->assets()->PlayerModel, _color);
+//    _model = &entity
+//        ->addComponent<ModelComp>(entity->assets()->PlayerModel, _color);
+    _model = &entity->addComponent<FramesModel>(
+        entity->assets()->playerWalking);
     auto gamelogic = entity->_mgr.getEntByName("gamelogic");
     _pmc = &gamelogic->getComponent<PauseMenuComp>();
 
@@ -45,13 +47,10 @@ void PlayerComp::init()
     {
         std::vector<char> line;
         line.reserve(13 + 2);
-        for (int j = 0; j < 13 + 2; ++j) {
+        for (int j = 0; j < 13 + 2; ++j)
             line.push_back('0');
-        }
         map.push_back(line);
-
     }
-
 }
 
 void PlayerComp::update()

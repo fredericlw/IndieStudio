@@ -33,6 +33,7 @@ public:
     void SetActive(bool state);
     bool _active;
     PauseMenuComp *_pmc;
+    void rotateTowardsDirection() const;
 };
 
 #endif //MOVEMENTCOMP_HPP

@@ -31,10 +31,10 @@ void MapComponent::init()
     if (!transform)
         transform = &entity->addComponent<TransformComp>(-12, -28, -20);
     gl = &entity->_mgr.getEntByName("gamelogic")->getComponent<GameLogicComp>();
+
+//    return;
     gen_floor();
     gen_walls();
-
-    //if did not press Load game, generate obstacle, else
     if (entity->assets()->loadGame) {
         load_obstacles();
     } else {

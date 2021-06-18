@@ -15,6 +15,7 @@
 #include "Manager.hpp"
 #include <ctime>
 #include <GUI/PauseMenuComp.hpp>
+#include <3D/FramesModel.hpp>
 #include "powerup.hpp"
 
 class PlayerComp : public Component {
@@ -35,7 +36,8 @@ private:
     PlayerNum _playerNum;
     Colors _color;
     MovementComp *_mc;
-    ModelComp *_model;
+//    ModelComp *_model;
+    FramesModel *_model;
     PowerUpType _powerUp;
     void DoDropBomb();
 public:

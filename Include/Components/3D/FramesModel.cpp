@@ -21,11 +21,11 @@ void FramesModel::update()
 void FramesModel::draw()
 {
     Component::draw();
-    _curModel->draw(transform->position, color);
+    _curModel.draw(transform->position, color);
 }
 
 FramesModel::FramesModel(EFramesModel &firstModel, Colors color)
-    : _curModel(&firstModel),
+    : _curModel(EFramesModel(firstModel)),
       color(color),
       transform(nullptr)
 {
@@ -33,10 +33,15 @@ FramesModel::FramesModel(EFramesModel &firstModel, Colors color)
 
 void FramesModel::SetModel(EFramesModel &newModel)
 {
-    _curModel = &newModel;
+    _curModel = newModel;
 }
 
 void FramesModel::SetSpeed(float Speed)
 {
-    _curModel->speed = Speed;
+    _curModel.speed = Speed;
+}
+
+void FramesModel::rotate(const Vector3D &vec)
+{
+    _curModel.rotate(vec);
 }

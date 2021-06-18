@@ -17,8 +17,10 @@ public:
     void draw() override;
     void SetModel(EFramesModel &newModel);
     void SetSpeed(float Speed);
+    void rotate(const Vector3D &vec);
+
 private:
-    EFramesModel *_curModel;
+    EFramesModel _curModel;
     TransformComp *transform;
     Colors color;
 };

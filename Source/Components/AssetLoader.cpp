@@ -44,7 +44,7 @@ AssetLoader::AssetLoader()
       MenuESprite("./Assets/Textures/menu/pine2.png"),
       loadGame(false),
       playerWalking("./Assets/Models/steve/walk/",
-          "./Assets/Models/steve/skin.png", .5, .01)
+          "./Assets/Models/steve/skin.png", .5, .5)
 {
 }
 

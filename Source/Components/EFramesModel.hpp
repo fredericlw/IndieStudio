@@ -19,6 +19,7 @@ public:
     float speed;
     Model model;
     std::vector<EModel> _frames;
+    void rotate(const Vector3D &vec);
 private:
     float timer;
     int frameCounter;

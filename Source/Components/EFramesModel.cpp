@@ -53,3 +53,10 @@ std::vector<std::string> EFramesModel::get_paths_ordered(
     }
     return res;
 }
+
+void EFramesModel::rotate(const Vector3D &vec)
+{
+    for (auto &model : _frames) {
+        model.rotate(vec);
+    }
+}
