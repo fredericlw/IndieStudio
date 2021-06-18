@@ -28,11 +28,11 @@ EModel::EModel(const std::string& modpath, float scale, bool loadDefaultMat)
     Image image = GenImageColor(1, 1, GetRaylibColor(LightGray));
     texture = LoadTextureFromImage(image);
     UnloadImage(image);
-    if (loadDefaultMat) {
-        for (int i = 0; i < model.materialCount; ++i) {
-            model.materials[i] = LoadMaterialDefault();
-        }
-    }
+//    if (loadDefaultMat) {
+//        for (int i = 0; i < model.materialCount; ++i) {
+//            model.materials[i] = LoadMaterialDefault();
+//        }
+//    }
 //    model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;
 }
 

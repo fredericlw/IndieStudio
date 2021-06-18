@@ -9,8 +9,9 @@
 
 //todo: if an asset is not found, exit(0)
 AssetLoader::AssetLoader()
-    : PlayerModel("./Assets/Models/steve/steve.gltf",
-    "./Assets/Models/steve/skin.png", .5),
+    : PlayerModel("./Assets/Models/steve/walk/15.glb",
+    "./Assets/Models/steve/skin.png",
+    .5),
       StoneCubeModel("./Assets/Models/StoneCube/StoneCube.glb", 1),
       BombModel("./Assets/Models/bomb/Bombout.obj", 6),
       ObstacleModel("./Assets/Models/Obstacle/Obstacle.glb", 1),
@@ -42,7 +43,8 @@ AssetLoader::AssetLoader()
       MenuDSprite("./Assets/Textures/menu/pine1.png"),
       MenuESprite("./Assets/Textures/menu/pine2.png"),
       loadGame(false),
-      playerWalking("./Assets/Models/walk/frames/")
+      playerWalking("./Assets/Models/steve/walk/",
+          "./Assets/Models/steve/skin.png", .5, .01)
 {
 }
 

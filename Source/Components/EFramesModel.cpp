@@ -14,17 +14,23 @@ void EFramesModel::draw(const Vector3D &pos, Colors color)
         frameCounter++;
         timer = 0;
     }
-    DrawModel(_frames[frameCounter], pos, scale, GetRaylibColor(color));
+    if (frameCounter >= nbFrames - 1) {
+        frameCounter = 0;
+    }
+    _frames[frameCounter].draw(pos, color);
 }
 
-EFramesModel::EFramesModel(const std::string &folder, float scale, float speed)
+EFramesModel::EFramesModel(const std::string &folder, const std::string &texture, float scale, float speed)
     : timer(0),
     scale(scale),
-    speed(speed)
+    speed(speed),
+    frameCounter(0)
 {
-    for (const auto &item : get_paths_ordered(folder)) {
+    auto paths = get_paths_ordered(folder);
+    _frames.reserve(paths.size());
+    for (const auto &item : paths) {
         std::cout << "got " << item << std::endl;
-        _frames.emplace_back(LoadModel(item.c_str()));
+        _frames.emplace_back(item.c_str(), texture, scale);
     }
 }
 
@@ -36,14 +42,14 @@ std::vector<std::string> EFramesModel::get_paths_ordered(
     using namespace boost::filesystem;
     path p(dirPath);
     vector<string> res;
-    int cnt = std::count_if(
+    nbFrames = std::count_if(
         directory_iterator(p),
         directory_iterator(),
         static_cast<bool (*)(const path &)>(is_regular_file));
-    for (int i = 0; i < cnt; ++i) {
+    for (int i = 1; i < nbFrames; ++i) {
         path temp(p);
         temp.append(to_string(i).append(".glb"));
-        res.emplace_back(temp);
+        res.emplace_back(temp.generic_string());
     }
     return res;
 }

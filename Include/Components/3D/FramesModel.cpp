@@ -26,9 +26,9 @@ void FramesModel::draw()
 
 FramesModel::FramesModel(EFramesModel &firstModel, Colors color)
     : _curModel(&firstModel),
-      color(color)
+      color(color),
+      transform(nullptr)
 {
-
 }
 
 void FramesModel::SetModel(EFramesModel &newModel)
