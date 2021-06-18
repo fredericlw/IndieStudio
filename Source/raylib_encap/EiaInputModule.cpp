@@ -6,7 +6,7 @@
 */
 #include <EiaInputModule.hpp>
 
-EIAInputModule::EIAInputModule(int gamepad_nbr)
+EIAInputModule::EIAInputModule(int gamepad_nbr, Entity *entity)
 {
 }
 

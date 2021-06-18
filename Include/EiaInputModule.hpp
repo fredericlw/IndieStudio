@@ -7,7 +7,7 @@
 #ifndef EIAINPUTMODULE_HPP
 #define EIAINPUTMODULE_HPP
 
-#include "AInputModule.hpp"
+#include <raylib_encap/Input/AInputModule.hpp>
 #include "Entity.hpp"
 
 class EIAInputModule : public AInputModule {
