@@ -73,10 +73,10 @@ void BasicCubeComp::draw()
 {
     Component::draw();
     if (!shouldDraw) return;
-    entity->_mgr.MainCam.Begin3D();
+    //entity->_mgr.MainCam.Begin3D();
     Vector3D pos(transform->position);
     _cube.draw(pos.Add(_offset), _size, _cubeCol, _wireCol);
-    entity->_mgr.MainCam.End3D();
+    //entity->_mgr.MainCam.End3D();
 }
 
 void BasicCubeComp::stickCube(Vector3D &nextpos, const ECube &colisionCube)

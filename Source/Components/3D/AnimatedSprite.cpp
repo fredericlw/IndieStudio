@@ -64,8 +64,8 @@ void AnimatedSprite::draw()
     //3D version
     Vector3D pos(transform->position);
     pos.y += 1;
-    entity->_mgr.MainCam.Begin3D();
+    //entity->_mgr.MainCam.Begin3D();
     _sprite.drawBillboardRect(entity->_mgr.MainCam, frameRect,
         pos, {7,7}, White);
-    entity->_mgr.MainCam.End3D();
+    //entity->_mgr.MainCam.End3D();
 }

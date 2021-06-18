@@ -69,12 +69,12 @@ void ModelComp::draw()
         return;
     Vector3D drawPos(transform->position);
     drawPos.Add(Offset);
-    entity->_mgr.MainCam.Begin3D();
+    //entity->_mgr.MainCam.Begin3D();
     if (shouldDrawColor) {
         model.draw(drawPos, _color);
     } else
         model.draw(drawPos);
-    entity->_mgr.MainCam.End3D();
+    //entity->_mgr.MainCam.End3D();
 }
 
 void ModelComp::update()

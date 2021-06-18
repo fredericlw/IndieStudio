@@ -62,8 +62,8 @@ void MovementComp::update()
     else if (_inputMod->GetButtonDown(Down)) Velocity.z = 1;
     else Velocity.z = 0;
 
-    if (!(Velocity == LastVelocity))
-        rotateTowardsDirection();
+    /*if (!(Velocity == LastVelocity))
+        rotateTowardsDirection();*/
 
     LastVelocity = Velocity;
 

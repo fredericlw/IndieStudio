@@ -31,8 +31,8 @@ void MapComponent::init()
     if (!transform)
         transform = &entity->addComponent<TransformComp>(-12, -28, -20);
     gl = &entity->_mgr.getEntByName("gamelogic")->getComponent<GameLogicComp>();
-    gen_floor();
     return;
+    gen_floor();
     gen_walls();
     if (entity->assets()->loadGame) {
         load_obstacles();

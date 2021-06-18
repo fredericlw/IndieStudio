@@ -33,9 +33,9 @@ void AnimatedModel::update()
 void AnimatedModel::draw()
 {
     Component::draw();
-    entity->_mgr.MainCam.Begin3D();
+    //entity->_mgr.MainCam.Begin3D();
     _model->draw(transform->position);
-    entity->_mgr.MainCam.End3D();
+    //entity->_mgr.MainCam.End3D();
 }
 
 void AnimatedModel::reset()
