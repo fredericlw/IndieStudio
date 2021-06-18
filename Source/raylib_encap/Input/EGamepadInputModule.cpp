@@ -91,3 +91,7 @@ bool EGamepadInputModule::GetButtonReleased(Button btn)
         return IsGamepadButtonReleased(_gamepadNbr, KeyMap[btn]);
     }
 }
+
+void EGamepadInputModule::update()
+{
+}

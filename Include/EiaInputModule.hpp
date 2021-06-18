@@ -22,14 +22,19 @@ public:
     bool GetButtonUp(Button btn) override;
     bool GetButtonPressed(Button btn) override;
     bool GetButtonReleased(Button btn) override;
+    void update() override;
 private:
     size_t _playerNum;
-    std::vector<std::shared_ptr<Entity>> otherPLayers;
+    std::vector<Entity *> otherPLayers;
     std::vector<std::vector<char>> map;
     Manager &manager;
     Vector3D mapOrigin;
     size_t tposx_To_mposx(float tposx);
     size_t tposz_To_mposy(float tposz);
+    void setDirection();
+    Button directionPressed;
+    bool wantToMove;
+    bool isInWall(int x, int y);
 };
 
 #endif //EIAINPUTMODULE_HPP

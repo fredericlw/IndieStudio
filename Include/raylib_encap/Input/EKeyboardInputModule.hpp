@@ -20,6 +20,9 @@ public:
     bool GetButtonReleased(Button btn) override;
 private:
     void SetP1Buttons();
+public:
+    void update() override;
+private:
     void SetP2Buttons();
     void SetP3Buttons();
     void SetP4Buttons();

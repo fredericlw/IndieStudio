@@ -51,6 +51,7 @@ void MovementComp::update()
 {
     if (!_active || _pmc->isPaused()) return;
     Component::update();
+    _inputMod->update();
     if (_inputMod->GetButtonDown(Right)) Velocity.x = 1;
     else if (_inputMod->GetButtonDown(Left)) Velocity.x = -1;
     else Velocity.x = 0;
