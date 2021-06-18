@@ -102,11 +102,11 @@ void EIAInputModule::setDirection()
         auto pos = i->getComponent<TransformComp>().position;
         if (player.getPlayerNum() == _playerNum)
         {
-            myPos = {(float)tposz_To_mposy(pos.x), (float)tposz_To_mposy(pos.y)};
+            myPos = {(float)tposx_To_mposx(pos.x), (float)tposz_To_mposy(pos.z)};
         }
         else if (player.isAlive()) {
             AlivePLayers.emplace_back(
-                tposz_To_mposy(pos.x), tposz_To_mposy(pos.y));
+                tposx_To_mposx(pos.x), tposz_To_mposy(pos.z));
         }
     }
 
@@ -125,12 +125,16 @@ void EIAInputModule::setDirection()
 
     closestPlayer = AlivePLayers[smallestTotalIndex];
     if (closestPlayer.y < myPos.y && !isInWall(myPos.x, myPos.y - 1)) {
+        nextPos = {(size_t)myPos.x, (size_t)myPos.y - 1};
         directionPressed = Button::Up;
     }  else if (closestPlayer.y > myPos.y && !isInWall(myPos.x, myPos.y + 1)) {
+        nextPos = {(size_t)myPos.x, (size_t)myPos.y + 1};
         directionPressed = Button::Down;
     } else if (closestPlayer.x < myPos.x && !isInWall(myPos.x - 1, myPos.y)) {
+        nextPos = {(size_t)myPos.x - 1, (size_t)myPos.y};
         directionPressed = Button::Left;
     } else if (closestPlayer.x > myPos.x && !isInWall(myPos.x + 1, myPos.y)) {
+        nextPos = {(size_t)myPos.x + 1, (size_t)myPos.y};
         directionPressed = Button::Right;
     }
 
