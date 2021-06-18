@@ -96,3 +96,7 @@ bool EKeyboardInputModule::GetButtonReleased(Button btn)
     return IsKeyReleased(KeyMap[btn]);
 }
 
+void EKeyboardInputModule::update()
+{
+}
+

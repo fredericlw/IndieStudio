@@ -13,13 +13,21 @@
 #include <Components/3D/BasicCubeComp.hpp>
 #include "Bomberman.hpp"
 #include <raylib_encap/EAudio.hpp>
-
+#include "boost/filesystem.hpp"
 
 Bomberman::Bomberman(bool fullscreen)
     : mainWindow(std::make_unique<Window>(fullscreen)),
       startTime(std::time(nullptr)),
       mgr(std::make_shared<Manager>())
 {
+    if (!boost::filesystem::exists(
+        boost::filesystem::path("./Assets/Models/steve/walk/1.glb"))
+        ) {
+        std::cerr << std::endl << "FATAL ERROR : Assets not found. "
+            << std::endl
+            << "Make sure to run from app root folder." << std::endl;
+        std::exit(84);
+    }
     auto audioDevice = new EAudio;
     mgr->loadScene(Manager::MainMenu);
     GameLoop();
@@ -35,8 +43,7 @@ void Bomberman::GameLoop()
         mgr->draw();
     }
     std::cerr << "GAMELOOP END" << std::endl;
-    if (mgr->getNextSceneToLoad() != Manager::None)
-    {
+    if (mgr->getNextSceneToLoad() != Manager::None) {
         mgr->loadScene(mgr->getNextSceneToLoad());
         mgr->setNextSceneToLoad(Manager::None);
         GameLoop();

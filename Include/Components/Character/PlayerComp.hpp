@@ -53,6 +53,7 @@ public:
     void killOnLoad();
     PlayerNum getPlayerNum() const;
     int _currentBombFire;
+    void disableInput();
 private:
     int score;
     int _maxBombs;
@@ -63,8 +64,6 @@ private:
 
     //todo: refactor IA stuff
     void IAupdate();
-    std::vector<std::vector<char>> map;
-
 };
 
 #endif //BOMBERMAN_PLAYER_HPP

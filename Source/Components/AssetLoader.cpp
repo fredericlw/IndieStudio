@@ -7,7 +7,6 @@
 #include "Entity.hpp"
 #include "AssetLoader.hpp"
 
-//todo: if an asset is not found, exit(0)
 AssetLoader::AssetLoader()
     : PlayerModel("./Assets/Models/steve/walk/1.glb",
     "./Assets/Models/steve/skin.png",

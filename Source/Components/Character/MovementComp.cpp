@@ -13,14 +13,16 @@
 #include "ECS/Entity.hpp"
 #include "raylib_encap/Math/CubeCollider.hpp"
 #include "Manager.hpp"
+#include "EiaInputModule.hpp"
 
 MovementComp::MovementComp(EInputType input_type, PlayerNum num)
     : Velocity(Vector3D::Zero()),
       LastVelocity(Vector3D::Zero()),
       _speed(BASESPEED),
-      _active(true)
+      _active(true),
+      input_type(input_type),
+      num(num)
 {
-    GenerateInputModule(input_type, num);
 }
 
 MovementComp::~MovementComp()
@@ -31,6 +33,7 @@ MovementComp::~MovementComp()
 void MovementComp::init()
 {
     Component::init();
+    GenerateInputModule(input_type, num);
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>();
@@ -48,15 +51,10 @@ void MovementComp::update()
 {
     if (!_active || _pmc->isPaused()) return;
     Component::update();
+    _inputMod->update();
     if (_inputMod->GetButtonDown(Right)) Velocity.x = 1;
     else if (_inputMod->GetButtonDown(Left)) Velocity.x = -1;
     else Velocity.x = 0;
-
-    //todo this is just a test
-//    if (_inputMod->GetButtonPressed(Accept)) {
-//        transform->position.y += 1;
-//        std::cout << "pos Y " << transform->position.y <<std::endl;
-//    }
 
     if (_inputMod->GetButtonDown(Up)) Velocity.z = -1;
     else if (_inputMod->GetButtonDown(Down)) Velocity.z = 1;
@@ -148,7 +146,7 @@ void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)
         _inputMod = new EGamepadInputModule(num);
         break;
     case AI:
-        _inputMod = new EGamepadInputModule(num);
+        _inputMod = new EIAInputModule(num, entity->_mgr);
         break;
     }
 }

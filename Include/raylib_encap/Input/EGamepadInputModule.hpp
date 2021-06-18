@@ -19,6 +19,7 @@ public:
     ~EGamepadInputModule();
     bool GetButtonDown(Button btn) override;
     bool GetButtonUp(Button btn) override;
+    void update() override;
     bool GetButtonPressed(Button btn) override;
     bool GetButtonReleased(Button btn) override;
 private:
