@@ -167,7 +167,12 @@ add_executable(bomberman
         Include/raylib_encap/ETime.hpp
         Source/GameSaveLoad.cpp
         Include/GameSaveLoad.hpp
-        Include/SaveData.h)
+        Include/SaveData.h
+        Source/Components/EFramesModel.cpp
+        Source/Components/EFramesModel.hpp
+        Include/Components/3D/FramesModel.cpp
+        Include/Components/3D/FramesModel.hpp
+        )
 
 #raylib
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

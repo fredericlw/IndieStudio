@@ -12,6 +12,7 @@
 #include <Component.hpp>
 #include <raylib_encap/ESound.hpp>
 #include <raylib_encap/EMusic.hpp>
+#include "../../Source/Components/EFramesModel.hpp"
 
 class AssetLoader : public Component {
 public:
@@ -55,6 +56,8 @@ public:
     ESprite MenuDSprite;
     ESprite MenuESprite;
     bool loadGame;
+
+    EFramesModel playerWalking;
 };
 
 #endif //ASSETLOADER_HPP
