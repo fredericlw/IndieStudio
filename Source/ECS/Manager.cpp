@@ -4,12 +4,38 @@
 ** File description:
 ** Created by Leo Fabre
 */
+#include "Manager.hpp"
+#include "boost/filesystem.hpp"
+#include <raylib_encap/EAudio.hpp>
+#include "Bomberman.hpp"
+#include <Components/3D/BasicCubeComp.hpp>
+#include <Components/GUI/Sprite2D.hpp>
+#include <Components/3D/TransformComp.hpp>
+#include "raylib_encap/Window.hpp"
+#include <memory>
+#include <iostream>
 #include <raylib.h>
 
 #include <utility>
 #include <raylib_encap/Math/Vector3D.hpp>
 #include "ECS/Manager.hpp"
 #include "Components.h"
+
+void Manager::SceneLoop()
+{
+    std::cout << "SCENE LOOP BEGIN" << std::endl;
+    setAlive(true);
+    while (isAlive() && !mainWindow->ShouldClose()) {
+        update();
+        refresh();
+        draw();
+    }
+    std::cerr << "SCENE LOOP END" << std::endl;
+    if (getNextSceneToLoad() != None) {
+        loadScene(getNextSceneToLoad());
+        SceneLoop();
+    }
+}
 
 void Manager::update()
 {
@@ -93,7 +119,7 @@ void Manager::destroyOnLoad()
     refresh();
 }
 
-Manager::Manager()
+Manager::Manager(std::shared_ptr<Window> mainWindow) : mainWindow(mainWindow)
 {
     MainCam.position = Vector3D{0.0f, 10.0f, 14.0f};
     MainCam.target = Vector3D{0.0f, 0.0f, 8.0f};
@@ -131,6 +157,7 @@ void Manager::loadScene(Manager::SceneType scene)
     case None:
         break;
     }
+    setNextSceneToLoad(Manager::None);
 }
 
 void Manager::Quit()
@@ -176,5 +203,3 @@ std::shared_ptr<Entity> Manager::getEntByName(const std::string &name)
     }
     return nullptr;
 }
-
-

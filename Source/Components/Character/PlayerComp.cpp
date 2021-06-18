@@ -51,6 +51,7 @@ void PlayerComp::update()
         && (activeBombs < _maxBombs)
         && health > 0
         && !_pmc->isPaused()) {
+        std::cout << "Drop bomb" << std::endl;
         DoDropBomb();
     }
     if (_eType != AI) {

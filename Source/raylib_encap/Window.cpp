@@ -16,6 +16,7 @@ Window::Window(bool fullscreen)
     } else {
         InitWindow(1280, 720, "Bomberman");
     }
+    SetExitKey(0);
 }
 
 Window::~Window()

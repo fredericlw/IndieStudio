@@ -9,8 +9,9 @@
 
 #include <raylib_encap/ECamera.hpp>
 #include <Ecs.hpp>
+#include <raylib_encap/Window.hpp>
 
-enum GroupLabel{
+enum GroupLabel {
     Background,
     Floor,
     Walls,
@@ -22,11 +23,12 @@ enum GroupLabel{
     GUI_TOP,
     PowerUps
 };
+
 class Entity;
 
 class Manager {
 public:
-    enum SceneType{
+    enum SceneType {
         MainMenu,
         Game,
         Lobby,
@@ -36,7 +38,7 @@ public:
         Controls,
         None
     };
-    explicit Manager();
+    explicit Manager(std::shared_ptr<Window> mainWindow);
     void update();
     void draw();
     void refresh();
@@ -50,6 +52,7 @@ public:
 public:
     bool isAlive() const;
 private:
+    std::shared_ptr<Window> mainWindow;
     bool curSceneAlive = true;
     std::vector<std::shared_ptr<Entity>> entities;
     std::array<std::vector<Entity *>, maxGroups> groupedEntities;
@@ -82,7 +85,6 @@ public:
     void AddSettingsButton();
     void AddHowToPlayButton();
     void loadGameOverScene();
-    void QuitGameOverSceneButton();
     void AddLoadGameButton();
     void addControlsHowToPlayButton();
     void loadControlsScene();
@@ -92,6 +94,7 @@ public:
     void addThirdPlayerControls();
     void addFourthPlayerControls();
     void addControlsSceneTitle();
+    void SceneLoop();
 };
 
 #endif //MANAGER_HPP

@@ -21,7 +21,9 @@ std::size_t EIAInputModule::tposz_To_mposy(float tposz)
 EIAInputModule::EIAInputModule(int gamepad_nbr, Manager &manager)
     : _playerNum(gamepad_nbr),
       manager(manager),
-      wantToMove(true)
+      wantToMove(true),
+      wantPlaceBomb(false),
+      lastDirection(Button::Cancel)
 {
     mapOrigin = manager.getEntByName("mapRoot")->getComponent<TransformComp>().position;
     //2d map gen
@@ -49,6 +51,7 @@ EIAInputModule::EIAInputModule(int gamepad_nbr, Manager &manager)
 
 void EIAInputModule::update()
 {
+
     setDirection();
 }
 
@@ -73,7 +76,13 @@ bool EIAInputModule::GetButtonUp(Button btn)
 
 bool EIAInputModule::GetButtonPressed(Button btn)
 {
-    return false;
+    auto res = wantPlaceBomb;
+
+    if (btn != DropBomb)
+        return false;
+    if (wantPlaceBomb)
+        wantPlaceBomb = false;
+    return res;
 }
 
 bool EIAInputModule::GetButtonReleased(Button btn)
@@ -81,8 +90,52 @@ bool EIAInputModule::GetButtonReleased(Button btn)
     return false;
 }
 
+bool EIAInputModule::IsStuck(Vector2D pos, Button direction)
+{
+    switch (direction) {
+    case Left:
+        if (isInWall(pos.x + 1, pos.y) || isInWall(pos.x, pos.y + 1) || isInWall(pos.x, pos.y - 1)) {
+
+        }
+        break;
+    case Right:
+        break;
+    case Up:
+        break;
+    case Down:
+        break;
+    case DropBomb:
+        break;
+    default:
+        break;
+    }
+    return false;
+}
+
+bool EIAInputModule::isWarningByBomb()
+{
+    for (int y = 0 ; y < map.size(); y++) {
+        for (int x = 0 ; x < map[x].size(); x++) {
+            if (map[y][x] == 'B') {
+
+            }
+        }
+    }
+    return false;
+}
+
 void EIAInputModule::setDirection()
 {
+    std::cout << "Want to move: " << wantToMove << std::endl;
+
+    auto bombs = manager.getEntitiesInGroup(GroupLabel::Bombs);
+    for (auto &i : bombs) {
+        auto cast = &i->getComponent<TransformComp>();
+        map[tposz_To_mposy(cast->position.z)][
+            tposx_To_mposx(cast->position.x)] = 'B';
+    }
+
+
     //set obstacles
     auto obstacles = manager.getEntitiesInGroup(GroupLabel::Obstacles);
     for (auto &i : obstacles) {
@@ -95,6 +148,8 @@ void EIAInputModule::setDirection()
     std::vector<Vector2D> AlivePLayers;
     Vector2D myPos;
     Vector2D closestPlayer;
+
+    bool stuck = IsStuck(myPos, directionPressed);
 
     for (auto &i : manager.getEntitiesInGroup(GroupLabel::Players))
     {
@@ -136,6 +191,9 @@ void EIAInputModule::setDirection()
     } else if (closestPlayer.x > myPos.x && !isInWall(myPos.x + 1, myPos.y)) {
         nextPos = {(size_t)myPos.x + 1, (size_t)myPos.y};
         directionPressed = Button::Right;
+    } else {
+        std::cout << "akbar" << std::endl;
+        wantPlaceBomb = true;
     }
 
     //rm obstaclces
