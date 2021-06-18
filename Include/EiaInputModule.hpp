@@ -9,11 +9,13 @@
 
 #include <raylib_encap/Input/AInputModule.hpp>
 #include "Entity.hpp"
+#include "Manager.hpp"
+
 
 class EIAInputModule : public AInputModule {
 public:
     EIAInputModule(
-        int gamepad_nbr, Entity *entity1
+        int gamepad_nbr, Manager &manager
     );
     ~EIAInputModule();
     bool GetButtonDown(Button btn) override;
@@ -24,8 +26,10 @@ private:
     size_t _playerNum;
     std::vector<std::shared_ptr<Entity>> otherPLayers;
     std::vector<std::vector<char>> map;
-    Entity *entity;
-
+    Manager &manager;
+    Vector3D mapOrigin;
+    size_t tposx_To_mposx(float tposx);
+    size_t tposz_To_mposy(float tposz);
 };
 
 #endif //EIAINPUTMODULE_HPP
