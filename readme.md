@@ -6,8 +6,13 @@
 
 > A clone of Bomberman made in C++, using Raylib, Boost, featuring custom Raylib encapsulation, a flexible Entity-Component System, AI, controller support.
 
-## 💣 Install 💣
-
+## 💣 Build Instructions 💣
+At this repo's root :
+Make sure you have the latest submodules...
+```sh
+git submodule update --remote
+```
+Then :
 ```sh
 mkdir build && cd build && cmake --build . && cd ..
 ```
