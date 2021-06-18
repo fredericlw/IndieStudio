@@ -60,3 +60,4 @@ void EFramesModel::rotate(const Vector3D &vec)
         model.rotate(vec);
     }
 }
+

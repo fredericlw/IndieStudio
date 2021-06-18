@@ -38,7 +38,7 @@ void PlayerComp::init()
 //    _model = &entity
 //        ->addComponent<ModelComp>(entity->assets()->PlayerModel, _color);
     _model = &entity->addComponent<FramesModel>(
-        entity->assets()->playerWalking, _color);
+        entity->assets()->playerWalking, entity->assets()->PlayerModel, _color);
     entity->addGroup(Players);
     auto gamelogic = entity->_mgr.getEntByName("gamelogic");
     _pmc = &gamelogic->getComponent<PauseMenuComp>();
