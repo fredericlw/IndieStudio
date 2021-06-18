@@ -1,4 +1,6 @@
 <h1 align="center">💣 Welcome to Indie Studio (Bomberman clone) 💣</h1>
+![Alt text](./screenshot.png)
+<img src="./screenshot.png">
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-release-blue.svg?cacheSeconds=2592000" />
 </p>
