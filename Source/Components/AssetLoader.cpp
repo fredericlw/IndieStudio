@@ -9,7 +9,7 @@
 
 //todo: if an asset is not found, exit(0)
 AssetLoader::AssetLoader()
-    : PlayerModel("./Assets/Models/steve/walk/15.glb",
+    : PlayerModel("./Assets/Models/steve/walk/1.glb",
     "./Assets/Models/steve/skin.png",
     .5),
       StoneCubeModel("./Assets/Models/StoneCube/StoneCube.glb", 1),

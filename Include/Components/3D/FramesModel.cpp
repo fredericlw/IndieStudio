@@ -23,18 +23,20 @@ void FramesModel::draw()
 {
     Component::draw();
     if (!visible) {return;}
-    _curModel.draw(transform->position, color);
-    return;
-    if (entity->getName() == "Player1") {
-        std::cout << "POS " << transform->position << std::endl;
+    if (_idle) {
+        idleModel.draw(transform->position, color);
+    } else {
+        _curModel.draw(transform->position, color);
     }
 }
 
-FramesModel::FramesModel(EFramesModel &firstModel, Colors color)
+FramesModel::FramesModel(EFramesModel &firstModel, EModel &idleModel, Colors color)
     : _curModel(EFramesModel(firstModel)),
+      idleModel(idleModel),
       color(color),
       transform(nullptr),
-      visible(true)
+      visible(true),
+      _idle(false)
 {
 }
 
@@ -57,4 +59,9 @@ void FramesModel::SetVisibility(bool state)
 {
     visible = state;
     std::cout << "SET VISIBLE TO " << state << std::endl;
+}
+
+void FramesModel::SetIdle(bool state)
+{
+    _idle = state;
 }

@@ -105,6 +105,9 @@ void MovementComp::update()
 
     if (nextPos != transform->position) {
         entity->assets()->WalkingSound.playMusic(entity->assets()->Volume);
+        entity->getComponent<FramesModel>().SetIdle(false);
+    } else {
+        entity->getComponent<FramesModel>().SetIdle(true);
     }
     for (const auto &item : entity->_mgr.getEntitiesInGroup(PowerUps)) {
         TransformComp *PUTransform = &item->getComponent<TransformComp>();

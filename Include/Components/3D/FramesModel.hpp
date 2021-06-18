@@ -11,7 +11,7 @@
 
 class FramesModel : public Component {
 public:
-    explicit FramesModel(EFramesModel &firstModel, Colors color = White);
+    explicit FramesModel(EFramesModel &firstModel, EModel &idleModel, Colors color = White);
     void init() override;
     void update() override;
     void draw() override;
@@ -19,12 +19,15 @@ public:
     void SetSpeed(float Speed);
     void rotate(const Vector3D &vec);
 
+    void SetIdle(bool state);
     void SetVisibility(bool state);
 private:
     EFramesModel _curModel;
+    EModel idleModel;
     TransformComp *transform;
     Colors color;
     bool visible;
+    bool _idle;
 };
 
 #endif //FRAMESMODEL_HPP

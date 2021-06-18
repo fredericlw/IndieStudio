@@ -18,7 +18,7 @@ void LobbyComp::AddListSelectors()
     ent->addGroup(GroupLabel::Players);
     ent->addComponent<TransformComp>(modelPos);
 //    ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Blue);
-    ent->addComponent<FramesModel>(entity->assets()->playerWalking, Blue);
+    ent->addComponent<FramesModel>(entity->assets()->playerWalking, entity->assets()->PlayerModel, Blue);
 
     ListSelector1 = addSel(
         list, "First PLayer", Blue,
@@ -29,7 +29,7 @@ void LobbyComp::AddListSelectors()
     modelPos.x += modelDistance;
     ent->addComponent<TransformComp>(modelPos);
 //    ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Green);
-    ent->addComponent<FramesModel>(entity->assets()->playerWalking, Green);
+    ent->addComponent<FramesModel>(entity->assets()->playerWalking, entity->assets()->PlayerModel, Green);
 
     ListSelector2 = addSel(
         list, "Second PLayer", Green,
@@ -40,7 +40,7 @@ void LobbyComp::AddListSelectors()
     ent->addComponent<TransformComp>(modelPos);
     ent->addGroup(GroupLabel::Players);
 //    ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Red);
-    ent->addComponent<FramesModel>(entity->assets()->playerWalking, Red);
+    ent->addComponent<FramesModel>(entity->assets()->playerWalking, entity->assets()->PlayerModel,Red);
     ListSelector3 = addSel(
         list, "Third PLayer", Red,
         Vector2D::ScreenCenter().Subtract({-150, -200}), "Player 3");
@@ -50,7 +50,7 @@ void LobbyComp::AddListSelectors()
     ent->addComponent<TransformComp>(modelPos);
     ent->addGroup(GroupLabel::Players);
 //    ent->addComponent<ModelComp>(entity->assets()->PlayerModel, LightGray);
-    ent->addComponent<FramesModel>(entity->assets()->playerWalking, LightGray);
+    ent->addComponent<FramesModel>(entity->assets()->playerWalking, entity->assets()->PlayerModel,LightGray);
     ListSelector4 = addSel(
         list, "Fourth PLayer", LightGray,
         Vector2D::ScreenCenter().Subtract({-450, -200}), "Player 4");
