@@ -4,7 +4,7 @@
   <img align="center" alt="Version" src="https://img.shields.io/badge/version-release-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> A clone of Bomberman made in C++, using Raylib, Boost, featuring custom Raylib encapsulation, a flexible Entity-Component System, AI, controller support.
+> A clone of Bomberman made in C++, using Raylib, Boost, featuring custom Raylib encapsulation, a flexible Entity-Component System, AI, controller support, procedural level generation, loading and saving games, and more !
 
 ## 💣 Build Instructions 💣
 
