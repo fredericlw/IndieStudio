@@ -28,12 +28,18 @@ void Manager::AddCube() {
 
 Entities also have a pointer to their manager, so they can create other entities.
 
-## 💣 Model Animations 💣
+The **Manager** calls its **entities**' update() and draw() methods in the scene loop.
+
+When added to an Entity, Components see their init() method called once they are constructed and placed into the entity's **components** vector.
+This is useful to get references to other entities' components.
+
+## 💣 Models Animations 💣
 
 We went through a lot of struggle trying to animate 3D models properly.
 * The bomb explosion model has an embedded animation (GLTF format) that is loaded and working.
 * The player running animation is done by loading the animation frames as separate models and drawing each of them one after the other (spritesheet style).
 * The powerup floating animation is done by offsetting the Y draw position by a value that is linearly eased over time (interpolated) indefinitely.
+* There is also a 2D animated sprite billboard component (AnimatedSprite class) that was used as placeholders in early development stages.
 
 ## 💣 Procedural level generation (MapComponent class) 💣
 
@@ -54,3 +60,8 @@ The Load/Save system is implemented using boost::filesystem and boost::serializa
 Upon saving, it generates a SaveData struct and fills it with the current game data, then writes it as a boost text_archive to "./savedGame".
 
 Then, on loading, it reads the boost archive back into a SaveData struct, to be loaded by the GameLogicComp at game start.
+
+## 💣 Raylib Custom Encapsulation (raylib_encap folder) 💣
+
+These classes encapsulate raylib functionality in a handy way for our needs.
+Most of these are used by a Component (example : EModel, ModelComp), so that the called functions could be refactored to call another lib's methods.
