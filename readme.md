@@ -43,7 +43,7 @@ There is a "how to play" button available on the main menu.
 * While in the pause menu, you can click the "Save Game" button. This will create or overwrite the existing saveGame file.
 * While in the main menu, you can click the "Load Game" button. This will make you able to select input methods and then start the game from the point you saved it.
 
-## 💣 [About the code](./about.md) 💣
+## 💣 [About the code (technical documentation)](./about.md) 💣
 
 ## 💣 Authors 💣
 
