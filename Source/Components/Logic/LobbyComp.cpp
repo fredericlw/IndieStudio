@@ -19,6 +19,7 @@ void LobbyComp::AddListSelectors()
     ent->addComponent<TransformComp>(modelPos);
 //    ent->addComponent<ModelComp>(entity->assets()->PlayerModel, Blue);
     ent->addComponent<FramesModel>(entity->assets()->playerWalking, Blue);
+
     ListSelector1 = addSel(
         list, "First PLayer", Blue,
         Vector2D::ScreenCenter().Subtract({450, -200}), "Player 1");

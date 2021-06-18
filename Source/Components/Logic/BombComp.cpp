@@ -96,10 +96,6 @@ void BombComp::update()
     }
 }
 
-void BombComp::draw()
-{
-    Component::draw();
-}
 
 void BombComp::explode()
 {

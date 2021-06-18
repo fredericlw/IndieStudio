@@ -21,7 +21,6 @@ public:
     BombComp(Colors color, PlayerComp *owner);
     void init() override;
     void update() override;
-    void draw() override;
 private:
     void explode();
     std::time_t spawnTime;
