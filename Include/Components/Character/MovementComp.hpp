@@ -34,6 +34,8 @@ public:
     bool _active;
     PauseMenuComp *_pmc;
     void rotateTowardsDirection() const;
+    EInputType input_type;
+    PlayerNum num;
 };
 
 #endif //MOVEMENTCOMP_HPP

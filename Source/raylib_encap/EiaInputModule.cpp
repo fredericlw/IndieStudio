@@ -6,22 +6,22 @@
 */
 #include <EiaInputModule.hpp>
 #include <3D/BasicCubeComp.hpp>
-#include "Manager.hpp"
 
-std::size_t tposx_Tom_posx(float tposx)
+std::size_t EIAInputModule::tposx_To_mposx(float tposx)
 {
-    return ((tposx + 12) / 2) + 1;
-
+    return ((tposx - mapOrigin.x) / 2) + 1;
 }
 
-std::size_t tposz_To_mposy(float tposz)
+std::size_t EIAInputModule::tposz_To_mposy(float tposz)
 {
-    return ((tposz + 20) / 2)  + 1;
-
+    return ((tposz - mapOrigin.z) / 2) + 1;
 }
 
-EIAInputModule::EIAInputModule(int gamepad_nbr, Entity *entity1): _playerNum(gamepad_nbr), entity(entity1)
+EIAInputModule::EIAInputModule(int gamepad_nbr, Manager &manager)
+    : _playerNum(gamepad_nbr),
+      manager(manager)
 {
+    mapOrigin = manager.getEntByName("mapRoot")->getComponent<TransformComp>().position;
     //2d map gen
     for (int i = 0; i < 11 + 2; i++) {
         std::vector<char> line;
@@ -30,25 +30,25 @@ EIAInputModule::EIAInputModule(int gamepad_nbr, Entity *entity1): _playerNum(gam
             line.push_back('0');
         map.push_back(line);
     }
-        auto obstacles = entity->_mgr.getEntitiesInGroup(GroupLabel::Obstacles);
-        for (auto &i : obstacles) {
-            auto cast = &i->getComponent<BasicCubeComp>();
-            map[tposz_To_mposy(cast->getCube().getPos().z)][
-                tposx_Tom_posx(cast->getCube().getPos().x)] = 'o';
-        }
+    auto obstacles = manager.getEntitiesInGroup(GroupLabel::Obstacles);
+    for (auto &i : obstacles) {
+        auto cast = &i->getComponent<TransformComp>();
+        map[tposz_To_mposy(cast->position.z)][
+            tposx_To_mposx(cast->position.x)] = 'o';
+    }
 
-        auto walls = entity->_mgr.getEntitiesInGroup(GroupLabel::Walls);
-        for (auto &i : walls) {
-            auto cast = &i->getComponent<BasicCubeComp>();
-            map[tposz_To_mposy(cast->getCube().getPos().z)][
-                tposx_Tom_posx(cast->getCube().getPos().x)] = 'W';
-        }
+    auto walls = manager.getEntitiesInGroup(GroupLabel::Walls);
+    for (auto &i : walls) {
+        auto cast = &i->getComponent<TransformComp>();
+        map[tposz_To_mposy(cast->position.z)][
+            tposx_To_mposx(cast->position.x)] = 'W';
+    }
 
-        for (auto i : map) {
-            for (auto j : i)
-                std::cout << j;
-            std::cout << std::endl;
-        }
+    for (auto i : map) {
+        for (auto j : i)
+            std::cout << j;
+        std::cout << std::endl;
+    }
 }
 
 EIAInputModule::~EIAInputModule()

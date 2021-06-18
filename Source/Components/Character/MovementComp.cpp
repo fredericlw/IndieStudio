@@ -19,9 +19,10 @@ MovementComp::MovementComp(EInputType input_type, PlayerNum num)
     : Velocity(Vector3D::Zero()),
       LastVelocity(Vector3D::Zero()),
       _speed(BASESPEED),
-      _active(true)
+      _active(true),
+      input_type(input_type),
+      num(num)
 {
-    GenerateInputModule(input_type, num);
 }
 
 MovementComp::~MovementComp()
@@ -32,6 +33,7 @@ MovementComp::~MovementComp()
 void MovementComp::init()
 {
     Component::init();
+    GenerateInputModule(input_type, num);
     transform = &entity->getComponent<TransformComp>();
     if (!transform)
         transform = &entity->addComponent<TransformComp>();
@@ -146,7 +148,7 @@ void MovementComp::GenerateInputModule(EInputType type, PlayerNum num)
         _inputMod = new EGamepadInputModule(num);
         break;
     case AI:
-        _inputMod = new EIAInputModule(num, entity);
+        _inputMod = new EIAInputModule(num, entity->_mgr);
         break;
     }
 }
