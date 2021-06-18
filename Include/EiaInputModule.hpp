@@ -48,7 +48,6 @@ private:
     Pos nextPos;
     bool IsStuck(Vector2D d, Button button);
     bool isWarningByBomb();
-    bool isWarningByBomb();
 };
 
 #endif //EIAINPUTMODULE_HPP
