@@ -7,11 +7,13 @@
 > A clone of Bomberman made in C++, using Raylib, Boost, featuring custom Raylib encapsulation, a flexible Entity-Component System, AI, controller support.
 
 ## 💣 Build Instructions 💣
-At this repo's root :
-Make sure you have the latest submodules...
+
+At the root of this repository :
+Make sure you have the latest submodules
 ```sh
 git submodule update --remote
 ```
+
 Then :
 ```sh
 mkdir build && cd build && cmake --build . && cd ..
@@ -19,16 +21,27 @@ mkdir build && cd build && cmake --build . && cd ..
 
 ## 💣 Usage 💣
 
+Windows:
+```sh
+.\\bomberman.exe [-f : start fullscreen (default=windowed)]
+```
+Linux:
 ```sh
 ./bomberman [-f : start fullscreen (default=windowed)]
 ```
 
 There is a "how to play" button available on the main menu.
 
-Controller support notes :
+## 🎮 Controller support notes 🎮
+
 * If a player N choses "Controller" as input module, the game will look for the Nth controller.  
 * Left joystick and D-pad have the same behavior (move player).
 * Right trigger to drop bombs.
+
+## 💾 Saving and Loading games 💾
+
+* While in the pause menu, you can click the "Save Game" button. This will create or overwrite the existing saveGame file.
+* While in the main menu, you can click the "Load Game" button. This will make you able to select input methods and then start the game from the point you saved it.
 
 ## 💣 Authors 💣
 
