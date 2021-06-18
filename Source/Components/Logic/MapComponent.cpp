@@ -31,7 +31,6 @@ void MapComponent::init()
     if (!transform)
         transform = &entity->addComponent<TransformComp>(-12, -28, -20);
     gl = &entity->_mgr.getEntByName("gamelogic")->getComponent<GameLogicComp>();
-
     gen_floor();
     return;
     gen_walls();
@@ -192,16 +191,6 @@ void MapComponent::place_root_visualizer()
     auto &assets = entity->_mgr.getEntByName(
         "gamelogic")->getComponent<AssetLoader>();
     newEnt->addComponent<ModelComp>(assets.StoneCubeModel);
-}
-
-void MapComponent::update()
-{
-    Component::update();
-}
-
-void MapComponent::draw()
-{
-    Component::draw();
 }
 
 bool MapComponent::positionIsInCorner(Vector3D pos)

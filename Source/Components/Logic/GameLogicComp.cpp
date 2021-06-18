@@ -37,7 +37,6 @@ void GameLogicComp::SpawnPlayers()
 {
     auto spawnPos = entity->_mgr.getEntByName(
         "mapRoot")->getComponent<TransformComp>().position;
-//    spawnPos.y += 15;
     //get upper right spawnpos offset from map root entity po
     std::cout << "MAP POSITION IS " << spawnPos << std::endl;
     p1 = SpawnPlayer("Player1", spawnPos,
@@ -79,7 +78,7 @@ PlayerComp *GameLogicComp::SpawnPlayer(
     auto &myEnt = entity->_mgr.addEntity(std::move(entityName));
     myEnt.addComponent<TransformComp>(pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2)).shouldDraw =
-        false;
+        true;
     myEnt.addGroup(Players);
     return &myEnt.addComponent<PlayerComp>(inputType, num, color);
 }

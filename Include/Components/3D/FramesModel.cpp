@@ -24,8 +24,8 @@ void FramesModel::draw()
     Component::draw();
     if (!visible) {return;}
     _curModel.draw(transform->position, color);
+    return;
     if (entity->getName() == "Player1") {
-        std::cout << "DRAWING " << ETime::DeltaTime() << std::endl;
         std::cout << "POS " << transform->position << std::endl;
     }
 }
