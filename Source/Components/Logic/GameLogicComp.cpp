@@ -59,7 +59,7 @@ void GameLogicComp::LoadPlayers()
     p1 = loadPlayer("Player1", players[0],
         entity->getComponent<LobbyComp>().sel1, PlayerOne, Blue);
 
-    p2 = loadPlayer("Player1", players[1],
+    p2 = loadPlayer("Player2", players[1],
         entity->getComponent<LobbyComp>().sel2, PlayerTwo, Green);
 
     p3 = loadPlayer("Player3", players[2],
@@ -79,7 +79,6 @@ PlayerComp *GameLogicComp::SpawnPlayer(
     myEnt.addComponent<TransformComp>(pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2)).shouldDraw =
         false;
-    myEnt.addGroup(Players);
     return &myEnt.addComponent<PlayerComp>(inputType, num, color);
 }
 
@@ -170,7 +169,6 @@ PlayerComp *GameLogicComp::loadPlayer(
     myEnt.addComponent<TransformComp>(data.pos);
     myEnt.addComponent<BasicCubeComp>(Vector3D::One().Multiply(2)).shouldDraw =
         false;
-    myEnt.addGroup(Players);
     auto playerComp = &myEnt.addComponent<PlayerComp>(InputType, num, color);
     playerComp->setScore(data.score);
     playerComp->setPowerUp(data.powerUp);

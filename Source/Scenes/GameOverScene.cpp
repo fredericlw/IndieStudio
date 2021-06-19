@@ -15,8 +15,8 @@
 #include "Components/GUI/OptionComp.hpp"
 
 void Manager::loadGameOverScene() {
-    std::cout << "Game Over" << std::endl;
-    auto &ent = addEntity("gameOver");
-      ent.addComponent<GameOverComp>(getEntByName("gamelogic")
-        ->getComponent<GameLogicComp>().playerStates);
+    std::cout << "Game Over Scene" << std::endl;
+//    auto &ent = addEntity("gameOver");
+//      ent.addComponent<GameOverComp>(getEntByName("gamelogic")
+//        ->getComponent<GameLogicComp>().playerStates);
 }

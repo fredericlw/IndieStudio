@@ -42,6 +42,7 @@ void PlayerComp::init()
     entity->addGroup(Players);
     auto gamelogic = entity->_mgr.getEntByName("gamelogic");
     _pmc = &gamelogic->getComponent<PauseMenuComp>();
+
 }
 
 void PlayerComp::update()
