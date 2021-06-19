@@ -21,6 +21,8 @@ Bomberman::Bomberman(bool fullscreen)
       startTime(std::time(nullptr)),
       mgr(std::make_shared<Manager>(mainWindow))
 {
+    EAudio device;
+    
     if (!boost::filesystem::exists(
         boost::filesystem::path("./Assets/Models/steve/walk/1.glb"))
         ) {
