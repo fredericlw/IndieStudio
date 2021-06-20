@@ -11,9 +11,9 @@
 At the root of this repository :
 Make sure you have the latest submodules
 ```sh
+git submodule init
 git submodule update --remote
 ```
-
 Then :
 ```sh
 mkdir build && cd build && cmake --build . && cd ..
