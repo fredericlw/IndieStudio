@@ -33,11 +33,11 @@ void MapComponent::init()
     gl = &entity->_mgr.getEntByName("gamelogic")->getComponent<GameLogicComp>();
     gen_floor();
     gen_walls();
-    /*if (entity->assets()->loadGame) {
+    if (entity->assets()->loadGame) {
         load_obstacles();
     } else {
         gen_obstacles();
-    }*/
+    }
 }
 
 void MapComponent::load_obstacles()
