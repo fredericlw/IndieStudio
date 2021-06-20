@@ -41,7 +41,7 @@ private:
     size_t tposz_To_mposy(float tposz);
     void setDirection();
     Button directionPressed;
-    Button lastDirection;
+    Button stuckDirection;
     bool wantToMove;
     bool wantPlaceBomb;
     bool isInWall(int x, int y);
