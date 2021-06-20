@@ -36,6 +36,7 @@ public:
         HowToPlay,
         GameOverScene,
         Controls,
+        AboutPowerUps,
         None
     };
     explicit Manager(std::shared_ptr<Window> mainWindow);
@@ -95,6 +96,15 @@ public:
     void addFourthPlayerControls();
     void addControlsSceneTitle();
     void SceneLoop();
+    void loadAboutPowerUpsScene();
+    void addRightHowToPlayButton();
+    void addPowerUpsButton();
+    void addPowerUpsTitle();
+    void addPowerUpsDescription();
+    void addFullFireDescription();
+    void addFireUpDescription();
+    void addSpeedUpDescription();
+    void addWallPassDescription();
 };
 
 #endif //MANAGER_HPP

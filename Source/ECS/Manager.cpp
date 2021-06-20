@@ -154,6 +154,9 @@ void Manager::loadScene(Manager::SceneType scene)
     case Controls:
         loadControlsScene();
         break;
+    case AboutPowerUps:
+        loadAboutPowerUpsScene();
+        break;
     case None:
         break;
     }

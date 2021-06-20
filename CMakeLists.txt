@@ -173,7 +173,7 @@ add_executable(bomberman
         Include/Components/3D/FramesModel.cpp
         Include/Components/3D/FramesModel.hpp
         Source/raylib_encap/EiaInputModule.cpp
-        Include/EiaInputModule.hpp)
+        Include/EiaInputModule.hpp Source/Scenes/AboutPowerUpsScene.cpp)
 
 #raylib
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/lib/raylib/)

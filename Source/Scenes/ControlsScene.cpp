@@ -22,6 +22,7 @@ void Manager::loadControlsScene()
     addSecondPlayerControls();
     addThirdPlayerControls();
     addFourthPlayerControls();
+    addPowerUpsButton();
 }
 
 void Manager::addFirstPlayerControls()

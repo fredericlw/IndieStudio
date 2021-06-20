@@ -19,6 +19,7 @@ void Manager::loadHowToPlayScene()
     AddHowToPlayName();
     AddHowToPlayRules();
     addControlsHowToPlayButton();
+    addPowerUpsButton();
 }
 
 void Manager::AddHowToPlayName() {
@@ -70,6 +71,24 @@ void Manager::addControlsHowToPlayButton()
     BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
         [this]() {
             setNextSceneToLoad(Controls);
+            curSceneAlive = false;
+        }
+    );
+    BackToGameBtnEnt.addGroup(GUI);
+}
+
+void Manager::addPowerUpsButton()
+{
+    auto size = Vector2D{300, 50};
+    auto halfsize = Vector2D{size.x / 2, size.y / 2};
+    auto winSize = Window::GetWinSize();
+    auto pos = Vector2D{winSize.x - size.x, winSize.y - size.y};
+    auto &BackToGameBtnEnt = addEntity("PowerUpsButton");
+    BackToGameBtnEnt.addComponent<TransformComp>(pos);
+    BackToGameBtnEnt.addComponent<ButtonComp>("PowerUps", size);
+    BackToGameBtnEnt.getComponent<ButtonComp>().AddEventFunc(
+        [this]() {
+            setNextSceneToLoad(AboutPowerUps);
             curSceneAlive = false;
         }
     );
