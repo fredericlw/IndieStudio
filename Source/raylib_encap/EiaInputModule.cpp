@@ -23,9 +23,10 @@ EIAInputModule::EIAInputModule(int gamepad_nbr, Manager &manager)
       manager(manager),
       wantToMove(true),
       wantPlaceBomb(false),
-      lastDirection(Button::Cancel)
+      stuckDirection(Button::Cancel)
 {
-    mapOrigin = manager.getEntByName("mapRoot")->getComponent<TransformComp>().position;
+    mapOrigin =
+        manager.getEntByName("mapRoot")->getComponent<TransformComp>().position;
     //2d map gen
     for (int i = 0; i < 11 + 2; i++) {
         std::vector<char> line;
@@ -59,8 +60,6 @@ EIAInputModule::~EIAInputModule()
 {
 }
 
-
-
 bool EIAInputModule::GetButtonDown(Button btn)
 {
     if (btn == directionPressed)
@@ -70,7 +69,6 @@ bool EIAInputModule::GetButtonDown(Button btn)
 
 bool EIAInputModule::GetButtonUp(Button btn)
 {
-
     return false;
 }
 
@@ -94,15 +92,32 @@ bool EIAInputModule::IsStuck(Vector2D pos, Button direction)
 {
     switch (direction) {
     case Left:
-        if (isInWall(pos.x + 1, pos.y) || isInWall(pos.x, pos.y + 1) || isInWall(pos.x, pos.y - 1)) {
-
+        if (isInWall(pos.x + 1, pos.y) && isInWall(pos.x, pos.y + 1) &&
+            isInWall(pos.x, pos.y - 1)) {
+            stuckDirection = direction;;
+            return true;
         }
         break;
     case Right:
+        if (isInWall(pos.x + 1, pos.y) && isInWall(pos.x, pos.y + 1) &&
+            isInWall(pos.x, pos.y - 1)) {
+            stuckDirection = direction;;
+            return true;
+        }
         break;
     case Up:
+        if (isInWall(pos.x + 1, pos.y) && isInWall(pos.x -1 , pos.y) &&
+            isInWall(pos.x, pos.y - 1)) {
+            stuckDirection = direction;;
+            return true;
+        }
         break;
     case Down:
+        if (isInWall(pos.x + 1, pos.y) && isInWall(pos.x -1 , pos.y) &&
+            isInWall(pos.x, pos.y + 1)) {
+            stuckDirection = direction;;
+            return true;
+        }
         break;
     case DropBomb:
         break;
@@ -114,10 +129,9 @@ bool EIAInputModule::IsStuck(Vector2D pos, Button direction)
 
 bool EIAInputModule::isWarningByBomb()
 {
-    for (int y = 0 ; y < map.size(); y++) {
-        for (int x = 0 ; x < map[x].size(); x++) {
+    for (int y = 0; y < map.size(); y++) {
+        for (int x = 0; x < map[x].size(); x++) {
             if (map[y][x] == 'B') {
-
             }
         }
     }
@@ -126,8 +140,6 @@ bool EIAInputModule::isWarningByBomb()
 
 void EIAInputModule::setDirection()
 {
-    std::cout << "Want to move: " << wantToMove << std::endl;
-
     auto bombs = manager.getEntitiesInGroup(GroupLabel::Bombs);
     for (auto &i : bombs) {
         auto cast = &i->getComponent<TransformComp>();
@@ -149,51 +161,49 @@ void EIAInputModule::setDirection()
     Vector2D myPos;
     Vector2D closestPlayer;
 
-    bool stuck = IsStuck(myPos, directionPressed);
 
-    for (auto &i : manager.getEntitiesInGroup(GroupLabel::Players))
-    {
+    for (auto &i : manager.getEntitiesInGroup(GroupLabel::Players)) {
         auto player = i->getComponent<PlayerComp>();
         auto pos = i->getComponent<TransformComp>().position;
-        if (player.getPlayerNum() == _playerNum)
-        {
-            myPos = {(float)tposx_To_mposx(pos.x), (float)tposz_To_mposy(pos.z)};
-        }
-        else if (player.isAlive()) {
+        if (player.getPlayerNum() == _playerNum) {
+            myPos =
+                {(float) tposx_To_mposx(pos.x), (float) tposz_To_mposy(pos.z)};
+        } else if (player.isAlive()) {
             AlivePLayers.emplace_back(
                 tposx_To_mposx(pos.x), tposz_To_mposy(pos.z));
         }
     }
 
     int smallestTotal = 99;
-    size_t smallestTotalIndex;
+    size_t smallestTotalIndex = 99;
     int index = 0;
     for (auto iterator = AlivePLayers.begin();
         iterator != AlivePLayers.end(); ++iterator, ++index) {
         int total = abs(iterator->x - myPos.x) + abs(iterator->y - myPos.y);
-        if (total < smallestTotal)
-        {
+        if (total < smallestTotal) {
             smallestTotalIndex = index;
             smallestTotal = total;
         }
     }
 
-    closestPlayer = AlivePLayers[smallestTotalIndex];
-    if (closestPlayer.y < myPos.y && !isInWall(myPos.x, myPos.y - 1)) {
-        nextPos = {(size_t)myPos.x, (size_t)myPos.y - 1};
-        directionPressed = Button::Up;
-    }  else if (closestPlayer.y > myPos.y && !isInWall(myPos.x, myPos.y + 1)) {
-        nextPos = {(size_t)myPos.x, (size_t)myPos.y + 1};
-        directionPressed = Button::Down;
-    } else if (closestPlayer.x < myPos.x && !isInWall(myPos.x - 1, myPos.y)) {
-        nextPos = {(size_t)myPos.x - 1, (size_t)myPos.y};
-        directionPressed = Button::Left;
-    } else if (closestPlayer.x > myPos.x && !isInWall(myPos.x + 1, myPos.y)) {
-        nextPos = {(size_t)myPos.x + 1, (size_t)myPos.y};
-        directionPressed = Button::Right;
-    } else {
-        std::cout << "akbar" << std::endl;
-        wantPlaceBomb = true;
+    if (smallestTotalIndex != 99) {
+        closestPlayer = AlivePLayers[smallestTotalIndex];
+        if (closestPlayer.y < myPos.y && !isInWall(myPos.x, myPos.y - 1)) {
+            nextPos = {(size_t) myPos.x, (size_t) myPos.y - 1};
+            directionPressed = Button::Up;
+        } else if (closestPlayer.y > myPos.y &&
+            !isInWall(myPos.x, myPos.y + 1)) {
+            nextPos = {(size_t) myPos.x, (size_t) myPos.y + 1};
+            directionPressed = Button::Down;
+        } else if (closestPlayer.x < myPos.x &&
+            !isInWall(myPos.x - 1, myPos.y)) {
+            nextPos = {(size_t) myPos.x - 1, (size_t) myPos.y};
+            directionPressed = Button::Left;
+        } else if (closestPlayer.x > myPos.x &&
+            !isInWall(myPos.x + 1, myPos.y)) {
+            nextPos = {(size_t) myPos.x + 1, (size_t) myPos.y};
+            directionPressed = Button::Right;
+        }
     }
 
     //rm obstaclces
@@ -206,7 +216,7 @@ void EIAInputModule::setDirection()
 
 bool EIAInputModule::isInWall(int x, int y)
 {
-    if (map[y][x] == 'W' || map [y][x] == 'o')
+    if (map[y][x] == 'W' || map[y][x] == 'o')
         return true;
     return false;
 }
