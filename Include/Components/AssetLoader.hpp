@@ -41,6 +41,7 @@ public:
     float Volume;
     ESound PlayerDead;
     ESound ButtonClick;
+    ESound addScore;
     //Textures
     ESprite FullFireSprite;
     ESprite BombUpSprite;

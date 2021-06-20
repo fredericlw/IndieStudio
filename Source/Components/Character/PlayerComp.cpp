@@ -211,7 +211,7 @@ int PlayerComp::getScore() const
 
 void PlayerComp::addScore(int value)
 {
-    //TODO: if not playing, play value sound here
+    entity->assets()->addScore.playSound(entity->assets()->Volume);
     score += value;
 }
 
