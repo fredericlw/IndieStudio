@@ -4,7 +4,7 @@
   <img align="center" alt="Version" src="https://img.shields.io/badge/version-release-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> A clone of Bomberman made in C++, using Raylib, Boost, featuring custom Raylib encapsulation, a flexible Entity-Component System, AI, controller support, procedural level generation, loading and saving games, and more !
+A clone of Bomberman made in C++, using Raylib, Boost, featuring custom Raylib encapsulation, a flexible Entity-Component System, AI, controller support, procedural level generation, loading and saving games, and more !
 
 ## 💣 Build Instructions 💣
 
@@ -16,7 +16,7 @@ git submodule update --remote
 ```
 Then :
 ```sh
-mkdir build && cd build && cmake --build . && cd ..
+mkdir build && cd build && cmake .. && cmake --build . && cd ..
 ```
 
 ## 💣 Usage 💣
@@ -47,14 +47,39 @@ There is a "how to play" button available on the main menu.
 
 ## 💣 Authors 💣
 
-👤 **Leo Fabre (leader), Adrien Courbebaisse, Achille Bourgault, Fréderic Lawecki-Walkowiak, Thomas Meurice, Daniyel Gouasmi**
+👤 **Leo Fabre**
 
 * Github: [@LeoFabre](https://github.com/LeoFabre)
 * LinkedIn: [@leo-fabre](https://linkedin.com/in/leo-fabre)
 
+👤 **Adrien Courbebaisse**
+
+* Github: [@adriencourbebaisse](https://github.com/adriencourbebaisse)
+* LinkedIn: [@adrien-courbebaisse](https://fr.linkedin.com/in/adrien-courbebaisse-708607212)
+
+👤 **Achille Bourgault**
+
+* Github: [@achillebourgault](https://github.com/achillebourgault)
+* LinkedIn: [@achille-bourgault](https://fr.linkedin.com/in/achille-bourgault-266514177)
+
+👤 **Frédéric Lawecki--Walkowiak**
+
+* Github: [@fredericlw](https://github.com/fredericlw)
+* LinkedIn: [@frederic-lawecki-walkowiak](https://www.linkedin.com/in/frederic-lawecki-walkowiak/)
+
+👤 **Thomas Meurice**
+
+* Github: [@Thomas-Meurice](https://github.com/Thomas-Meurice)
+* LinkedIn: [@thomas-meurice](https://fr.linkedin.com/in/thomas-meurice)
+
+👤 **Daniyel Gouasmi**
+
+* Github: [@DaniyelG](https://github.com/DaniyelG)
+* LinkedIn: [@daniyel-gouasmi](https://fr.linkedin.com/in/daniyel-gouasmi-40289b17a)
+
 ## 💣 Show your support 💣
 
-Give a ⭐️ if this project helped you!
+Give a ⭐️ if this project helped you!  
 Big shoutout to Carl for the ECS tutorials ! [@youtube](https://www.youtube.com/watch?v=QQzAHcojEKg&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx)
 
 ***
