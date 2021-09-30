@@ -22,7 +22,7 @@ public:
     EModel *model;
     void update();
     void draw(Vector3D pos);
-    int animCount;
+    unsigned int animCount;
     void Unload();
 };
 
